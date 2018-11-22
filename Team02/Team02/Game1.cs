@@ -12,6 +12,7 @@ using System;
 using System.Threading;
 using InfinityGame.Device.WindowsScreen;
 using InfinityGame.Device.KeyboardManage;
+using Team02.Scene;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -30,7 +31,7 @@ namespace Team02
         private string title = "Team02";
         private GameRun gameRun;
         private InfinityGame.Element.Size tempScreen;
-
+        private Load_Scene Load_Scene;
         private D_Void _Update;
 
 
@@ -89,13 +90,17 @@ namespace Team02
         {
             Resources.SetGD(GraphicsDevice);
             GameTexts.Initialize(IGConfig.gameLanguage);
-            gameRun = new GameRun(GraphicsDevice, graphicsDeviceManager, false);
+            gameRun = new GameRun(GraphicsDevice, graphicsDeviceManager, true);
+            Load_Scene = new Load_Scene("Loading", GraphicsDevice, null, gameRun);
+            gameRun.SetLoadScene(Load_Scene);
             Window.Title = GameTexts.GetText(title);
         }
 
         public void AfterInitialize()
         {
-
+            gameRun.scenes["title"] = new TitleScene("title", GraphicsDevice, null, gameRun);
+            gameRun.scenes["play"] = new PlayScene("play", GraphicsDevice, null, gameRun);
+            gameRun.firstScene = "title";
         }
 
         public void LastInitialize()
