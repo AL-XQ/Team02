@@ -26,6 +26,10 @@ namespace Team02.Scene
         private AnimeButton test;
         private AnimeButton test1;
         private AnimeButton test2;
+        private Player player;
+
+        public Player Player { get => player; }
+        
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -41,6 +45,7 @@ namespace Team02.Scene
 
         public override void PreLoadContent()
         {
+            player = new Player();
             new Base_Stage(this, "stage1");
             new Base_Stage(this, "stage2");
             aaaaa = new GameObj(stages["stage1"], "aaa");
@@ -76,6 +81,7 @@ namespace Team02.Scene
         {
             if (ShowStage != null)
                 test.Text = "タイトルに戻る\nNow:" + ShowStage.Name;
+            player.Update(gameTime);
             base.Update(gameTime);
         }
         private void test_Click(object sender, EventArgs e)
