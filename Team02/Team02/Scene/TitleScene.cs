@@ -69,6 +69,7 @@ namespace Team02.Scene
             test1.sounds["aa"].PlayE();
             GameRun.scenes["title"].IsRun = false;
             GameRun.scenes["play"].IsRun = true;
+            GameRun.scenes["play"].Initialize();
         }
 
         private void test1_Enter(object sender, EventArgs e)
