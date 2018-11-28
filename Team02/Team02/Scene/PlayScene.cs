@@ -44,6 +44,7 @@ namespace Team02.Scene
             test.Size = size / 5;
             test.Location = new Point(500, 500);
             test.Text = "タイトルに戻る";
+            stages["stage1"].FocusStageObj = stages["stage1"].stageObjs["aaa"];
             base.PreLoadContent();
         }
         public override void LoadContent()

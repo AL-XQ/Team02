@@ -22,7 +22,6 @@ namespace Team02.Scene.Stage
 
         public override void PreLoadContent()
         {
-            
             base.PreLoadContent();
         }
     }
