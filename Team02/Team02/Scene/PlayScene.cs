@@ -34,6 +34,7 @@ namespace Team02.Scene
             new GameObj(stages["stage1"], "aaa");
             stages["stage1"].stageObjs["aaa"].Size = new Size(200, 200);
             stages["stage1"].FocusStageObj = stages["stage1"].stageObjs["aaa"];
+
             base.PreLoadContent();
         }
 

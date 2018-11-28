@@ -67,6 +67,7 @@
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
     <Compile Include="Scene\Stage\Base_Stage.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\Chara.cs" />
     <Compile Include="Scene\Stage\GameObjs\GameObj.cs" />
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
