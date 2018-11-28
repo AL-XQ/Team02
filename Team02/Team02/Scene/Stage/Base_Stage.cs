@@ -8,6 +8,7 @@ using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
 using Team02.Scene.Stage.GameObjs;
 using InfinityGame.Element;
+using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage
 {
@@ -15,7 +16,8 @@ namespace Team02.Scene.Stage
     {
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            CameraScale = 0.1f;
+            CameraScale = 1f;
+            EndOfRightDown = new Point(10000, 10000);
         }
 
         public override void PreLoadContent()

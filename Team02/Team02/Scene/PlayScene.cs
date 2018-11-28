@@ -12,11 +12,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Team02.Scene.Stage;
 using Team02.Scene.Stage.GameObjs;
+using InfinityGame.Device;
+
+using InfinityGame.UI.UIContent;
+using InfinityGame.Device.MouseManage;
 
 namespace Team02.Scene
 {
     public class PlayScene : StageScene
     {
+        private AnimeButton test;
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -33,13 +38,30 @@ namespace Team02.Scene
             ShowStage = stages["stage1"];
             new GameObj(stages["stage1"], "aaa");
             stages["stage1"].stageObjs["aaa"].Size = new Size(200, 200);
-            stages["stage1"].FocusStageObj = stages["stage1"].stageObjs["aaa"];
+            stages["stage1"].stageObjs["aaa"].Coordinate = new Vector2(200, 200);
+            //stages["stage1"].FocusStageObj = stages["stage1"].stageObjs["aaa"];
+            test = new AnimeButton(this);
+            test.Size = size / 5;
+            test.Location = new Point(500, 500);
+            test.Text = "タイトルに戻る";
             base.PreLoadContent();
+        }
+        public override void LoadContent()
+        {
+            test.Image= ImageManage.GetSImage("button01");
+            test.Click+= test_Click;
+            base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+        }
+        private void test_Click(object sender,EventArgs e)
+        {
+            this.IsRun = false;
+            GameRun.scenes["title"].IsRun = true;
+
         }
     }
 }
