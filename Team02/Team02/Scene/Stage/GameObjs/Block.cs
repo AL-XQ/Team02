@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.Device;
 using InfinityGame.GameGraphics;
+using InfinityGame.Stage.StageObject;
+
+using Team02.Scene.Stage.GameObjs.Actor;
 
 namespace Team02.Scene.Stage.GameObjs
 {
@@ -24,6 +27,15 @@ namespace Team02.Scene.Stage.GameObjs
         {
             image = ImageManage.GetSImage("chat.png");
             base.LoadContent();
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            if (obj is Chara chara)
+            {
+                chara.ClearGraSpeed();
+            }
+            base.CalCollision(obj);
         }
     }
 }

@@ -22,6 +22,10 @@ namespace Team02.Scene
     public class PlayScene : StageScene
     {
         private AnimeButton test;
+        private Player player;
+
+        public Player Player { get => player; }
+
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -33,6 +37,7 @@ namespace Team02.Scene
         }
         public override void PreLoadContent()
         {
+            player = new Player();
             new Base_Stage(this, "stage1");
             new Base_Stage(this, "stage2");
             ShowStage = stages["stage1"];
@@ -56,6 +61,7 @@ namespace Team02.Scene
 
         public override void Update(GameTime gameTime)
         {
+            player.Update(gameTime);
             base.Update(gameTime);
         }
         private void test_Click(object sender,EventArgs e)
