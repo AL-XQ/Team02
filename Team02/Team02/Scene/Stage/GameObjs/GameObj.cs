@@ -32,7 +32,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void Update(GameTime gameTime)
         {
-            AddVelocity(new Vector2(1, 1), InfinityGame.Stage.VeloParam.Run);
+            //AddVelocity(new Vector2(1, 1), InfinityGame.Stage.VeloParam.Run);
             base.Update(gameTime);
         }
     }
