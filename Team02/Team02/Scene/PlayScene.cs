@@ -37,8 +37,8 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
-            if (aaaaa.Stage.Name == "stage2")
-                aaaaa.ChangeStage(stages["stage1"]);
+            //if (aaaaa.Stage.Name == "stage2")
+            //    aaaaa.ChangeStage(stages["stage1"]);
             ShowStage = stages["stage1"];
             base.Initialize();
         }
@@ -47,40 +47,40 @@ namespace Team02.Scene
         {
             player = new Player();
             new Base_Stage(this, "stage1");
-            new Base_Stage(this, "stage2");
-            aaaaa = new GameObj(stages["stage1"], "aaa");
-            stages["stage1"].stageObjs["aaa"].Size = new Size(200, 200);
-            stages["stage1"].stageObjs["aaa"].Coordinate = new Vector2(200, 200);
-            test = new AnimeButton(this);
-            test.Size = size / 5;
-            test.Location = new Point(500, 500);
+            //new Base_Stage(this, "stage2");
+            //aaaaa = new GameObj(stages["stage1"], "aaa");
+            //stages["stage1"].stageObjs["aaa"].Size = new Size(200, 200);
+            //stages["stage1"].stageObjs["aaa"].Coordinate = new Vector2(200, 200);
+            //test = new AnimeButton(this);
+            //test.Size = size / 10;
+            //test.Location = new Point(500, 500);
 
-            test1 = new AnimeButton(this);
-            test1.Size = size / 5;
-            test1.Location = new Point(1000, 500);
-            test1.Text = "ステージ変更";
-            test2 = new AnimeButton(this);
-            test2.Size = size / 5;
-            test2.Location = new Point(1000, 700);
-            test2.Text = "アイテム転送";
+            //test1 = new AnimeButton(this);
+            //test1.Size = size / 10;
+            //test1.Location = new Point(1000, 500);
+            //test1.Text = "ステージ変更";
+            //test2 = new AnimeButton(this);
+            //test2.Size = size / 10;
+            //test2.Location = new Point(1000, 700);
+            //test2.Text = "アイテム転送";
             //stages["stage1"].FocusStageObj = stages["stage1"].stageObjs["aaa"];
             base.PreLoadContent();
         }
         public override void LoadContent()
         {
-            test.Image = ImageManage.GetSImage("button01");
-            test.Click += test_Click;
-            test1.Image = ImageManage.GetSImage("button01");
-            test1.Click += test1_Click;
-            test2.Image = ImageManage.GetSImage("button01");
-            test2.Click += test2_Click;
+            //test.Image = ImageManage.GetSImage("button01");
+            //test.Click += test_Click;
+            //test1.Image = ImageManage.GetSImage("button01");
+            //test1.Click += test1_Click;
+            //test2.Image = ImageManage.GetSImage("button01");
+            //test2.Click += test2_Click;
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            if (ShowStage != null)
-                test.Text = "タイトルに戻る\nNow:" + ShowStage.Name;
+            //if (ShowStage != null)
+            //    test.Text = "タイトルに戻る\nNow:" + ShowStage.Name;
             player.Update(gameTime);
             base.Update(gameTime);
         }
