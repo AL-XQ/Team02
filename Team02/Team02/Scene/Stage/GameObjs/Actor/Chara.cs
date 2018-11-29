@@ -22,6 +22,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Vector2 gra = Vector2.Zero;
         private Vector2 graSpeed = Vector2.Zero;
         private Vector2 speed = Vector2.Zero;
+        protected Base_Stage base_Stage;
 
 
         public int Hp { get => hp; set => hp = value; }
@@ -29,10 +30,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public int Maxhp { get => maxhp; set => maxhp = value; }
         public int Maxmp { get => maxmp; set => maxmp = value; }
         public Vector2 Speed { get => speed; set => speed = value; }
+        public CharaManager CharaManager { get => base_Stage.CharaManager; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             IsCrimp = true;
+            base_Stage = (Base_Stage)aParent;
         }
 
         public override void Initialize()

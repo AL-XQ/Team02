@@ -68,6 +68,7 @@
     <Compile Include="Scene\PlayScene.cs" />
     <Compile Include="Scene\Stage\Base_Stage.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Chara.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\CharaManager.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Enemy.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Hero.cs" />
     <Compile Include="Scene\Stage\GameObjs\Block.cs" />

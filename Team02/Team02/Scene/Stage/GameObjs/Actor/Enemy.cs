@@ -12,6 +12,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     {
         public Enemy(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
+            CharaManager.Add(this);
         }
 
         public override void LoadContent()

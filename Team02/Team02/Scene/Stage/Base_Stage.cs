@@ -19,13 +19,15 @@ namespace Team02.Scene.Stage
     {
         private GameObj test;
         private PlayScene playScene;
+        private CharaManager charaManager=new CharaManager();
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
-        
+        public CharaManager CharaManager { get => charaManager; }
+
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             CameraScale = 1.0f;
-            EndOfRightDown = new Point(10000, 10000);
+            EndOfRightDown = new Vector2(10000, 10000);
             playScene = (PlayScene)parent;
         }
 
@@ -62,6 +64,7 @@ namespace Team02.Scene.Stage
         }
         public override void Update(GameTime gameTime)
         {
+            
             base.Update(gameTime);
         }
     }

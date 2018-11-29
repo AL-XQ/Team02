@@ -31,9 +31,13 @@ namespace Team02.Scene
             {
                 Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
                 chara.AddVelocity(ve, VeloParam.Run);
-                if (GameKeyboard.GetKeyTrigger(Keys.Space))
-                    chara.Speed += new Vector2(0, -5);
+                Jump();
             }
+        }
+        public void Jump()
+        {
+            if (GameKeyboard.GetKeyTrigger(Keys.Space))
+                chara.Speed += new Vector2(0, -5);
         }
     }
 }

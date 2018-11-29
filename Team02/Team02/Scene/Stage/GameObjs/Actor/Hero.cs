@@ -12,6 +12,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     {
         public Hero(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
+            CharaManager.Hero = this;
         }
 
         public override void LoadContent()

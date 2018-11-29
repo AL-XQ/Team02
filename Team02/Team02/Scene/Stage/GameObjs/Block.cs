@@ -9,6 +9,8 @@ using InfinityGame.Stage.StageObject;
 
 using Team02.Scene.Stage.GameObjs.Actor;
 
+using Microsoft.Xna.Framework;
+
 namespace Team02.Scene.Stage.GameObjs
 {
     class Block : GameObj
@@ -19,13 +21,15 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void PreLoadContent()
         {
+
             IsCrimp = true;
+            RenderRect = new Rectangle(new Point(32, 32), new Point(64, 64));
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("Block_Test_64.png");
+            image = ImageManage.GetSImage("Block_Test.png");
             base.LoadContent();
             
         }
