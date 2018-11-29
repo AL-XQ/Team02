@@ -13,15 +13,21 @@ namespace Team02.Scene.Stage.GameObjs
 {
     public class GameObj : StageObj
     {
+
         public GameObj(BaseDisplay aParent) : base(aParent)
         {
-           // BeAffect = true;
-            
+            // BeAffect = true;
+
         }
 
         public GameObj(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
 
+        }
+
+        public override void PreLoadContent()
+        {
+            base.PreLoadContent();
         }
 
         public override void LoadContent()

@@ -40,7 +40,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Initialize()
         {
-            graSpeed = new Vector2(0, 1);
+            //graSpeed = new Vector2(0, 1);
             hp = maxhp;
             mp = maxhp;
             base.Initialize();
@@ -79,7 +79,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private void CalGra()
         {
             graSpeed += gra;
-            gra = Vector2.Zero;
             speed += graSpeed;
         }
 

@@ -29,7 +29,7 @@ namespace Team02.Scene
         {
             if (chara != null)
             {
-                Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys);
+                Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 10;
                 chara.AddVelocity(ve, VeloParam.Run);
                 Jump();
             }
