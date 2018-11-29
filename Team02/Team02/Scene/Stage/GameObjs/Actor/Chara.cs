@@ -45,7 +45,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void PreLoadContent()
         {
-            Size = new InfinityGame.Element.Size(200, 200);
+            
             base.PreLoadContent();
         }
 

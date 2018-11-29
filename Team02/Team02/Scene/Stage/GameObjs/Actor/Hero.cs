@@ -16,7 +16,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("close_t.png");
+
+            image = ImageManage.GetSImage("Player_Test.png");
             base.LoadContent();
         }
     }

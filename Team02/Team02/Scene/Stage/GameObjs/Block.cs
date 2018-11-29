@@ -25,8 +25,9 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("chat.png");
+            image = ImageManage.GetSImage("Block_Test_64.png");
             base.LoadContent();
+            
         }
 
         public override void CalCollision(StageObj obj)

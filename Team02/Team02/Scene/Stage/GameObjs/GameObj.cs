@@ -15,7 +15,7 @@ namespace Team02.Scene.Stage.GameObjs
     {
         public GameObj(BaseDisplay aParent) : base(aParent)
         {
-            BeAffect = true;
+           // BeAffect = true;
             
         }
 
@@ -26,13 +26,11 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("chat.png");
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            //AddVelocity(new Vector2(1, 1), InfinityGame.Stage.VeloParam.Run);
             base.Update(gameTime);
         }
     }
