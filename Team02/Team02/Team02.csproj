@@ -77,8 +77,10 @@
     <Compile Include="Scene\Stage\GameObjs\GameObj.cs" />
     <Compile Include="Scene\Stage\GameObjs\KillBlock.cs" />
     <Compile Include="Scene\Player.cs" />
+    <Compile Include="Scene\Stage\Stage01.cs" />
     <Compile Include="Scene\Stage\StageMap.cs" />
     <Compile Include="Scene\TitleScene.cs" />
+    <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +142,9 @@
     <Content Include="Texture\AutoLoad\state_test_walk.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\window.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\button01\button01.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -156,6 +161,30 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\button01\button01_0004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0003.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0005.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0006.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\button03\button03.txt">

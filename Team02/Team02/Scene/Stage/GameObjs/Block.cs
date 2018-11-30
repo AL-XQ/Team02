@@ -39,6 +39,8 @@ namespace Team02.Scene.Stage.GameObjs
         public Block(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             IsCrimp = true;
+            BeMove = false;
+            MovePriority = 10;
         }
 
         private void SetEOffset(EOffset value)

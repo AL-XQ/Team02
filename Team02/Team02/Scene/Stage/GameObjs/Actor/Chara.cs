@@ -36,6 +36,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             IsCrimp = true;
             base_Stage = (Base_Stage)aParent;
+            MovePriority = 5;
         }
 
         public override void Initialize()
