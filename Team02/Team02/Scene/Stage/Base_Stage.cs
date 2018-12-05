@@ -20,13 +20,21 @@ namespace Team02.Scene.Stage
         private PlayScene playScene;
         private StageMap stageMap;
         private CharaManager charaManager = new CharaManager();
+        private Vector2 defGra;
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
         public CharaManager CharaManager { get => charaManager; }
+        public Vector2 DefGra { get => defGra; set => defGra = value; }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             playScene = (PlayScene)parent;
+        }
+
+        public override void Initialize()
+        {
+            defGra = new Vector2(0, 0.5f);
+            base.Initialize();
         }
 
         public override void PreLoadContent()

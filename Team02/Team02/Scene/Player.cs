@@ -14,6 +14,7 @@ using InfinityGame.Device.KeyboardManage;
 using InfinityGame.Def;
 using InfinityGame.Stage;
 using InfinityGame;
+using InfinityGame.Element;
 
 namespace Team02.Scene
 {
@@ -22,10 +23,12 @@ namespace Team02.Scene
         private Chara chara;
         private PlayScene playScene;
         private Vector2 cameraCenter = Vector2.Zero;
+        private float jumpForce = 15;
 
         public Chara Chara { get => chara; set => chara = value; }
         public Base_Stage Stage { get => (Base_Stage)playScene.ShowStage; }
         public Vector2 CameraCenter { get => cameraCenter; set => cameraCenter = value; }
+        public float JumpForce { get => jumpForce; set => jumpForce = value; }
 
         public Player(PlayScene playScene)
         {
@@ -41,11 +44,19 @@ namespace Team02.Scene
         {
             if (chara != null)
             {
-                Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 10;
-                chara.AddVelocity(ve, VeloParam.Run);
+                Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
+                chara.Forces["run"] = force;
                 Jump();
                 if (GameKeyboard.GetKeyState(Keys.Enter))
+                {
                     chara.Rotation += 0.05f;
+                    chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, 0.05f);
+                }
+                if (GameKeyboard.GetKeyTrigger(Keys.Q))
+                {
+                    chara.Rotation = 0;
+                    chara.ResetGra();
+                }
                 CheckChara();
             }
         }
@@ -53,7 +64,11 @@ namespace Team02.Scene
         private void Jump()
         {
             if (GameKeyboard.GetKeyTrigger(Keys.Space))
-                chara.Speed += new Vector2(0, -5);
+            {
+                chara.Jump(jumpForce);
+                return;
+            }
+            chara.DisJump();
         }
 
         private void CheckChara()

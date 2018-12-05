@@ -32,9 +32,11 @@ namespace Team02.Scene.Stage.GameObjs
         private Point groupCoo = default(Point);
         private EOffset eOffset = EOffset.Null;
         private string imageName = "";
+        private float coeff = 0.05f;
         public Point GroupCoo { get => groupCoo; }
         public EOffset EOffset { get => eOffset; set => SetEOffset(value); }
         public string ImageName { get => imageName; set => SetImageName(value); }
+        public float Coeff { get => coeff; set => coeff = value; }
 
         public Block(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -84,9 +86,10 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Chara chara)
+            if (obj is Chara c)
             {
-                chara.ClearGraSpeed();
+                c.DisSpeed(coeff);
+                c.Strut();
             }
             base.CalCollision(obj);
         }

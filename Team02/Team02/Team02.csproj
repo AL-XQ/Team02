@@ -72,6 +72,7 @@
     <Compile Include="Scene\Stage\GameObjs\Actor\CharaManager.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Enemy.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Hero.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\Motion.cs" />
     <Compile Include="Scene\Stage\GameObjs\Block.cs" />
     <Compile Include="Scene\Stage\GameObjs\BlockGroup.cs" />
     <Compile Include="Scene\Stage\GameObjs\GameObj.cs" />
@@ -131,6 +132,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\Player_Test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\Player_Test_Left.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\state_test_fall.png">
