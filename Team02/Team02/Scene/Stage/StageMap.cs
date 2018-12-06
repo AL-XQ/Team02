@@ -11,14 +11,11 @@ namespace Team02.Scene.Stage
     public class StageMap
     {
         private Base_Stage base_Stage;
-        private List<BlockGroup> blockGroups = new List<BlockGroup>();
 
-        public List<BlockGroup> BlockGroups { get => blockGroups; }
 
         public StageMap(Base_Stage base_Stage)
         {
             this.base_Stage = base_Stage;
-            BlockGroup.SetOffI();
         }
     }
 }

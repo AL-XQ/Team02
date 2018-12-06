@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.Device;
 using InfinityGame.GameGraphics;
+using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
