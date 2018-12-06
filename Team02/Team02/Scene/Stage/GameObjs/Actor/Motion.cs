@@ -74,5 +74,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (side == Vector2Side.X_Minus)
                 SetDire(Direction.Right);
         }
+         public void CheckMotion()
+        {
+
+            if (chara.Speed.Y != 0)
+                SetState(MotionState.Jump);
+            else
+                SetState(MotionState.Normal);
+            return;
+            
+        }
+
     }
 }
