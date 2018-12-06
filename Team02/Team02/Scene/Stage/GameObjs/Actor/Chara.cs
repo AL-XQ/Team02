@@ -26,6 +26,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private bool canJump = false;
+        private bool isStrut = false;
         private Motion motion;
         private string imageName;
 
@@ -39,9 +40,22 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Vector2 Speed { get => speed; set => speed = value; }
         public CharaManager CharaManager { get => base_Stage.CharaManager; }
         public Motion Motion { get => motion; }
+        /// <summary>
+        /// 画像の名前
+        /// </summary>
         public string ImageName { get => imageName; set => SetImageName(value); }
+        /// <summary>
+        /// 力
+        /// </summary>
         public Dictionary<string, Vector2> Forces { get => forces; }
+        /// <summary>
+        /// 重力
+        /// </summary>
         public Vector2 Gra { get => gra; set => gra = value; }
+        /// <summary>
+        /// 立っているかどうか
+        /// </summary>
+        public bool IsStrut { get => isStrut; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -126,6 +140,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public void DisStrut()
         {
+            isStrut = false;
             forces["strut"] = Vector2.Zero;
         }
 
@@ -136,6 +151,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if (gra == Vector2.Zero)
                 return;
+            isStrut = true;
             var gv = gra;
             forces["strut"] = -gv;
             gv.Normalize();
