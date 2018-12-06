@@ -109,7 +109,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-
             motion.CheckDire();
             motion.CheckMotion();
             //Console.WriteLine(motion.Dire);
@@ -122,7 +121,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void AfterUpdate(GameTime gameTime)
         {
-            
             base.AfterUpdate(gameTime);
         }
 

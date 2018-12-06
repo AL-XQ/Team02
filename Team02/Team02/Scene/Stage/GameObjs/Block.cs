@@ -15,11 +15,9 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Team02.Scene.Stage.GameObjs
 {
-    public class Block : GameObj
+    public class Block : LoopedBlock
     {
-        private string imageName = "";
         private float coeff = 0.05f;
-        public string ImageName { get => imageName; set => SetImageName(value); }
         public float Coeff { get => coeff; set => coeff = value; }
 
         public Block(BaseDisplay aParent, string aName) : base(aParent, aName)
@@ -27,35 +25,6 @@ namespace Team02.Scene.Stage.GameObjs
             IsCrimp = true;
             BeMove = false;
             MovePriority = 10;
-        }
-
-        protected virtual void SetImageName(string value)
-        {
-            imageName = value;
-            image = ImageManage.GetSImage(imageName);
-        }
-
-        protected virtual void SetImage()
-        {
-            ImageName = "Block_Test.png";
-        }
-
-        public override void PreLoadContent()
-        {
-            OffSet();
-            base.PreLoadContent();
-        }
-
-        protected virtual void OffSet()
-        {
-            RenderCoo_Offset = -size.ToVector2() / 2;
-            RenderSize_Offset = size.ToVector2();
-        }
-
-        public override void LoadContent()
-        {
-            SetImage();
-            base.LoadContent();
         }
 
         public override void CalCollision(StageObj obj)

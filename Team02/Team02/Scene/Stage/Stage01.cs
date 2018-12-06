@@ -14,7 +14,10 @@ namespace Team02.Scene.Stage
 {
     public class Stage01 : Base_Stage
     {
-        private LoopedBlock b0;
+        private Block b0;
+        private Block b2;
+        private Block fl;
+        private Block tp;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(10000, 10000);
@@ -25,20 +28,15 @@ namespace Team02.Scene.Stage
             Player.Chara = new Hero(this, "hero");
             stageObjs["hero"].Coordinate = new Vector2(0, 200);
             stageObjs["hero"].Size = new Size(64, 64);
-            b0 = new LoopedBlock(this, "block");
+            b0 = new Block(this, "block");
             stageObjs["block"].Coordinate = new Vector2(300, 400);
-            new Block(this, "block2");
+            b2 = new Block(this, "block2");
             stageObjs["block2"].Coordinate = new Vector2(1000, 400);
-            stageObjs["block2"].Size = new Size(64 * 2, 64 * 4);
-            stageObjs["block2"].Rotation = 0.5f;
-            stageObjs["block2"].Origin = (stageObjs["block2"].Size / 2).ToVector2();
-            new Block(this, "floor");
+            fl = new Block(this, "floor");
             stageObjs["floor"].Coordinate = new Vector2(0, 900 - 64);
-            stageObjs["floor"].Size = new Size(1600, 64);
-            new Block(this, "top");
+            tp = new Block(this, "top");
             stageObjs["top"].Coordinate = new Vector2(0, 0);
-            stageObjs["top"].Size = new Size(1600, 64);
-            Player.CameraCenter = new Vector2(0, IGConfig.screen.Height / 2);
+            Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
 
             new Enemy(this, "enemy");
             stageObjs["enemy"].Coordinate = new Vector2(1000, 0);
@@ -52,6 +50,10 @@ namespace Team02.Scene.Stage
             base.LoadContent();
             b0.UnitedSize = new Size(4, 3);
             b0.Rotation = 0.5f;
+            b2.UnitedSize = new Size(2, 3);
+            b2.Rotation = 0.5f;
+            fl.UnitedSize = new Size(25, 1);
+            tp.UnitedSize = new Size(25, 1);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Team02.Scene
     {
         private Chara chara;
         private PlayScene playScene;
-        private Vector2 cameraCenter = Vector2.Zero;
+        private Vector2 cameraCenter;
         private float jumpForce = 15;
 
         public Chara Chara { get => chara; set => chara = value; }
@@ -79,8 +79,12 @@ namespace Team02.Scene
                 if (chara.Coordinate.X >= IGConfig.screen.Width / 2)
                 {
                     cameraCenter.X = chara.Coordinate.X;
-                    Stage.CameraCenter = cameraCenter;
                 }
+                if (chara.Coordinate.Y - IGConfig.screen.Height / 4 >= IGConfig.screen.Height / 2)
+                {
+                    cameraCenter.Y = chara.Coordinate.Y - IGConfig.screen.Height / 4;
+                }
+                Stage.CameraCenter = cameraCenter;
             }
         }
     }
