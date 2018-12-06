@@ -47,10 +47,15 @@ namespace Team02.Scene
                 Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
                 chara.Forces["run"] = force;
                 Jump();
-                if (GameKeyboard.GetKeyState(Keys.Enter))
+                if (GameKeyboard.GetKeyState(Keys.Right))
                 {
                     chara.Rotation += 0.05f;
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, 0.05f);
+                }
+                else if (GameKeyboard.GetKeyState(Keys.Left))
+                {
+                    chara.Rotation -= 0.05f;
+                    chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, -0.05f);
                 }
                 if (GameKeyboard.GetKeyTrigger(Keys.Q))
                 {
