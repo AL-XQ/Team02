@@ -62,6 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Device\CSVReader.cs" />
+    <Compile Include="Def\Config.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,11 +73,16 @@
     <Compile Include="Scene\Stage\GameObjs\Actor\CharaManager.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Enemy.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\Hero.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\Motion.cs" />
     <Compile Include="Scene\Stage\GameObjs\Block.cs" />
+    <Compile Include="Scene\Stage\GameObjs\BlockGroup.cs" />
     <Compile Include="Scene\Stage\GameObjs\GameObj.cs" />
     <Compile Include="Scene\Stage\GameObjs\KillBlock.cs" />
     <Compile Include="Scene\Player.cs" />
+    <Compile Include="Scene\Stage\Stage01.cs" />
+    <Compile Include="Scene\Stage\StageMap.cs" />
     <Compile Include="Scene\TitleScene.cs" />
+    <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +135,9 @@
     <Content Include="Texture\AutoLoad\Player_Test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\Player_Test_Left.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\state_test_fall.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -136,6 +145,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\state_test_walk.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\window.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\button01\button01.txt">
@@ -154,6 +166,30 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\button01\button01_0004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0000.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0001.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0002.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0003.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0004.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0005.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\button02\button02_0006.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\button03\button03.txt">
@@ -251,6 +287,9 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
     <None Include="app.manifest" />
     <None Include="IGConfig.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Lang\ラノベPOP.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

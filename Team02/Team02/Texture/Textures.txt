@@ -1,4 +1,5 @@
 ﻿<IG:1>
 <closebutton:1>
 <button03:1>
+<button02:1>
 <button01:1>
