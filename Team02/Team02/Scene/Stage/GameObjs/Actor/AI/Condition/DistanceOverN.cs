@@ -19,7 +19,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
 
         public override bool Check()
         {
-            return Vector2.Distance(Target.Coordinate, User.Coordinate) > minDistance;
+            return Vector2.DistanceSquared(Target.Coordinate, User.Coordinate) > minDistance * minDistance;
         }
     }
 }
