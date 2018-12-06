@@ -46,6 +46,17 @@ namespace Team02.Scene.Stage.GameObjs
             }
         }
 
+        protected override void SetImage()
+        {
+            ImageName = "Block_Test_192.png";
+        }
+
+        protected override void OffSet()
+        {
+            RenderCoo_Offset = -new Vector2(48, 48) * 2;
+            RenderSize_Offset = new Vector2(96, 96) * 2;
+        }
+
         private void CreateTex()
         {
             if (tex != null)
@@ -56,7 +67,6 @@ namespace Team02.Scene.Stage.GameObjs
             spriteBatch.Begin();
             int w = Size.Width / unitedSize.Width;
             int h = Size.Height / unitedSize.Height;
-            Size s = Size / unitedSize;
             for (int i = 0; i < unitedSize.Width; i++)
             {
                 for (int j = 0; j < unitedSize.Height; j++)
@@ -70,7 +80,7 @@ namespace Team02.Scene.Stage.GameObjs
                         tj = 0;
                     else if (j == unitedSize.Height - 1)
                         tj = 2;
-                    spriteBatch.Draw(image.ImageT[iTIndex], new Rectangle(new Point(i * w, j * h), s.ToPoint()), texRects[ti, tj], Color.White);
+                    spriteBatch.Draw(image.ImageT[iTIndex], new Rectangle(new Point(i * w, j * h), _UnitSize.ToPoint()), texRects[ti, tj], Color.White);
                 }
             }
             spriteBatch.End();

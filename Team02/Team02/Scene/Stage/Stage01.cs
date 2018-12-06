@@ -50,7 +50,8 @@ namespace Team02.Scene.Stage
         public override void LoadContent()
         {
             base.LoadContent();
-            b0.UnitedSize = new Size(3, 2);
+            b0.UnitedSize = new Size(4, 3);
+            b0.Rotation = 0.5f;
         }
     }
 }
