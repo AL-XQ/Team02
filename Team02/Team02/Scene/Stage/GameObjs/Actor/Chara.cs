@@ -90,7 +90,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Update(GameTime gameTime)
         {
             motion.CheckDire();
+            motion.CheckMotion();
             Console.WriteLine(motion.Dire);
+            Console.WriteLine(motion.State);
             CalForce();
             base.Update(gameTime);
             canJump = false;
