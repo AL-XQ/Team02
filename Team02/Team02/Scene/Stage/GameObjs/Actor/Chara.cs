@@ -93,7 +93,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void LoadContent()
         {
             SetImage();
+            OffSet();
             base.LoadContent();
+        }
+
+        protected virtual void OffSet()
+        {
+
         }
 
         protected virtual void SetImage()

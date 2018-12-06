@@ -120,6 +120,9 @@
     <Content Include="Texture\AutoLoad\Block_Test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\Block_Test_192.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\Block_Test_64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

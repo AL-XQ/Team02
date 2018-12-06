@@ -76,7 +76,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         }
          public void CheckMotion()
         {
-            Console.WriteLine(chara.IsStrut);
             if (!chara.IsStrut)
             {
                 Line a = new Line(Vector2.Zero, chara.Gra, VectorTools.Vertical(chara.Gra));

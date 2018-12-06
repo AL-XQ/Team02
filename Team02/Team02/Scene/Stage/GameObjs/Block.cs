@@ -37,22 +37,25 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected virtual void SetImage()
         {
-            imageName = "Block_Test.png";
+            ImageName = "Block_Test.png";
         }
 
         public override void PreLoadContent()
         {
+            OffSet();
+            base.PreLoadContent();
+        }
+
+        protected virtual void OffSet()
+        {
             RenderCoo_Offset = -size.ToVector2() / 2;
             RenderSize_Offset = size.ToVector2();
-            base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             SetImage();
-            image = ImageManage.GetSImage(imageName);
             base.LoadContent();
-
         }
 
         public override void CalCollision(StageObj obj)
@@ -60,9 +63,36 @@ namespace Team02.Scene.Stage.GameObjs
             if (obj is Chara c)
             {
                 c.DisSpeed(coeff);
-                c.Strut();
+                if (CheckCharaOn(c))
+                {
+                    c.Strut();
+                }
             }
             base.CalCollision(obj);
+        }
+
+        private bool CheckCharaOn(Chara c)
+        {
+            if (c.Gra.LengthSquared() != 0)
+            {
+                Line clink = new Line(c.ISpace.Center, ISpace.Center, ISpace.Center);
+                Vector2 check_I = Vector2.Zero;
+                for (int i = 0; i < 4; i++)
+                {
+                    var s = (RectangleF)ISpace;
+                    bool ans;
+                    check_I = s.GetLine(i).Intersect(clink, out ans);
+                    if (ans)
+                        break;
+                }
+                Vector2 disve = check_I - c.ISpace.Center;
+                Line lg = new Line(Vector2.Zero, c.Gra, VectorTools.Vertical(c.Gra));
+                Vector2Side check = lg.PointAtY(disve);
+                if (check == Vector2Side.Y_Plus)
+                    return false;
+                return true;
+            }
+            return false;
         }
     }
 }
