@@ -103,13 +103,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+
             motion.CheckDire();
             motion.CheckMotion();
-            Console.WriteLine(motion.Dire);
-            Console.WriteLine(motion.State);
+            //Console.WriteLine(motion.Dire);
+            //Console.WriteLine(motion.State);
             CalForce();
             base.Update(gameTime);
             canJump = false;
+            isStrut = false;
         }
 
         public override void AfterUpdate(GameTime gameTime)
@@ -142,7 +144,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public void DisStrut()
         {
-            isStrut = false;
             forces["strut"] = Vector2.Zero;
         }
 

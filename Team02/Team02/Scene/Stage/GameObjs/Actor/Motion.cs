@@ -76,9 +76,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         }
          public void CheckMotion()
         {
-
-            if (chara.Speed.Y != 0)
+            Console.WriteLine(chara.IsStrut);
+            if (!chara.IsStrut)
+            {
+                Line a = new Line(Vector2.Zero, chara.Gra, VectorTools.Vertical(chara.Gra));
+                var b = a.PointSide(chara.Speed);
+                if (b == Vector2Side.X_Plus_Y_Minus || b == Vector2Side.X_On_Y_Minus || b == Vector2Side.X_Minus_Y_Minus)
+                {
+                    SetState(MotionState.Fall);
+                }
+                else
                 SetState(MotionState.Jump);
+            }
             else
                 SetState(MotionState.Normal);
             return;
