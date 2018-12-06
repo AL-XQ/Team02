@@ -25,11 +25,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         public abstract bool IsRunning();
 
         /// <summary>
-        /// 初期化処理
-        /// </summary>
-        public abstract void Initialize();
-
-        /// <summary>
         /// 行動(敵を動かす処理はここに書く)
         /// </summary>
         public abstract void Action();

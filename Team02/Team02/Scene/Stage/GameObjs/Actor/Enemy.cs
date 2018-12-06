@@ -45,11 +45,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             behaviourManager = new BehaviourManager(this, CharaManager.Hero);
             behaviourManager.CreateBehaviour("rightMove", 0);
-            behaviourManager.AddBehaviour("rightMove", new StraightMove(new Vector2(3, 0)));
+            behaviourManager.AddBehaviour("rightMove", new StraightMove(new Vector2(1, 0)));
             behaviourManager.AddCondition("rightMove", new DistanceBelowN(50));
 
             behaviourManager.CreateBehaviour("leftMove", 1);
-            behaviourManager.AddBehaviour("leftMove", new StraightMove(new Vector2(-3, 0)));
+            behaviourManager.AddBehaviour("leftMove", new StraightMove(new Vector2(-1, 0)));
             behaviourManager.AddCondition("leftMove", new DistanceOverN(100));
             base.PreLoadContent();
         }

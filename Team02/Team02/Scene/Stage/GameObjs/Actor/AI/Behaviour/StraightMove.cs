@@ -19,12 +19,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            User.AddVelocity(direction, InfinityGame.Stage.VeloParam.Run);
-        }
-
-        public override void Initialize()
-        {
-            
+            User.Forces["aimove"] = direction;
         }
 
         public override bool IsRunning()
