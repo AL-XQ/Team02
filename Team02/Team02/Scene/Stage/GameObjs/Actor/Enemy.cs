@@ -5,11 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.Device;
 using InfinityGame.GameGraphics;
+using Microsoft.Xna.Framework;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
+using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
+using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public class Enemy : Chara
     {
+        private BehaviourManager behaviourManager;
+
         public Enemy(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             CharaManager.Add(this);
@@ -33,6 +39,25 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         protected override void SetImage()
         {
             ImageName = "messagebox.png";
+        }
+
+        public override void PreLoadContent()
+        {
+            behaviourManager = new BehaviourManager(this, CharaManager.Hero);
+            behaviourManager.CreateBehaviour("rightMove", 0);
+            behaviourManager.AddBehaviour("rightMove", new StraightMove(new Vector2(3, 0)));
+            behaviourManager.AddCondition("rightMove", new DistanceBelowN(100));
+
+            behaviourManager.CreateBehaviour("leftMove", 1);
+            behaviourManager.AddBehaviour("leftMove", new StraightMove(new Vector2(-3, 0)));
+            behaviourManager.AddCondition("leftMove", new DistanceOverN(1000));
+            base.PreLoadContent();
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            behaviourManager.Update();
+            base.Update(gameTime);
         }
     }
 }

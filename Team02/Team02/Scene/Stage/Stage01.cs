@@ -39,6 +39,11 @@ namespace Team02.Scene.Stage
             stageObjs["top"].Coordinate = new Vector2(0, 0);
             stageObjs["top"].Size = new Size(1600, 64);
             Player.CameraCenter = new Vector2(0, IGConfig.screen.Height / 2);
+
+            new Enemy(this, "enemy");
+            stageObjs["enemy"].Coordinate = new Vector2(1000, 0);
+            stageObjs["enemy"].Size = new Size(64, 64);
+
             base.PreLoadContent();
         }
     }
