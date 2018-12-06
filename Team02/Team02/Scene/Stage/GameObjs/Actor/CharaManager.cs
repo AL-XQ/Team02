@@ -9,7 +9,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     public class CharaManager
     {
         private Hero hero;
-        private List<Enemy> enemys=new List<Enemy>();
+        private List<Enemy> enemys = new List<Enemy>();
 
         public Hero Hero { get => hero; set => hero = value; }
 
