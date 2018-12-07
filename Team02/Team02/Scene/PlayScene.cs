@@ -68,5 +68,14 @@ namespace Team02.Scene
             }
             base.Update(gameTime);
         }
+
+        /// <summary>
+        /// ステージ座標によってDrawする座標を獲得する
+        /// </summary>
+        /// <param name="Coo"></param>
+        public Vector2 GetDrawLocation(Vector2 Coo)
+        {
+            return ((Base_Stage)ShowStage).GetDrawLocation(Coo);
+        }
     }
 }

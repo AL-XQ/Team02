@@ -51,8 +51,17 @@ namespace Team02.Scene.Stage
 
         public override void Update(GameTime gameTime)
         {
-            
+
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// ステージ座標によってDrawする座標を獲得する
+        /// </summary>
+        /// <param name="Coo"></param>
+        public Vector2 GetDrawLocation(Vector2 Coo)
+        {
+            return (Coo - CameraLocation) * CameraScale;
         }
     }
 }
