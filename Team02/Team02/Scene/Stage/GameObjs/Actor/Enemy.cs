@@ -22,6 +22,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             MovePriority = 6;
         }
 
+        public Enemy(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            CharaManager.Add(this);
+            MovePriority = 6;
+        }
+
         public override void LoadContent()
         {
             Motion.Images[Direction.Right][MotionState.Normal] = "Player_Test.png";

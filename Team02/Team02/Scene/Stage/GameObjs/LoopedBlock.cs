@@ -31,6 +31,11 @@ namespace Team02.Scene.Stage.GameObjs
             tex = new RenderTarget2D(graphicsDevice, _UnitSize.Width, _UnitSize.Height);
         }
 
+        public LoopedBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            tex = new RenderTarget2D(graphicsDevice, _UnitSize.Width, _UnitSize.Height);
+        }
+
         private void SetUnitedSize(Size value)
         {
             unitedSize = value;

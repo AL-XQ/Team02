@@ -64,6 +64,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             MovePriority = 5;
         }
 
+        public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            IsCrimp = true;
+            base_Stage = mapCreator.Stage;
+            MovePriority = 5;
+        }
+
         private void SetImageName(string value)
         {
             imageName = value;

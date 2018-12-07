@@ -12,19 +12,21 @@ using Microsoft.Xna.Framework;
 
 using Team02.Scene.Stage.GameObjs;
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Device;
 
 namespace Team02.Scene.Stage
 {
     public abstract class Base_Stage : BaseStage
     {
         private PlayScene playScene;
-        private StageMap stageMap;
+        private MapCreator mapCreator;
         private CharaManager charaManager = new CharaManager();
         private Vector2 defGra;
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
         public CharaManager CharaManager { get => charaManager; }
         public Vector2 DefGra { get => defGra; set => defGra = value; }
+        public MapCreator MapCreator { get => mapCreator; }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -39,13 +41,14 @@ namespace Team02.Scene.Stage
 
         public override void PreLoadContent()
         {
-            stageMap = new StageMap(this);
+            mapCreator = new MapCreator(this);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
+            MapCreator.MapReader(TextReader.Read("test"));
         }
 
 

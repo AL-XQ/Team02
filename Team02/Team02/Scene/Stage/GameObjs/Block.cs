@@ -27,6 +27,13 @@ namespace Team02.Scene.Stage.GameObjs
             MovePriority = 10;
         }
 
+        public Block(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            IsCrimp = true;
+            BeMove = false;
+            MovePriority = 10;
+        }
+
         public override void CalCollision(StageObj obj)
         {
             if (obj is Chara c)

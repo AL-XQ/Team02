@@ -11,14 +11,18 @@ using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs
 {
-    public class GameObj : StageObj
+    public abstract class GameObj : StageObj
     {
-
         public GameObj(BaseDisplay aParent) : base(aParent)
         {
-            // BeAffect = true;
-
+            
         }
+
+        public GameObj(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator.Stage)
+        {
+            
+        }
+
 
         public GameObj(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -33,6 +37,12 @@ namespace Team02.Scene.Stage.GameObjs
         public override void LoadContent()
         {
             base.LoadContent();
+        }
+
+        public void Create()
+        {
+            PreLoadContent();
+            LoadContent();
         }
 
         public override void Update(GameTime gameTime)
