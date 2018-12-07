@@ -24,6 +24,7 @@ namespace Team02.Scene
         {
             Color = Color.Transparent;
             playScene = (PlayScene)aParent;
+            visible = false;
         }
 
         public override void PreLoadContent()
