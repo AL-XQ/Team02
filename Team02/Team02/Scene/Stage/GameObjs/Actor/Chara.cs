@@ -62,6 +62,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             base_Stage = (Base_Stage)aParent;
             MovePriority = 5;
+            CrimpGroup = "chara";
         }
 
         public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
@@ -69,6 +70,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             base_Stage = mapCreator.Stage;
             MovePriority = 5;
+            CrimpGroup = "chara";
         }
 
         private void SetImageName(string value)

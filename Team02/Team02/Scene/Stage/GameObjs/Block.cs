@@ -25,6 +25,7 @@ namespace Team02.Scene.Stage.GameObjs
             IsCrimp = true;
             BeMove = false;
             MovePriority = 10;
+            CrimpGroup = "block";
         }
 
         public Block(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
@@ -32,6 +33,12 @@ namespace Team02.Scene.Stage.GameObjs
             IsCrimp = true;
             BeMove = false;
             MovePriority = 10;
+            CrimpGroup = "block";
+        }
+
+        public override void PreLoadContent()
+        {
+            base.PreLoadContent();
         }
 
         public override void CalCollision(StageObj obj)
