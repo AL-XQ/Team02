@@ -14,6 +14,7 @@ namespace Team02.Scene.Stage
 {
     public class Stage01 : Base_Stage
     {
+        private Enemy testenemy;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(10000, 10000);
@@ -23,6 +24,9 @@ namespace Team02.Scene.Stage
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
             Map = "test";
+            testenemy = new Enemy(this, "enemy");
+            testenemy.Coordinate = new Vector2(800, 100);
+            testenemy.Size = new Size(64, 64);
             base.PreLoadContent();
         }
 

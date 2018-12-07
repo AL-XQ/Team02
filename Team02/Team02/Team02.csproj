@@ -140,6 +140,9 @@
     <Content Include="Texture\AutoLoad\close_t.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\Enemy_Test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\messagebox.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

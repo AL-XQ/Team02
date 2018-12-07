@@ -44,13 +44,13 @@ namespace Team02.Scene.Stage
         public override void PreLoadContent()
         {
             mapCreator = new MapCreator(this);
+            MapCreator.MapReader(TextReader.Read(map));
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-            MapCreator.MapReader(TextReader.Read(map));
         }
 
 
