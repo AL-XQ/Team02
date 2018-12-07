@@ -14,10 +14,6 @@ namespace Team02.Scene.Stage
 {
     public class Stage01 : Base_Stage
     {
-        private Block b0;
-        private Block b2;
-        private Block fl;
-        private Block tp;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(10000, 10000);
@@ -26,6 +22,7 @@ namespace Team02.Scene.Stage
         public override void PreLoadContent()
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
+            Map = "test";
             base.PreLoadContent();
         }
 

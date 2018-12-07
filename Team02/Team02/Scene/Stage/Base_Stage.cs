@@ -22,11 +22,13 @@ namespace Team02.Scene.Stage
         private MapCreator mapCreator;
         private CharaManager charaManager = new CharaManager();
         private Vector2 defGra;
+        private string map;
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
         public CharaManager CharaManager { get => charaManager; }
         public Vector2 DefGra { get => defGra; set => defGra = value; }
         public MapCreator MapCreator { get => mapCreator; }
+        public string Map { get => map; set => map = value; }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -48,7 +50,7 @@ namespace Team02.Scene.Stage
         public override void LoadContent()
         {
             base.LoadContent();
-            MapCreator.MapReader(TextReader.Read("test"));
+            MapCreator.MapReader(TextReader.Read(map));
         }
 
 
