@@ -88,6 +88,7 @@
     <Compile Include="Scene\Stage\GameObjs\LoopedBlock.cs" />
     <Compile Include="Scene\Stage\Stage01.cs" />
     <Compile Include="Scene\Stage\StageMap.cs" />
+    <Compile Include="Scene\TestUI.cs" />
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />

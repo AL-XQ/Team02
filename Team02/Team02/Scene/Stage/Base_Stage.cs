@@ -59,9 +59,9 @@ namespace Team02.Scene.Stage
         /// ステージ座標によってDrawする座標を獲得する
         /// </summary>
         /// <param name="Coo"></param>
-        public Vector2 GetDrawLocation(Vector2 Coo)
+        public Point GetDrawLocation(Vector2 Coo)
         {
-            return (Coo - CameraLocation) * CameraScale;
+            return ((Coo - CameraLocation) * CameraScale).ToPoint();
         }
     }
 }
