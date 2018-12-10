@@ -94,7 +94,6 @@ namespace Team02.Scene.Stage
                 Dictionary<string, string> l_args = new Dictionary<string, string>();
                 foreach (var n in l_args_t)
                 {
-                    Console.WriteLine(n);
                     if (!n.Contains('='))
                         continue;
                     string[] n_args = n.Split('=');

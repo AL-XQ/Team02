@@ -80,5 +80,15 @@ namespace Team02.Scene
         {
             return ((Base_Stage)ShowStage).GetDrawLocation(Coo);
         }
+        /// <summary>
+        /// スクリーンの座標をステージの座標に変換
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Vector2 GetStageCoo(Vector2 point)
+        {
+            return ((Base_Stage)ShowStage).GetStageCoo(point);
+        }
+
     }
 }
