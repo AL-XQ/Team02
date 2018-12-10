@@ -21,34 +21,28 @@ namespace Team02.Scene.Stage
         private Enemy testenemy;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            EndOfRightDown = new Vector2(10000, 10000);
+            EndOfRightDown = new Vector2(2000, 2000);
         }
 
         public override void PreLoadContent()
         {
-            Player.Chara = new Hero(this, "hero");
-            stageObjs["hero"].Coordinate = new Vector2(0, 200);
-            stageObjs["hero"].Size = new Size(64, 64);
-            b0 = new LoopedBlock(this, "block");
-            stageObjs["block"].Coordinate = new Vector2(300, 400);
-            new Block(this, "block2");
-            stageObjs["block2"].Coordinate = new Vector2(1000, 400);
-            stageObjs["block2"].Size = new Size(64 * 2, 64 * 4);
-            stageObjs["block2"].Rotation = 0.5f;
-            stageObjs["block2"].Origin = (stageObjs["block2"].Size / 2).ToVector2();
-            new Block(this, "floor");
-            stageObjs["floor"].Coordinate = new Vector2(0, 900 - 64);
-            stageObjs["floor"].Size = new Size(1600, 64);
-            new Block(this, "top");
-            stageObjs["top"].Coordinate = new Vector2(0, 0);
-            stageObjs["top"].Size = new Size(1600, 64);
-            Player.CameraCenter = new Vector2(0, IGConfig.screen.Height / 2);
+            Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
 
-            new Enemy(this, "enemy");
-            stageObjs["enemy"].Coordinate = new Vector2(800, 400);
-            stageObjs["enemy"].Size = new Size(64, 64);
-            
-            var behaviourManager = new BehaviourManager((Chara)stageObjs["enemy"], CharaManager.Hero);
+            Map = "test";
+
+
+            //Test
+            testenemy = new Enemy(this, "enemy");
+            testenemy.Coordinate = new Vector2(800, 400);
+            testenemy.Size = new Size(64, 64);
+            //Test
+
+
+            base.PreLoadContent();
+
+
+            //Test
+            var behaviourManager = new BehaviourManager(testenemy, CharaManager.Hero);
 
             behaviourManager.CreateBehaviour("runaway", 0);
             behaviourManager.AddBehaviour("runaway", new RunAwayFromTarget(0.2f));
@@ -58,15 +52,8 @@ namespace Team02.Scene.Stage
             behaviourManager.CreateBehaviour("stopmoving", 1);
             behaviourManager.AddBehaviour("stopmoving", new StopMoving());
             behaviourManager.AddCondition("stopmoving", new DistanceOverN(1200));
-
-            ((Enemy)stageObjs["enemy"]).BehaviourManager = behaviourManager;
-
-            Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
-            Map = "test";
-            testenemy = new Enemy(this, "enemy");
-            testenemy.Coordinate = new Vector2(800, 100);
-            testenemy.Size = new Size(64, 64);
-            base.PreLoadContent();
+            testenemy.BehaviourManager = behaviourManager;
+            //Test
         }
 
         public override void LoadContent()
