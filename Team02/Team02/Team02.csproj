@@ -61,8 +61,8 @@
     <StartupObject>Team02.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Device\CSVReader.cs" />
     <Compile Include="Def\Config.cs" />
+    <Compile Include="Device\TextReader.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,8 +90,9 @@
     <Compile Include="Scene\Stage\GameObjs\KillBlock.cs" />
     <Compile Include="Scene\Player.cs" />
     <Compile Include="Scene\Stage\GameObjs\LoopedBlock.cs" />
+    <Compile Include="Scene\Stage\MapCreator.cs" />
     <Compile Include="Scene\Stage\Stage01.cs" />
-    <Compile Include="Scene\Stage\StageMap.cs" />
+    <Compile Include="Scene\TestUI.cs" />
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
@@ -141,6 +142,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\close_t.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\Enemy_Test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\messagebox.png">
@@ -304,6 +308,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Lang\ラノベPOP.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Map\test.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

@@ -27,8 +27,10 @@ namespace Team02.Scene
     {
         private Player player;
         private BackMenu backMenu;
+        private TestUI testUI;
         public Player Player { get => player; }
-        
+        public TestUI TestUI { get => testUI; }
+
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
 
@@ -43,6 +45,7 @@ namespace Team02.Scene
         {
             player = new Player(this);
             backMenu = new BackMenu(this);
+            testUI = new TestUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
             base.PreLoadContent();
@@ -67,6 +70,15 @@ namespace Team02.Scene
                 return;
             }
             base.Update(gameTime);
+        }
+
+        /// <summary>
+        /// ステージ座標によってDrawする座標を獲得する
+        /// </summary>
+        /// <param name="Coo"></param>
+        public Point GetDrawLocation(Vector2 Coo)
+        {
+            return ((Base_Stage)ShowStage).GetDrawLocation(Coo);
         }
     }
 }

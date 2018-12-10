@@ -20,21 +20,34 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Enemy(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             CharaManager.Add(this);
+            MovePriority = 6;
+        }
+
+        public Enemy(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            CharaManager.Add(this);
+            MovePriority = 6;
         }
 
         public override void LoadContent()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Player_Test.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "state_test_fall.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "state_test_jump.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "state_test_walk.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Player_Test.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Player_Test.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "state_test_fall.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "state_test_jump.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "state_test_walk.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Player_Test.png";
+            Motion.Images[Direction.Right][MotionState.Normal] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Fall] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Jump] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Walk] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Float] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Normal] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Fall] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Jump] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Walk] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Float] = "Enemy_Test.png";
             base.LoadContent();
+        }
+
+        protected override void OffSet()
+        {
+            RenderCoo_Offset = -size.ToVector2() * new Vector2(0.25f, 0.25f);
+            RenderSize_Offset = size.ToVector2() * new Vector2(0.5f, 0.5f);
         }
 
         protected override void SetImage()

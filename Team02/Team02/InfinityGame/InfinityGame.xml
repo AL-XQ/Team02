@@ -535,6 +535,288 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:InfinityGame.Element.Circle.Radius">
+            <summary>
+            半径
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.Line.#ctor(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            両点で線を構成
+            一点で区域を判別
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="reference">区域を判別する参照点</param>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointSide(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            checkPがどの区域にあるか
+            </summary>
+            <param name="checkP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtY(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            checkPがY区域のどの区域にあるか
+            </summary>
+            <param name="checkP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtPlusOn(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点はX_Plus_Y_Onにあるかどうか
+            </summary>
+            <param name="checkP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Distance(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点から直線の距離
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceSquared(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点から直線の距離の二乗
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceP(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点から直線の距離にある交点
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVe(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点から直線の距離のベクトル
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVe(InfinityGame.Element.Line)">
+            <summary>
+            指定した線の両端から直線の距離のベクトル
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVeMin(InfinityGame.Element.Line)">
+            <summary>
+            指定した線の両端から直線の距離のベクトルの小さい方
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVeMax(InfinityGame.Element.Line)">
+            <summary>
+            指定した線の両端から直線の距離のベクトルの大きい方
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtX(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点がX区域のどの区域にあるか
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtX_Plus(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点がX_Plus区域にあるかどうか
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtX_PlusOrOn(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点がX_PlusあるいはX_Onにあるか
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtY_On(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点がY_Onにあるか
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVeAtY_On_X(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            両端から点までのベクトル
+            </summary>
+            <param name="pointAtX_On"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVeAtY_On_XMin(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            両端から点までのベクトルの小さい方
+            </summary>
+            <param name="pointAtX_On"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.DistanceVeAtY_On_XMax(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            両端から点までのベクトルの大きい方
+            </summary>
+            <param name="pointAtX_On"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointAtY_On_X(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点が既にX_Onにある場合で、Y_Onにあるかどうか
+            </summary>
+            <param name="pointAtX_On"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Intersect(InfinityGame.Element.Line,System.Boolean@)">
+            <summary>
+            指定した線との交点
+            </summary>
+            <param name="line"></param>
+            <param name="ans"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Intersects(InfinityGame.Element.Line)">
+            <summary>
+            指定した線と交差するかどうか
+            </summary>
+            <param name="line"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Intersects(InfinityGame.Element.Line,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            指定した線と交差するかどうか
+            </summary>
+            <param name="line"></param>
+            <param name="point_I"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.IntersectWith2Ve(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Boolean@)">
+            <summary>
+            指定した両点で作った線と交差するかどうか
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="ans"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Intersects(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            指定した両点で作った線と交差するかどうか
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.Intersects(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2@)">
+            <summary>
+            指定した両点で作った線と交差するかどうか
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="point_I">交点</param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.Line.CreateLine(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single@,System.Single@,System.Boolean@)">
+            <summary>
+            両点によってkとb及び線が垂直かどうかをoutする
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="k"></param>
+            <param name="b"></param>
+            <param name="isx0"></param>
+        </member>
+        <member name="M:InfinityGame.Element.Line.CreateLine(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single@,System.Single@)">
+            <summary>
+            両点によってkとbをoutする
+            </summary>
+            <param name="p0"></param>
+            <param name="p1"></param>
+            <param name="k"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:InfinityGame.Element.Line.CreateLine(Microsoft.Xna.Framework.Vector2,System.Single,System.Single@)">
+            <summary>
+            指定したkの直線が点を通るときのbをoutする
+            </summary>
+            <param name="point"></param>
+            <param name="k"></param>
+            <param name="b"></param>
+        </member>
+        <member name="M:InfinityGame.Element.Line.PointSide(InfinityGame.Element.Line,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            点が線のどの区域にあるか
+            </summary>
+            <param name="line"></param>
+            <param name="checkP"></param>
+            <returns></returns>
+        </member>
+        <member name="P:InfinityGame.Element.RectangleF.Origin">
+            <summary>
+            回転の中心
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Element.RectangleF.Center">
+            <summary>
+            世界に対する中心
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Element.RectangleF.LCenter">
+            <summary>
+            自身に対する中心
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Element.RectangleF.Item(System.Int32)">
+            <summary>
+            頂点
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.RectangleF.GetLine(System.Int32)">
+            <summary>
+            自身を構成する四つの線を取得する
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.RectangleF.ContainsNoEdge(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            ちょうど辺に乗ってるであれば、Falseを返す
+            </summary>
+            <param name="check"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.RectangleF.Escape(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            指定した点から離脱するに必要なベクトル
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.RectangleF.Escape2Point(InfinityGame.Element.Line,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            lineの両端が範囲内にある場合のみ
+            </summary>
+            <param name="line"></param>
+            <param name="target"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.RectangleF.ToRectangle(InfinityGame.Element.RectangleF)">
+            <summary>
+            注意：回転情報が消えます
+                  小数が整数になる
+            </summary>
+            <param name="rect"></param>
+        </member>
         <member name="T:InfinityGame.Element.SImage">
             <summary>
             各クラスでSImageを新規すべき
@@ -601,6 +883,37 @@
             <summary>
             locationを計算
             </summary>
+        </member>
+        <member name="F:InfinityGame.Element.Vector2Side.Null">
+            <summary>
+            プラスとして参照する点が線に乗っている
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Element.Vector2Side.X_On">
+            <summary>
+            線に乗ってる
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Element.Vector2Side.X_On_Y_On">
+            <summary>
+            九つの象限
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Element.VectorTools.Vertical(Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            垂直の左手側のベクトル
+            </summary>
+            <param name="ve"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Element.VectorTools.Rotate(Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Vector2,System.Single)">
+            <summary>
+            クォータニオンを使ってVector2を回転
+            </summary>
+            <param name="origin"></param>
+            <param name="ve"></param>
+            <param name="rota"></param>
+            <returns></returns>
         </member>
         <member name="T:InfinityGame.GameGraphics.API.IImageEntity">
             <summary>
@@ -725,13 +1038,6 @@
             text取得method
             </summary>
             <param name="strID"></param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.GameGraphics.BaseDisplay.GetParent(System.Object)">
-            <summary>
-            特定のクラスしかparentを取得できない
-            </summary>
-            <param name="obj"></param>
             <returns></returns>
         </member>
         <member name="T:InfinityGame.GameGraphics.ImageEntity">
@@ -1003,6 +1309,23 @@
             FocusStageObjがあるときにcameraLocationを設定する
             </summary>
         </member>
+        <member name="M:InfinityGame.Stage.BaseStage.DetectorObj(InfinityGame.Element.ISpace)">
+            <summary>
+            ISpaceによるオブジェクト検索
+            ISpaceにはRectangleとCircleがある
+            ISpaceはInifinityGame.Elementにある
+            </summary>
+            <param name="iSpace"></param>
+            <returns></returns>
+        </member>
+        <member name="M:InfinityGame.Stage.BaseStage.DetectorObj(InfinityGame.Element.Line)">
+            <summary>
+            Lineによるオブジェクト検索
+            LineはInifinityGame.Elementにある
+            </summary>
+            <param name="li"></param>
+            <returns></returns>
+        </member>
         <member name="M:InfinityGame.Stage.BaseStage.RenderDraw(Microsoft.Xna.Framework.GameTime)">
             <summary>
             複数カメラモードでの描画処理
@@ -1014,6 +1337,13 @@
             ステージシーンを移動
             </summary>
             <param name="newStageScene"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.SimpleIDBuilder.SimpleClear(InfinityGame.Stage.StageObject.SimpleObj)">
+            <summary>
+            SCIDを回収し、該当するstageObjのUIIDが回収された為、インスタンスをメモリ上からクリアする。
+            インスタンスをクリアしたくないとき、baseUIのVisibleとEnable両方をFalseに設定すると良い。
+            </summary>
+            <param name="stageObj"></param>
         </member>
         <member name="M:InfinityGame.Stage.SCIDBuilder.ResetFocusSCID">
             <summary>
@@ -1084,6 +1414,103 @@
             <summary>
             キャラクター
             移動優先順位１０
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageObject.SimpleObj.imageEntity">
+            <summary>
+            Image実体
+            </summary>
+        </member>
+        <member name="F:InfinityGame.Stage.StageObject.SimpleObj.BeAffect">
+            <summary>
+            力場に影響されるかどうか
+            重力などの計算に使用される
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.Stage">
+            <summary>
+            自身がどのステージに存在するか
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.Coordinate">
+            <summary>
+            ステージに相対する座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.LastCoordinate">
+            <summary>
+            前の座標
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.Location">
+            <summary>
+            ステージに相対する座標（Point）
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.Render">
+            <summary>
+            カメラモードでの描画オブジェクト
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.GravityVelociy">
+            <summary>
+            重力によって発生した移動量
+            </summary>
+        </member>
+        <member name="P:InfinityGame.Stage.StageObject.SimpleObj.Color">
+            <summary>
+            フィルター
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.ClearGravityVelociy">
+            <summary>
+            重力によって発生した移動量をクリアする
+            </summary>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam)">
+            <summary>
+            移動量を追加
+            </summary>
+            <param name="velocity"></param>
+            <param name="veloParam"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.PreUpdate(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            PreUpdate
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.Update(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            Update
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.RenderDraw(Microsoft.Xna.Framework.GameTime)">
+            <summary>
+            基本はImageを描画するが、他の物を描画したい場合、これをオーバーライドしてください
+            また、詳しいく描画したい場合もオーバーライドしてください
+            あと、オーバーライドするときに
+            base.RenderDraw(gameTime);を削除してください
+            </summary>
+            <param name="gameTime"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.ChangeStage(InfinityGame.Stage.BaseStage,Microsoft.Xna.Framework.Vector2)">
+            <summary>
+            ステージを移動する。座標指定
+            </summary>
+            <param name="newStage"></param>
+            <param name="newCoordinate"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.ChangeStage(InfinityGame.Stage.BaseStage)">
+            <summary>
+            ステージを移動する。座標変えず
+            </summary>
+            <param name="newStage"></param>
+        </member>
+        <member name="M:InfinityGame.Stage.StageObject.SimpleObj.UKill">
+            <summary>
+            Killによって最初に呼び出し
             </summary>
         </member>
         <member name="T:InfinityGame.Stage.StageObject.StageLabel">
@@ -1172,11 +1599,6 @@
             同じグループ同士は障害物として認識されない。
             </summary>
         </member>
-        <member name="P:InfinityGame.Stage.StageObject.StageObj.NewSpace">
-            <summary>
-            現在はステージのどこを占めている。
-            </summary>
-        </member>
         <member name="P:InfinityGame.Stage.StageObject.StageObj.BeMove">
             <summary>
             取得するにはGetBeMoveを使ってください
@@ -1209,6 +1631,11 @@
             描画順番大きい方から描画
             </summary>
         </member>
+        <member name="P:InfinityGame.Stage.StageObject.StageObj.Radius">
+            <summary>
+            円の場合のみ
+            </summary>
+        </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.#ctor(Microsoft.Xna.Framework.Graphics.GraphicsDevice,InfinityGame.GameGraphics.BaseDisplay,System.String)">
             <summary>
             nameを"Null"に指定すると、SCIDをnameとする。
@@ -1222,38 +1649,11 @@
             重力によって発生した移動量をクリアする
             </summary>
         </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetBeMove(InfinityGame.Stage.StageObject.StageObj,Microsoft.Xna.Framework.Vector2)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalCollision(InfinityGame.Stage.StageObject.StageObj)">
             <summary>
-            状態によって取得する
-            予備メソッド
+            衝突処理
             </summary>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalNotCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
-            <summary>
-            非障害物衝突した後の処理
-            tempSOは衝突した物体LIST
-            overrideしてください
-            円の障害物処理はここにある
-            </summary>
-            <param name="tempSO"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalCrimpColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
-            <summary>
-            障害物衝突した後の処理
-            tempSOは衝突した物体LIST
-            overrideしてください
-            </summary>
-            <param name="tempSO"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CalAllColl(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
-            <summary>
-            衝突した後の処理
-            tempSOは衝突した物体LIST
-            overrideしてください
-            </summary>
-            <param name="tempSO"></param>
+            <param name="obj">衝突したオブジェクト</param>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.AddVelocity(Microsoft.Xna.Framework.Vector2,InfinityGame.Stage.VeloParam)">
             <summary>
@@ -1261,12 +1661,6 @@
             </summary>
             <param name="velocity"></param>
             <param name="veloParam"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.FastUpdate(Microsoft.Xna.Framework.GameTime)">
-            <summary>
-            FastUpdate
-            </summary>
-            <param name="gameTime"></param>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.PreUpdate(Microsoft.Xna.Framework.GameTime)">
             <summary>
@@ -1279,38 +1673,6 @@
             Update
             </summary>
             <param name="gameTime"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.Coll(InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            呼び出し衝突処理
-            </summary>
-            <param name="stageObj">衝突した物体</param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro(System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj})">
-            <summary>
-            障害物処理衝突側から処理する、受け側じゃなく
-            </summary>
-            <param name="crimps"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_C_C(InfinityGame.Stage.StageObject.Circle)">
-            <summary>
-            円と円
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_C_R(InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            円と矩形
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_R_C(InfinityGame.Stage.StageObject.Circle)">
-            <summary>
-            矩形と円
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_R_R(InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            矩形と矩形
-            </summary>
         </member>
         <member name="M:InfinityGame.Stage.StageObject.StageObj.CrimpPro_End">
             <summary>
@@ -1339,11 +1701,10 @@
             </summary>
             <param name="newStage"></param>
         </member>
-        <member name="M:InfinityGame.Stage.StageObject.StageObj.GetSample(System.Object)">
+        <member name="M:InfinityGame.Stage.StageObject.StageObj.UKill">
             <summary>
-            ステージに存在しないサンプルを設立
+            Killによって最初に呼び出し
             </summary>
-            <returns></returns>
         </member>
         <member name="T:InfinityGame.Stage.StageObject.Block.Block">
             <summary>
@@ -1357,153 +1718,10 @@
             移動優先順位0
             </summary>
         </member>
-        <member name="T:InfinityGame.Stage.StageObject.Circle">
-            <summary>
-            円
-            </summary>
-        </member>
-        <member name="P:InfinityGame.Stage.StageObject.Circle.Center">
-            <summary>
-            円心
-            </summary>
-        </member>
-        <member name="P:InfinityGame.Stage.StageObject.Circle.Radius">
-            <summary>
-            半径
-            </summary>
-        </member>
-        <member name="P:InfinityGame.Stage.StageObject.Circle.StageObj">
-            <summary>
-            ステージオブジェクト
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Circle.#ctor(InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            自動生成
-            </summary>
-            <param name="aStageObj"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Circle.#ctor(InfinityGame.Stage.StageObject.StageObj,System.Single)">
-            <summary>
-            半径を指定して生成
-            </summary>
-            <param name="aStageObj"></param>
-            <param name="aCenter"></param>
-            <param name="aRadius"></param>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Circle.CreateCircle">
-            <summary>
-            矩形から円を生成
-            </summary>
-        </member>
         <member name="T:InfinityGame.Stage.StageObject.Collision">
             <summary>
             あたり判定クラス
             </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Collision.IsCollRect(Microsoft.Xna.Framework.Rectangle,InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            二つの物体の当たり判定
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Collision.CollisionCheck(InfinityGame.Stage.StageObject.StageObj,System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj},System.Collections.Generic.Dictionary{System.String,InfinityGame.Stage.StageObject.StageObj},System.Int32)">
-            <summary>
-            大量チェック
-            param
-            0:全部取得
-            1:障害物を取得
-            2:非障害物を取得
-            </summary>
-            <param name="stageObj">基準</param>
-            <param name="checkDict">チェックディクショナリ</param>
-            <param name="collDict">リターンディクショナリ</param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Collision.IsCollCircle(InfinityGame.Stage.StageObject.ICircle,InfinityGame.Stage.StageObject.StageObj)">
-            <summary>
-            円の衝突判定
-            </summary>
-            <param name="stageObj1"></param>
-            <param name="stageObj2"></param>
-            <returns></returns>
-        </member>
-        <member name="T:InfinityGame.Stage.StageObject.Detector">
-            <summary>
-            近くの物体を検出する
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Detector.Square(InfinityGame.Stage.StageObject.StageObj,System.Int32)">
-            <summary>
-            正方形範囲検出
-            </summary>
-            <param name="stageObj">物体自身</param>
-            <param name="distance">物体の中心からの距離</param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Detector.Rectangle(InfinityGame.Stage.StageObject.StageObj,System.Int32,System.Int32,System.Boolean,System.Boolean)">
-            <summary>
-            矩形範囲検出
-            </summary>
-            <param name="stageObj">物体自身</param>
-            <param name="width">center=>true:物体の中心から横半径;false:横長</param>
-            <param name="height">center=>true:物体の中心から縦半径;false:縦長</param>
-            <param name="center">中心点を基準とする</param>
-            <param name="copy">true:stageObjからサンプルを取る;false:stageObjそのまま使用;（基本はtrueに）</param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Detector.Circel(InfinityGame.Stage.StageObject.StageObj,System.Single)">
-            <summary>
-            円範囲検出
-            </summary>
-            <param name="stageObj">物体自身</param>
-            <param name="radius">円半径</param>
-            <returns></returns>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.Detector.Prediction(InfinityGame.Stage.StageObject.StageObj,Microsoft.Xna.Framework.Vector2,System.Int32)">
-            <summary>
-            新しい位置による衝突判定（検索、実際に衝突しない）
-            「予測機能」
-            param
-            0:全部取得
-            1:障害物を取得
-            2:非障害物を取得
-            </summary>
-            <param name="stageObj">物体自身</param>
-            <param name="velocity">移動量</param>
-            <param name="param"></param>
-            <returns></returns>
-        </member>
-        <member name="T:InfinityGame.Stage.StageObject.ICircle">
-            <summary>
-            円の障害物のインターフェース
-            </summary>
-        </member>
-        <member name="P:InfinityGame.Stage.StageObject.ICircle.Circle">
-            <summary>
-            円の障害物
-            </summary>
-        </member>
-        <member name="T:InfinityGame.Stage.StageObject.SampleCircle">
-            <summary>
-            サンプル円
-            </summary>
-        </member>
-        <member name="P:InfinityGame.Stage.StageObject.SampleCircle.Circle">
-            <summary>
-            サンプル円
-            </summary>
-        </member>
-        <member name="M:InfinityGame.Stage.StageObject.SampleCircle.#ctor(System.Object,InfinityGame.Stage.StageObject.StageObj,System.Single)">
-            <summary>
-            サンプル円
-            </summary>
-            <param name="obj">以下のクラスを提供することで実体を生成できる
-            Detector
-            </param>
-            <param name="stageObj"></param>
-            <param name="radius"></param>
         </member>
         <member name="T:InfinityGame.Stage.StageObject.StageField">
             <summary>
@@ -1611,19 +1829,6 @@
             <summary>
             アニメーション付きボタン
             </summary>
-        </member>
-        <member name="T:InfinityGame.UI.UIContent.TextBox">
-            <summary>
-            入力用TextBox,表示機能にBUGあるが、本来の機能として正常に作動できる。
-            英文字限定。
-            </summary>
-        </member>
-        <member name="M:InfinityGame.UI.UIContent.TextBox.SetSize(InfinityGame.Element.Size,System.Boolean)">
-            <summary>
-            Sizeを設定する
-            </summary>
-            <param name="size">size</param>
-            <param name="sts">「SetTextSize」TitleTextのsizeを自動で設定するかどうか</param>
         </member>
         <member name="T:InfinityGame.UI.UIIDBuilder">
             <summary>

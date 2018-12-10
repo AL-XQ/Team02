@@ -16,6 +16,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             CharaManager.Hero = this;
         }
 
+        public Hero(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            CharaManager.Hero = this;
+        }
+
         protected override void OffSet()
         {
             RenderCoo_Offset = -size.ToVector2() * new Vector2(0.25f, 0.5f);

@@ -9,10 +9,15 @@ using Team02.Scene.Stage.GameObjs.Actor;
 
 namespace Team02.Scene.Stage.GameObjs
 {
-    class KillBlock : Block
+    public class KillBlock : Block
     {
         public KillBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
+        }
+
+        public KillBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+
         }
 
         public override void CalCollision(StageObj obj)

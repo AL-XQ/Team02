@@ -22,7 +22,7 @@ namespace Team02.Scene
     {
         private Chara chara;
         private PlayScene playScene;
-        private Vector2 cameraCenter = Vector2.Zero;
+        private Vector2 cameraCenter;
         private float jumpForce = 15;
 
         public Chara Chara { get => chara; set => chara = value; }
@@ -47,10 +47,15 @@ namespace Team02.Scene
                 Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
                 chara.Forces["run"] = force;
                 Jump();
-                if (GameKeyboard.GetKeyState(Keys.Enter))
+                if (GameKeyboard.GetKeyState(Keys.Right))
                 {
                     chara.Rotation += 0.05f;
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, 0.05f);
+                }
+                else if (GameKeyboard.GetKeyState(Keys.Left))
+                {
+                    chara.Rotation -= 0.05f;
+                    chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, -0.05f);
                 }
                 if (GameKeyboard.GetKeyTrigger(Keys.Q))
                 {
@@ -79,8 +84,12 @@ namespace Team02.Scene
                 if (chara.Coordinate.X >= IGConfig.screen.Width / 2)
                 {
                     cameraCenter.X = chara.Coordinate.X;
-                    Stage.CameraCenter = cameraCenter;
                 }
+                if (chara.Coordinate.Y - IGConfig.screen.Height / 4 >= IGConfig.screen.Height / 2)
+                {
+                    cameraCenter.Y = chara.Coordinate.Y - IGConfig.screen.Height / 4;
+                }
+                Stage.CameraCenter = cameraCenter;
             }
         }
     }

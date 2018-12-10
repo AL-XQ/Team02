@@ -13,11 +13,12 @@ using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
 
+using Team02.Device;
 namespace Team02.Scene.Stage
 {
     public class Stage01 : Base_Stage
     {
-        private LoopedBlock b0;
+        private Enemy testenemy;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(10000, 10000);
@@ -60,14 +61,17 @@ namespace Team02.Scene.Stage
 
             ((Enemy)stageObjs["enemy"]).BehaviourManager = behaviourManager;
 
+            Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
+            Map = "test";
+            testenemy = new Enemy(this, "enemy");
+            testenemy.Coordinate = new Vector2(800, 100);
+            testenemy.Size = new Size(64, 64);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-            b0.UnitedSize = new Size(4, 3);
-            b0.Rotation = 0.5f;
         }
     }
 }

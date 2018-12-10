@@ -62,6 +62,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             base_Stage = (Base_Stage)aParent;
             MovePriority = 5;
+            CrimpGroup = "chara";
+        }
+
+        public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            IsCrimp = true;
+            base_Stage = mapCreator.Stage;
+            MovePriority = 5;
+            CrimpGroup = "chara";
         }
 
         private void SetImageName(string value)
@@ -109,7 +118,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-
             motion.CheckDire();
             motion.CheckMotion();
             //Console.WriteLine(motion.Dire);
@@ -122,7 +130,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void AfterUpdate(GameTime gameTime)
         {
-            
             base.AfterUpdate(gameTime);
         }
 
