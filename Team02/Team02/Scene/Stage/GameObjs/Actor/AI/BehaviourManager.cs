@@ -14,6 +14,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
     {
         private Chara user;
         private Chara target;
+        public Chara Target { get; set; }
 
         private List<string> priorityList = new List<string>();
         private string currentBehaviour;
@@ -31,7 +32,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             Debug.Assert(!bcPairs.ContainsKey(behaviourName), behaviourName + "は既に登録されています");
             Debug.Assert(priority > -1, "優先度は0以上の値で指定してください");
 #endif
-            if (bcPairs.Count == 0)
+            if (currentBehaviour == null)
             {
                 currentBehaviour = behaviourName;
             }
@@ -92,7 +93,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
                 return;
             }
 
-            if (bcPairs[currentBehaviour].CheckCondition() == false)
+            if (bcPairs[currentBehaviour].CheckCondition() == false &&
+                bcPairs[currentBehaviour].IsRunning() == false)
             {
                 ReselectBehaviour();
             }
@@ -100,7 +102,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             bcPairs[currentBehaviour].Action();
         }
 
-        private void ReselectBehaviour()
+        public void ReselectBehaviour()
         {
             foreach (string name in priorityList)
             {

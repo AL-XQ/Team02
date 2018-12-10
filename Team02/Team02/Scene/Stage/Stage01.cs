@@ -9,6 +9,9 @@ using InfinityGame.Def;
 using Microsoft.Xna.Framework;
 using Team02.Scene.Stage.GameObjs;
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
+using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
+using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
 
 namespace Team02.Scene.Stage
 {
@@ -41,8 +44,21 @@ namespace Team02.Scene.Stage
             Player.CameraCenter = new Vector2(0, IGConfig.screen.Height / 2);
 
             new Enemy(this, "enemy");
-            stageObjs["enemy"].Coordinate = new Vector2(1000, 0);
+            stageObjs["enemy"].Coordinate = new Vector2(800, 400);
             stageObjs["enemy"].Size = new Size(64, 64);
+            
+            var behaviourManager = new BehaviourManager((Chara)stageObjs["enemy"], CharaManager.Hero);
+
+            behaviourManager.CreateBehaviour("runaway", 0);
+            behaviourManager.AddBehaviour("runaway", new RunAwayFromTarget(0.2f));
+            behaviourManager.AddBehaviour("runaway", new Fly());
+            behaviourManager.AddCondition("runaway", new DistanceBelowN(500));
+
+            behaviourManager.CreateBehaviour("stopmoving", 1);
+            behaviourManager.AddBehaviour("stopmoving", new StopMoving());
+            behaviourManager.AddCondition("stopmoving", new DistanceOverN(1200));
+
+            ((Enemy)stageObjs["enemy"]).BehaviourManager = behaviourManager;
 
             base.PreLoadContent();
         }

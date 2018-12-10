@@ -15,6 +15,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     public class Enemy : Chara
     {
         private BehaviourManager behaviourManager;
+        public BehaviourManager BehaviourManager { get => behaviourManager; set => behaviourManager = value; }
 
         public Enemy(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -43,20 +44,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void PreLoadContent()
         {
-            behaviourManager = new BehaviourManager(this, CharaManager.Hero);
-            behaviourManager.CreateBehaviour("rightMove", 0);
-            behaviourManager.AddBehaviour("rightMove", new StraightMove(new Vector2(1, 0)));
-            behaviourManager.AddCondition("rightMove", new DistanceBelowN(50));
-
-            behaviourManager.CreateBehaviour("leftMove", 1);
-            behaviourManager.AddBehaviour("leftMove", new StraightMove(new Vector2(-1, 0)));
-            behaviourManager.AddCondition("leftMove", new DistanceOverN(100));
             base.PreLoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
-            behaviourManager.Update();
+            if (behaviourManager != null)
+            {
+                behaviourManager.Update();
+            }
             base.Update(gameTime);
         }
     }

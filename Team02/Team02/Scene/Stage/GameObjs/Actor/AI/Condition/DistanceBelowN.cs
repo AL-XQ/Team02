@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
 {
-    class DistanceBelowN : ConditionBase
+    public class DistanceBelowN : ConditionBase
     {
         private float minDistance;
 

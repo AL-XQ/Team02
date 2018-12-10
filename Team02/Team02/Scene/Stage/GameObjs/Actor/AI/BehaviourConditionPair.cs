@@ -42,5 +42,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
             return true;
         }
+
+        public bool IsRunning()
+        {
+            foreach (var behaviour in behaviours)
+            {
+                if (behaviour.IsRunning() == true)
+                    return true;
+            }
+
+            return false;
+        }
     }
 }

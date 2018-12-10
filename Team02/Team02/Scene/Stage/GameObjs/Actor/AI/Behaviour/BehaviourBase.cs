@@ -19,7 +19,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         public BehaviourBase() { }
 
         /// <summary>
-        /// 行動が実行中かどうか
+        /// 行動が実行中かどうか返します
         /// </summary>
         /// <returns></returns>
         public abstract bool IsRunning();
