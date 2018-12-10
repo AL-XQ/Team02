@@ -23,12 +23,16 @@ namespace Team02.Scene.Stage
         private CharaManager charaManager = new CharaManager();
         private Vector2 defGra;
         private string map;
+        private List<GraChanger> graChangers = new List<GraChanger>();
+        private GraChanger nowChanger;
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
         public CharaManager CharaManager { get => charaManager; }
         public Vector2 DefGra { get => defGra; set => defGra = value; }
         public MapCreator MapCreator { get => mapCreator; }
         public string Map { get => map; set => map = value; }
+        public List<GraChanger> GraChangers { get => graChangers; }
+        public GraChanger NowChanger { get => nowChanger; set => nowChanger = value; }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -56,8 +60,22 @@ namespace Team02.Scene.Stage
 
         public override void Update(GameTime gameTime)
         {
-
+            GraChangerUpdate(gameTime);
             base.Update(gameTime);
+        }
+
+        private void GraChangerUpdate(GameTime gameTime)
+        {
+            for (int i = 0; i < GraChangers.Count;)
+            {
+                if (graChangers[i].IsOver)
+                {
+                    graChangers.RemoveAt(i);
+                    continue;
+                }
+                graChangers[i].Update(gameTime);
+                i++;
+            }
         }
 
         /// <summary>
@@ -67,6 +85,16 @@ namespace Team02.Scene.Stage
         public Point GetDrawLocation(Vector2 Coo)
         {
             return ((Coo - CameraLocation) * CameraScale).ToPoint();
+        }
+
+        /// <summary>
+        /// スクリーンの座標をステージの座標に変換
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public Vector2 GetStageCoo(Vector2 point)
+        {
+            return point / CameraScale + CameraLocation;
         }
     }
 }

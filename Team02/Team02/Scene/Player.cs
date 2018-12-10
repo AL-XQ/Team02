@@ -9,12 +9,14 @@ using Microsoft.Xna.Framework.Input;
 
 using Team02.Scene.Stage.GameObjs.Actor;
 using Team02.Scene.Stage;
+using Team02.Scene.Stage.GameObjs;
 
 using InfinityGame.Device.KeyboardManage;
 using InfinityGame.Def;
 using InfinityGame.Stage;
 using InfinityGame;
 using InfinityGame.Element;
+using InfinityGame.Device.MouseManage;
 
 namespace Team02.Scene
 {
@@ -24,15 +26,23 @@ namespace Team02.Scene
         private PlayScene playScene;
         private Vector2 cameraCenter;
         private float jumpForce = 15;
+        private GameMouse gameMouse;
+        private D_Void _Click;
 
         public Chara Chara { get => chara; set => chara = value; }
         public Base_Stage Stage { get => (Base_Stage)playScene.ShowStage; }
         public Vector2 CameraCenter { get => cameraCenter; set => cameraCenter = value; }
         public float JumpForce { get => jumpForce; set => jumpForce = value; }
+        public GraChanger NowChanger { get => Stage.NowChanger; }
 
         public Player(PlayScene playScene)
         {
             this.playScene = playScene;
+            gameMouse = GameRun.Instance.GameMouse;
+            gameMouse._Click += Player_Click;
+            //Test
+            _Click = Shut_Click;
+            //Test
         }
 
         public void Update(GameTime gameTime)
@@ -40,12 +50,39 @@ namespace Team02.Scene
             ContorlChara();
         }
 
+        private void Player_Click(object sender, EventArgs e)
+        {
+            _Click?.Invoke();
+        }
+
+        private void Shut_Click()
+        {
+            if (NowChanger == null)
+            {
+                Vector2 point = gameMouse.MouseState.Position.ToVector2();
+                Vector2 coo = playScene.GetStageCoo(point);
+                Vector2 ve = coo - chara.ISpace.Center;
+                ve.Normalize();
+                ve *= 10f;
+                ((Hero)chara).Shut(ve);
+                return;
+            }
+            {
+                Vector2 point = gameMouse.MouseState.Position.ToVector2();
+                Vector2 coo = playScene.GetStageCoo(point);
+                Vector2 ve = coo - NowChanger.Center;
+                ve.Normalize();
+                ve *= 0.5f;
+                NowChanger.EnableGra(ve);
+            }
+        }
+
         private void ContorlChara()
         {
             if (chara != null)
             {
                 Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
-                chara.Forces["run"] = force;
+                chara.RunOnGra("run", force);
                 Jump();
                 if (GameKeyboard.GetKeyState(Keys.Right))
                 {

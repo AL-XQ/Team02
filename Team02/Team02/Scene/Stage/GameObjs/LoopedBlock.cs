@@ -22,10 +22,8 @@ namespace Team02.Scene.Stage.GameObjs
         private RenderTarget2D tex;
         private Rectangle[,] texRects = new Rectangle[3, 3];
         private bool changed = true;
-        private string imageName = "";
 
         public Size UnitedSize { get => unitedSize; set => SetUnitedSize(value); }
-        public string ImageName { get => imageName; set => SetImageName(value); }
         public LoopedBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             tex = new RenderTarget2D(graphicsDevice, _UnitSize.Width, _UnitSize.Height);
@@ -45,10 +43,9 @@ namespace Team02.Scene.Stage.GameObjs
             changed = true;
         }
 
-        private void SetImageName(string value)
+        protected override void SetImageName(string value)
         {
-            imageName = value;
-            image = ImageManage.GetSImage(imageName);
+            base.SetImageName(value);
             SetTex();
         }
 
@@ -68,22 +65,20 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void PreLoadContent()
         {
-            OffSet();
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
-            SetImage();
             base.LoadContent();
         }
 
-        protected virtual void SetImage()
+        protected override void SetImage()
         {
             ImageName = "Block_Test_192.png";
         }
 
-        protected virtual void OffSet()
+        protected override void OffSet()
         {
             RenderCoo_Offset = -new Vector2(32, 32);
             RenderSize_Offset = new Vector2(64, 64);

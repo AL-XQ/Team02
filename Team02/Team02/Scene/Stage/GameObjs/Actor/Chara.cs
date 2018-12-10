@@ -28,9 +28,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private bool canJump = false;
         private bool isStrut = false;
         private Motion motion;
-        private string imageName;
-
-        protected Base_Stage base_Stage;
+        private Bullet bullet;
 
 
         public int Hp { get => hp; set => hp = value; }
@@ -40,10 +38,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Vector2 Speed { get => speed; set => speed = value; }
         public CharaManager CharaManager { get => base_Stage.CharaManager; }
         public Motion Motion { get => motion; }
-        /// <summary>
-        /// 画像の名前
-        /// </summary>
-        public string ImageName { get => imageName; set => SetImageName(value); }
         /// <summary>
         /// 力
         /// </summary>
@@ -56,11 +50,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// 立っているかどうか
         /// </summary>
         public bool IsStrut { get => isStrut; }
+        public Bullet Bullet { get => bullet; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             IsCrimp = true;
-            base_Stage = (Base_Stage)aParent;
             MovePriority = 5;
             CrimpGroup = "chara";
         }
@@ -68,16 +62,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
             IsCrimp = true;
-            base_Stage = mapCreator.Stage;
             MovePriority = 5;
             CrimpGroup = "chara";
-        }
-
-        private void SetImageName(string value)
-        {
-            imageName = value;
-            if (imageName != null)
-                Image = ImageManage.GetSImage(imageName);
         }
 
         public override void Initialize()
@@ -101,19 +87,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void LoadContent()
         {
-            SetImage();
-            OffSet();
             base.LoadContent();
-        }
-
-        protected virtual void OffSet()
-        {
-
-        }
-
-        protected virtual void SetImage()
-        {
-
         }
 
         public override void Update(GameTime gameTime)
@@ -178,6 +152,31 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             speed -= dg;
         }
 
+        /// <summary>
+        /// 自分のローカル力をワールド力に変換し、且つ代入
+        /// </summary>
+        /// <param name="forceName">ベクトル名</param>
+        /// <param name="force">ローカルベクトル</param>
+        public void RunOnGra(string forceName, Vector2 force)
+        {
+            Vector2 ve = GetVeOnGra(force);
+            forces[forceName] = ve;
+        }
+
+        /// <summary>
+        /// 自分のローカル力をワールド力に変換し、返す
+        /// </summary>
+        /// <param name="force">ローカルベクトル</param>
+        public Vector2 GetVeOnGra(Vector2 force)
+        {
+            if (force == Vector2.Zero)
+                return Vector2.Zero;
+            Vector2 ve = new Vector2(force.X * gra.Y + force.Y * gra.X, force.Y * gra.Y - gra.X * force.X);
+            ve.Normalize();
+            ve *= force.Length();
+            return ve;
+        }
+
         private void ClearSpeed()
         {
             speed = Vector2.Zero;
@@ -217,6 +216,22 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public void DisJump()
         {
             forces["jump"] = Vector2.Zero;
+        }
+
+        public void ClearBullet()
+        {
+            bullet = null;
+        }
+
+        public void Shut(Vector2 ve)
+        {
+            if (bullet != null)
+                return;
+            bullet = new Bullet(Stage);
+            bullet.Host = this;
+            bullet.Coordinate = ISpace.Center;
+            bullet.Speed = ve;
+            bullet.Create();
         }
     }
 }
