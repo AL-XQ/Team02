@@ -15,13 +15,6 @@ namespace Team02.Scene.Stage
 {
     public class MapCreator
     {
-        public static Dictionary<string, Type> Types = new Dictionary<string, Type>()
-        {
-            {"Block",typeof(Block) },
-            {"KillBlock",typeof(KillBlock) },
-            {"Hero",typeof(Hero) },
-            {"Enemy",typeof(Enemy) },
-        };
         private Base_Stage stage;
 
         public Base_Stage Stage { get => stage; }
