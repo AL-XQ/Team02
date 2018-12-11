@@ -51,6 +51,11 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
+            this.addbt = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.saveF = new System.Windows.Forms.SaveFileDialog();
+            this.load = new System.Windows.Forms.Button();
+            this.openF = new System.Windows.Forms.OpenFileDialog();
             this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,11 +65,6 @@
             this._origin_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addbt = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.saveF = new System.Windows.Forms.SaveFileDialog();
-            this.load = new System.Windows.Forms.Button();
-            this.openF = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -321,60 +321,6 @@
             this.data.Size = new System.Drawing.Size(670, 197);
             this.data.TabIndex = 21;
             // 
-            // _type
-            // 
-            this._type.HeaderText = "type";
-            this._type.Name = "_type";
-            this._type.Width = 52;
-            // 
-            // _coo_x
-            // 
-            this._coo_x.HeaderText = "coo_x";
-            this._coo_x.Name = "_coo_x";
-            this._coo_x.Width = 58;
-            // 
-            // _coo_y
-            // 
-            this._coo_y.HeaderText = "coo_y";
-            this._coo_y.Name = "_coo_y";
-            this._coo_y.Width = 58;
-            // 
-            // __width
-            // 
-            this.@__width.HeaderText = "width";
-            this.@__width.Name = "__width";
-            this.@__width.Width = 57;
-            // 
-            // __height
-            // 
-            this.@__height.HeaderText = "height";
-            this.@__height.Name = "__height";
-            this.@__height.Width = 61;
-            // 
-            // _kon
-            // 
-            this._kon.HeaderText = "拡張";
-            this._kon.Name = "_kon";
-            this._kon.Width = 35;
-            // 
-            // _origin_x
-            // 
-            this._origin_x.HeaderText = "origin_x";
-            this._origin_x.Name = "_origin_x";
-            this._origin_x.Width = 68;
-            // 
-            // _origin_y
-            // 
-            this._origin_y.HeaderText = "origin_y";
-            this._origin_y.Name = "_origin_y";
-            this._origin_y.Width = 68;
-            // 
-            // _rota
-            // 
-            this._rota.HeaderText = "rota";
-            this._rota.Name = "_rota";
-            this._rota.Width = 50;
-            // 
             // addbt
             // 
             this.addbt.Location = new System.Drawing.Point(398, 122);
@@ -413,6 +359,60 @@
             // 
             this.openF.FileName = "openFileDialog1";
             this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            // 
+            // _type
+            // 
+            this._type.HeaderText = "type";
+            this._type.Name = "_type";
+            this._type.Width = 52;
+            // 
+            // _coo_x
+            // 
+            this._coo_x.HeaderText = "coo_x";
+            this._coo_x.Name = "_coo_x";
+            this._coo_x.Width = 58;
+            // 
+            // _coo_y
+            // 
+            this._coo_y.HeaderText = "coo_y";
+            this._coo_y.Name = "_coo_y";
+            this._coo_y.Width = 58;
+            // 
+            // __width
+            // 
+            this.@__width.HeaderText = "width";
+            this.@__width.Name = "__width";
+            this.@__width.Width = 57;
+            // 
+            // __height
+            // 
+            this.@__height.HeaderText = "height";
+            this.@__height.Name = "__height";
+            this.@__height.Width = 61;
+            // 
+            // _kon
+            // 
+            this._kon.HeaderText = "Expansion";
+            this._kon.Name = "_kon";
+            this._kon.Width = 63;
+            // 
+            // _origin_x
+            // 
+            this._origin_x.HeaderText = "origin_x";
+            this._origin_x.Name = "_origin_x";
+            this._origin_x.Width = 68;
+            // 
+            // _origin_y
+            // 
+            this._origin_y.HeaderText = "origin_y";
+            this._origin_y.Name = "_origin_y";
+            this._origin_y.Width = 68;
+            // 
+            // _rota
+            // 
+            this._rota.HeaderText = "rota";
+            this._rota.Name = "_rota";
+            this._rota.Width = 50;
             // 
             // MapMaker
             // 
@@ -462,6 +462,11 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox kon;
         private System.Windows.Forms.DataGridView data;
+        private System.Windows.Forms.Button addbt;
+        private System.Windows.Forms.Button save;
+        private System.Windows.Forms.SaveFileDialog saveF;
+        private System.Windows.Forms.Button load;
+        private System.Windows.Forms.OpenFileDialog openF;
         private System.Windows.Forms.DataGridViewTextBoxColumn _type;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_y;
@@ -471,11 +476,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_y;
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
-        private System.Windows.Forms.Button addbt;
-        private System.Windows.Forms.Button save;
-        private System.Windows.Forms.SaveFileDialog saveF;
-        private System.Windows.Forms.Button load;
-        private System.Windows.Forms.OpenFileDialog openF;
     }
 }
 

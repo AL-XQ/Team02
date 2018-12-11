@@ -8,11 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using Team02.Scene.Stage.GameObjs;
+using Team02.Scene.Stage.GameObjs.Actor;
+using Team02;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace Tools
 {
     public partial class MapMaker : Form
     {
+        public static Dictionary<string, Type> Types = new Dictionary<string, Type>()
+        {
+            {"Block",typeof(Block) },
+            {"KillBlock",typeof(KillBlock) },
+            {"Hero",typeof(Hero) },
+            {"Enemy",typeof(Enemy) },
+        };
+
         public MapMaker()
         {
             InitializeComponent();
@@ -31,37 +43,40 @@ namespace Tools
             if (res != DialogResult.OK)
                 return;
             string path = saveF.FileName;
-            string args = "";
+            List<Dictionary<string, object>> all_args = new List<Dictionary<string, object>>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
-                string arg = "{ ";
-                bool kon = false;
-                for (int j = 0; j < 6; j++)
+                var tempArgs = new Dictionary<string, object>();
+                for (int j = 0; j < data.ColumnCount; j++)
                 {
                     string name = data.Columns[j].HeaderText;
-                    if (j == 5)
-                    {
-                        kon = (bool)data.Rows[i].Cells[j].Value;
-                        continue;
-                    }
-                    string value = (string)data.Rows[i].Cells[j].Value;
-                    string arg_0 = $"{name} = {value}; ";
-                    arg += arg_0;
+                    object value;
+                    if (name == "Expansion")
+                        value = (bool)data.Rows[i].Cells[j].Value;
+                    else
+                        value = data.Rows[i].Cells[j].Value;
+                    tempArgs.Add(name, value);
                 }
+                SeriVector2 GetVector2(string s0, string s1)
+                {
+                    return new SeriVector2(float.Parse((string)tempArgs[s0]), float.Parse((string)tempArgs[s1]));
+                }
+                bool kon = (bool)tempArgs["Expansion"];
+                var args = new Dictionary<string, object>();
+                args["type"] = Types[(string)tempArgs["type"]];
+                args["coo"] = GetVector2("coo_x", "coo_y");
+                args["size"] = GetVector2("width", "height");
                 if (kon)
                 {
-                    for (int j = 6; j < data.ColumnCount; j++)
-                    {
-                        string name = data.Columns[j].HeaderText;
-                        string value = (string)data.Rows[i].Cells[j].Value;
-                        string arg_0 = $"{name} = {value}; ";
-                        arg += arg_0;
-                    }
+                    args["origin"] = GetVector2("origin_x", "origin_y");
+                    args["rota"] = float.Parse((string)tempArgs["rota"]);
                 }
-                arg += "}\r\n";
-                args += arg;
+                all_args.Add(args);
             }
-            File.WriteAllText(path, args);
+            FileStream file = new FileStream(path, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(file, all_args);
+            file.Close();
         }
 
         private void load_Click(object sender, EventArgs e)
@@ -73,53 +88,52 @@ namespace Tools
                 return;
             data.Rows.Clear();
             string path = openF.FileName;
-            string args = File.ReadAllText(path);
-            ReadArgs(args);
+            FileStream file = new FileStream(path, FileMode.Open);
+            BinaryFormatter formatter = new BinaryFormatter();
+            object data_o = formatter.Deserialize(file);
+            file.Close();
+            FileRead(data_o);
         }
 
-        private void ReadArgs(string arg)
+        private void FileRead(object arg)
         {
-            List<Dictionary<string, string>> strs = new List<Dictionary<string, string>>();
-            string[] split = arg.Split(new char[] { ' ', '\r', '\n', '{' }, StringSplitOptions.None);
-            arg = split.Aggregate((str1, str2) => str1 + str2);
-            string[] args = arg.Split('}');
+            var args = (List<Dictionary<string, object>>)arg;
             foreach (var l in args)
             {
-                if (!l.Contains(';'))
-                    continue;
-                string[] l_args_t = l.Split(';');
-                Dictionary<string, string> l_args = new Dictionary<string, string>();
-                foreach (var n in l_args_t)
-                {
-                    if (!n.Contains('='))
-                        continue;
-                    string[] n_args = n.Split('=');
-                    l_args[n_args[0]] = n_args[1];
-                }
-                strs.Add(l_args);
+                ReadObj(l);
             }
-            ArgReader(strs);
         }
 
-        private void ArgReader(List<Dictionary<string, string>> strs)
+        private void ReadObj(Dictionary<string, object> args)
         {
-            foreach (var l in strs)
+            var type = args["type"].ToString();
+            string[] type_c = type.Split('.');
+            type = type_c[type_c.Length - 1];
+            var coo = (SeriVector2)args["coo"];
+            var size = (SeriVector2)args["size"];
+            object[] arg_o = new object[data.ColumnCount];
+            arg_o[0] = type;
+            arg_o[1] = coo.x.ToString();
+            arg_o[2] = coo.y.ToString();
+            arg_o[3] = size.x.ToString();
+            arg_o[4] = size.y.ToString();
+            if (args.ContainsKey("rota"))
             {
-                List<object> args = new List<object>();
-                args.Add(l["type"]);
-                args.Add(l["coo_x"]);
-                args.Add(l["coo_y"]);
-                args.Add(l["width"]);
-                args.Add(l["height"]);
-                if (l.ContainsKey("rota"))
-                {
-                    args.Add(true);
-                    args.Add(l["origin_x"]);
-                    args.Add(l["origin_y"]);
-                    args.Add(l["rota"]);
-                }
-                data.Rows.Add(args.ToArray());
+                arg_o[5] = true;
+                var origin = (SeriVector2)args["origin"];
+                arg_o[6] = origin.x.ToString();
+                arg_o[7] = origin.y.ToString();
+                var rota = args["rota"];
+                arg_o[8] = rota.ToString();
             }
+            else
+            {
+                arg_o[5] = false;
+                arg_o[6] = "";
+                arg_o[7] = "";
+                arg_o[8] = "";
+            }
+            data.Rows.Add(arg_o);
         }
     }
 }
