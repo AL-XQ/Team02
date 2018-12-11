@@ -48,7 +48,8 @@ namespace Team02.Scene.Stage
         public override void PreLoadContent()
         {
             mapCreator = new MapCreator(this);
-            MapCreator.MapReader(TextReader.Read(map));
+            //MapCreator.MapReader(TextReader.Read(map));
+            mapCreator.MapRead(BinaryReader.ReadMap(map));
             base.PreLoadContent();
         }
 

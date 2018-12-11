@@ -62,6 +62,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Def\Config.cs" />
+    <Compile Include="Device\BinaryReader.cs" />
     <Compile Include="Device\TextReader.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -98,6 +99,7 @@
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
+    <Compile Include="SeriVector2.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="InfinityGame, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
