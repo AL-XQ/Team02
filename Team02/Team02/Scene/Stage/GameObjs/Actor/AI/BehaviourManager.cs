@@ -17,8 +17,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         private Chara user;
         private Chara target;
         private D_Void _BehaUpdate;
+        public Chara User { get => user; set => SetUser(value); }
         public Chara Target { get => target; set => SetTarget(value); }
-        public Chara User { get => user; set => user = value; }
 
         private List<string> priorityList = new List<string>();
         private string currentBehaviour;
@@ -29,15 +29,27 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
         }
 
-        public BehaviourManager(Chara user, Chara target)
+        private void SetUser(Chara value)
         {
-            this.user = user;
-            this.target = target;
+            user = value;
+
+            //登録されている行動全てにUserを再設定
+            foreach (var bcPair in bcPairs.Values)
+            {
+                bcPair.SetUser(value);
+            }
         }
 
         private void SetTarget(Chara value)
         {
             target = value;
+
+            //登録されている行動全てにTargetを再設定
+            foreach (var bcPair in bcPairs.Values)
+            {
+                bcPair.SetTarget(value);
+            }
+
             if (target == null)
                 _BehaUpdate = null;
             else
@@ -63,8 +75,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #if DEBUG
             Debug.Assert(bcPairs.ContainsKey(behaviourName), behaviourName + "は登録されていません。先にCreateBehaviourを呼んでください。");
 #endif
-            behaviour.User = user;
-            behaviour.Target = target;
             bcPairs[behaviourName].AddBehaviour(behaviour);
         }
 
@@ -75,8 +85,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #endif
             foreach (var behaviour in behaviours)
             {
-                behaviour.User = user;
-                behaviour.Target = target;
                 bcPairs[behaviourName].AddBehaviour(behaviour);
             }
         }
@@ -86,8 +94,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #if DEBUG
             Debug.Assert(bcPairs.ContainsKey(behaviourName), behaviourName + "は登録されていません。先にCreateBehaviourを呼んでください。");
 #endif
-            condition.User = user;
-            condition.Target = target;
             bcPairs[behaviourName].AddCondition(condition);
         }
 
@@ -98,8 +104,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #endif
             foreach (var condition in conditions)
             {
-                condition.User = user;
-                condition.Target = target;
                 bcPairs[behaviourName].AddCondition(condition);
             }
         }

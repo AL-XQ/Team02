@@ -53,5 +53,17 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
             return false;
         }
+
+        public void SetUser(Chara value)
+        {
+            behaviours.ForEach(b => b.User = value);
+            conditions.ForEach(c => c.User = value);
+        }
+
+        public void SetTarget(Chara value)
+        {
+            behaviours.ForEach(b => b.Target = value);
+            conditions.ForEach(c => c.Target = value);
+        }
     }
 }

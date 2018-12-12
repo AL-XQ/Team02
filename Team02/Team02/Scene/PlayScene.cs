@@ -20,6 +20,7 @@ using InfinityGame.Device.MouseManage;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Device.KeyboardManage;
 using Microsoft.Xna.Framework.Input;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
 
 namespace Team02.Scene
 {
@@ -33,7 +34,7 @@ namespace Team02.Scene
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
-
+            AIPackage.Ready();
         }
 
         public override void Initialize()

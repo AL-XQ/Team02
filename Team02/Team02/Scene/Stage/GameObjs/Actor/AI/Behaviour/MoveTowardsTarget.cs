@@ -8,25 +8,19 @@ using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 {
-    public class RunAwayFromTarget : BehaviourBase
+    public class MoveTowardsTarget : BehaviourBase
     {
         private float speed;
 
-        public RunAwayFromTarget(float speed)
+        public MoveTowardsTarget(float speed)
         {
             this.speed = speed;
         }
 
         public override void Action()
         {
-            if (User.Coordinate.X < Target.Coordinate.X)
-            {
-                User.Forces["aimove"] = new Vector2(-1, 0) * speed;
-            }
-            else
-            {
-                User.Forces["aimove"] = new Vector2(1, 0) * speed;
-            }
+            Vector2 direction = Vector2.Normalize(Target.Coordinate - User.Coordinate);
+            User.Forces["aimove"] = direction * speed;
         }
 
         public override bool IsRunning()

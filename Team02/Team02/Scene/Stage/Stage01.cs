@@ -42,7 +42,7 @@ namespace Team02.Scene.Stage
 
 
             //Test
-            var behaviourManager = new BehaviourManager(testenemy, CharaManager.Hero);
+            var behaviourManager = new BehaviourManager();
 
             behaviourManager.CreateBehaviour("runaway", 0);
             behaviourManager.AddBehaviour("runaway", new RunAwayFromTarget(0.2f));
@@ -52,6 +52,8 @@ namespace Team02.Scene.Stage
             behaviourManager.CreateBehaviour("stopmoving", 1);
             behaviourManager.AddBehaviour("stopmoving", new StopMoving());
             behaviourManager.AddCondition("stopmoving", new DistanceOverN(1200));
+            behaviourManager.User = testenemy;
+            behaviourManager.Target = CharaManager.Hero;
             testenemy.BehaviourManager = behaviourManager;
             //Test
         }

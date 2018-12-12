@@ -75,6 +75,7 @@
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\BehaviourManager.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\Fly.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\Jump.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\MoveTowardsTarget.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\RunAwayFromTarget.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\StopMoving.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\AI\Behaviour\StraightMove.cs" />
