@@ -28,6 +28,7 @@ namespace Team02.Scene
         private float jumpForce = 15;
         private GameMouse gameMouse;
         private D_Void _Click;
+        private bool a = false;
 
         public Chara Chara { get => chara; set => chara = value; }
         public Base_Stage Stage { get => (Base_Stage)playScene.ShowStage; }
@@ -57,6 +58,12 @@ namespace Team02.Scene
 
         private void Shut_Click()
         {
+            if (!a)
+            {
+                a = true;
+                return;
+            }
+
             if (NowChanger == null)
             {
                 Vector2 point = gameMouse.MouseState.Position.ToVector2();

@@ -85,7 +85,7 @@ namespace Tools
 
         private void load_Click(object sender, EventArgs e)
         {
-            if (data.Rows.Count > 0 && MessageBox.Show("データ破棄！", "警告", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            if (data.Rows.Count > 0 && MessageBox.Show("現在作成中のマップは保存されません。", "警告", MessageBoxButtons.OKCancel) != DialogResult.OK)
                 return;
             var res = openF.ShowDialog();
             if (res != DialogResult.OK)
