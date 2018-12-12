@@ -29,6 +29,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private bool isStrut = false;
         private Motion motion;
         private Bullet bullet;
+        private GraChanger graChanger;
 
 
         public int Hp { get => hp; set => hp = value; }
@@ -51,6 +52,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public bool IsStrut { get => isStrut; }
         public Bullet Bullet { get => bullet; }
+        public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -92,7 +94,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            if (hp<=0)
+            if (hp <= 0)
             {
                 Kill();
             }
@@ -234,6 +236,23 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet.Coordinate = ISpace.Center;
             bullet.Speed = ve;
             bullet.Create();
+        }
+
+        public override void UKill()
+        {
+            //死亡したら各クラスの制御
+            base.UKill();
+        }
+
+        public override void Draw2(GameTime gameTime)
+        {
+            if (graChanger != null && graChanger.OverTime == -1)
+            {
+                Vector2 loc = -Size.ToVector2() * new Vector2(0.5f, 0.5f);
+                Vector2 siz = Size.ToVector2() * new Vector2(1f, 1f);
+                spriteBatch.Draw(GraChanger.ControlC.ImageT[0], new Rectangle(DrawLocation + (loc * Stage.CameraScale).ToPoint(), ((Size.ToVector2() + siz) * Stage.CameraScale).ToPoint()), new Rectangle(Point.Zero, GraChanger.ControlC.Size.ToPoint()), Color * refract, Rotation, ((Origin - loc) / (Size.ToVector2() + siz)) * GraChanger.ControlC.Size.ToVector2(), SpriteEffects.None, 1f);
+            }
+            base.Draw2(gameTime);
         }
     }
 }

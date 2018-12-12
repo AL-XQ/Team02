@@ -24,9 +24,15 @@ namespace Team02.Scene.Stage
             EndOfRightDown = new Vector2(20000, 20000);
         }
 
-        public override void PreLoadContent()
+        public override void Initialize()
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
+            base.Initialize();
+        }
+
+        public override void PreLoadContent()
+        {
+            
 
             Map = "test";
 

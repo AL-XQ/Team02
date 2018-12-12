@@ -46,5 +46,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             ImageName = "Player_Test.png";
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
+        public override void UKill()
+        {
+            base_Stage.ResetStage();
+            base.UKill();
+        }
     }
 }

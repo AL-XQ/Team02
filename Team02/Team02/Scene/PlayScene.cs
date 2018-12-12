@@ -60,6 +60,7 @@ namespace Team02.Scene
         }
         public override void LoadContent()
         {
+            GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
             base.LoadContent();
         }
 
