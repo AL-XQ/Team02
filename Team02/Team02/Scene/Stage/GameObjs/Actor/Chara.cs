@@ -92,10 +92,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+            if (hp<=0)
+            {
+                Kill();
+            }
             motion.CheckDire();
             motion.CheckMotion();
-            //Console.WriteLine(motion.Dire);
-            //Console.WriteLine(motion.State);
             CalForce();
             base.Update(gameTime);
 
