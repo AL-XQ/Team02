@@ -45,7 +45,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
-                if (c.Speed.Length() >= 20)//テスト用の為length
+                if (c.Speed.Length() >= 20 &&c is Enemy)//テスト用の為length
                 {
                     c.Hp -= 50;
                 }
@@ -54,7 +54,6 @@ namespace Team02.Scene.Stage.GameObjs
                 {
                     c.Strut();
                 }
-                
             }
             base.CalCollision(obj);
         }
