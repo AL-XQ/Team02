@@ -35,6 +35,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (enable)
                 return;
+            stage.PlayScene.ExplosionAreaUI.NotShow();
             enable = true;
             overTime = 180;
             foreach (var l in charas)
