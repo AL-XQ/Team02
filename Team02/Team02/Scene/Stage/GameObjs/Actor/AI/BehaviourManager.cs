@@ -14,11 +14,17 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
     {
         private Chara user;
         private Chara target;
-        public Chara Target { get; set; }
+        public Chara Target { get => target; set => target = value; }
+        public Chara User { get => user; set => user = value; }
 
         private List<string> priorityList = new List<string>();
         private string currentBehaviour;
         private Dictionary<string, BehaviourConditionPair> bcPairs = new Dictionary<string, BehaviourConditionPair>();
+
+        public BehaviourManager()
+        {
+
+        }
 
         public BehaviourManager(Chara user, Chara target)
         {
@@ -55,7 +61,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #if DEBUG
             Debug.Assert(bcPairs.ContainsKey(behaviourName), behaviourName + "は登録されていません。先にCreateBehaviourを呼んでください。");
 #endif
-            foreach(var behaviour in behaviours)
+            foreach (var behaviour in behaviours)
             {
                 behaviour.User = user;
                 behaviour.Target = target;

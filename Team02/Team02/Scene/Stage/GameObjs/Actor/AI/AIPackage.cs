@@ -8,9 +8,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 {
     public class AIPackage
     {
-        public AIPackage()
-        {
-
-        }
+        
     }
 }
