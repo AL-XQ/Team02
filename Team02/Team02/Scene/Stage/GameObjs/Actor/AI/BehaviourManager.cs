@@ -8,22 +8,40 @@ using System.Diagnostics;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
 
+using InfinityGame;
+
 namespace Team02.Scene.Stage.GameObjs.Actor.AI
 {
     public class BehaviourManager
     {
         private Chara user;
         private Chara target;
-        public Chara Target { get; set; }
+        private D_Void _BehaUpdate;
+        public Chara Target { get => target; set => SetTarget(value); }
+        public Chara User { get => user; set => user = value; }
 
         private List<string> priorityList = new List<string>();
         private string currentBehaviour;
         private Dictionary<string, BehaviourConditionPair> bcPairs = new Dictionary<string, BehaviourConditionPair>();
 
+        public BehaviourManager()
+        {
+
+        }
+
         public BehaviourManager(Chara user, Chara target)
         {
             this.user = user;
             this.target = target;
+        }
+
+        private void SetTarget(Chara value)
+        {
+            target = value;
+            if (target == null)
+                _BehaUpdate = null;
+            else
+                _BehaUpdate = BehaUpdate;
         }
 
         public void CreateBehaviour(string behaviourName, int priority)
@@ -55,7 +73,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 #if DEBUG
             Debug.Assert(bcPairs.ContainsKey(behaviourName), behaviourName + "は登録されていません。先にCreateBehaviourを呼んでください。");
 #endif
-            foreach(var behaviour in behaviours)
+            foreach (var behaviour in behaviours)
             {
                 behaviour.User = user;
                 behaviour.Target = target;
@@ -87,6 +105,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         }
 
         public void Update()
+        {
+            _BehaUpdate?.Invoke();
+        }
+
+        private void BehaUpdate()
         {
             if (currentBehaviour == null)
             {
