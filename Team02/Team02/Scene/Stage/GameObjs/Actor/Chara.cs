@@ -235,5 +235,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet.Speed = ve;
             bullet.Create();
         }
+
+        public override void UKill()
+        {
+            //死亡したら各クラスの制御
+            base.UKill();
+        }
     }
 }
