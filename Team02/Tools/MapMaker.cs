@@ -36,7 +36,17 @@ namespace Tools
 
         private void addbt_Click(object sender, EventArgs e)
         {
-            data.Rows.Add(new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text });
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text };
+            if (masON.Checked)
+            {
+                float x = float.Parse(coo_x.Text);
+                float y = float.Parse(coo_y.Text);
+                x *= 64;
+                y *= 64;
+                objs[1] = x.ToString();
+                objs[2] = y.ToString();
+            }
+            data.Rows.Add(objs);
         }
 
         private void save_Click(object sender, EventArgs e)
