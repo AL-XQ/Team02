@@ -28,6 +28,10 @@ namespace Tools
         public MapMaker()
         {
             InitializeComponent();
+            foreach(var l in Types.Keys)
+            {
+                type.Items.Add(l);
+            }
         }
 
         private void addbt_Click(object sender, EventArgs e)
