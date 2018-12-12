@@ -27,7 +27,7 @@ namespace Team02.Scene
 
         public LineUI(BaseDisplay parent) : base(parent)
         {
-            color = Color.Transparent;
+            //Color = Color.Transparent;
             playScene = (PlayScene)parent;
         }
 

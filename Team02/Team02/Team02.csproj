@@ -67,6 +67,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\GraChangerLineUI.cs" />
     <Compile Include="Scene\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
