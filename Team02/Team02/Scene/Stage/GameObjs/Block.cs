@@ -54,7 +54,6 @@ namespace Team02.Scene.Stage.GameObjs
                 {
                     c.Strut();
                 }
-                
             }
             base.CalCollision(obj);
         }
