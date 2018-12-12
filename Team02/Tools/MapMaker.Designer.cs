@@ -51,11 +51,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
-            this.addbt = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.saveF = new System.Windows.Forms.SaveFileDialog();
-            this.load = new System.Windows.Forms.Button();
-            this.openF = new System.Windows.Forms.OpenFileDialog();
             this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,6 +60,11 @@
             this._origin_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addbt = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.saveF = new System.Windows.Forms.SaveFileDialog();
+            this.load = new System.Windows.Forms.Button();
+            this.openF = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -83,11 +83,6 @@
             // type
             // 
             this.type.FormattingEnabled = true;
-            this.type.Items.AddRange(new object[] {
-            "Block",
-            "KillBlock",
-            "Hero",
-            "Enemy"});
             this.type.Location = new System.Drawing.Point(69, 18);
             this.type.Name = "type";
             this.type.Size = new System.Drawing.Size(121, 24);
@@ -321,45 +316,6 @@
             this.data.Size = new System.Drawing.Size(670, 197);
             this.data.TabIndex = 21;
             // 
-            // addbt
-            // 
-            this.addbt.Location = new System.Drawing.Point(398, 122);
-            this.addbt.Name = "addbt";
-            this.addbt.Size = new System.Drawing.Size(105, 23);
-            this.addbt.TabIndex = 22;
-            this.addbt.Text = "追加";
-            this.addbt.UseVisualStyleBackColor = true;
-            this.addbt.Click += new System.EventHandler(this.addbt_Click);
-            // 
-            // save
-            // 
-            this.save.Location = new System.Drawing.Point(398, 193);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(105, 23);
-            this.save.TabIndex = 23;
-            this.save.Text = "生成";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
-            // 
-            // saveF
-            // 
-            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
-            // 
-            // load
-            // 
-            this.load.Location = new System.Drawing.Point(398, 164);
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(105, 23);
-            this.load.TabIndex = 24;
-            this.load.Text = "ロード";
-            this.load.UseVisualStyleBackColor = true;
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
-            // openF
-            // 
-            this.openF.FileName = "openFileDialog1";
-            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
-            // 
             // _type
             // 
             this._type.HeaderText = "type";
@@ -413,6 +369,45 @@
             this._rota.HeaderText = "rota";
             this._rota.Name = "_rota";
             this._rota.Width = 50;
+            // 
+            // addbt
+            // 
+            this.addbt.Location = new System.Drawing.Point(398, 122);
+            this.addbt.Name = "addbt";
+            this.addbt.Size = new System.Drawing.Size(105, 23);
+            this.addbt.TabIndex = 22;
+            this.addbt.Text = "追加";
+            this.addbt.UseVisualStyleBackColor = true;
+            this.addbt.Click += new System.EventHandler(this.addbt_Click);
+            // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(398, 193);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(105, 23);
+            this.save.TabIndex = 23;
+            this.save.Text = "生成";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // saveF
+            // 
+            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            // 
+            // load
+            // 
+            this.load.Location = new System.Drawing.Point(398, 164);
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(105, 23);
+            this.load.TabIndex = 24;
+            this.load.Text = "ロード";
+            this.load.UseVisualStyleBackColor = true;
+            this.load.Click += new System.EventHandler(this.load_Click);
+            // 
+            // openF
+            // 
+            this.openF.FileName = "openFileDialog1";
+            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
             // 
             // MapMaker
             // 
