@@ -45,11 +45,16 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
+                if (c.Speed.Length() >= 20)//テスト用の為length
+                {
+                    c.Hp -= 50;
+                }
                 c.DisSpeed(coeff);
                 if (CheckCharaOn(c))
                 {
                     c.Strut();
                 }
+                
             }
             base.CalCollision(obj);
         }
