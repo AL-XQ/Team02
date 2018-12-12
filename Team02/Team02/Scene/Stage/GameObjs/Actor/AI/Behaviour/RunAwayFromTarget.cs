@@ -19,14 +19,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            if (User.Coordinate.X < Target.Coordinate.X)
+            var ve = new Vector2(-speed, 0);
+            ve = User.GetVeOnGra(ve);
+            var check = User.Coordinate + ve;
+            var checkL = (check - Target.Coordinate).LengthSquared() - (User.Coordinate - Target.Coordinate).LengthSquared();
+            if(checkL < 0)
             {
-                User.Forces["aimove"] = new Vector2(-1, 0) * speed;
+                ve = -ve;
             }
-            else
-            {
-                User.Forces["aimove"] = new Vector2(1, 0) * speed;
-            }
+            User.Forces["aimove"] = ve;
         }
 
         public override bool IsRunning()

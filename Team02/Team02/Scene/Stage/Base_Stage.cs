@@ -25,6 +25,7 @@ namespace Team02.Scene.Stage
         private string map;
         private List<GraChanger> graChangers = new List<GraChanger>();
         private GraChanger nowChanger;
+        private bool reset = false;
         public Player Player { get => playScene.Player; }
         public PlayScene PlayScene { get => playScene; }
         public CharaManager CharaManager { get => charaManager; }
@@ -45,17 +46,22 @@ namespace Team02.Scene.Stage
             playScene.LineUI.Visible = (nowChanger == null);
         }
 
+        public void ResetStage()
+        {
+            reset = true;
+        }
+
         public override void Initialize()
         {
             defGra = new Vector2(0, 0.5f);
+            ClearStage();
+            mapCreator.MapRead(BinaryReader.ReadMap(map));
             base.Initialize();
         }
 
         public override void PreLoadContent()
         {
             mapCreator = new MapCreator(this);
-            //MapCreator.MapReader(TextReader.Read(map));
-            mapCreator.MapRead(BinaryReader.ReadMap(map));
             base.PreLoadContent();
         }
 
@@ -69,6 +75,16 @@ namespace Team02.Scene.Stage
         {
             GraChangerUpdate(gameTime);
             base.Update(gameTime);
+            AfterUpdate();
+        }
+
+        public void AfterUpdate()
+        {
+            if (reset)
+            {
+                Initialize();
+                reset = false;
+            }
         }
 
         private void GraChangerUpdate(GameTime gameTime)

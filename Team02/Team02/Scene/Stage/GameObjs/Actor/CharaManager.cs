@@ -17,6 +17,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
 
         }
+
+        public void Initialize()
+        {
+            hero = null;
+            enemys.Clear();
+        }
+
         public Enemy GetEnemy(int id)
         {
             return enemys[id];
@@ -25,5 +32,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             enemys.Add(enemy);
         }
+
+
     }
 }

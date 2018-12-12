@@ -5,7 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Team02.Scene.Stage.GameObjs.Actor;
+
+using InfinityGame.Device;
+using InfinityGame.Element;
 
 namespace Team02.Scene.Stage.GameObjs
 {
@@ -16,14 +20,16 @@ namespace Team02.Scene.Stage.GameObjs
         private bool isOver = false;
         private List<Chara> charas = new List<Chara>();
         private Vector2 gra;
-        private int overTime;
+        private int overTime = -1;
         private bool enable = false;
+        public static SImage ControlC;
 
         public bool IsOver { get => isOver; }
         public List<Chara> Charas { get => charas; }
         public Vector2 Gra { get => gra; set => gra = value; }
         public bool Enable { get => enable; }
         public Vector2 Center { get => center; set => center = value; }
+        public int OverTime { get => overTime; }
 
         public GraChanger(Base_Stage stage)
         {
@@ -66,9 +72,14 @@ namespace Team02.Scene.Stage.GameObjs
                 overTime--;
                 return;
             }
-            foreach(var l in charas)
+            foreach (var l in charas)
             {
-                l.ResetGra();
+                if (l.GraChanger != null && l.GraChanger.overTime == overTime)
+                {
+                    l.ResetGra();
+                    l.Color = Color.White;
+                    l.GraChanger = null;
+                }
             }
             Kill();
         }
