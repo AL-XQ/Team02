@@ -65,6 +65,7 @@
             this.saveF = new System.Windows.Forms.SaveFileDialog();
             this.load = new System.Windows.Forms.Button();
             this.openF = new System.Windows.Forms.OpenFileDialog();
+            this.masON = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -247,6 +248,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.masON);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.type);
@@ -298,6 +300,9 @@
             // data
             // 
             this.data.AllowUserToAddRows = false;
+            this.data.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -409,6 +414,16 @@
             this.openF.FileName = "openFileDialog1";
             this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
             // 
+            // masON
+            // 
+            this.masON.AutoSize = true;
+            this.masON.Location = new System.Drawing.Point(387, 64);
+            this.masON.Name = "masON";
+            this.masON.Size = new System.Drawing.Size(104, 20);
+            this.masON.TabIndex = 12;
+            this.masON.Text = "座標マス化";
+            this.masON.UseVisualStyleBackColor = true;
+            // 
             // MapMaker
             // 
             this.AcceptButton = this.addbt;
@@ -471,6 +486,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_y;
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
+        private System.Windows.Forms.CheckBox masON;
     }
 }
 

@@ -32,11 +32,17 @@ namespace Team02.Scene.Stage
         public MapCreator MapCreator { get => mapCreator; }
         public string Map { get => map; set => map = value; }
         public List<GraChanger> GraChangers { get => graChangers; }
-        public GraChanger NowChanger { get => nowChanger; set => nowChanger = value; }
+        public GraChanger NowChanger { get => nowChanger; set => SetNowChanger(value); }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             playScene = (PlayScene)parent;
+        }
+
+        private void SetNowChanger(GraChanger value)
+        {
+            nowChanger = value;
+            
         }
 
         public override void Initialize()
