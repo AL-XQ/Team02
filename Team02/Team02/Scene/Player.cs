@@ -89,6 +89,8 @@ namespace Team02.Scene
             if (chara != null)
             {
                 Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
+                if (!chara.IsStrut)
+                    force.X *= 0.2f;
                 chara.RunOnGra("run", force);
                 Jump();
                 if (GameKeyboard.GetKeyState(Keys.Right))

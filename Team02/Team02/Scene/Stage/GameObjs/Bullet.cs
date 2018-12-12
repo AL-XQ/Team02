@@ -76,6 +76,8 @@ namespace Team02.Scene.Stage.GameObjs
                     if (l is Chara c)
                     {
                         graC.Charas.Add(c);
+                        c.Color = Color.Purple;
+                        c.GraChanger = graC;
                     }
                 }
                 Kill();

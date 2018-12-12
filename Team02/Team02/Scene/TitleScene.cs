@@ -32,6 +32,7 @@ namespace Team02.Scene
 
         public override void PreLoadContent()
         {
+            DIYMouse.SetCursor(Cursors.normal);
             mainMenu = new MainMenu(this);
             base.PreLoadContent();
         }
