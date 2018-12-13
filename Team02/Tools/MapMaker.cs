@@ -28,7 +28,7 @@ namespace Tools
         public MapMaker()
         {
             InitializeComponent();
-            foreach(var l in Types.Keys)
+            foreach (var l in Types.Keys)
             {
                 type.Items.Add(l);
             }

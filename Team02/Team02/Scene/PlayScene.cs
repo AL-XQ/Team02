@@ -35,7 +35,7 @@ namespace Team02.Scene
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
-            AIPackage.Ready();
+            
         }
 
         public override void Initialize()

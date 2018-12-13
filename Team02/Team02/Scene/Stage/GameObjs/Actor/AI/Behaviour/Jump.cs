@@ -12,6 +12,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     {
         private float jumpForce;
 
+        public Jump() : base()
+        {
+
+        }
+
+        public Jump(Jump sample) : base(sample)
+        {
+            jumpForce = sample.jumpForce;
+        }
         public Jump(float jumpForce)
         {
             this.jumpForce = jumpForce;
@@ -25,6 +34,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
                 return;
             }
             User.DisJump();
+        }
+
+        public override BehaviourBase Copy()
+        {
+            return new Jump(this);
         }
 
         public override bool IsRunning()

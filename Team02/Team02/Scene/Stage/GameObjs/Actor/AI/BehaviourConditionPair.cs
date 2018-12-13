@@ -14,6 +14,23 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         private List<BehaviourBase> behaviours = new List<BehaviourBase>();
         private List<ConditionBase> conditions = new List<ConditionBase>();
 
+        public BehaviourConditionPair()
+        {
+            
+        }
+
+        public BehaviourConditionPair(BehaviourConditionPair sample)
+        {
+            foreach(var l in sample.behaviours)
+            {
+                behaviours.Add(l.Copy());
+            }
+            foreach(var l in sample.conditions)
+            {
+                conditions.Add(l.Copy());
+            }
+        }
+
         public void AddBehaviour(BehaviourBase behaviour)
         {
             behaviours.Add(behaviour);
@@ -26,7 +43,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
         public void Action()
         {
-            foreach(var behaviour in behaviours)
+            foreach (var behaviour in behaviours)
             {
                 behaviour.Action();
             }
@@ -64,6 +81,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         {
             behaviours.ForEach(b => b.Target = value);
             conditions.ForEach(c => c.Target = value);
+        }
+
+        public BehaviourConditionPair Copy()
+        {
+            return new BehaviourConditionPair(this);
         }
     }
 }

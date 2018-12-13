@@ -13,6 +13,7 @@ using System.Threading;
 using InfinityGame.Device.WindowsScreen;
 using InfinityGame.Device.KeyboardManage;
 using Team02.Scene;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -94,6 +95,7 @@ namespace Team02
             Load_Scene = new Load_Scene("Loading", GraphicsDevice, null, gameRun);
             gameRun.SetLoadScene(Load_Scene);
             Window.Title = GameTexts.GetText(title);
+            AIPackage.Create();
         }
 
         public void AfterInitialize()

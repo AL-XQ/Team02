@@ -18,6 +18,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public BehaviourBase() { }
 
+        public BehaviourBase(BehaviourBase sample)
+        {
+            User = sample.user;
+            Target = sample.Target;
+        }
+
         /// <summary>
         /// 行動が実行中かどうか返します
         /// </summary>
@@ -28,5 +34,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         /// 行動(敵を動かす処理はここに書く)
         /// </summary>
         public abstract void Action();
+
+        public abstract BehaviourBase Copy();
     }
 }
