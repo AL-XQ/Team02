@@ -29,8 +29,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            Vector2 direction = Vector2.Normalize(Target.Coordinate - User.Coordinate);
-            User.Forces["aimove"] = direction * speed;
+            Vector2 check = Target.Coordinate - User.Coordinate;
+            if (check.X != 0 && check.Y != 0)
+            {
+                Vector2 direction = Vector2.Normalize(check);
+                User.Forces["aimove"] = direction * speed;
+            }
         }
 
         public override BehaviourBase Copy()
