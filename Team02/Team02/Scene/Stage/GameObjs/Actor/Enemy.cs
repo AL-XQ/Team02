@@ -29,7 +29,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             MovePriority = 6;
             if (args.ContainsKey("AI"))
             {
-                //behaviourManager
+                behaviourManager = AIPackage.AIs[(string)args["AI"]].Copy();
+                behaviourManager.User = this;
+                behaviourManager.Target = CharaManager.Hero;
             }
         }
 
