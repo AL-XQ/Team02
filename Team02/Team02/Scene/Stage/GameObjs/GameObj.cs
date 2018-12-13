@@ -22,7 +22,7 @@ namespace Team02.Scene.Stage.GameObjs
             base_Stage = (Base_Stage)aParent;
         }
 
-        public GameObj(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator.Stage)
+        public GameObj(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator.Stage, args != null && args.ContainsKey("name") ? (string)args["name"] : "Null")
         {
             base_Stage = mapCreator.Stage;
         }
@@ -58,7 +58,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected virtual void SetImage()
         {
-            
+
         }
 
         protected virtual void OffSet()
