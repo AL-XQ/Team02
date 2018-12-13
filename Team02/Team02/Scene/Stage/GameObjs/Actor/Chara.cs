@@ -70,12 +70,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             CrimpGroup = "chara";
         }
 
-        private void SetGra(Vector2 value)
-        {
-            gra = value;
-
-        }
-
         public override void Initialize()
         {
             gra = base_Stage.DefGra;
