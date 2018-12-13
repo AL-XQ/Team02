@@ -29,9 +29,12 @@ namespace Team02.Scene
         private Player player;
         private BackMenu backMenu;
         private LineUI lineUI;
+        private EnemyCountUI enemyCntUI;
         
         public Player Player { get => player; }
         public LineUI LineUI { get => lineUI; }
+
+        public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -48,6 +51,7 @@ namespace Team02.Scene
             player = new Player(this);
             backMenu = new BackMenu(this);
             lineUI = new LineUI(this);
+            enemyCntUI = new EnemyCountUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
             base.PreLoadContent();
@@ -72,6 +76,9 @@ namespace Team02.Scene
                 backMenu.Update(gameTime);
                 return;
             }
+            Console.WriteLine(((Base_Stage)ShowStage).CharaManager.Enemys.Count);
+            EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
+
             base.Update(gameTime);
         }
 
