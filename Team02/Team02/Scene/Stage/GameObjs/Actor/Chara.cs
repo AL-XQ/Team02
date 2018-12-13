@@ -92,13 +92,14 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            if (hp<=0)
+            if (hp <= 0)
             {
                 Kill();
             }
             motion.CheckDire();
             motion.CheckMotion();
             CalForce();
+            RotateToGra();
             base.Update(gameTime);
 
             DisStrut();
@@ -240,6 +241,25 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             //死亡したら各クラスの制御
             base.UKill();
+        }
+
+        //test
+        private float targetRotation;
+        private float rotationIncrement;
+
+        /// <summary>
+        /// 重力の方向に向かってキャラクターを回転する
+        /// </summary>
+        private void RotateToGra()
+        {
+            targetRotation = (float)Math.Atan2(Gra.Y, Gra.X) - MathHelper.ToRadians(90);
+            if (targetRotation != 0)
+                rotationIncrement = (targetRotation - Rotation) / 15;
+
+            if (Math.Abs(targetRotation - Rotation) > 0.1f)
+                Rotation += rotationIncrement;
+            else
+                rotationIncrement = 0;
         }
     }
 }
