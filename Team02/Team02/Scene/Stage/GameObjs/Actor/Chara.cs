@@ -20,6 +20,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private int mp;
         private int maxhp = 100;
         private int maxmp = 100;
+        private float targetRotation;
+        private float rotationIncrement;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Vector2 accel = Vector2.Zero;//質量を１と考え、加えた力がそのまま加速度になる
@@ -46,7 +48,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// <summary>
         /// 重力
         /// </summary>
-        public Vector2 Gra { get => gra; set => gra = value; }
+        public Vector2 Gra { get => gra; set => SetGra(value); }
         /// <summary>
         /// 立っているかどうか
         /// </summary>
@@ -94,11 +96,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            if (hp<=0)
             if (hp <= 0)
-            {
-                Kill();
-            }
+                if (hp <= 0)
+                {
+                    Kill();
+                }
             motion.CheckDire();
             motion.CheckMotion();
             CalForce();
@@ -206,7 +208,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public void ResetGra()
         {
-            gra = base_Stage.DefGra;
+            Gra = base_Stage.DefGra;
         }
 
         public void Jump(float force)
@@ -246,23 +248,26 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             base.UKill();
         }
 
-        //test
-        private float targetRotation;
-        private float rotationIncrement;
-
         /// <summary>
         /// 重力の方向に向かってキャラクターを回転する
         /// </summary>
         private void RotateToGra()
         {
-            targetRotation = (float)Math.Atan2(Gra.Y, Gra.X) - MathHelper.ToRadians(90);
-            if (targetRotation != 0)
-                rotationIncrement = (targetRotation - Rotation) / 15;
+            Rotation += rotationIncrement;
 
-            if (Math.Abs(targetRotation - Rotation) > 0.1f)
-                Rotation += rotationIncrement;
-            else
+            if (Math.Abs(Rotation - targetRotation) < 0.01f)
+            {
                 rotationIncrement = 0;
+                Rotation = targetRotation;
+            }
+        }
+
+        private void SetGra(Vector2 value)
+        {
+            gra = value;
+            targetRotation = (float)Math.Atan2(value.Y, value.X) - MathHelper.ToRadians(90);
+            rotationIncrement = (targetRotation - Rotation) * 0.1f;
+
         }
 
         public override void Draw2(GameTime gameTime)
