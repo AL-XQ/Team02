@@ -17,13 +17,12 @@ namespace Team02.Scene.Stage.GameObjs
     {
         private Chara host;
         private Vector2 speed = Vector2.Zero;
+        private int timeDown = 0;
 
         public Vector2 Speed { get => speed; set => speed = value; }
-        private float flyingspeed;//射出速度
-        private int lifeCnt;//存在時間
-        private readonly int LIFE = 60;
 
         public Chara Host { get => host; set => host = value; }
+        public int TimeDown { get => timeDown; set => timeDown = value; }
 
         public Bullet(BaseDisplay aParent) : base(aParent)
         {
@@ -41,8 +40,6 @@ namespace Team02.Scene.Stage.GameObjs
             Origin = (Size / 2).ToVector2();
             ESpace = ESpace.Cir;
 
-            flyingspeed = 2.0f;
-            lifeCnt = 0;
             base.PreLoadContent();
         }
 
@@ -64,14 +61,19 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void Update(GameTime gameTime)
         {
-            AddVelocity(speed*flyingspeed, VeloParam.Run);
-
-            lifeCnt++;
-            if (lifeCnt > LIFE)
-                Kill();
-
-
+            AddVelocity(speed, VeloParam.Run);
+            CountDown();
             base.Update(gameTime);
+        }
+
+        private void CountDown()
+        {
+            if (timeDown > 0)
+            {
+                timeDown--;
+                return;
+            }
+            Kill();
         }
 
         public override void CalCollision(StageObj obj)
@@ -85,7 +87,6 @@ namespace Team02.Scene.Stage.GameObjs
                 var graC = new GraChanger(base_Stage);
                 graC.Center = ISpace.Center;
                 var ea = ExplosionArea.Create(base_Stage, ISpace.Center, rad);
-                graC.Ea = ea;
 
                 foreach(var l in list)
                 {

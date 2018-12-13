@@ -16,7 +16,6 @@ namespace Team02.Scene.Stage.GameObjs
     public class GraChanger
     {
         private Base_Stage stage;
-        private ExplosionArea ea;
         private Vector2 center;
         private bool isOver = false;
         private List<Chara> charas = new List<Chara>();
@@ -32,7 +31,6 @@ namespace Team02.Scene.Stage.GameObjs
         public bool Enable { get => enable; }
         public Vector2 Center { get => center; set => center = value; }
         public int OverTime { get => overTime; }
-        public ExplosionArea Ea { get => ea; set => ea = value; }
 
         public GraChanger(Base_Stage stage)
         {
@@ -44,7 +42,6 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (enable)
                 return;
-            ea.Kill();
             enable = true;
             overTime = 180;
             foreach (var l in charas)
@@ -88,7 +85,6 @@ namespace Team02.Scene.Stage.GameObjs
                     l.GraChanger = null;
                 }
             }
-            ea.Kill();
             stage.NowChanger = null;
             Kill();
         }

@@ -46,7 +46,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// <summary>
         /// 重力
         /// </summary>
-        public Vector2 Gra { get => gra; set => gra = value; }
+        public Vector2 Gra { get => gra; set => SetGra(value); }
         /// <summary>
         /// 立っているかどうか
         /// </summary>
@@ -66,6 +66,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             MovePriority = 5;
             CrimpGroup = "chara";
+        }
+
+        private void SetGra(Vector2 value)
+        {
+            gra = value;
+
         }
 
         public override void Initialize()
@@ -227,7 +233,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet = null;
         }
 
-        public void Shut(Vector2 ve)
+        public void Shut(Vector2 ve, int time)
         {
             if (bullet != null)
                 return;
@@ -235,6 +241,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet.Host = this;
             bullet.Coordinate = ISpace.Center;
             bullet.Speed = ve;
+            bullet.TimeDown = time;
             bullet.Create();
         }
 

@@ -70,8 +70,8 @@ namespace Team02.Scene
                 Vector2 coo = playScene.GetStageCoo(point);
                 Vector2 ve = coo - chara.ISpace.Center;
                 ve.Normalize();
-                ve *= 10f;
-                ((Hero)chara).Shut(ve);
+                ve *= 20f;
+                ((Hero)chara).Shut(ve, 60);
                 return;
             }
             {
