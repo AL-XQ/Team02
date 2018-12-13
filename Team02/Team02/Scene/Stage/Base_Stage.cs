@@ -43,7 +43,7 @@ namespace Team02.Scene.Stage
         private void SetNowChanger(GraChanger value)
         {
             nowChanger = value;
-            playScene.LineUI.Visible = (nowChanger == null);
+            playScene.LineUI.IsShoot = (nowChanger == null);
         }
 
         public void ResetStage()
