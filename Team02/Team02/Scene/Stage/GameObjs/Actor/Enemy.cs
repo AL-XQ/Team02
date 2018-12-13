@@ -27,6 +27,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             CharaManager.Add(this);
             MovePriority = 6;
+            if (args.ContainsKey("ai"))
+            {
+                behaviourManager = AIPackage.AIs[(string)args["ai"]].Copy();
+                behaviourManager.User = this;
+                behaviourManager.Target = CharaManager.Hero;
+            }
         }
 
         public override void LoadContent()

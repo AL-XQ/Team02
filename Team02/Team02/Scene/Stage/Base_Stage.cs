@@ -89,6 +89,8 @@ namespace Team02.Scene.Stage
 
         private void GraChangerUpdate(GameTime gameTime)
         {
+            if (nowChanger != null)
+                nowChanger.Update(gameTime);
             for (int i = 0; i < GraChangers.Count;)
             {
                 if (graChangers[i].IsOver)

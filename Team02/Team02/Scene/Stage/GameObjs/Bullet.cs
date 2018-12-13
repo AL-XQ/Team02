@@ -76,7 +76,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Block)
+            if (obj is Block && !Dealing)
             {
                 float rad = 64f;
                 Vector2 lo = ISpace.Center - new Vector2(rad, rad);

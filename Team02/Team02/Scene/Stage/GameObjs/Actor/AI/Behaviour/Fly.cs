@@ -8,6 +8,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 {
     public class Fly : BehaviourBase
     {
+        public Fly() : base()
+        {
+
+        }
+
+        public Fly(Fly sample) : base(sample)
+        {
+
+        }
+
         public override void Action()
         {
             User.Forces["fly"] = -User.Gra;
@@ -16,6 +26,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         public override bool IsRunning()
         {
             return false;
+        }
+
+        public override BehaviourBase Copy()
+        {
+            return new Fly(this);
         }
     }
 }

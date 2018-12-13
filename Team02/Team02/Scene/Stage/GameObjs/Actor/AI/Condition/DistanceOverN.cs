@@ -8,9 +8,19 @@ using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
 {
-    class DistanceOverN : ConditionBase
+    public class DistanceOverN : ConditionBase
     {
         private float minDistance;
+
+        public DistanceOverN() : base()
+        {
+
+        }
+
+        public DistanceOverN(DistanceOverN sample) : base(sample)
+        {
+            minDistance = sample.minDistance;
+        }
 
         public DistanceOverN(float minDistance)
         {
@@ -20,6 +30,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
         public override bool Check()
         {
             return Vector2.DistanceSquared(Target.Coordinate, User.Coordinate) > minDistance * minDistance;
+        }
+
+        public override ConditionBase Copy()
+        {
+            return new DistanceOverN(this);
         }
     }
 }

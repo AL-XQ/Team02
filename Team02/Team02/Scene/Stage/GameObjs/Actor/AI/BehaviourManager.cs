@@ -29,6 +29,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
         }
 
+        public BehaviourManager(BehaviourManager sample)
+        {
+            User = sample.user;
+            Target = sample.target;
+            priorityList = sample.priorityList.ToList();
+            currentBehaviour = sample.currentBehaviour;
+            foreach(var l in sample.bcPairs)
+            {
+                bcPairs[l.Key] = l.Value.Copy();
+            }
+        }
+
         private void SetUser(Chara value)
         {
             user = value;
@@ -138,6 +150,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
                     currentBehaviour = name;
                 }
             }
+        }
+
+        public BehaviourManager Copy()
+        {
+            return new BehaviourManager(this);
         }
     }
 }

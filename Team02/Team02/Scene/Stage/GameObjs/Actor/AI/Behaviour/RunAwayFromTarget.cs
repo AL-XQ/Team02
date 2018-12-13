@@ -12,9 +12,14 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     {
         private float speed;
 
-        public RunAwayFromTarget(float speed)
+        public RunAwayFromTarget(float speed) : base()
         {
             this.speed = speed;
+        }
+
+        public RunAwayFromTarget(RunAwayFromTarget sample) : base(sample)
+        {
+            speed = sample.speed;
         }
 
         public override void Action()
@@ -28,6 +33,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
                 ve = -ve;
             }
             User.Forces["aimove"] = ve;
+        }
+
+        public override BehaviourBase Copy()
+        {
+            return new RunAwayFromTarget(this);
         }
 
         public override bool IsRunning()

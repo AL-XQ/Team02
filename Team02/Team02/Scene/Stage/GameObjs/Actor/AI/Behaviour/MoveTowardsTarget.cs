@@ -12,6 +12,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     {
         private float speed;
 
+        public MoveTowardsTarget() : base()
+        {
+
+        }
+
+        public MoveTowardsTarget(MoveTowardsTarget sample) : base(sample)
+        {
+            speed = sample.speed;
+        }
+
         public MoveTowardsTarget(float speed)
         {
             this.speed = speed;
@@ -21,6 +31,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         {
             Vector2 direction = Vector2.Normalize(Target.Coordinate - User.Coordinate);
             User.Forces["aimove"] = direction * speed;
+        }
+
+        public override BehaviourBase Copy()
+        {
+            return new MoveTowardsTarget(this);
         }
 
         public override bool IsRunning()

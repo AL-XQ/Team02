@@ -12,6 +12,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
     {
         private float minDistance;
 
+        public DistanceBelowN() : base()
+        {
+
+        }
+
+        public DistanceBelowN(DistanceBelowN sample) : base(sample)
+        {
+            minDistance = sample.minDistance;
+        }
+
         public DistanceBelowN(float minDistance)
         {
             this.minDistance = minDistance;
@@ -20,6 +30,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Condition
         public override bool Check()
         {
             return Vector2.DistanceSquared(Target.Coordinate, User.Coordinate) < minDistance * minDistance;
+        }
+
+        public override ConditionBase Copy()
+        {
+            return new DistanceBelowN(this);
         }
     }
 }

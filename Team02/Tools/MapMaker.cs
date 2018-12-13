@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using Team02.Scene.Stage.GameObjs;
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -28,15 +29,21 @@ namespace Tools
         public MapMaker()
         {
             InitializeComponent();
-            foreach(var l in Types.Keys)
+            foreach (var l in Types.Keys)
             {
                 type.Items.Add(l);
+            }
+            type.Text = "Block";
+            AIPackage.Create();
+            foreach (var l in AIPackage.AIs.Keys)
+            {
+                aicb.Items.Add(l);
             }
         }
 
         private void addbt_Click(object sender, EventArgs e)
         {
-            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text };
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
             if (masON.Checked)
             {
                 float x = float.Parse(coo_x.Text);
@@ -84,6 +91,11 @@ namespace Tools
                 {
                     args["origin"] = GetVector2("origin_x", "origin_y");
                     args["rota"] = float.Parse((string)tempArgs["rota"]);
+                }
+                var ais = (string)tempArgs["ai"];
+                if (ais != "")
+                {
+                    args["ai"] = ais;
                 }
                 all_args.Add(args);
             }
@@ -147,7 +159,27 @@ namespace Tools
                 arg_o[7] = "";
                 arg_o[8] = "";
             }
+            if (args.ContainsKey("ai"))
+            {
+                arg_o[9] = args["ai"];
+            }
+            else
+            {
+                arg_o[9] = "";
+            }
             data.Rows.Add(arg_o);
+        }
+
+        private void type_TextChanged(object sender, EventArgs e)
+        {
+            if (type.Text == "Enemy")
+            {
+                aicb.Enabled = true;
+            }
+            else
+            {
+                aicb.Enabled = false;
+            }
         }
     }
 }

@@ -11,9 +11,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 {
     public class AIPackage
     {
-        public static Dictionary<string, BehaviourManager> gdf = new Dictionary<string, BehaviourManager>();
+        public static Dictionary<string, BehaviourManager> AIs = new Dictionary<string, BehaviourManager>();
 
-        public static void Ready()
+        public static void Create()
         {
             BehaviourManager behaviourManager = new BehaviourManager();
 
@@ -23,7 +23,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            gdf.Add("JumpEnemy", behaviourManager);
+            AIs.Add("JumpEnemy", behaviourManager);
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("runaway", 0);
@@ -32,7 +32,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            gdf.Add("RunAwayEnemy", behaviourManager);
+            AIs.Add("RunAwayEnemy", behaviourManager);
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("movetowards", 0);
@@ -41,7 +41,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            gdf.Add("ChaseEnemy", behaviourManager);
+            AIs.Add("ChaseEnemy", behaviourManager);
         }
     }
 }
