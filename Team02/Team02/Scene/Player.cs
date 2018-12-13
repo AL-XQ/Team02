@@ -77,7 +77,7 @@ namespace Team02.Scene
             {
                 Vector2 point = gameMouse.MouseState.Position.ToVector2();
                 Vector2 coo = playScene.GetStageCoo(point);
-                Vector2 ve = coo - NowChanger.Center;
+                Vector2 ve = coo - chara.ISpace.Center;
                 ve.Normalize();
                 ve *= 0.5f;
                 NowChanger.EnableGra(ve);
