@@ -19,6 +19,10 @@ namespace Team02.Scene.Stage.GameObjs
         private Vector2 speed = Vector2.Zero;
 
         public Vector2 Speed { get => speed; set => speed = value; }
+        private float flyingspeed;//射出速度
+        private int lifeCnt;//存在時間
+        private readonly int LIFE = 60;
+
         public Chara Host { get => host; set => host = value; }
 
         public Bullet(BaseDisplay aParent) : base(aParent)
@@ -36,6 +40,9 @@ namespace Team02.Scene.Stage.GameObjs
             Radius = size.Width / 2;
             Origin = (Size / 2).ToVector2();
             ESpace = ESpace.Cir;
+
+            flyingspeed = 2.0f;
+            lifeCnt = 0;
             base.PreLoadContent();
         }
 
@@ -57,7 +64,13 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void Update(GameTime gameTime)
         {
-            AddVelocity(speed, VeloParam.Run);
+            AddVelocity(speed*flyingspeed, VeloParam.Run);
+
+            lifeCnt++;
+            if (lifeCnt > LIFE)
+                Kill();
+
+
             base.Update(gameTime);
         }
 
@@ -79,7 +92,7 @@ namespace Team02.Scene.Stage.GameObjs
                     if (l is Chara c)
                     {
                         graC.Charas.Add(c);
-                        c.Color = Color.Purple;
+                        c.Color = Color.Pink;
                         c.GraChanger = graC;
                     }
                 }
