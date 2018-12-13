@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Team02.Scene.Stage.GameObjs;
 
-namespace Team02.Scene
+namespace Team02.Scene.UI
 {
     public class LineUI : Label
     {

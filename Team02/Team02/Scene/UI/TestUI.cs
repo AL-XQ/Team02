@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 
 using Team02.Scene.Stage.GameObjs;
 
-namespace Team02.Scene
+namespace Team02.Scene.UI
 {
     public class TestUI : Button
     {

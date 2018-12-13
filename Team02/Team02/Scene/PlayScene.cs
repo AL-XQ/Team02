@@ -28,14 +28,10 @@ namespace Team02.Scene
     {
         private Player player;
         private BackMenu backMenu;
-        private TestUI testUI;
         private LineUI lineUI;
-        private ExplosionAreaUI areaUI;
         
         public Player Player { get => player; }
-        public TestUI TestUI { get => testUI; }
         public LineUI LineUI { get => lineUI; }
-        public ExplosionAreaUI ExplosionAreaUI { get => areaUI; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -51,9 +47,7 @@ namespace Team02.Scene
         {
             player = new Player(this);
             backMenu = new BackMenu(this);
-            testUI = new TestUI(this);
             lineUI = new LineUI(this);
-            areaUI = new ExplosionAreaUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
             base.PreLoadContent();

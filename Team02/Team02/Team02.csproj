@@ -67,9 +67,9 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scene\ExplosionAreaUI.cs" />
-    <Compile Include="Scene\GraChangerLineUI.cs" />
-    <Compile Include="Scene\LineUI.cs" />
+    <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
+    <Compile Include="Scene\UI\GraChangerLineUI.cs" />
+    <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
     <Compile Include="Scene\Stage\Base_Stage.cs" />
@@ -100,7 +100,7 @@
     <Compile Include="Scene\Stage\GameObjs\LoopedBlock.cs" />
     <Compile Include="Scene\Stage\MapCreator.cs" />
     <Compile Include="Scene\Stage\Stage01.cs" />
-    <Compile Include="Scene\TestUI.cs" />
+    <Compile Include="Scene\UI\TestUI.cs" />
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />

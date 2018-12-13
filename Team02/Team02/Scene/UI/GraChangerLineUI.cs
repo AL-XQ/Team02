@@ -15,15 +15,14 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Team02.Scene.Stage.GameObjs;
 
-namespace Team02.Scene
+namespace Team02.Scene.UI
 {
-    public class ExplosionAreaUI : Label
+    public class GraChangerLineUI : Panel
     {
         private PlayScene playScene;
 
-        public ExplosionAreaUI(BaseDisplay parent) : base(parent)
+        public GraChangerLineUI(BaseDisplay parent) : base(parent)
         {
-            color = Color.Transparent;
             playScene = (PlayScene)parent;
             visible = false;
         }
@@ -35,7 +34,6 @@ namespace Team02.Scene
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("BurstSize.png");
             base.LoadContent();
         }
 
@@ -44,11 +42,8 @@ namespace Team02.Scene
             base.Update(gameTime);
         }
 
-        public void Show(Point center)
+        public void Show(Point point)
         {
-            size = image.Size;
-            Point loc = center - (size / 2).ToPoint();
-            Location = loc;
             visible = true;
         }
 
