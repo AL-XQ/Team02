@@ -78,7 +78,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Block && !Dealing)
+            if ((obj is Block || obj is Enemy) && !Dealing)
             {
                 float rad = 64f;
                 Vector2 lo = ISpace.Center - new Vector2(rad, rad);
@@ -88,7 +88,7 @@ namespace Team02.Scene.Stage.GameObjs
                 graC.Center = ISpace.Center;
                 var ea = ExplosionArea.Create(base_Stage, ISpace.Center, rad);
 
-                foreach(var l in list)
+                foreach (var l in list)
                 {
                     if (l is Chara c)
                     {
