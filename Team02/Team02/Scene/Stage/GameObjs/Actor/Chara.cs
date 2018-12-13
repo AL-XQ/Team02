@@ -120,10 +120,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Block)
-            {
-                canJump = true;
-            }
             base.CalCollision(obj);
         }
 
@@ -155,6 +151,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (gra == Vector2.Zero)
                 return;
             isStrut = true;
+            canJump = true;
             var gv = gra;
             forces["strut"] = -gv;
             gv.Normalize();

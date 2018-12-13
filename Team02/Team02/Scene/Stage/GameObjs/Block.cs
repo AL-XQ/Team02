@@ -45,7 +45,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
-                if (c.Speed.Length() >= 20&&c is Enemy)//テスト用の為length
+                if (c.Speed.Length() >= 20 && c is Enemy)//テスト用の為length
                 {
                     c.Hp -= 50;
                 }
@@ -62,22 +62,10 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (c.Gra.LengthSquared() != 0)
             {
-                Line clink = new Line(c.ISpace.Center, ISpace.Center, ISpace.Center);
-                Vector2 check_I = Vector2.Zero;
-                for (int i = 0; i < 4; i++)
-                {
-                    var s = (RectangleF)ISpace;
-                    bool ans;
-                    check_I = s.GetLine(i).Intersect(clink, out ans);
-                    if (ans)
-                        break;
-                }
-                Vector2 disve = check_I - c.ISpace.Center;
-                Line lg = new Line(Vector2.Zero, c.Gra, VectorTools.Vertical(c.Gra));
-                Vector2Side check = lg.PointAtY(disve);
-                if (check == Vector2Side.Y_Plus)
-                    return false;
-                return true;
+                ISpace check = c.ISpace;
+                check.Location += c.Gra;
+                if (ISpace.Intersects(check) && ISpace.Escape(check).LengthSquared() > 0)
+                    return true;
             }
             return false;
         }

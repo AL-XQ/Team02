@@ -76,7 +76,6 @@ namespace Team02.Scene
                 backMenu.Update(gameTime);
                 return;
             }
-            Console.WriteLine(((Base_Stage)ShowStage).CharaManager.Enemys.Count);
             EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
 
             base.Update(gameTime);
