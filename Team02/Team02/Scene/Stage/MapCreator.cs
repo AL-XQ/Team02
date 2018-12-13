@@ -27,7 +27,7 @@ namespace Team02.Scene.Stage
         {
             var type = (Type)args["type"];
             var con = type.GetConstructor(new Type[] { typeof(MapCreator), typeof(Dictionary<string, object>) });
-            var obj = (GameObj)con.Invoke(new object[] { this, null });
+            var obj = (GameObj)con.Invoke(new object[] { this, args });
             obj.Coordinate = (SeriVector2)args["coo"];
             if (obj is LoopedBlock lb)
                 lb.UnitedSize = (SeriVector2)args["size"];

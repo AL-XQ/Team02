@@ -22,6 +22,7 @@ namespace Team02.Scene.Stage.GameObjs
         private List<Chara> charas = new List<Chara>();
         private Vector2 gra;
         private int overTime = -1;
+        private int killTime = 180;
         private bool enable = false;
         public static SImage ControlC;
 
@@ -65,6 +66,31 @@ namespace Team02.Scene.Stage.GameObjs
             {
                 CountDown();
             }
+            else
+            {
+                LimitDown();
+            }
+        }
+
+        private void LimitDown()
+        {
+            if (killTime > 0)
+            {
+                killTime--;
+                return;
+            }
+            foreach (var l in charas)
+            {
+                if (l.GraChanger != null && l.GraChanger.killTime == 0)
+                {
+                    l.ResetGra();
+                    l.Color = Color.White;
+                    l.GraChanger = null;
+                }
+            }
+            ea.Kill();
+            stage.NowChanger = null;
+            Kill();
         }
 
         private void CountDown()
@@ -76,7 +102,7 @@ namespace Team02.Scene.Stage.GameObjs
             }
             foreach (var l in charas)
             {
-                if (l.GraChanger != null && l.GraChanger.overTime == overTime)
+                if (l.GraChanger != null && l.GraChanger.overTime == 0)
                 {
                     l.ResetGra();
                     l.Color = Color.White;
