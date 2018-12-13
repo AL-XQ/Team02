@@ -71,6 +71,9 @@ namespace Team02.Scene.Stage.GameObjs
                 var list = Stage.DetectorObj(cir);
                 var graC = new GraChanger(base_Stage);
                 graC.Center = ISpace.Center;
+
+                base_Stage.PlayScene.ExplosionAreaUI.Show(ISpace.Center.ToPoint());
+
                 foreach(var l in list)
                 {
                     if (l is Chara c)

@@ -67,6 +67,8 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\ExplosionAreaUI.cs" />
+    <Compile Include="Scene\GraChangerLineUI.cs" />
     <Compile Include="Scene\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
@@ -146,6 +148,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\bullet_test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\BurstSize.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\chat.png">
