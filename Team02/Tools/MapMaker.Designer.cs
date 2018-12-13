@@ -48,9 +48,15 @@
             this.label11 = new System.Windows.Forms.Label();
             this.rota = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.masON = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
+            this.addbt = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.saveF = new System.Windows.Forms.SaveFileDialog();
+            this.load = new System.Windows.Forms.Button();
+            this.openF = new System.Windows.Forms.OpenFileDialog();
             this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,12 +66,9 @@
             this._origin_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addbt = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.saveF = new System.Windows.Forms.SaveFileDialog();
-            this.load = new System.Windows.Forms.Button();
-            this.openF = new System.Windows.Forms.OpenFileDialog();
-            this.masON = new System.Windows.Forms.CheckBox();
+            this.ai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label12 = new System.Windows.Forms.Label();
+            this.aicb = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -83,12 +86,13 @@
             // 
             // type
             // 
+            this.type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.type.FormattingEnabled = true;
             this.type.Location = new System.Drawing.Point(69, 18);
             this.type.Name = "type";
             this.type.Size = new System.Drawing.Size(121, 24);
             this.type.TabIndex = 1;
-            this.type.Text = "Block";
+            this.type.TextChanged += new System.EventHandler(this.type_TextChanged);
             // 
             // label2
             // 
@@ -269,6 +273,16 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "基本情報";
             // 
+            // masON
+            // 
+            this.masON.AutoSize = true;
+            this.masON.Location = new System.Drawing.Point(387, 64);
+            this.masON.Name = "masON";
+            this.masON.Size = new System.Drawing.Size(104, 20);
+            this.masON.TabIndex = 12;
+            this.masON.Text = "座標マス化";
+            this.masON.UseVisualStyleBackColor = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.kon);
@@ -314,12 +328,52 @@
             this._kon,
             this._origin_x,
             this._origin_y,
-            this._rota});
+            this._rota,
+            this.ai});
             this.data.Location = new System.Drawing.Point(12, 244);
             this.data.Name = "data";
             this.data.RowTemplate.Height = 21;
-            this.data.Size = new System.Drawing.Size(670, 197);
+            this.data.Size = new System.Drawing.Size(745, 197);
             this.data.TabIndex = 21;
+            // 
+            // addbt
+            // 
+            this.addbt.Location = new System.Drawing.Point(398, 122);
+            this.addbt.Name = "addbt";
+            this.addbt.Size = new System.Drawing.Size(105, 23);
+            this.addbt.TabIndex = 22;
+            this.addbt.Text = "追加";
+            this.addbt.UseVisualStyleBackColor = true;
+            this.addbt.Click += new System.EventHandler(this.addbt_Click);
+            // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(398, 193);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(105, 23);
+            this.save.TabIndex = 23;
+            this.save.Text = "生成";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // saveF
+            // 
+            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            // 
+            // load
+            // 
+            this.load.Location = new System.Drawing.Point(398, 164);
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(105, 23);
+            this.load.TabIndex = 24;
+            this.load.Text = "ロード";
+            this.load.UseVisualStyleBackColor = true;
+            this.load.Click += new System.EventHandler(this.load_Click);
+            // 
+            // openF
+            // 
+            this.openF.FileName = "openFileDialog1";
+            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
             // 
             // _type
             // 
@@ -375,61 +429,41 @@
             this._rota.Name = "_rota";
             this._rota.Width = 50;
             // 
-            // addbt
+            // ai
             // 
-            this.addbt.Location = new System.Drawing.Point(398, 122);
-            this.addbt.Name = "addbt";
-            this.addbt.Size = new System.Drawing.Size(105, 23);
-            this.addbt.TabIndex = 22;
-            this.addbt.Text = "追加";
-            this.addbt.UseVisualStyleBackColor = true;
-            this.addbt.Click += new System.EventHandler(this.addbt_Click);
+            this.ai.HeaderText = "ai";
+            this.ai.Name = "ai";
+            this.ai.Width = 39;
             // 
-            // save
+            // label12
             // 
-            this.save.Location = new System.Drawing.Point(398, 193);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(105, 23);
-            this.save.TabIndex = 23;
-            this.save.Text = "生成";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label12.Location = new System.Drawing.Point(513, 31);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(37, 19);
+            this.label12.TabIndex = 25;
+            this.label12.Text = "AI：";
             // 
-            // saveF
+            // aicb
             // 
-            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
-            // 
-            // load
-            // 
-            this.load.Location = new System.Drawing.Point(398, 164);
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(105, 23);
-            this.load.TabIndex = 24;
-            this.load.Text = "ロード";
-            this.load.UseVisualStyleBackColor = true;
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
-            // openF
-            // 
-            this.openF.FileName = "openFileDialog1";
-            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
-            // 
-            // masON
-            // 
-            this.masON.AutoSize = true;
-            this.masON.Location = new System.Drawing.Point(387, 64);
-            this.masON.Name = "masON";
-            this.masON.Size = new System.Drawing.Size(104, 20);
-            this.masON.TabIndex = 12;
-            this.masON.Text = "座標マス化";
-            this.masON.UseVisualStyleBackColor = true;
+            this.aicb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.aicb.Enabled = false;
+            this.aicb.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 12F);
+            this.aicb.FormattingEnabled = true;
+            this.aicb.Location = new System.Drawing.Point(556, 29);
+            this.aicb.Name = "aicb";
+            this.aicb.Size = new System.Drawing.Size(201, 24);
+            this.aicb.TabIndex = 26;
             // 
             // MapMaker
             // 
             this.AcceptButton = this.addbt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(694, 453);
+            this.ClientSize = new System.Drawing.Size(769, 453);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.aicb);
             this.Controls.Add(this.load);
             this.Controls.Add(this.save);
             this.Controls.Add(this.addbt);
@@ -444,6 +478,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -477,6 +512,7 @@
         private System.Windows.Forms.SaveFileDialog saveF;
         private System.Windows.Forms.Button load;
         private System.Windows.Forms.OpenFileDialog openF;
+        private System.Windows.Forms.CheckBox masON;
         private System.Windows.Forms.DataGridViewTextBoxColumn _type;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_y;
@@ -486,7 +522,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_y;
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
-        private System.Windows.Forms.CheckBox masON;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ai;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox aicb;
     }
 }
 

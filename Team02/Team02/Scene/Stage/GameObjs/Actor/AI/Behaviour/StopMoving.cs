@@ -14,6 +14,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         {
         }
 
+        public StopMoving(StopMoving sample) : base(sample)
+        {
+
+        }
+
         public override void Action()
         {
             if (User.Forces.ContainsKey("aimove"))
@@ -21,6 +26,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
             if (User.Forces.ContainsKey("fly"))
                 User.Forces["fly"] = Vector2.Zero;
+        }
+
+        public override BehaviourBase Copy()
+        {
+            return new StopMoving(this);
         }
 
         public override bool IsRunning()

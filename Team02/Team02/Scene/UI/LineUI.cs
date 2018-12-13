@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Team02.Scene.Stage.GameObjs;
 
-namespace Team02.Scene
+namespace Team02.Scene.UI
 {
     public class LineUI : Label
     {
@@ -27,7 +27,7 @@ namespace Team02.Scene
 
         public LineUI(BaseDisplay parent) : base(parent)
         {
-            color = Color.Transparent;
+            //Color = Color.Transparent;
             playScene = (PlayScene)parent;
         }
 
@@ -48,9 +48,9 @@ namespace Team02.Scene
         {
             playerPosition = playScene.GetDrawLocation(playScene.Player.Chara.ISpace.Center);
             mousePosition = playScene.GameRun.GameMouse.MouseState.Position;
-            var temp0 = playerPosition - mousePosition;
-            var temp1 = temp0.ToVector2().Length();
-            size = new Size(temp1, 3);
+            //var temp0 = playerPosition - mousePosition;
+            //var temp1 = temp0.ToVector2().Length();
+            size = new Size(400, 3);
 
             Vector2 direction = mousePosition.ToVector2() - playerPosition.ToVector2();
             rotation = (float)Math.Atan2(direction.Y, direction.X);

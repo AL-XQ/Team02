@@ -13,6 +13,7 @@ using System.Threading;
 using InfinityGame.Device.WindowsScreen;
 using InfinityGame.Device.KeyboardManage;
 using Team02.Scene;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -94,6 +95,7 @@ namespace Team02
             Load_Scene = new Load_Scene("Loading", GraphicsDevice, null, gameRun);
             gameRun.SetLoadScene(Load_Scene);
             Window.Title = GameTexts.GetText(title);
+            AIPackage.Create();
         }
 
         public void AfterInitialize()
@@ -159,6 +161,7 @@ namespace Team02
                 FullScreen();
 
             // この下に更新ロジックを記述
+            DIYMouse.Update();
             gameRun.Update(gameTime);
             _Update?.Invoke();
             // この上にロジックを記述
@@ -176,7 +179,7 @@ namespace Team02
 
             // この下に描画ロジックを記述
             gameRun.Draw(gameTime);
-
+            //DIYMouse.Draw(GameRun.SpriteBatch);
             //この上にロジックを記述
             base.Draw(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
         }
