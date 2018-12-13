@@ -70,14 +70,14 @@ namespace Team02.Scene
                 Vector2 coo = playScene.GetStageCoo(point);
                 Vector2 ve = coo - chara.ISpace.Center;
                 ve.Normalize();
-                ve *= 10f;
-                ((Hero)chara).Shut(ve);
+                ve *= 20f;
+                ((Hero)chara).Shut(ve, 60);
                 return;
             }
             {
                 Vector2 point = gameMouse.MouseState.Position.ToVector2();
                 Vector2 coo = playScene.GetStageCoo(point);
-                Vector2 ve = coo - NowChanger.Center;
+                Vector2 ve = coo - chara.ISpace.Center;
                 ve.Normalize();
                 ve *= 0.5f;
                 NowChanger.EnableGra(ve);

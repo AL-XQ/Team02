@@ -12,6 +12,7 @@ namespace Team02.Scene.Stage.GameObjs
 {
     public class ExplosionArea : GameObj
     {
+        private int timeDown = 30;
         private ExplosionArea(BaseDisplay aParent) : base(aParent)
         {
             ESpace = ESpace.Cir;
@@ -32,6 +33,22 @@ namespace Team02.Scene.Stage.GameObjs
             ea.Origin = sz.ToVector2();
             ea.Create();
             return ea;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            CountDown();
+            base.Update(gameTime);
+        }
+
+        private void CountDown()
+        {
+            if (timeDown > 0)
+            {
+                timeDown--;
+                return;
+            }
+            Kill();
         }
     }
 }

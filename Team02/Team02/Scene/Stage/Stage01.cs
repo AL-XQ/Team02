@@ -21,7 +21,7 @@ namespace Team02.Scene.Stage
         private Enemy testenemy;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            EndOfRightDown = new Vector2(20000, 20000);
+            EndOfRightDown = new Vector2(2000000, 2000000);
         }
 
         public override void Initialize()
@@ -32,8 +32,6 @@ namespace Team02.Scene.Stage
 
         public override void PreLoadContent()
         {
-            
-
             Map = "test";
 
 
