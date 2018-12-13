@@ -97,10 +97,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Update(GameTime gameTime)
         {
             if (hp <= 0)
-                if (hp <= 0)
-                {
-                    Kill();
-                }
+            {
+                Kill();
+            }
+            if (speed.Length() >= 20)
+                Color = Color.Green;
+            else
+                Color = Color.White;
             motion.CheckDire();
             motion.CheckMotion();
             CalForce();

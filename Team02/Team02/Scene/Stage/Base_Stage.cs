@@ -70,7 +70,6 @@ namespace Team02.Scene.Stage
             base.LoadContent();
         }
 
-
         public override void Update(GameTime gameTime)
         {
             GraChangerUpdate(gameTime);
