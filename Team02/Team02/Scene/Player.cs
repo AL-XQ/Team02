@@ -125,7 +125,7 @@ namespace Team02.Scene
                 ve.Normalize();
                 ve *= 0.5f;
                 NowChanger.EnableGra(ve);
-                //RuleTest_01
+                //RuleTest_02
             }
         }
 
