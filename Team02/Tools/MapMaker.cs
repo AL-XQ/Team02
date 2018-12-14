@@ -56,14 +56,8 @@ namespace Tools
             data.Rows.Add(objs);
         }
 
-        private void save_Click(object sender, EventArgs e)
+        private void Save(string path)
         {
-            if (data.Rows.Count == 0)
-                return;
-            var res = saveF.ShowDialog();
-            if (res != DialogResult.OK)
-                return;
-            string path = saveF.FileName;
             List<Dictionary<string, object>> all_args = new List<Dictionary<string, object>>();
             for (int i = 0; i < data.Rows.Count; i++)
             {
@@ -103,6 +97,36 @@ namespace Tools
             BinaryFormatter formatter = new BinaryFormatter();
             formatter.Serialize(file, all_args);
             file.Close();
+            {
+                string cname = openF.SafeFileName;
+                string cpath = "Map\\" + cname;
+                FileStream cfile = new FileStream(cpath, FileMode.Create);
+                BinaryFormatter cformatter = new BinaryFormatter();
+                cformatter.Serialize(cfile, all_args);
+                cfile.Close();
+            }
+        }
+
+        private void osave_Click(object sender, EventArgs e)
+        {
+            string path = openF.FileName;
+            if (path == "null")
+            {
+                MessageBox.Show("ファイルが読み込まれていない！\r\nオーバーライトできない！", "エラー");
+                return;
+            }
+            Save(path);
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            if (data.Rows.Count == 0)
+                return;
+            var res = saveF.ShowDialog();
+            if (res != DialogResult.OK)
+                return;
+            string path = saveF.FileName;
+            Save(path);
         }
 
         private void load_Click(object sender, EventArgs e)
@@ -181,5 +205,13 @@ namespace Tools
                 aicb.Enabled = false;
             }
         }
+
+        private void rungame_Click(object sender, EventArgs e)
+        {
+            string path = "Team02.exe";
+            System.Diagnostics.Process p = System.Diagnostics.Process.Start(path);
+        }
+
+        
     }
 }
