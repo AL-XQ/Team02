@@ -81,15 +81,18 @@ namespace Team02.Scene
         {
             edit = value;
             playScene.LineUI.Visible = !edit;
+            Stage.CameraScale = 1;
         }
         private void EditModeUpdate()
         {
-            Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 5f;
+            Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 10f / Stage.CameraScale;
             Stage.CameraCenter += ve;
             if (GameKeyboard.GetKeyTrigger(Keys.Up))
                 Stage.CameraScale *= 2f;
             else if (GameKeyboard.GetKeyTrigger(Keys.Down))
                 Stage.CameraScale *= 0.5f;
+            if (GameKeyboard.GetKeyTrigger(Keys.H))
+                Stage.CameraCenter = cameraCenter;
         }
 
         private void EditMode_Click()
