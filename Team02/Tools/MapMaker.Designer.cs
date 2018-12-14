@@ -335,7 +335,7 @@
             this.data.Location = new System.Drawing.Point(12, 244);
             this.data.Name = "data";
             this.data.RowTemplate.Height = 21;
-            this.data.Size = new System.Drawing.Size(774, 197);
+            this.data.Size = new System.Drawing.Size(730, 197);
             this.data.TabIndex = 21;
             // 
             // _type
@@ -410,7 +410,8 @@
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(681, 188);
+            this.save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.save.Location = new System.Drawing.Point(637, 188);
             this.save.Name = "save";
             this.save.Size = new System.Drawing.Size(105, 23);
             this.save.TabIndex = 23;
@@ -425,7 +426,8 @@
             // 
             // load
             // 
-            this.load.Location = new System.Drawing.Point(570, 215);
+            this.load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.load.Location = new System.Drawing.Point(526, 215);
             this.load.Name = "load";
             this.load.Size = new System.Drawing.Size(105, 23);
             this.load.TabIndex = 24;
@@ -456,12 +458,13 @@
             this.aicb.FormattingEnabled = true;
             this.aicb.Location = new System.Drawing.Point(556, 29);
             this.aicb.Name = "aicb";
-            this.aicb.Size = new System.Drawing.Size(225, 24);
+            this.aicb.Size = new System.Drawing.Size(186, 24);
             this.aicb.TabIndex = 26;
             // 
             // rungame
             // 
-            this.rungame.Location = new System.Drawing.Point(681, 215);
+            this.rungame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rungame.Location = new System.Drawing.Point(637, 215);
             this.rungame.Name = "rungame";
             this.rungame.Size = new System.Drawing.Size(105, 23);
             this.rungame.TabIndex = 31;
@@ -471,7 +474,8 @@
             // 
             // osave
             // 
-            this.osave.Location = new System.Drawing.Point(570, 188);
+            this.osave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.osave.Location = new System.Drawing.Point(526, 188);
             this.osave.Name = "osave";
             this.osave.Size = new System.Drawing.Size(105, 23);
             this.osave.TabIndex = 32;
@@ -484,7 +488,7 @@
             this.AcceptButton = this.addbt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(798, 453);
+            this.ClientSize = new System.Drawing.Size(754, 453);
             this.Controls.Add(this.osave);
             this.Controls.Add(this.rungame);
             this.Controls.Add(this.label12);
