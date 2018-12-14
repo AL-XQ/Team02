@@ -28,7 +28,11 @@ namespace Team02.Scene
         private float jumpForce = 15;
         private GameMouse gameMouse;
         private D_Void _Click;
-        private bool a = false;
+        private bool start = false;
+#if DEBUG
+        private bool edit = false;
+        public bool Edit { get => edit; set => SetEdit(value); }
+#endif
 
         public Chara Chara { get => chara; set => chara = value; }
         public Base_Stage Stage { get => (Base_Stage)playScene.ShowStage; }
@@ -48,19 +52,56 @@ namespace Team02.Scene
 
         public void Update(GameTime gameTime)
         {
+#if DEBUG
+            if (GameKeyboard.GetKeyTrigger(Keys.F12))
+                Edit = !Edit;
+            if (edit)
+            {
+                EditModeUpdate();
+                return;
+            }
+#endif
             ContorlChara();
         }
 
         private void Player_Click(object sender, EventArgs e)
         {
+#if DEBUG
+            if (edit)
+            {
+                EditMode_Click();
+                return;
+            }
+#endif
             _Click?.Invoke();
         }
+#if DEBUG
 
+        private void SetEdit(bool value)
+        {
+            edit = value;
+            playScene.LineUI.Visible = !edit;
+        }
+        private void EditModeUpdate()
+        {
+            Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 5f;
+            Stage.CameraCenter += ve;
+            if (GameKeyboard.GetKeyTrigger(Keys.Up))
+                Stage.CameraScale *= 2f;
+            else if (GameKeyboard.GetKeyTrigger(Keys.Down))
+                Stage.CameraScale *= 0.5f;
+        }
+
+        private void EditMode_Click()
+        {
+
+        }
+#endif
         private void Shut_Click()
         {
-            if (!a)
+            if (!start)
             {
-                a = true;
+                start = true;
                 return;
             }
 
