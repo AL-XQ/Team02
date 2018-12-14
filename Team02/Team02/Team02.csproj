@@ -337,7 +337,7 @@
     <None Include="Lang\ラノベPOP.otf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Map\test.map">
+    <None Include="Map\map01.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

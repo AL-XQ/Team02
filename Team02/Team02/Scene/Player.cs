@@ -55,6 +55,8 @@ namespace Team02.Scene
 #if DEBUG
             if (GameKeyboard.GetKeyTrigger(Keys.F12))
                 Edit = !Edit;
+            if (GameKeyboard.GetKeyTrigger(Keys.F11))
+                Stage.Initialize();
             if (edit)
             {
                 EditModeUpdate();
@@ -93,6 +95,28 @@ namespace Team02.Scene
                 Stage.CameraScale *= 0.5f;
             if (GameKeyboard.GetKeyTrigger(Keys.H))
                 Stage.CameraCenter = cameraCenter;
+            if (GameKeyboard.GetKeyTrigger(Keys.D1))
+                SetStage("map01");
+            if (GameKeyboard.GetKeyTrigger(Keys.D2))
+                SetStage("map02");
+            if (GameKeyboard.GetKeyTrigger(Keys.D3))
+                SetStage("map03");
+            if (GameKeyboard.GetKeyTrigger(Keys.D4))
+                SetStage("map04");
+            if (GameKeyboard.GetKeyTrigger(Keys.D5))
+                SetStage("map05");
+            if (GameKeyboard.GetKeyTrigger(Keys.D6))
+                SetStage("map06");
+            if (GameKeyboard.GetKeyTrigger(Keys.D7))
+                SetStage("map07");
+            if (GameKeyboard.GetKeyTrigger(Keys.D8))
+                SetStage("map08");
+        }
+
+        private void SetStage(string map)
+        {
+            Stage.Map = map;
+            Stage.Initialize();
         }
 
         private void EditMode_Click()
@@ -125,7 +149,6 @@ namespace Team02.Scene
                 ve.Normalize();
                 ve *= 0.5f;
                 NowChanger.EnableGra(ve);
-                //RuleTest_02
             }
         }
 

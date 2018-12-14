@@ -56,7 +56,7 @@ namespace Tools
             data.Rows.Add(objs);
         }
 
-        private void Save(string path)
+        private void Save(string path, string opath)
         {
             List<Dictionary<string, object>> all_args = new List<Dictionary<string, object>>();
             for (int i = 0; i < data.Rows.Count; i++)
@@ -98,7 +98,7 @@ namespace Tools
             formatter.Serialize(file, all_args);
             file.Close();
             {
-                string cname = openF.SafeFileName;
+                string cname = opath;
                 string cpath = "Map\\" + cname;
                 FileStream cfile = new FileStream(cpath, FileMode.Create);
                 BinaryFormatter cformatter = new BinaryFormatter();
@@ -115,7 +115,7 @@ namespace Tools
                 MessageBox.Show("ファイルが読み込まれていない！\r\nオーバーライトできない！", "エラー");
                 return;
             }
-            Save(path);
+            Save(path, openF.SafeFileName);
         }
 
         private void save_Click(object sender, EventArgs e)
@@ -126,7 +126,8 @@ namespace Tools
             if (res != DialogResult.OK)
                 return;
             string path = saveF.FileName;
-            Save(path);
+            string[] opath = path.Split('\\');
+            Save(path, opath[opath.Length - 1]);
         }
 
         private void load_Click(object sender, EventArgs e)

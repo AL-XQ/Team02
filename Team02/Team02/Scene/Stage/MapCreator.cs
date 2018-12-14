@@ -47,6 +47,8 @@ namespace Team02.Scene.Stage
 
         public void MapRead(object arg)
         {
+            if (arg == null)
+                return;
             var args = (List<Dictionary<string, object>>)arg;
             foreach(var l in args)
             {

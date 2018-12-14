@@ -12,14 +12,22 @@ namespace Team02.Device
     {
         public static object ReadMap(string filename)
         {
-            string path_0 = "./Map/";
-            string path_1 = ".map";
-            string path = path_0 + filename + path_1;
-            FileStream file = new FileStream(path, FileMode.Open);
-            BinaryFormatter formatter = new BinaryFormatter();
-            object data = formatter.Deserialize(file);
-            file.Close();
-            return data;
+            try
+            {
+                string path_0 = "./Map/";
+                string path_1 = ".map";
+                string path = path_0 + filename + path_1;
+                FileStream file = new FileStream(path, FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                object data = formatter.Deserialize(file);
+                file.Close();
+                return data;
+            }
+            catch
+            {
+                Console.WriteLine("ファイルがない");
+                return null;
+            }
         }
     }
 }
