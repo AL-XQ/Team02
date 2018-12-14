@@ -33,6 +33,11 @@ namespace Team02.Scene.Stage.GameObjs
             base_Stage = (Base_Stage)aParent;
         }
 
+        public override bool Equals(object obj)
+        {
+            return SCID == ((GameObj)obj).SCID;
+        }
+
         protected virtual void SetImageName(string value)
         {
             imageName = value;

@@ -245,7 +245,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
-            //死亡したら各クラスの制御
+            CharaManager.Remove(this);
             base.UKill();
         }
 
