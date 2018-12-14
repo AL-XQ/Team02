@@ -137,7 +137,7 @@ namespace Team02.Scene.Stage.GameObjs
                         Rectangle renderR = RenderRect;
                         if (renderR == default(Rectangle))
                             renderR = new Rectangle(Point.Zero, imageSize.ToPoint());
-                        spriteBatch.Draw(tex, new Rectangle(DrawLocation + (RenderCoo_Offset * Stage.CameraScale).ToPoint(), ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * imageSize.ToVector2(), SpriteEffects.None, 1f);
+                        spriteBatch.Draw(tex, new Rectangle(DrawLocation/* + (RenderCoo_Offset * Stage.CameraScale).ToPoint()*/, ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * imageSize.ToVector2(), SpriteEffects.None, 1f);
                     }
                 }
             }
