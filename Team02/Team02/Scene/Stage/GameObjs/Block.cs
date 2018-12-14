@@ -50,8 +50,9 @@ namespace Team02.Scene.Stage.GameObjs
                     c.Hp -= 50;
                 }
                 c.DisSpeed(coeff);
-                if (CheckCharaOn(c))
+                if (!c.IsStrut && CheckCharaOn(c))
                 {
+                    
                     c.Strut();
                 }
             }
@@ -62,7 +63,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (c.Gra.LengthSquared() != 0)
             {
-                ISpace check = c.ISpace;
+                ISpace check = c.ISpace.Copy();
                 check.Location += c.Gra;
                 if (ISpace.Intersects(check) && ISpace.Escape(check).LengthSquared() > 0)
                     return true;

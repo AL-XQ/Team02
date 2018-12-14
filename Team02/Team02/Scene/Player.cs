@@ -81,7 +81,7 @@ namespace Team02.Scene
         {
             edit = value;
             playScene.LineUI.Visible = !edit;
-            Stage.CameraScale = 1;
+            //Stage.CameraScale = 1;
         }
         private void EditModeUpdate()
         {
