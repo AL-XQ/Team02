@@ -12,6 +12,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private List<Enemy> enemys = new List<Enemy>();
 
         public Hero Hero { get => hero; set => hero = value; }
+        public List<Enemy> Enemys { get => enemys; }
 
         public CharaManager()
         {
@@ -33,6 +34,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             enemys.Add(enemy);
         }
 
-
+        public void Remove(Chara chara)
+        {
+            if (chara is Enemy e)
+            {
+                enemys.Remove(e);
+                return;
+            }
+            if (chara == hero)
+                Hero = null;
+        }
     }
 }

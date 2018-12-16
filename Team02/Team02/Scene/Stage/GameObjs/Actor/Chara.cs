@@ -97,10 +97,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Update(GameTime gameTime)
         {
             if (hp <= 0)
-                if (hp <= 0)
-                {
-                    Kill();
-                }
+            {
+                Kill();
+            }
+            if (speed.Length() >= 20)
+                Color = Color.Green;
+            else
+                Color = Color.White;
             motion.CheckDire();
             motion.CheckMotion();
             CalForce();
@@ -117,10 +120,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Block)
-            {
-                canJump = true;
-            }
             base.CalCollision(obj);
         }
 
@@ -152,6 +151,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (gra == Vector2.Zero)
                 return;
             isStrut = true;
+            canJump = true;
             var gv = gra;
             forces["strut"] = -gv;
             gv.Normalize();
@@ -245,7 +245,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
-            //死亡したら各クラスの制御
+            CharaManager.Remove(this);
             base.UKill();
         }
 

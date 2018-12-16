@@ -14,6 +14,7 @@ using InfinityGame.Device.WindowsScreen;
 using InfinityGame.Device.KeyboardManage;
 using Team02.Scene;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
+using InfinityGame.Stage.StageObject;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -96,6 +97,7 @@ namespace Team02
             gameRun.SetLoadScene(Load_Scene);
             Window.Title = GameTexts.GetText(title);
             AIPackage.Create();
+            Collision._MinSize = new Point(1024, 1024);
         }
 
         public void AfterInitialize()
