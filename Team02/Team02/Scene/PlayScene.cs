@@ -55,6 +55,8 @@ namespace Team02.Scene
         public override void LoadContent()
         {
             GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
+            //image = ImageManage.GetSImage("background_test.png");
+           // Refract = 0.3f;
             base.LoadContent();
         }
 
