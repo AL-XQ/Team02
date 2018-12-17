@@ -13,11 +13,13 @@ using Team02.Scene.Stage.GameObjs.Actor;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Diagnostics;
 
 namespace Tools
 {
     public partial class MapMaker : Form
     {
+        public Process game;
         public static Dictionary<string, Type> Types = new Dictionary<string, Type>()
         {
             {"Block",typeof(Block) },
@@ -210,7 +212,16 @@ namespace Tools
         private void rungame_Click(object sender, EventArgs e)
         {
             string path = "Team02.exe";
-            System.Diagnostics.Process p = System.Diagnostics.Process.Start(path);
+            if (game == null || game.HasExited)
+            {
+                game = Process.Start(path);
+            }
+        }
+
+        private void MapMaker_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (game != null && !game.HasExited)
+                game.Kill();
         }
     }
 }

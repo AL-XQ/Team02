@@ -91,7 +91,6 @@ namespace Team02.Scene.UI
         public override void Draw1(GameTime gameTime)
         {
             spriteBatch.Draw(image.ImageT[iTIndex], new Rectangle(playerPosition, Size.ToPoint()), new Rectangle(Point.Zero, Image.Size.ToPoint()), imageColor, rotation, new Vector2(0, image.Size.Height / 2), SpriteEffects.None, 1f);
-            //base.Draw2(gameTime);
         }
     }
 }

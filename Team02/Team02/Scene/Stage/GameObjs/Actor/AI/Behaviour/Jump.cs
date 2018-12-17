@@ -33,7 +33,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
                 User.Jump(jumpForce);
                 return;
             }
-            User.DisJump();
         }
 
         public override BehaviourBase Copy()

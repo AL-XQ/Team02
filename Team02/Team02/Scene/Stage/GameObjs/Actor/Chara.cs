@@ -28,6 +28,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private bool canJump = false;
+        private bool lastIsStrut = false;
         private bool isStrut = false;
         private Motion motion;
         private Bullet bullet;
@@ -55,6 +56,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool IsStrut { get => isStrut; }
         public Bullet Bullet { get => bullet; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
+        public bool LastIsStrut { get => lastIsStrut; }
+        public bool CanJump { get => canJump; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -68,6 +71,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             MovePriority = 5;
             CrimpGroup = "chara";
+        }
+
+        private void SetIsStrut(bool value)
+        {
+            isStrut = value;
+            SetCanJump(isStrut);
+        }
+
+        private void SetCanJump(bool value)
+        {
+            canJump = value;
+            DisJump();
         }
 
         public override void Initialize()
@@ -109,18 +124,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             CalForce();
             RotateToGra();
             base.Update(gameTime);
-
             DisStrut();
         }
 
         public override void AfterUpdate(GameTime gameTime)
         {
             base.AfterUpdate(gameTime);
-        }
-
-        public override void CalCollision(StageObj obj)
-        {
-            base.CalCollision(obj);
         }
 
         /// <summary>
@@ -138,9 +147,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public void DisStrut()
         {
-            isStrut = false;
-            canJump = false;
-            forces["strut"] = Vector2.Zero;
+            lastIsStrut = IsStrut;
+            SetIsStrut(false);
+            if (!lastIsStrut)
+                forces["strut"] = Vector2.Zero;
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            base.CalCollision(obj);
         }
 
         /// <summary>
@@ -148,10 +163,14 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public void Strut()
         {
+            if (lastIsStrut)
+            {
+                SetIsStrut(true);
+                return;
+            }
             if (gra == Vector2.Zero)
                 return;
-            isStrut = true;
-            canJump = true;
+            SetIsStrut(true);
             var gv = gra;
             forces["strut"] = -gv;
             gv.Normalize();
@@ -221,7 +240,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             forces["jump"] = fg;
         }
 
-        public void DisJump()
+        private void DisJump()
         {
             forces["jump"] = Vector2.Zero;
         }

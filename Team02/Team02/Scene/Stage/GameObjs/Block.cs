@@ -45,28 +45,49 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
-                if (c.Speed.Length() >= 20 && c is Enemy)//テスト用の為length
+                if (c.Speed.LengthSquared() >= 361 && c is Enemy)
                 {
                     c.Hp -= 50;
                 }
                 c.DisSpeed(coeff);
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
-                    
                     c.Strut();
                 }
             }
             base.CalCollision(obj);
         }
 
-        private bool CheckCharaOn(Chara c)
+        public Vector2 GetEscVe(Chara c)
         {
-            if (c.Gra.LengthSquared() != 0)
+            ISpace check = c.ISpace.Copy();
+            check.Location += c.Gra;
+            if (ISpace is RectangleF rect)
+            {
+                var index = rect.GetFristIntersectLine(check);
+                if (index > -1)
+                {
+                    var escVe = rect.GetEscVe_Line(index);
+                    escVe.Normalize();
+                    escVe *= -c.Gra.Length();
+                    return escVe;
+                }
+            }
+            return Vector2.Zero;
+        }
+
+        public bool CheckCharaOn(Chara c)
+        {
+            if (c.Gra != Vector2.Zero)
             {
                 ISpace check = c.ISpace.Copy();
                 check.Location += c.Gra;
-                if (ISpace.Intersects(check) && ISpace.Escape(check).LengthSquared() > 0)
-                    return true;
+                if (ISpace.Intersects(check))
+                {
+                    var esc = ISpace.Escape(check);
+                    if (esc != Vector2.Zero)
+                        return true;
+                }
             }
             return false;
         }
