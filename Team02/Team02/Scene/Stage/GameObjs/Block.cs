@@ -52,8 +52,16 @@ namespace Team02.Scene.Stage.GameObjs
                 c.DisSpeed(coeff);
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
-                    var newGra = GetEscVe(c);//テスト機能：キャラの重力をブロックにフィットする
-                    c.Gra = newGra;//テスト機能：キャラの重力をブロックにフィットする
+                    //テスト機能：キャラの重力をブロックにフィットする
+                    var newGra = GetEscVe(c);
+                    var gv = c.Gra;
+                    c.Forces["strut"] = -gv;
+                    gv.Normalize();
+                    float dot = Vector2.Dot(c.Speed, gv);
+                    Vector2 dg = gv * dot;//重力方向の速度
+                    c.Speed -= dg;
+                    c.Gra = newGra;
+                    //テスト機能：キャラの重力をブロックにフィットする
                     c.Strut();
                 }
             }
