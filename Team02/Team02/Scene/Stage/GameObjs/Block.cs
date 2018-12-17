@@ -55,7 +55,6 @@ namespace Team02.Scene.Stage.GameObjs
                     //テスト機能：キャラの重力をブロックにフィットする
                     var newGra = GetEscVe(c);
                     var gv = c.Gra;
-                    c.Forces["strut"] = -gv;
                     gv.Normalize();
                     float dot = Vector2.Dot(c.Speed, gv);
                     Vector2 dg = gv * dot;//重力方向の速度

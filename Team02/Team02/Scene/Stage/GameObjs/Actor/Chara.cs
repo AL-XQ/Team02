@@ -172,7 +172,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 return;
             SetIsStrut(true);
             var gv = gra;
-            forces["strut"] = -gv;
+            forces["strut"] = -gv * 0.95f;
             gv.Normalize();
             float dot = Vector2.Dot(speed, gv);
             Vector2 dg = gv * dot;//重力方向の速度
