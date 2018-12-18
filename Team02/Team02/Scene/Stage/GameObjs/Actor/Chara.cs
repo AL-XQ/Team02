@@ -286,7 +286,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             //ここに設定して回転する量を毎回新しく計算する
             Rotation += rotationIncrement;
 
-            if (Math.Abs(rotationIncrement) < 0.01f)
+            if (Math.Abs(rotationIncrement) < 0.001f)
             {
                 rotationIncrement = 0;
                 Rotation = targetRotation;

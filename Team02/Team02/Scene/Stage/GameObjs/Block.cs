@@ -49,22 +49,30 @@ namespace Team02.Scene.Stage.GameObjs
                 {
                     c.Hp -= 50;
                 }
-                c.DisSpeed(coeff);
+                DisCharaSpeed(c);
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
                     //テスト機能：キャラの重力をブロックにフィットする
-                    var newGra = GetEscVe(c);
-                    var gv = c.Gra;
-                    gv.Normalize();
-                    float dot = Vector2.Dot(c.Speed, gv);
-                    Vector2 dg = gv * dot;//重力方向の速度
-                    c.Speed -= dg;
-                    c.Gra = newGra;
+                    if (!c.LastIsStrut)
+                    {
+                        var newGra = GetEscVe(c);
+                        var gv = c.Gra;
+                        gv.Normalize();
+                        float dot = Vector2.Dot(c.Speed, gv);
+                        Vector2 dg = gv * dot;//重力方向の速度
+                        c.Speed -= dg;
+                        c.Gra = newGra;
+                    }
                     //テスト機能：キャラの重力をブロックにフィットする
                     c.Strut();
                 }
             }
             base.CalCollision(obj);
+        }
+
+        protected virtual void DisCharaSpeed(Chara c)
+        {
+            c.DisSpeeds["block"] = coeff;
         }
 
         public Vector2 GetEscVe(Chara c)
