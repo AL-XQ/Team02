@@ -25,5 +25,10 @@ namespace Team02.Scene.Stage.GameObjs
             CanCollision = false;
             EnableColl = false;
         }
+
+        public override void CrimpPro_End()
+        {
+            //UIであるため処理させない
+        }
     }
 }
