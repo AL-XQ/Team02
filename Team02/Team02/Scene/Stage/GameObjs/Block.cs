@@ -52,10 +52,6 @@ namespace Team02.Scene.Stage.GameObjs
                 DisCharaSpeed(c);
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
-                    if(c is Hero)
-                    {
-                        Console.WriteLine(Name);
-                    }
                     //テスト機能：キャラの重力をブロックにフィットする
                     if (!c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
                     {
