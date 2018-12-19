@@ -167,6 +167,7 @@ namespace Team02.Scene
                 else
                 {
                     force.X *= 0.2f;
+                    force.Y *= 0.8f;
                 }  
                 chara.RunOnGra("run", force);
                 Jump();

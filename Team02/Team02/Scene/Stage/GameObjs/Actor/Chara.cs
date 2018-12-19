@@ -210,6 +210,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             return ve;
         }
 
+        /// <summary>
+        /// 自分のワールドベクトルをローカルに変換し、返す
+        /// </summary>
+        /// <param name="ve"></param>
+        /// <returns></returns>
+        public Vector2 VeWorldToLocal(Vector2 wve)
+        {
+            if (wve == Vector2.Zero)
+                return Vector2.Zero;
+            Vector2 ve = new Vector2(gra.Y * wve.X + gra.X * wve.Y, -(gra.X * wve.X - gra.Y * wve.Y));
+            ve.Normalize();
+            ve *= wve.Length();
+            return ve;
+        }
+
         private void ClearSpeed()
         {
             speed = Vector2.Zero;
