@@ -142,6 +142,9 @@
     <Content Include="Texture\AutoLoad\arrow_test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\background_test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\Block_Test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
