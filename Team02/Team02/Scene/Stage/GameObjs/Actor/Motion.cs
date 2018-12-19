@@ -60,6 +60,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             chara.ImageName = images[dire][state];
         }
 
+        public void Update(GameTime gameTime)
+        {
+            CheckDire();
+            CheckMotion();
+        }
+
         public void CheckDire()
         {
             if (chara.Speed == Vector2.Zero || chara.Gra == Vector2.Zero)
@@ -74,6 +80,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (side == Vector2Side.X_Minus)
                 SetDire(Direction.Right);
         }
+
          public void CheckMotion()
         {
             if (!chara.IsStrut)

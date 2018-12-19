@@ -53,7 +53,7 @@ namespace Team02.Scene.Stage.GameObjs
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
                     //テスト機能：キャラの重力をブロックにフィットする
-                    if (!c.LastIsStrut)
+                    if (!c.Rotating && !c.LastIsStrut)
                     {
                         var newGra = GetEscVe(c);
                         var gv = c.Gra;

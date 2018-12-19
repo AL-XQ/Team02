@@ -10,12 +10,16 @@ using InfinityGame.GameGraphics;
 using InfinityGame.Device;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage;
+using InfinityGame;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public abstract class Chara : GameObj
     {
+        private D_Void _Update;
+        private D_Void _LastUpdate;
+
         private int hp;
         private int mp;
         private int maxhp = 100;
@@ -31,6 +35,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private bool canJump = false;
         private bool lastIsStrut = false;
         private bool isStrut = false;
+        private bool rotating = false;
         private Motion motion;
         private Bullet bullet;
         private GraChanger graChanger;
@@ -60,6 +65,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool LastIsStrut { get => lastIsStrut; }
         public bool CanJump { get => canJump; }
         public Dictionary<string, float> DisSpeeds { get => disSpeeds; }
+        public bool Rotating { get => rotating; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -97,7 +103,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             hp = maxhp;
             mp = maxhp;
             Origin = ISpace.LCenter;
+            SetUpdate();
             base.Initialize();
+        }
+
+        private void SetUpdate()
+        {
+            _Update = null;
+            _Update += CheckStatus;
+            _Update += CalForce;
+            //_Update += RotateToGra;
+
+            _LastUpdate = null;
+            _LastUpdate += DisStrut;
         }
 
         public override void PreLoadContent()
@@ -113,20 +131,22 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+            _Update?.Invoke();
+            motion.Update(gameTime);
+            base.Update(gameTime);
+            _LastUpdate?.Invoke();
+        }
+
+        private void CheckStatus()
+        {
             if (hp <= 0)
             {
                 Kill();
             }
-            if (speed.Length() >= 20)
+            if (speed.LengthSquared() >= 361)
                 Color = Color.Green;
             else
                 Color = Color.White;
-            motion.CheckDire();
-            motion.CheckMotion();
-            CalForce();
-            RotateToGra();
-            base.Update(gameTime);
-            DisStrut();
         }
 
         public override void AfterUpdate(GameTime gameTime)
@@ -295,7 +315,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         private void RotateToGra()
         {
-            rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;
+            rotationIncrement = FormatRota(targetRotation - Rotation) * 0.2f;
             //これは毎回回転した後チェックする必要があるため
             //SetGraに設定してしまうとずっと回転する可能性がある。
             //ここに設定して回転する量を毎回新しく計算する
@@ -305,6 +325,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             {
                 rotationIncrement = 0;
                 Rotation = targetRotation;
+                _Update -= RotateToGra;
+                rotating = false;
             }
         }
 
@@ -312,6 +334,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             gra = value;
             targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
+            rotating = true;
+            _Update += RotateToGra;
             //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
         }
 
