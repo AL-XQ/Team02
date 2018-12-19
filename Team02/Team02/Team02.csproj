@@ -139,6 +139,9 @@
     <Content Include="Sound\Sounds.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\0_0.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\arrow_test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
