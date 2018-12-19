@@ -24,10 +24,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private float rotationIncrement;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
+        private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
         private Vector2 accel = Vector2.Zero;//質量を１と考え、加えた力がそのまま加速度になる
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private bool canJump = false;
+        private bool lastIsStrut = false;
         private bool isStrut = false;
         private Motion motion;
         private Bullet bullet;
@@ -55,6 +57,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool IsStrut { get => isStrut; }
         public Bullet Bullet { get => bullet; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
+        public bool LastIsStrut { get => lastIsStrut; }
+        public bool CanJump { get => canJump; }
+        public Dictionary<string, float> DisSpeeds { get => disSpeeds; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -68,6 +73,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             MovePriority = 5;
             CrimpGroup = "chara";
+        }
+
+        private void SetIsStrut(bool value)
+        {
+            isStrut = value;
+            SetCanJump(isStrut);
+        }
+
+        private void SetCanJump(bool value)
+        {
+            canJump = value;
+            DisJump();
         }
 
         public override void Initialize()
@@ -109,7 +126,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             CalForce();
             RotateToGra();
             base.Update(gameTime);
-
             DisStrut();
         }
 
@@ -118,29 +134,34 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             base.AfterUpdate(gameTime);
         }
 
-        public override void CalCollision(StageObj obj)
-        {
-            base.CalCollision(obj);
-        }
-
-        /// <summary>
-        /// 摩擦力により減速処理
-        /// </summary>
-        public void DisSpeed(float coeff)
+        private void DisSpeed()
         {
             if (speed == Vector2.Zero)
                 return;
-            var dSpeed = speed * coeff;
-            speed -= dSpeed;
-            if (speed.LengthSquared() < 0.01f)
-                speed = Vector2.Zero;
+            foreach (var l in disSpeeds.Values)
+            {
+                var dSpeed = speed * l;
+                speed -= dSpeed;
+                if (speed.LengthSquared() < 0.01f)
+                {
+                    speed = Vector2.Zero;
+                    return;
+                }
+            }
+            disSpeeds.Clear();
         }
 
         public void DisStrut()
         {
-            isStrut = false;
-            canJump = false;
-            forces["strut"] = Vector2.Zero;
+            lastIsStrut = IsStrut;
+            SetIsStrut(false);
+            if (!lastIsStrut)
+                forces["strut"] = Vector2.Zero;
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            base.CalCollision(obj);
         }
 
         /// <summary>
@@ -148,12 +169,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public void Strut()
         {
+            if (lastIsStrut)
+            {
+                SetIsStrut(true);
+                return;
+            }
             if (gra == Vector2.Zero)
                 return;
-            isStrut = true;
-            canJump = true;
+            SetIsStrut(true);
             var gv = gra;
-            forces["strut"] = -gv;
+            forces["strut"] = -gv * 0.95f;//衝突させるため、0.95f出ないと、地面接触判定が不安定
             gv.Normalize();
             float dot = Vector2.Dot(speed, gv);
             Vector2 dg = gv * dot;//重力方向の速度
@@ -204,6 +229,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 speed *= maxSpeed;
             }
             AddVelocity(speed, VeloParam.Run);
+            DisSpeed();
         }
 
         public void ResetGra()
@@ -221,7 +247,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             forces["jump"] = fg;
         }
 
-        public void DisJump()
+        private void DisJump()
         {
             forces["jump"] = Vector2.Zero;
         }
@@ -254,9 +280,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         private void RotateToGra()
         {
+            rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;
+            //これは毎回回転した後チェックする必要があるため
+            //SetGraに設定してしまうとずっと回転する可能性がある。
+            //ここに設定して回転する量を毎回新しく計算する
             Rotation += rotationIncrement;
 
-            if (Math.Abs(Rotation - targetRotation) < 0.01f)
+            if (Math.Abs(rotationIncrement) < 0.001f)
             {
                 rotationIncrement = 0;
                 Rotation = targetRotation;
@@ -266,9 +296,23 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private void SetGra(Vector2 value)
         {
             gra = value;
-            targetRotation = (float)Math.Atan2(value.Y, value.X) - MathHelper.ToRadians(90);
-            rotationIncrement = (targetRotation - Rotation) * 0.1f;
+            targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
+            //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
+        }
 
+        /// <summary>
+        /// 角度をフォーマットする±π以内に抑える
+        /// </summary>
+        /// <param name="rota"></param>
+        /// <returns></returns>
+        private float FormatRota(float rota)
+        {
+            float pi = (float)Math.PI;
+            if (rota <= pi && rota >= -pi)//角度が±180度以内の場合そのままリターンする
+                return rota;
+            if (rota > pi)//角度が180度以上の場合-360度、Math.Atan2を使っているため、540度以上の角度は出ない
+                return rota - 2 * pi;
+            return rota + 2 * pi;//残りは角度が-180度以下の場合+360度、Math.Atan2を使っているため、-540度以上の角度は出ない
         }
 
         public override void Draw2(GameTime gameTime)

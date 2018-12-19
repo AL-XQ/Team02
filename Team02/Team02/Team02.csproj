@@ -68,6 +68,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
+    <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
@@ -341,6 +342,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Map\map01.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Map\map02.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

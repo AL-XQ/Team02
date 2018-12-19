@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs
 {
-    public class ExplosionArea : GameObj
+    public class ExplosionArea : ObjUI
     {
         private int timeDown = 30;
         private ExplosionArea(BaseDisplay aParent) : base(aParent)

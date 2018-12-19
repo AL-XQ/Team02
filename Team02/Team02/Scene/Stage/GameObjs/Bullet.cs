@@ -86,7 +86,7 @@ namespace Team02.Scene.Stage.GameObjs
                 var list = Stage.DetectorObj(cir);
                 var graC = new GraChanger(base_Stage);
                 graC.Center = ISpace.Center;
-                var ea = ExplosionArea.Create(base_Stage, ISpace.Center, rad);
+                ExplosionArea.Create(base_Stage, ISpace.Center, rad);
 
                 foreach (var l in list)
                 {

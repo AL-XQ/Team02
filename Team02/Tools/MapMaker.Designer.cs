@@ -501,6 +501,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "MapMaker";
             this.Text = "MapMaker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapMaker_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

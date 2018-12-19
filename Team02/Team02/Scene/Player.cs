@@ -57,6 +57,24 @@ namespace Team02.Scene
                 Edit = !Edit;
             if (GameKeyboard.GetKeyTrigger(Keys.F11))
                 Stage.Initialize();
+
+
+            if (GameKeyboard.GetKeyTrigger(Keys.D1))
+                SetStage("map01");
+            if (GameKeyboard.GetKeyTrigger(Keys.D2))
+                SetStage("map02");
+            if (GameKeyboard.GetKeyTrigger(Keys.D3))
+                SetStage("map03");
+            if (GameKeyboard.GetKeyTrigger(Keys.D4))
+                SetStage("map04");
+            if (GameKeyboard.GetKeyTrigger(Keys.D5))
+                SetStage("map05");
+            if (GameKeyboard.GetKeyTrigger(Keys.D6))
+                SetStage("map06");
+            if (GameKeyboard.GetKeyTrigger(Keys.D7))
+                SetStage("map07");
+            if (GameKeyboard.GetKeyTrigger(Keys.D8))
+                SetStage("map08");
             if (edit)
             {
                 EditModeUpdate();
@@ -95,22 +113,6 @@ namespace Team02.Scene
                 Stage.CameraScale *= 0.5f;
             if (GameKeyboard.GetKeyTrigger(Keys.H))
                 Stage.CameraCenter = cameraCenter;
-            if (GameKeyboard.GetKeyTrigger(Keys.D1))
-                SetStage("map01");
-            if (GameKeyboard.GetKeyTrigger(Keys.D2))
-                SetStage("map02");
-            if (GameKeyboard.GetKeyTrigger(Keys.D3))
-                SetStage("map03");
-            if (GameKeyboard.GetKeyTrigger(Keys.D4))
-                SetStage("map04");
-            if (GameKeyboard.GetKeyTrigger(Keys.D5))
-                SetStage("map05");
-            if (GameKeyboard.GetKeyTrigger(Keys.D6))
-                SetStage("map06");
-            if (GameKeyboard.GetKeyTrigger(Keys.D7))
-                SetStage("map07");
-            if (GameKeyboard.GetKeyTrigger(Keys.D8))
-                SetStage("map08");
         }
 
         private void SetStage(string map)
@@ -157,23 +159,27 @@ namespace Team02.Scene
             if (chara != null)
             {
                 Vector2 force = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 0.4f;
-                if (!chara.IsStrut)
+                if (chara.IsStrut)
+                {
+                    if (force.Y < 0)
+                        force.Y = 0;
+                }
+                else
+                {
                     force.X *= 0.2f;
+                }  
                 chara.RunOnGra("run", force);
                 Jump();
                 if (GameKeyboard.GetKeyState(Keys.Right))
                 {
-                    chara.Rotation += 0.05f;
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, 0.05f);
                 }
                 else if (GameKeyboard.GetKeyState(Keys.Left))
                 {
-                    chara.Rotation -= 0.05f;
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, -0.05f);
                 }
                 if (GameKeyboard.GetKeyTrigger(Keys.Q))
                 {
-                    chara.Rotation = 0;
                     chara.ResetGra();
                 }
                 CheckChara();
@@ -187,7 +193,6 @@ namespace Team02.Scene
                 chara.Jump(jumpForce);
                 return;
             }
-            chara.DisJump();
         }
 
         private void CheckChara()
