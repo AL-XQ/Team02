@@ -81,7 +81,7 @@ namespace Team02.Scene.Stage.GameObjs
             check.Location += c.Gra;
             if (ISpace is RectangleF rect)
             {
-                var index = rect.GetFristIntersectLine(check);
+                var index = rect.GetCenterIntersectLine(check);
                 if (index > -1)
                 {
                     var escVe = rect.GetEscVe_Line(index);
