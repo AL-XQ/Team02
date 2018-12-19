@@ -29,11 +29,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
+        private Dictionary<string, object> objMemory = new Dictionary<string, object>();
         private Vector2 accel = Vector2.Zero;//質量を１と考え、加えた力がそのまま加速度になる
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private bool canJump = false;
         private bool lastIsStrut = false;
+        private bool checkLastIsStrut = true;
         private bool isStrut = false;
         private bool rotating = false;
         private Motion motion;
@@ -66,6 +68,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool CanJump { get => canJump; }
         public Dictionary<string, float> DisSpeeds { get => disSpeeds; }
         public bool Rotating { get => rotating; }
+        public Dictionary<string, object> ObjMemory { get => objMemory; }
+        public bool CheckLastIsStrut { get => checkLastIsStrut; set => checkLastIsStrut = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -187,6 +191,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public void DisStrut()
         {
             lastIsStrut = IsStrut;
+            checkLastIsStrut = true;
             SetIsStrut(false);
             if (!lastIsStrut)
                 forces["strut"] = Vector2.Zero;
@@ -202,7 +207,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public void Strut()
         {
-            if (lastIsStrut)
+            if (checkLastIsStrut && lastIsStrut)
             {
                 SetIsStrut(true);
                 return;

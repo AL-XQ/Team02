@@ -53,7 +53,7 @@ namespace Team02.Scene.Stage.GameObjs
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
                     //テスト機能：キャラの重力をブロックにフィットする
-                    if (!c.Rotating && !c.LastIsStrut)
+                    if (!c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
                     {
                         var newGra = GetEscVe(c);
                         var gv = c.Gra;
@@ -62,6 +62,8 @@ namespace Team02.Scene.Stage.GameObjs
                         Vector2 dg = gv * dot;//重力方向の速度
                         c.Speed -= dg;
                         c.Gra = newGra;
+                        c.ObjMemory["block"] = this;
+                        c.CheckLastIsStrut = false;
                     }
                     //テスト機能：キャラの重力をブロックにフィットする
                     c.Strut();
