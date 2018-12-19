@@ -38,6 +38,7 @@ namespace Tools
             }
             type.Text = "Block";
             AIPackage.Create();
+            aicb.Items.Add("");
             foreach (var l in AIPackage.AIs.Keys)
             {
                 aicb.Items.Add(l);
