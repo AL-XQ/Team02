@@ -20,6 +20,7 @@ namespace Tools
     public partial class MapMaker : Form
     {
         public Process game;
+        private object[] memory;
         public static Dictionary<string, Type> Types = new Dictionary<string, Type>()
         {
             {"Block",typeof(Block) },
@@ -222,6 +223,109 @@ namespace Tools
         {
             if (game != null && !game.HasExited)
                 game.Kill();
+        }
+
+        private void disselect_Click(object sender, EventArgs e)
+        {
+            if (memory == null)
+            {
+                disselect.Enabled = false;
+                return;
+            }
+            masON.Checked = (bool)memory[0];
+            type.Text = (string)memory[1];
+            coo_x.Text = (string)memory[2];
+            coo_y.Text = (string)memory[3];
+            _width.Text = (string)memory[4];
+            _height.Text = (string)memory[5];
+            kon.Checked = (bool)memory[6];
+            origin_x.Text = (string)memory[7];
+            origin_y.Text = (string)memory[8];
+            rota.Text = (string)memory[9];
+            aicb.Text = (string)memory[10];
+            memory = null;
+            disselect.Enabled = false;
+            selectChange.Enabled = false;
+        }
+
+        private void data_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
+        {
+            disselect_Click(null, null);
+        }
+
+        private void selectChange_Click(object sender, EventArgs e)
+        {
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
+            if (masON.Checked)
+            {
+                float x = float.Parse(coo_x.Text);
+                float y = float.Parse(coo_y.Text);
+                x *= 64;
+                y *= 64;
+                objs[1] = x.ToString();
+                objs[2] = y.ToString();
+            }
+            for (int i = 0; i < data.ColumnCount; i++)
+            {
+                data.Rows[data.SelectedCells[0].RowIndex].Cells[i].Value = objs[i];
+            }
+        }
+
+        private void masON_CheckedChanged(object sender, EventArgs e)
+        {
+            if (masON.Checked)
+                masON.ForeColor = Color.Green;
+            else
+                masON.ForeColor = Color.Black;
+        }
+
+        private void kon_CheckedChanged(object sender, EventArgs e)
+        {
+            if (kon.Checked)
+                kon.ForeColor = Color.Green;
+            else
+                kon.ForeColor = Color.Black;
+        }
+
+        private void data_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (memory == null)
+                memory = new object[] { masON.Checked, type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
+            var tempArgs = new Dictionary<string, object>();
+            for (int j = 0; j < data.ColumnCount; j++)
+            {
+                string name = data.Columns[j].HeaderText;
+                object value;
+                if (name == "Expansion")
+                    value = (bool)data.SelectedRows[0].Cells[j].Value;
+                else
+                    value = data.SelectedRows[0].Cells[j].Value;
+                tempArgs.Add(name, value);
+            }
+            type.Text = (string)tempArgs["type"];
+            if (masON.Checked)
+            {
+                float cx = float.Parse((string)tempArgs["coo_x"]);
+                float cy = float.Parse((string)tempArgs["coo_y"]);
+                cx /= 64;
+                cy /= 64;
+                coo_x.Text = cx.ToString();
+                coo_y.Text = cy.ToString();
+            }
+            else
+            {
+                coo_x.Text = (string)tempArgs["coo_x"];
+                coo_y.Text = (string)tempArgs["coo_y"];
+            }
+            _width.Text = (string)tempArgs["width"];
+            _height.Text = (string)tempArgs["height"];
+            kon.Checked = (bool)tempArgs["Expansion"];
+            origin_x.Text = (string)tempArgs["origin_x"];
+            origin_y.Text = (string)tempArgs["origin_y"];
+            rota.Text = (string)tempArgs["rota"];
+            aicb.Text = (string)tempArgs["ai"];
+            disselect.Enabled = true;
+            selectChange.Enabled = true;
         }
     }
 }

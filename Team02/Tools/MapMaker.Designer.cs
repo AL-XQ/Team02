@@ -71,6 +71,8 @@
             this.aicb = new System.Windows.Forms.ComboBox();
             this.rungame = new System.Windows.Forms.Button();
             this.osave = new System.Windows.Forms.Button();
+            this.disselect = new System.Windows.Forms.Button();
+            this.selectChange = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -284,6 +286,7 @@
             this.masON.TabIndex = 12;
             this.masON.Text = "座標マス化";
             this.masON.UseVisualStyleBackColor = true;
+            this.masON.CheckedChanged += new System.EventHandler(this.masON_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -312,6 +315,7 @@
             this.kon.TabIndex = 19;
             this.kon.Text = "適用";
             this.kon.UseVisualStyleBackColor = true;
+            this.kon.CheckedChanged += new System.EventHandler(this.kon_CheckedChanged);
             // 
             // data
             // 
@@ -337,6 +341,8 @@
             this.data.RowTemplate.Height = 21;
             this.data.Size = new System.Drawing.Size(730, 197);
             this.data.TabIndex = 21;
+            this.data.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseClick);
+            this.data.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.data_RowsRemoved);
             // 
             // _type
             // 
@@ -483,12 +489,36 @@
             this.osave.UseVisualStyleBackColor = true;
             this.osave.Click += new System.EventHandler(this.osave_Click);
             // 
+            // disselect
+            // 
+            this.disselect.Enabled = false;
+            this.disselect.Location = new System.Drawing.Point(351, 122);
+            this.disselect.Name = "disselect";
+            this.disselect.Size = new System.Drawing.Size(66, 23);
+            this.disselect.TabIndex = 33;
+            this.disselect.Text = "選択解除";
+            this.disselect.UseVisualStyleBackColor = true;
+            this.disselect.Click += new System.EventHandler(this.disselect_Click);
+            // 
+            // selectChange
+            // 
+            this.selectChange.Enabled = false;
+            this.selectChange.Location = new System.Drawing.Point(423, 122);
+            this.selectChange.Name = "selectChange";
+            this.selectChange.Size = new System.Drawing.Size(66, 23);
+            this.selectChange.TabIndex = 34;
+            this.selectChange.Text = "選択修正";
+            this.selectChange.UseVisualStyleBackColor = true;
+            this.selectChange.Click += new System.EventHandler(this.selectChange_Click);
+            // 
             // MapMaker
             // 
             this.AcceptButton = this.addbt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(754, 453);
+            this.Controls.Add(this.selectChange);
+            this.Controls.Add(this.disselect);
             this.Controls.Add(this.osave);
             this.Controls.Add(this.rungame);
             this.Controls.Add(this.label12);
@@ -543,6 +573,10 @@
         private System.Windows.Forms.Button load;
         private System.Windows.Forms.OpenFileDialog openF;
         private System.Windows.Forms.CheckBox masON;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox aicb;
+        private System.Windows.Forms.Button rungame;
+        private System.Windows.Forms.Button osave;
         private System.Windows.Forms.DataGridViewTextBoxColumn _type;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_y;
@@ -553,10 +587,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_y;
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
         private System.Windows.Forms.DataGridViewTextBoxColumn ai;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox aicb;
-        private System.Windows.Forms.Button rungame;
-        private System.Windows.Forms.Button osave;
+        private System.Windows.Forms.Button disselect;
+        private System.Windows.Forms.Button selectChange;
     }
 }
 
