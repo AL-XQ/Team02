@@ -47,7 +47,7 @@ namespace Tools
 
         private void addbt_Click(object sender, EventArgs e)
         {
-            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
             if (masON.Checked)
             {
                 float x = float.Parse(coo_x.Text);
@@ -94,6 +94,11 @@ namespace Tools
                 if (ais != "")
                 {
                     args["ai"] = ais;
+                }
+                var tname = (string)tempArgs["name"];
+                if (tname != "")
+                {
+                    args["name"] = tname;
                 }
                 all_args.Add(args);
             }
@@ -196,6 +201,12 @@ namespace Tools
             {
                 arg_o[9] = "";
             }
+            if (args.ContainsKey("name"))
+            {
+                arg_o[10] = args["name"];
+            }
+            else
+                arg_o[10] = "";
             data.Rows.Add(arg_o);
         }
 
@@ -244,6 +255,7 @@ namespace Tools
             origin_y.Text = (string)memory[8];
             rota.Text = (string)memory[9];
             aicb.Text = (string)memory[10];
+            nametb.Text = (string)memory[11];
             memory = null;
             disselect.Enabled = false;
             selectChange.Enabled = false;
@@ -256,7 +268,7 @@ namespace Tools
 
         private void selectChange_Click(object sender, EventArgs e)
         {
-            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
             if (masON.Checked)
             {
                 float x = float.Parse(coo_x.Text);
@@ -291,7 +303,7 @@ namespace Tools
         private void data_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (memory == null)
-                memory = new object[] { masON.Checked, type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text };
+                memory = new object[] { masON.Checked, type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
             var tempArgs = new Dictionary<string, object>();
             for (int j = 0; j < data.ColumnCount; j++)
             {
@@ -325,6 +337,7 @@ namespace Tools
             origin_y.Text = (string)tempArgs["origin_y"];
             rota.Text = (string)tempArgs["rota"];
             aicb.Text = (string)tempArgs["ai"];
+            nametb.Text = (string)tempArgs["name"];
             disselect.Enabled = true;
             selectChange.Enabled = true;
         }
