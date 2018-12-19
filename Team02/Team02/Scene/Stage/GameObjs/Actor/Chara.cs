@@ -93,6 +93,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DisJump();
         }
 
+        private void SetGra(Vector2 value)
+        {
+            gra = value;
+            targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
+            rotating = true;
+            _Update += RotateToGra;
+            //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
+        }
+
         public override void Initialize()
         {
             gra = base_Stage.DefGra;
@@ -132,7 +141,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Update(GameTime gameTime)
         {
             _Update?.Invoke();
-            motion.Update(gameTime);
             base.Update(gameTime);
             _LastUpdate?.Invoke();
         }
@@ -149,8 +157,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 Color = Color.White;
         }
 
+        /// <summary>
+        /// 衝突判定の後で処理する
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void AfterUpdate(GameTime gameTime)
         {
+            motion.Update();
             base.AfterUpdate(gameTime);
         }
 
@@ -328,15 +341,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 _Update -= RotateToGra;
                 rotating = false;
             }
-        }
-
-        private void SetGra(Vector2 value)
-        {
-            gra = value;
-            targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
-            rotating = true;
-            _Update += RotateToGra;
-            //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
         }
 
         /// <summary>
