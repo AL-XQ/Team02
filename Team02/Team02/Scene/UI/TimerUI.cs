@@ -34,15 +34,15 @@ namespace Team02.Scene.UI
         public override void PreLoadContent()
         {
             pa = new Panel(this);
-            pa.Location = new Point(200, 0);
-            Location = new Point(200,0);
+            pa.Location = new Point(600, 0);
+            Location = new Point(600,0);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             pa.Image = ImageManage.GetSImage("EnemyRateBack.png");
-            pa.Size = new Size(pa.Image.Size.Width, pa.Image.Size.Height);
+            pa.Size = Size.Zero;
             Image = ImageManage.GetSImage("EnemyRateFront.png");
             SetTime(60);
             base.LoadContent();
@@ -63,7 +63,7 @@ namespace Team02.Scene.UI
         public override void Draw1(GameTime gameTime)
         {
             float rate = 1 - currentTime / limitTime;
-            //spriteBatch.Draw(pa.Image.ImageT[iTIndex], pa.Location.ToVector2(), Color.White);
+            spriteBatch.Draw(pa.Image.ImageT[iTIndex], pa.Location.ToVector2(), Color.White);
             spriteBatch.Draw(image.ImageT[iTIndex], Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
         }
     }
