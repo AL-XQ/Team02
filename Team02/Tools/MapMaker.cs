@@ -368,7 +368,7 @@ namespace Tools
             if (Game != null && Game.IsRun)
             {
                 var stage = GetBase_Stage();
-                SeriVector2 ve = new SeriVector2(float.Parse(coo_x.Text), float.Parse(coo_y.Text));
+                SeriVector2 ve = new SeriVector2(float.Parse((string)data.SelectedRows[0].Cells[1].Value), float.Parse((string)data.SelectedRows[0].Cells[2].Value));
                 stage.CameraCenter = ve;
             }
         }
