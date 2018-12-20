@@ -20,7 +20,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            User.Forces["fly"] = -User.Gra;
+            if (User.GraChanger == null)
+            {
+                User.Forces["fly"] = -User.Gra;
+            }
         }
 
         public override bool IsRunning()
