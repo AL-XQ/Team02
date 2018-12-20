@@ -36,6 +36,10 @@ namespace Team02
         private Load_Scene Load_Scene;
         private D_Void _Update;
 
+        private bool isRun = false;
+
+        public bool IsRun { get => isRun; }
+
 
         /// <summary>
         /// コンストラクタ
@@ -81,6 +85,7 @@ namespace Team02
 
         protected void SystemInitialize()
         {
+            isRun = true;
             // この下にロジックを記述
             FirstInitialize();
             AfterInitialize();
@@ -212,6 +217,7 @@ namespace Team02
                 //graphicsDeviceManager.ToggleFullScreen();
             }
             gameRun.IsGameRun = false;
+            isRun = false;
             // while(gameRun.ov)
             base.OnExiting(sender, args);
         }

@@ -52,17 +52,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
-            this.addbt = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.saveF = new System.Windows.Forms.SaveFileDialog();
-            this.load = new System.Windows.Forms.Button();
-            this.openF = new System.Windows.Forms.OpenFileDialog();
-            this.label12 = new System.Windows.Forms.Label();
-            this.aicb = new System.Windows.Forms.ComboBox();
-            this.rungame = new System.Windows.Forms.Button();
-            this.osave = new System.Windows.Forms.Button();
-            this.disselect = new System.Windows.Forms.Button();
-            this.selectChange = new System.Windows.Forms.Button();
             this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -74,6 +63,17 @@
             this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.objName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addbt = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.saveF = new System.Windows.Forms.SaveFileDialog();
+            this.load = new System.Windows.Forms.Button();
+            this.openF = new System.Windows.Forms.OpenFileDialog();
+            this.label12 = new System.Windows.Forms.Label();
+            this.aicb = new System.Windows.Forms.ComboBox();
+            this.rungame = new System.Windows.Forms.Button();
+            this.osave = new System.Windows.Forms.Button();
+            this.disselect = new System.Windows.Forms.Button();
+            this.selectChange = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.nametb = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
@@ -327,6 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._type,
@@ -342,11 +343,79 @@
             this.objName});
             this.data.Location = new System.Drawing.Point(12, 244);
             this.data.Name = "data";
+            this.data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.data.RowTemplate.Height = 21;
             this.data.Size = new System.Drawing.Size(814, 197);
             this.data.TabIndex = 21;
             this.data.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseClick);
+            this.data.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseDoubleClick);
             this.data.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.data_RowsRemoved);
+            // 
+            // _type
+            // 
+            this._type.HeaderText = "type";
+            this._type.Name = "_type";
+            this._type.Width = 52;
+            // 
+            // _coo_x
+            // 
+            this._coo_x.HeaderText = "coo_x";
+            this._coo_x.Name = "_coo_x";
+            this._coo_x.Width = 58;
+            // 
+            // _coo_y
+            // 
+            this._coo_y.HeaderText = "coo_y";
+            this._coo_y.Name = "_coo_y";
+            this._coo_y.Width = 58;
+            // 
+            // __width
+            // 
+            this.@__width.HeaderText = "width";
+            this.@__width.Name = "__width";
+            this.@__width.Width = 57;
+            // 
+            // __height
+            // 
+            this.@__height.HeaderText = "height";
+            this.@__height.Name = "__height";
+            this.@__height.Width = 61;
+            // 
+            // _kon
+            // 
+            this._kon.HeaderText = "Expansion";
+            this._kon.Name = "_kon";
+            this._kon.Width = 63;
+            // 
+            // _origin_x
+            // 
+            this._origin_x.HeaderText = "origin_x";
+            this._origin_x.Name = "_origin_x";
+            this._origin_x.Width = 68;
+            // 
+            // _origin_y
+            // 
+            this._origin_y.HeaderText = "origin_y";
+            this._origin_y.Name = "_origin_y";
+            this._origin_y.Width = 68;
+            // 
+            // _rota
+            // 
+            this._rota.HeaderText = "rota";
+            this._rota.Name = "_rota";
+            this._rota.Width = 50;
+            // 
+            // ai
+            // 
+            this.ai.HeaderText = "ai";
+            this.ai.Name = "ai";
+            this.ai.Width = 39;
+            // 
+            // objName
+            // 
+            this.objName.HeaderText = "name";
+            this.objName.Name = "objName";
+            this.objName.Width = 57;
             // 
             // addbt
             // 
@@ -454,72 +523,6 @@
             this.selectChange.Text = "選択修正";
             this.selectChange.UseVisualStyleBackColor = true;
             this.selectChange.Click += new System.EventHandler(this.selectChange_Click);
-            // 
-            // _type
-            // 
-            this._type.HeaderText = "type";
-            this._type.Name = "_type";
-            this._type.Width = 52;
-            // 
-            // _coo_x
-            // 
-            this._coo_x.HeaderText = "coo_x";
-            this._coo_x.Name = "_coo_x";
-            this._coo_x.Width = 58;
-            // 
-            // _coo_y
-            // 
-            this._coo_y.HeaderText = "coo_y";
-            this._coo_y.Name = "_coo_y";
-            this._coo_y.Width = 58;
-            // 
-            // __width
-            // 
-            this.@__width.HeaderText = "width";
-            this.@__width.Name = "__width";
-            this.@__width.Width = 57;
-            // 
-            // __height
-            // 
-            this.@__height.HeaderText = "height";
-            this.@__height.Name = "__height";
-            this.@__height.Width = 61;
-            // 
-            // _kon
-            // 
-            this._kon.HeaderText = "Expansion";
-            this._kon.Name = "_kon";
-            this._kon.Width = 63;
-            // 
-            // _origin_x
-            // 
-            this._origin_x.HeaderText = "origin_x";
-            this._origin_x.Name = "_origin_x";
-            this._origin_x.Width = 68;
-            // 
-            // _origin_y
-            // 
-            this._origin_y.HeaderText = "origin_y";
-            this._origin_y.Name = "_origin_y";
-            this._origin_y.Width = 68;
-            // 
-            // _rota
-            // 
-            this._rota.HeaderText = "rota";
-            this._rota.Name = "_rota";
-            this._rota.Width = 50;
-            // 
-            // ai
-            // 
-            this.ai.HeaderText = "ai";
-            this.ai.Name = "ai";
-            this.ai.Width = 39;
-            // 
-            // objName
-            // 
-            this.objName.HeaderText = "name";
-            this.objName.Name = "objName";
-            this.objName.Width = 57;
             // 
             // label13
             // 

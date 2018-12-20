@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,11 @@ using Team02.Scene.Stage.GameObjs;
 using Team02.Scene.Stage.GameObjs.Actor;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02;
+using Team02.Scene;
+using Team02.Scene.Stage;
+
+using InfinityGame;
+
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Diagnostics;
 
@@ -19,8 +25,10 @@ namespace Tools
 {
     public partial class MapMaker : Form
     {
-        public Process game;
         private object[] memory;
+
+        private Game1 Game { get => Team02.Program.Game; }
+
         public static Dictionary<string, Type> Types = new Dictionary<string, Type>()
         {
             {"Block",typeof(Block) },
@@ -32,6 +40,7 @@ namespace Tools
         public MapMaker()
         {
             InitializeComponent();
+            Team02.Program.MapEdit = true;
             foreach (var l in Types.Keys)
             {
                 type.Items.Add(l);
@@ -137,6 +146,7 @@ namespace Tools
             string path = saveF.FileName;
             string[] opath = path.Split('\\');
             Save(path, opath[opath.Length - 1]);
+            openF.FileName = path;
         }
 
         private void load_Click(object sender, EventArgs e)
@@ -224,17 +234,28 @@ namespace Tools
 
         private void rungame_Click(object sender, EventArgs e)
         {
-            string path = "Team02.exe";
-            if (game == null || game.HasExited)
+            if (Game == null || !Game.IsRun)
             {
-                game = Process.Start(path);
+                Team02.Program.Main();
             }
+        }
+
+        private Base_Stage GetBase_Stage()
+        {
+            return (Base_Stage)GetPlayScene().ShowStage;
+        }
+
+        private PlayScene GetPlayScene()
+        {
+            return (PlayScene)GameRun.Instance.scenes["play"];
         }
 
         private void MapMaker_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (game != null && !game.HasExited)
-                game.Kill();
+            if (Game != null && Game.IsRun)
+            {
+                Team02.Program.Exit();
+            }
         }
 
         private void disselect_Click(object sender, EventArgs e)
@@ -340,6 +361,16 @@ namespace Tools
             nametb.Text = (string)tempArgs["name"];
             disselect.Enabled = true;
             selectChange.Enabled = true;
+        }
+
+        private void data_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (Game != null && Game.IsRun)
+            {
+                var stage = GetBase_Stage();
+                SeriVector2 ve = new SeriVector2(float.Parse(coo_x.Text), float.Parse(coo_y.Text));
+                stage.CameraCenter = ve;
+            }
         }
     }
 }
