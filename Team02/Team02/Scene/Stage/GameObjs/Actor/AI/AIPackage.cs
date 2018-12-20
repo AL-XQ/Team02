@@ -42,6 +42,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
             AIs["ChaseEnemy"] = behaviourManager;
+
+            behaviourManager = new BehaviourManager();
+            behaviourManager.CreateBehaviour("movetowards", 0);
+            behaviourManager.AddBehaviour("movetowards", new MoveTowardsTarget(0.3f));
+            behaviourManager.AddBehaviour("movetowards", new Fly());
+            behaviourManager.AddCondition("movetowards", new DistanceBelowN(800));
+            behaviourManager.CreateBehaviour("stop", 1);
+            behaviourManager.AddBehaviour("stop", new StopMoving());
+            behaviourManager.AddCondition("stop", new DistanceOverN(1200));
+            AIs["TestEnemy1"] = behaviourManager;
         }
     }
 }

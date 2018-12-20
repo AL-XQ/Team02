@@ -28,7 +28,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            if (User.IsStrut)
+            if (User.IsStrut && User.GraChanger == null)
             {
                 User.Jump(jumpForce);
                 return;
