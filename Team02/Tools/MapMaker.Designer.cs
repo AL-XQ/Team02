@@ -52,11 +52,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
-            this.addbt = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.saveF = new System.Windows.Forms.SaveFileDialog();
-            this.load = new System.Windows.Forms.Button();
-            this.openF = new System.Windows.Forms.OpenFileDialog();
             this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,8 +62,20 @@
             this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.objName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addbt = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.saveF = new System.Windows.Forms.SaveFileDialog();
+            this.load = new System.Windows.Forms.Button();
+            this.openF = new System.Windows.Forms.OpenFileDialog();
             this.label12 = new System.Windows.Forms.Label();
             this.aicb = new System.Windows.Forms.ComboBox();
+            this.rungame = new System.Windows.Forms.Button();
+            this.osave = new System.Windows.Forms.Button();
+            this.disselect = new System.Windows.Forms.Button();
+            this.selectChange = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.nametb = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -282,6 +289,7 @@
             this.masON.TabIndex = 12;
             this.masON.Text = "座標マス化";
             this.masON.UseVisualStyleBackColor = true;
+            this.masON.CheckedChanged += new System.EventHandler(this.masON_CheckedChanged);
             // 
             // groupBox2
             // 
@@ -310,6 +318,7 @@
             this.kon.TabIndex = 19;
             this.kon.Text = "適用";
             this.kon.UseVisualStyleBackColor = true;
+            this.kon.CheckedChanged += new System.EventHandler(this.kon_CheckedChanged);
             // 
             // data
             // 
@@ -318,6 +327,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this._type,
@@ -329,51 +339,17 @@
             this._origin_x,
             this._origin_y,
             this._rota,
-            this.ai});
+            this.ai,
+            this.objName});
             this.data.Location = new System.Drawing.Point(12, 244);
             this.data.Name = "data";
+            this.data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.data.RowTemplate.Height = 21;
-            this.data.Size = new System.Drawing.Size(745, 197);
+            this.data.Size = new System.Drawing.Size(814, 197);
             this.data.TabIndex = 21;
-            // 
-            // addbt
-            // 
-            this.addbt.Location = new System.Drawing.Point(398, 122);
-            this.addbt.Name = "addbt";
-            this.addbt.Size = new System.Drawing.Size(105, 23);
-            this.addbt.TabIndex = 22;
-            this.addbt.Text = "追加";
-            this.addbt.UseVisualStyleBackColor = true;
-            this.addbt.Click += new System.EventHandler(this.addbt_Click);
-            // 
-            // save
-            // 
-            this.save.Location = new System.Drawing.Point(398, 193);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(105, 23);
-            this.save.TabIndex = 23;
-            this.save.Text = "生成";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
-            // 
-            // saveF
-            // 
-            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
-            // 
-            // load
-            // 
-            this.load.Location = new System.Drawing.Point(398, 164);
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(105, 23);
-            this.load.TabIndex = 24;
-            this.load.Text = "ロード";
-            this.load.UseVisualStyleBackColor = true;
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
-            // openF
-            // 
-            this.openF.FileName = "openFileDialog1";
-            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            this.data.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseClick);
+            this.data.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseDoubleClick);
+            this.data.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.data_RowsRemoved);
             // 
             // _type
             // 
@@ -435,6 +411,54 @@
             this.ai.Name = "ai";
             this.ai.Width = 39;
             // 
+            // objName
+            // 
+            this.objName.HeaderText = "name";
+            this.objName.Name = "objName";
+            this.objName.Width = 57;
+            // 
+            // addbt
+            // 
+            this.addbt.Location = new System.Drawing.Point(351, 203);
+            this.addbt.Name = "addbt";
+            this.addbt.Size = new System.Drawing.Size(66, 23);
+            this.addbt.TabIndex = 22;
+            this.addbt.Text = "追加";
+            this.addbt.UseVisualStyleBackColor = true;
+            this.addbt.Click += new System.EventHandler(this.addbt_Click);
+            // 
+            // save
+            // 
+            this.save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.save.Location = new System.Drawing.Point(721, 188);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(105, 23);
+            this.save.TabIndex = 23;
+            this.save.Text = "名前つけて保存";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // saveF
+            // 
+            this.saveF.FileName = "null";
+            this.saveF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            // 
+            // load
+            // 
+            this.load.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.load.Location = new System.Drawing.Point(610, 215);
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(105, 23);
+            this.load.TabIndex = 24;
+            this.load.Text = "ロード";
+            this.load.UseVisualStyleBackColor = true;
+            this.load.Click += new System.EventHandler(this.load_Click);
+            // 
+            // openF
+            // 
+            this.openF.FileName = "null";
+            this.openF.Filter = "マップ ファイル|*.map|全てのファイル|*.*";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -453,15 +477,83 @@
             this.aicb.FormattingEnabled = true;
             this.aicb.Location = new System.Drawing.Point(556, 29);
             this.aicb.Name = "aicb";
-            this.aicb.Size = new System.Drawing.Size(201, 24);
+            this.aicb.Size = new System.Drawing.Size(186, 24);
             this.aicb.TabIndex = 26;
+            // 
+            // rungame
+            // 
+            this.rungame.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.rungame.Location = new System.Drawing.Point(721, 215);
+            this.rungame.Name = "rungame";
+            this.rungame.Size = new System.Drawing.Size(105, 23);
+            this.rungame.TabIndex = 31;
+            this.rungame.Text = "ゲーム実行";
+            this.rungame.UseVisualStyleBackColor = true;
+            this.rungame.Click += new System.EventHandler(this.rungame_Click);
+            // 
+            // osave
+            // 
+            this.osave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.osave.Location = new System.Drawing.Point(610, 188);
+            this.osave.Name = "osave";
+            this.osave.Size = new System.Drawing.Size(105, 23);
+            this.osave.TabIndex = 32;
+            this.osave.Text = "保存";
+            this.osave.UseVisualStyleBackColor = true;
+            this.osave.Click += new System.EventHandler(this.osave_Click);
+            // 
+            // disselect
+            // 
+            this.disselect.Enabled = false;
+            this.disselect.Location = new System.Drawing.Point(351, 122);
+            this.disselect.Name = "disselect";
+            this.disselect.Size = new System.Drawing.Size(66, 23);
+            this.disselect.TabIndex = 33;
+            this.disselect.Text = "選択解除";
+            this.disselect.UseVisualStyleBackColor = true;
+            this.disselect.Click += new System.EventHandler(this.disselect_Click);
+            // 
+            // selectChange
+            // 
+            this.selectChange.Enabled = false;
+            this.selectChange.Location = new System.Drawing.Point(423, 122);
+            this.selectChange.Name = "selectChange";
+            this.selectChange.Size = new System.Drawing.Size(66, 23);
+            this.selectChange.TabIndex = 34;
+            this.selectChange.Text = "選択修正";
+            this.selectChange.UseVisualStyleBackColor = true;
+            this.selectChange.Click += new System.EventHandler(this.selectChange_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label13.Location = new System.Drawing.Point(513, 72);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 19);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "Name：";
+            // 
+            // nametb
+            // 
+            this.nametb.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 12F);
+            this.nametb.Location = new System.Drawing.Point(584, 71);
+            this.nametb.Name = "nametb";
+            this.nametb.Size = new System.Drawing.Size(158, 23);
+            this.nametb.TabIndex = 36;
             // 
             // MapMaker
             // 
             this.AcceptButton = this.addbt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(769, 453);
+            this.ClientSize = new System.Drawing.Size(838, 453);
+            this.Controls.Add(this.nametb);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.selectChange);
+            this.Controls.Add(this.disselect);
+            this.Controls.Add(this.osave);
+            this.Controls.Add(this.rungame);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.aicb);
             this.Controls.Add(this.load);
@@ -472,6 +564,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "MapMaker";
             this.Text = "MapMaker";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MapMaker_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -513,6 +606,12 @@
         private System.Windows.Forms.Button load;
         private System.Windows.Forms.OpenFileDialog openF;
         private System.Windows.Forms.CheckBox masON;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox aicb;
+        private System.Windows.Forms.Button rungame;
+        private System.Windows.Forms.Button osave;
+        private System.Windows.Forms.Button disselect;
+        private System.Windows.Forms.Button selectChange;
         private System.Windows.Forms.DataGridViewTextBoxColumn _type;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_y;
@@ -523,8 +622,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _origin_y;
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
         private System.Windows.Forms.DataGridViewTextBoxColumn ai;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.ComboBox aicb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn objName;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox nametb;
     }
 }
 

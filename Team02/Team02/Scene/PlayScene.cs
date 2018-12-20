@@ -63,6 +63,8 @@ namespace Team02.Scene
         public override void LoadContent()
         {
             GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
+            //image = ImageManage.GetSImage("background_test.png");
+           // Refract = 0.3f;
             base.LoadContent();
         }
 
@@ -80,7 +82,6 @@ namespace Team02.Scene
                 backMenu.Update(gameTime);
                 return;
             }
-            Console.WriteLine(((Base_Stage)ShowStage).CharaManager.Enemys.Count);
             EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
 
             base.Update(gameTime);

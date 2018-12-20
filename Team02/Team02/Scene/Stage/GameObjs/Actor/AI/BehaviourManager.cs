@@ -63,7 +63,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             }
 
             if (target == null)
-                _BehaUpdate = null;
+                _BehaUpdate = SearchTarget;
             else
                 _BehaUpdate = BehaUpdate;
         }
@@ -123,6 +123,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         public void Update()
         {
             _BehaUpdate?.Invoke();
+        }
+
+        private void SearchTarget()
+        {
+            var tar = User.CharaManager.Hero;
+            if (tar != null)
+                Target = tar;
         }
 
         private void BehaUpdate()

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.Device;
 using InfinityGame.GameGraphics;
+using InfinityGame.Stage.StageObject;
 using Microsoft.Xna.Framework;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
@@ -56,6 +57,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             base_Stage.ResetStage();
             base.UKill();
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            base.CalCollision(obj);
         }
     }
 }

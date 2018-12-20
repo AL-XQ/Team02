@@ -33,5 +33,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             enemys.Add(enemy);
         }
+
+        public void Remove(Chara chara)
+        {
+            if (chara is Enemy e)
+            {
+                enemys.Remove(e);
+                return;
+            }
+            if (chara == hero)
+                Hero = null;
+        }
     }
 }

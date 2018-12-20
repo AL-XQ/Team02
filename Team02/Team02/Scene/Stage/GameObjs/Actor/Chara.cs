@@ -10,12 +10,16 @@ using InfinityGame.GameGraphics;
 using InfinityGame.Device;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage;
+using InfinityGame;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public abstract class Chara : GameObj
     {
+        private D_Void _Update;
+        private D_Void _LastUpdate;
+
         private int hp;
         private int mp;
         private int maxhp = 100;
@@ -24,11 +28,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private float rotationIncrement;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
+        private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
+        private Dictionary<string, object> objMemory = new Dictionary<string, object>();
         private Vector2 accel = Vector2.Zero;//質量を１と考え、加えた力がそのまま加速度になる
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private bool canJump = false;
+        private bool lastIsStrut = false;
+        private bool checkLastIsStrut = true;
         private bool isStrut = false;
+        private bool rotating = false;
         private Motion motion;
         private Bullet bullet;
         private GraChanger graChanger;
@@ -55,6 +64,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool IsStrut { get => isStrut; }
         public Bullet Bullet { get => bullet; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
+        public bool LastIsStrut { get => lastIsStrut; }
+        public bool CanJump { get => canJump; }
+        public Dictionary<string, float> DisSpeeds { get => disSpeeds; }
+        public bool Rotating { get => rotating; }
+        public Dictionary<string, object> ObjMemory { get => objMemory; }
+        public bool CheckLastIsStrut { get => checkLastIsStrut; set => checkLastIsStrut = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -70,6 +85,27 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             CrimpGroup = "chara";
         }
 
+        private void SetIsStrut(bool value)
+        {
+            isStrut = value;
+            SetCanJump(isStrut);
+        }
+
+        private void SetCanJump(bool value)
+        {
+            canJump = value;
+            DisJump();
+        }
+
+        private void SetGra(Vector2 value)
+        {
+            gra = value;
+            targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
+            rotating = true;
+            _Update += RotateToGra;
+            //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
+        }
+
         public override void Initialize()
         {
             gra = base_Stage.DefGra;
@@ -80,7 +116,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             hp = maxhp;
             mp = maxhp;
             Origin = ISpace.LCenter;
+            SetUpdate();
             base.Initialize();
+        }
+
+        private void SetUpdate()
+        {
+            _Update = null;
+            _Update += CheckStatus;
+            _Update += CalForce;
+            //_Update += RotateToGra;
+
+            _LastUpdate = null;
+            _LastUpdate += DisStrut;
         }
 
         public override void PreLoadContent()
@@ -96,52 +144,62 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            if (hp <= 0)
-                if (hp <= 0)
-                {
-                    Kill();
-                }
-            motion.CheckDire();
-            motion.CheckMotion();
-            CalForce();
-            RotateToGra();
+            _Update?.Invoke();
             base.Update(gameTime);
-
-            DisStrut();
+            _LastUpdate?.Invoke();
         }
 
-        public override void AfterUpdate(GameTime gameTime)
+        private void CheckStatus()
         {
-            base.AfterUpdate(gameTime);
-        }
-
-        public override void CalCollision(StageObj obj)
-        {
-            if (obj is Block)
+            if (hp <= 0)
             {
-                canJump = true;
+                Kill();
             }
-            base.CalCollision(obj);
+            if (speed.LengthSquared() >= 361)
+                Color = Color.Green;
+            else
+                Color = Color.White;
         }
 
         /// <summary>
-        /// 摩擦力により減速処理
+        /// 衝突判定の後で処理する
         /// </summary>
-        public void DisSpeed(float coeff)
+        /// <param name="gameTime"></param>
+        public override void AfterUpdate(GameTime gameTime)
+        {
+            motion.Update();
+            base.AfterUpdate(gameTime);
+        }
+
+        private void DisSpeed()
         {
             if (speed == Vector2.Zero)
                 return;
-            var dSpeed = speed * coeff;
-            speed -= dSpeed;
-            if (speed.LengthSquared() < 0.01f)
-                speed = Vector2.Zero;
+            foreach (var l in disSpeeds.Values)
+            {
+                var dSpeed = speed * l;
+                speed -= dSpeed;
+                if (speed.LengthSquared() < 0.01f)
+                {
+                    speed = Vector2.Zero;
+                    return;
+                }
+            }
+            disSpeeds.Clear();
         }
 
         public void DisStrut()
         {
-            isStrut = false;
-            canJump = false;
-            forces["strut"] = Vector2.Zero;
+            lastIsStrut = IsStrut;
+            checkLastIsStrut = true;
+            SetIsStrut(false);
+            if (!lastIsStrut)
+                forces["strut"] = Vector2.Zero;
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            base.CalCollision(obj);
         }
 
         /// <summary>
@@ -149,11 +207,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public void Strut()
         {
+            if (checkLastIsStrut && lastIsStrut)
+            {
+                SetIsStrut(true);
+                return;
+            }
             if (gra == Vector2.Zero)
                 return;
-            isStrut = true;
+            SetIsStrut(true);
             var gv = gra;
-            forces["strut"] = -gv;
+            forces["strut"] = -gv * 0.95f;//衝突させるため、0.95f出ないと、地面接触判定が不安定
             gv.Normalize();
             float dot = Vector2.Dot(speed, gv);
             Vector2 dg = gv * dot;//重力方向の速度
@@ -185,6 +248,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             return ve;
         }
 
+        /// <summary>
+        /// 自分のワールドベクトルをローカルに変換し、返す
+        /// </summary>
+        /// <param name="ve"></param>
+        /// <returns></returns>
+        public Vector2 VeWorldToLocal(Vector2 wve)
+        {
+            if (wve == Vector2.Zero)
+                return Vector2.Zero;
+            Vector2 ve = new Vector2(gra.Y * wve.X + gra.X * wve.Y, -(gra.X * wve.X - gra.Y * wve.Y));
+            ve.Normalize();
+            ve *= wve.Length();
+            return ve;
+        }
+
         private void ClearSpeed()
         {
             speed = Vector2.Zero;
@@ -204,6 +282,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 speed *= maxSpeed;
             }
             AddVelocity(speed, VeloParam.Run);
+            DisSpeed();
         }
 
         public void ResetGra()
@@ -221,7 +300,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             forces["jump"] = fg;
         }
 
-        public void DisJump()
+        private void DisJump()
         {
             forces["jump"] = Vector2.Zero;
         }
@@ -245,7 +324,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
-            //死亡したら各クラスの制御
+            CharaManager.Remove(this);
             base.UKill();
         }
 
@@ -254,21 +333,34 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         private void RotateToGra()
         {
+            rotationIncrement = FormatRota(targetRotation - Rotation) * 0.2f;
+            //これは毎回回転した後チェックする必要があるため
+            //SetGraに設定してしまうとずっと回転する可能性がある。
+            //ここに設定して回転する量を毎回新しく計算する
             Rotation += rotationIncrement;
 
-            if (Math.Abs(Rotation - targetRotation) < 0.01f)
+            if (Math.Abs(rotationIncrement) < 0.001f)
             {
                 rotationIncrement = 0;
                 Rotation = targetRotation;
+                _Update -= RotateToGra;
+                rotating = false;
             }
         }
 
-        private void SetGra(Vector2 value)
+        /// <summary>
+        /// 角度をフォーマットする±π以内に抑える
+        /// </summary>
+        /// <param name="rota"></param>
+        /// <returns></returns>
+        private float FormatRota(float rota)
         {
-            gra = value;
-            targetRotation = (float)Math.Atan2(value.Y, value.X) - MathHelper.ToRadians(90);
-            rotationIncrement = (targetRotation - Rotation) * 0.1f;
-
+            float pi = (float)Math.PI;
+            if (rota <= pi && rota >= -pi)//角度が±180度以内の場合そのままリターンする
+                return rota;
+            if (rota > pi)//角度が180度以上の場合-360度、Math.Atan2を使っているため、540度以上の角度は出ない
+                return rota - 2 * pi;
+            return rota + 2 * pi;//残りは角度が-180度以下の場合+360度、Math.Atan2を使っているため、-540度以上の角度は出ない
         }
 
         public override void Draw2(GameTime gameTime)

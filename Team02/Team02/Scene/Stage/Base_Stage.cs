@@ -55,6 +55,7 @@ namespace Team02.Scene.Stage
         {
             defGra = new Vector2(0, 0.5f);
             ClearStage();
+            charaManager.Initialize();
             mapCreator.MapRead(BinaryReader.ReadMap(map));
             base.Initialize();
         }
@@ -69,7 +70,6 @@ namespace Team02.Scene.Stage
         {
             base.LoadContent();
         }
-
 
         public override void Update(GameTime gameTime)
         {

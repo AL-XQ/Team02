@@ -32,7 +32,7 @@ namespace Team02.Scene.Stage
 
         public override void PreLoadContent()
         {
-            Map = "test";
+            Map = "map01";
 
 
             //Test

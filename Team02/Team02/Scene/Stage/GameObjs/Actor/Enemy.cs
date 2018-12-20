@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.Device;
 using InfinityGame.GameGraphics;
+using InfinityGame.Stage.StageObject;
 using Microsoft.Xna.Framework;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
@@ -73,6 +74,17 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 behaviourManager.Update();
             }
             base.Update(gameTime);
+        }
+
+        public override void CalCollision(StageObj obj)
+        {
+            if (obj is Enemy enemy)
+            {
+                Vector2 a = Speed * 0.5f;
+                enemy.Speed += a;
+                Speed -= a;
+            }
+            base.CalCollision(obj);
         }
     }
 }

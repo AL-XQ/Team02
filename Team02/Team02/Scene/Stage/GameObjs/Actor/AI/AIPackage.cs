@@ -23,7 +23,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            AIs.Add("JumpEnemy", behaviourManager);
+            AIs["JumpEnemy"] = behaviourManager;
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("runaway", 0);
@@ -32,7 +32,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            AIs.Add("RunAwayEnemy", behaviourManager);
+            AIs["RunAwayEnemy"] = behaviourManager;
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("movetowards", 0);
@@ -41,7 +41,17 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            AIs.Add("ChaseEnemy", behaviourManager);
+            AIs["ChaseEnemy"] = behaviourManager;
+
+            behaviourManager = new BehaviourManager();
+            behaviourManager.CreateBehaviour("movetowards", 0);
+            behaviourManager.AddBehaviour("movetowards", new MoveTowardsTarget(0.2f));
+            behaviourManager.AddBehaviour("movetowards", new Fly());
+            behaviourManager.AddCondition("movetowards", new DistanceBelowN(800));
+            behaviourManager.CreateBehaviour("stop", 1);
+            behaviourManager.AddBehaviour("stop", new StopMoving());
+            behaviourManager.AddCondition("stop", new DistanceOverN(1200));
+            AIs["TestEnemy1"] = behaviourManager;
         }
     }
 }

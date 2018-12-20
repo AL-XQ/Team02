@@ -45,39 +45,68 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
-                if (c.Speed.Length() >= 20&&c is Enemy)//テスト用の為length
+                if (c.Speed.LengthSquared() >= 361 && c is Enemy)
                 {
                     c.Hp -= 50;
                 }
-                c.DisSpeed(coeff);
-                if (CheckCharaOn(c))
+                DisCharaSpeed(c);
+                if (!c.IsStrut && CheckCharaOn(c))
                 {
+                    //テスト機能：キャラの重力をブロックにフィットする
+                    if (!c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
+                    {
+                        var newGra = GetEscVe(c);
+                        var gv = c.Gra;
+                        gv.Normalize();
+                        float dot = Vector2.Dot(c.Speed, gv);
+                        Vector2 dg = gv * dot;//重力方向の速度
+                        c.Speed -= dg;
+                        c.Gra = newGra;
+                        c.ObjMemory["block"] = this;
+                        c.CheckLastIsStrut = false;
+                    }
+                    //テスト機能：キャラの重力をブロックにフィットする
                     c.Strut();
                 }
             }
             base.CalCollision(obj);
         }
 
-        private bool CheckCharaOn(Chara c)
+        protected virtual void DisCharaSpeed(Chara c)
         {
-            if (c.Gra.LengthSquared() != 0)
+            c.DisSpeeds["block"] = coeff;
+        }
+
+        public Vector2 GetEscVe(Chara c)
+        {
+            ISpace check = c.ISpace.Copy();
+            check.Location += c.Gra;
+            if (ISpace is RectangleF rect)
             {
-                Line clink = new Line(c.ISpace.Center, ISpace.Center, ISpace.Center);
-                Vector2 check_I = Vector2.Zero;
-                for (int i = 0; i < 4; i++)
+                var index = rect.GetCenterIntersectLine(check);
+                if (index > -1)
                 {
-                    var s = (RectangleF)ISpace;
-                    bool ans;
-                    check_I = s.GetLine(i).Intersect(clink, out ans);
-                    if (ans)
-                        break;
+                    var escVe = rect.GetEscVe_Line(index);
+                    escVe.Normalize();
+                    escVe *= -c.Gra.Length();
+                    return escVe;
                 }
-                Vector2 disve = check_I - c.ISpace.Center;
-                Line lg = new Line(Vector2.Zero, c.Gra, VectorTools.Vertical(c.Gra));
-                Vector2Side check = lg.PointAtY(disve);
-                if (check == Vector2Side.Y_Plus)
-                    return false;
-                return true;
+            }
+            return Vector2.Zero;
+        }
+
+        public bool CheckCharaOn(Chara c)
+        {
+            if (c.Gra != Vector2.Zero)
+            {
+                ISpace check = c.ISpace.Copy();
+                check.Location += c.Gra;
+                if (ISpace.Intersects(check))
+                {
+                    var esc = ISpace.Escape(check);
+                    if (esc != Vector2.Zero)
+                        return true;
+                }
             }
             return false;
         }

@@ -24,7 +24,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara chara)
             {
-                chara.Kill();
+                chara.Hp -= 50;
             }
             base.CalCollision(obj);
         }

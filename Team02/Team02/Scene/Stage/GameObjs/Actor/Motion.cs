@@ -60,6 +60,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             chara.ImageName = images[dire][state];
         }
 
+        public void Update()
+        {
+            CheckDire();
+            CheckMotion();
+        }
+
         public void CheckDire()
         {
             if (chara.Speed == Vector2.Zero || chara.Gra == Vector2.Zero)
@@ -74,26 +80,27 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (side == Vector2Side.X_Minus)
                 SetDire(Direction.Right);
         }
-         public void CheckMotion()
+
+        public void CheckMotion()
         {
             if (!chara.IsStrut)
             {
                 Line a = new Line(Vector2.Zero, chara.Gra, VectorTools.Vertical(chara.Gra));
                 var b = a.PointAtY(chara.Speed);
-                
+
                 if (b == Vector2Side.Y_Minus)
                 {
                     SetState(MotionState.Fall);
                 }
                 else
-                SetState(MotionState.Jump);
+                    SetState(MotionState.Jump);
             }
             else
             {
-                Line a = new Line(Vector2.Zero, chara.Gra, VectorTools.Vertical(chara.Gra));
-                var b = a.PointAtX(chara.Speed);
-
-                if (b != Vector2Side.X_On)
+                /*Line a = new Line(Vector2.Zero, chara.Gra, VectorTools.Vertical(chara.Gra));
+                var b = a.PointAtX(chara.Speed);*/
+                var checkCoo = chara.Coordinate - chara.LastCoordinate;
+                if (/*b != Vector2Side.X_On && */checkCoo.LengthSquared() > 0.01f)
                 {
                     SetState(MotionState.Walk);
                 }
@@ -101,8 +108,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     SetState(MotionState.Normal);
             }
             return;
-            
         }
-
     }
 }

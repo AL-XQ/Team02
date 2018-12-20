@@ -14,6 +14,7 @@ using InfinityGame.Device.WindowsScreen;
 using InfinityGame.Device.KeyboardManage;
 using Team02.Scene;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
+using InfinityGame.Stage.StageObject;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -34,6 +35,10 @@ namespace Team02
         private InfinityGame.Element.Size tempScreen;
         private Load_Scene Load_Scene;
         private D_Void _Update;
+
+        private bool isRun = false;
+
+        public bool IsRun { get => isRun; }
 
 
         /// <summary>
@@ -80,6 +85,7 @@ namespace Team02
 
         protected void SystemInitialize()
         {
+            isRun = true;
             // この下にロジックを記述
             FirstInitialize();
             AfterInitialize();
@@ -96,6 +102,7 @@ namespace Team02
             gameRun.SetLoadScene(Load_Scene);
             Window.Title = GameTexts.GetText(title);
             AIPackage.Create();
+            Collision._MinSize = new Point(1024, 1024);
         }
 
         public void AfterInitialize()
@@ -210,6 +217,7 @@ namespace Team02
                 //graphicsDeviceManager.ToggleFullScreen();
             }
             gameRun.IsGameRun = false;
+            isRun = false;
             // while(gameRun.ov)
             base.OnExiting(sender, args);
         }
