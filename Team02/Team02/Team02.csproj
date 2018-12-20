@@ -104,6 +104,7 @@
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
     <Compile Include="Scene\UI\MainMenu.cs" />
+    <Compile Include="Scene\UI\TimerUI.cs" />
     <Compile Include="SeriVector2.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +167,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\cursor_normal.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\EnemyRateBack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\EnemyRateFront.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\Enemy_Test.png">
