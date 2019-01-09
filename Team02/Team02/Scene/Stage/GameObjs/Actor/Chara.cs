@@ -28,7 +28,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private int maxmp = 100;
         private float targetRotation;
         private float rotationIncrement;
-        private float damageSpeed = 15;
+        private float damageSpeed = 100;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
@@ -73,6 +73,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool Rotating { get => rotating; }
         public Dictionary<string, object> ObjMemory { get => objMemory; }
         public bool CheckLastIsStrut { get => checkLastIsStrut; set => checkLastIsStrut = value; }
+        public float DamageSpeed { get => damageSpeed; set => damageSpeed = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -218,13 +219,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Block)
-            {
-                if (Speed.LengthSquared() >= damageSpeed * damageSpeed)
-                {
-                    Hp -= 50;
-                }
-            }
+            
             base.CalCollision(obj);
         }
 
