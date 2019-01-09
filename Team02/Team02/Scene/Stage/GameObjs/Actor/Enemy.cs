@@ -36,6 +36,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             }
         }
 
+        public override void Initialize()
+        {
+            DamageSpeed = 19f;
+            base.Initialize();
+        }
+
         public override void LoadContent()
         {
             base.LoadContent();

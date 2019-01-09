@@ -44,6 +44,13 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
+            if (obj is Chara oc)
+            {
+                if (oc.Speed.LengthSquared() >= oc.DamageSpeed * oc.DamageSpeed)
+                {
+                    oc.Hp -= 50;
+                }
+            }
             if (obj is IForce f)
             {
                 DisCharaSpeed(f);
