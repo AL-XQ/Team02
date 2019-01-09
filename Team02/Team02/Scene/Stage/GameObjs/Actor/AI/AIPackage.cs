@@ -44,14 +44,24 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             AIs["ChaseEnemy"] = behaviourManager;
 
             behaviourManager = new BehaviourManager();
-            behaviourManager.CreateBehaviour("movetowards", 0);
-            behaviourManager.AddBehaviour("movetowards", new MoveTowardsTarget(0.2f));
-            behaviourManager.AddBehaviour("movetowards", new Fly());
-            behaviourManager.AddCondition("movetowards", new DistanceBelowN(800));
+            behaviourManager.CreateBehaviour("flyChase", 0);
+            behaviourManager.AddBehaviour("flyChase", new MoveTowardsTarget(0.2f));
+            behaviourManager.AddBehaviour("flyChase", new Fly());
+            behaviourManager.AddCondition("flyChase", new DistanceBelowN(800));
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
-            AIs["TestEnemy1"] = behaviourManager;
+            AIs["FlyEnemy"] = behaviourManager;
+
+            behaviourManager = new BehaviourManager();
+            behaviourManager.CreateBehaviour("jumpChase", 0);
+            behaviourManager.AddBehaviour("jumpChase", new MoveTowardsTarget(0.1f));
+            behaviourManager.AddBehaviour("jumpChase", new Jump(5));
+            behaviourManager.AddCondition("jumpChase", new DistanceBelowN(800));
+            behaviourManager.CreateBehaviour("stop", 1);
+            behaviourManager.AddBehaviour("stop", new StopMoving());
+            behaviourManager.AddCondition("stop", new DistanceOverN(1200));
+            AIs["JumpChaseEnemy"] = behaviourManager;
         }
     }
 }
