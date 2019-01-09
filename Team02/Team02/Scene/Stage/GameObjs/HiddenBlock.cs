@@ -13,18 +13,17 @@ using Team02.Scene.Stage.GameObjs.Actor;
 
 namespace Team02.Scene.Stage.GameObjs
 {
-    public class HiddenBlock : LoopedBlock
+    public class HiddenBlock : Block
     {
         private bool isPush;
         public HiddenBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            IsCrimp = true;
             isPush = false;
         }
 
         public HiddenBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
-            IsCrimp = true;
+            isPush = false;
         }
 
         public override void CalCollision(StageObj obj)
@@ -34,14 +33,6 @@ namespace Team02.Scene.Stage.GameObjs
                 isPush = true;
             }
             base.CalCollision(obj);
-        }
-        public override void PreLoadContent()
-        {
-            base.PreLoadContent();
-        }
-        public override void LoadContent()
-        {
-            base.LoadContent();
         }
 
         protected override void SetImage()

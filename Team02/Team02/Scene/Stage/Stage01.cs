@@ -20,6 +20,7 @@ namespace Team02.Scene.Stage
     {
         private Enemy testenemy;
         private HiddenBlock testbutton;
+        private MoveBlock testmove;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(2000000, 2000000);
@@ -34,8 +35,13 @@ namespace Team02.Scene.Stage
                 UnitedSize = new Size(5, 5),
                 Coordinate = new Vector2(500, 500),
             };
-
+            testmove = new MoveBlock(this, "mb")
+            {
+                UnitedSize = new Size(2, 3),
+                Coordinate = new Vector2(1500, 500)
+            };
             testbutton.Create();
+            testmove.Create();
         }
 
         public override void PreLoadContent()
