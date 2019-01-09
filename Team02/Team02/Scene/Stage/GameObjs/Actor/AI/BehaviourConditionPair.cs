@@ -87,5 +87,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
         {
             return new BehaviourConditionPair(this);
         }
+
+        public void OnExit()
+        {
+            behaviours.ForEach(b => b.OnExit());
+        }
     }
 }

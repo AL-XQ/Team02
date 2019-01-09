@@ -45,8 +45,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("flyChase", 0);
-            behaviourManager.AddBehaviour("flyChase", new MoveTowardsTarget(0.2f));
-            behaviourManager.AddBehaviour("flyChase", new Fly());
+            behaviourManager.AddBehaviour("flyChase", new BehaviourBase[] { new Fly(), new MoveTowardsTarget(0.2f) });
             behaviourManager.AddCondition("flyChase", new DistanceBelowN(800));
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
@@ -55,13 +54,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
             behaviourManager = new BehaviourManager();
             behaviourManager.CreateBehaviour("jumpChase", 0);
-            behaviourManager.AddBehaviour("jumpChase", new MoveTowardsTarget(0.1f));
-            behaviourManager.AddBehaviour("jumpChase", new Jump(5));
+            behaviourManager.AddBehaviour("jumpChase", new BehaviourBase[] { new Jump(5), new MoveTowardsTarget(0.1f) });
             behaviourManager.AddCondition("jumpChase", new DistanceBelowN(800));
             behaviourManager.CreateBehaviour("stop", 1);
             behaviourManager.AddBehaviour("stop", new StopMoving());
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
             AIs["JumpChaseEnemy"] = behaviourManager;
+
+            behaviourManager = new BehaviourManager();
+            behaviourManager.CreateBehaviour("chaseTarget", 0);
+            behaviourManager.AddBehaviour("chaseTarget", new MoveTowardsTarget(0.3f));
+            behaviourManager.AddCondition("chaseTarget", new DistanceBelowN(400));
+            behaviourManager.CreateBehaviour("stop", 1);
+            behaviourManager.AddBehaviour("stop", new BehaviourBase[] { new StopMoving(), new Jump(10) });
+            behaviourManager.AddCondition("stop", new DistanceOverN(600));
+            AIs["IdleJumpEnemy"] = behaviourManager;
         }
     }
 }

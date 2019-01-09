@@ -44,5 +44,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         {
             return false;
         }
+
+        public override void OnExit()
+        {
+            
+        }
     }
 }

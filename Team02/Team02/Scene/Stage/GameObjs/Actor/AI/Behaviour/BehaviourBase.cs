@@ -36,5 +36,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         public abstract void Action();
 
         public abstract BehaviourBase Copy();
+
+        public abstract void OnExit();
     }
 }

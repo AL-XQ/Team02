@@ -154,6 +154,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             {
                 if (bcPairs[name].CheckCondition())
                 {
+                    bcPairs[currentBehaviour].OnExit();
                     currentBehaviour = name;
                 }
             }

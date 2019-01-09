@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.Xna.Framework;
+
 namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 {
     public class Fly : BehaviourBase
@@ -34,6 +36,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         public override BehaviourBase Copy()
         {
             return new Fly(this);
+        }
+
+        public override void OnExit()
+        {
+            User.Speed = Vector2.Zero;
         }
     }
 }
