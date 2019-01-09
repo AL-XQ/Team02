@@ -24,13 +24,16 @@ namespace Team02.Scene.UI
         private Label numberLa;
         private int enemyCnt;
         private int maxEnemyCnt;
+        private bool isClear;
 
         public int EnemyCnt { get => enemyCnt; set => enemyCnt = value; }
         public int MaxEnemyCnt { get => maxEnemyCnt; set => maxEnemyCnt = value; }
+        public bool IsClear { get => isClear; set => isClear = value; }
 
         public EnemyCountUI(BaseDisplay parent) : base(parent)
         {
             playScene = (PlayScene)parent;
+            isClear = false;
         }
 
         public override void PreLoadContent()
@@ -57,6 +60,10 @@ namespace Team02.Scene.UI
         public override void Update(GameTime gameTime)
         {
             numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
+            if (enemyCnt == 0)
+            {
+                isClear = true;
+            }
             base.Update(gameTime);
         }
 
