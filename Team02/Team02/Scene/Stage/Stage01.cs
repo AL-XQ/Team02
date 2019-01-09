@@ -19,6 +19,7 @@ namespace Team02.Scene.Stage
     public class Stage01 : Base_Stage
     {
         private Enemy testenemy;
+        private HiddenBlock testbutton;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(2000000, 2000000);
@@ -28,6 +29,13 @@ namespace Team02.Scene.Stage
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
             base.Initialize();
+            testbutton = new HiddenBlock(this, "adfa")
+            {
+                UnitedSize = new Size(5, 5),
+                Coordinate = new Vector2(500, 500),
+            };
+
+            testbutton.Create();
         }
 
         public override void PreLoadContent()
@@ -39,6 +47,7 @@ namespace Team02.Scene.Stage
             testenemy = new Enemy(this, "enemy");
             testenemy.Coordinate = new Vector2(800, 400);
             testenemy.Size = new Size(64, 64);
+
             //Test
 
 
