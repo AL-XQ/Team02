@@ -70,6 +70,12 @@
     <Compile Include="Scene\Stage\GameObjs\HiddenBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
     <Compile Include="Scene\Stage\GameObjs\MoveBlock.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\AI\HideEnemy.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\IForce_Template.cs" />
+    <Compile Include="Scene\Stage\GameObjs\API\IGraChange.cs" />
+    <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
+    <Compile Include="Scene\Stage\GameObjs\API\IForce.cs" />
+    <Compile Include="Scene\Stage\GameObjs\API\ISpeed.cs" />
     <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
     <Compile Include="Scene\Stage\GameObjs\GrvBlock.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
