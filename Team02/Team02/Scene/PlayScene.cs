@@ -30,11 +30,13 @@ namespace Team02.Scene
         private BackMenu backMenu;
         private LineUI lineUI;
         private EnemyCountUI enemyCntUI;
+        private TimerUI timerUI;
         
         public Player Player { get => player; }
         public LineUI LineUI { get => lineUI; }
 
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
+        public TimerUI TimerUI { get => timerUI; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -43,6 +45,7 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
+            EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
             base.Initialize();
         }
 
@@ -52,6 +55,7 @@ namespace Team02.Scene
             backMenu = new BackMenu(this);
             lineUI = new LineUI(this);
             enemyCntUI = new EnemyCountUI(this);
+            timerUI = new TimerUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
             base.PreLoadContent();

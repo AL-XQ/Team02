@@ -17,46 +17,52 @@ using Team02.Scene.Stage.GameObjs;
 
 namespace Team02.Scene.UI
 {
-    public class EnemyCountUI :Panel
+    public class TimerUI : Panel
     {
         private PlayScene playScene;
         private Panel pa;
-        private int enemyCnt;
-        private int maxEnemyCnt;
+        private float currentTime;
+        private float limitTime;
 
-        public int EnemyCnt { get => enemyCnt; set => enemyCnt = value; }
-        public int MaxEnemyCnt { get => maxEnemyCnt; set => maxEnemyCnt = value; }
-
-        public EnemyCountUI(BaseDisplay parent) : base(parent)
+        public float CurrentTime { get => currentTime; set => currentTime = value; }
+        public float LimitTime { get => limitTime; set => limitTime = value; }
+        public TimerUI(BaseDisplay parent) : base(parent)
         {
             playScene = (PlayScene)parent;
-            enemyCnt = 0;
-            maxEnemyCnt = 0;
         }
 
         public override void PreLoadContent()
         {
             pa = new Panel(this);
-            pa.Location = Point.Zero;
-            Location = Point.Zero;
+            pa.Location = new Point(600, 0);
+            Location = new Point(600,0);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("EnemyRateFront.png");
             pa.Image = ImageManage.GetSImage("EnemyRateBack.png");
+            pa.Size = Size.Zero;
+            Image = ImageManage.GetSImage("EnemyRateFront.png");
+            SetTime(60);
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            currentTime = Math.Max(currentTime - 1.0f, 0.0f);
             base.Update(gameTime);
+        }
+
+        public void SetTime(int time)
+        {
+            limitTime = time * 60f;
+            currentTime = limitTime;
         }
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate = 1 - enemyCnt / maxEnemyCnt;
+            float rate = 1 - currentTime / limitTime;
             spriteBatch.Draw(pa.Image.ImageT[iTIndex], pa.Location.ToVector2(), Color.White);
             spriteBatch.Draw(image.ImageT[iTIndex], Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
         }
