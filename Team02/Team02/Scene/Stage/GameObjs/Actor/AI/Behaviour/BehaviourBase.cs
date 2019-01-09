@@ -11,7 +11,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     public abstract class BehaviourBase
     {
         private Chara user;
-        public Chara User { get => user; set => user = value; }
+        public Chara User { get => user; set => SetUser(value); }
 
         private Chara target;
         public Chara Target { get => target; set => target = value; }
@@ -23,6 +23,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
             User = sample.user;
             Target = sample.Target;
         }
+
+        private void SetUser(Chara value)
+        {
+            if (user != null)
+                user._GraChangerChanged -= CheckGraChanger;
+            user = value;
+            if (user != null)
+                user._GraChangerChanged += CheckGraChanger;
+        }
+
+        protected virtual void CheckGraChanger()
+        {
+            
+        }
+
 
         /// <summary>
         /// 行動が実行中かどうか返します
