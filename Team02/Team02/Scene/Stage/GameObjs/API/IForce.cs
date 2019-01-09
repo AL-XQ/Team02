@@ -20,6 +20,7 @@ namespace Team02.Scene.Stage.GameObjs.API
         void ResetGra();
         void DisStrut();
         void Strut();
+        void ResetMovePriority();
         Dictionary<string, Vector2> Forces { get; }
         Dictionary<string, float> DisSpeeds { get; }
     }

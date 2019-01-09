@@ -9,6 +9,8 @@ using InfinityGame.Stage.StageObject;
 using InfinityGame.Device;
 using Microsoft.Xna.Framework;
 using InfinityGame;
+using Team02.Scene.Stage.GameObjs.API;
+using InfinityGame.Element;
 
 namespace Team02.Scene.Stage.GameObjs
 {
@@ -86,6 +88,31 @@ namespace Team02.Scene.Stage.GameObjs
             _Update?.Invoke();
             base.Update(gameTime);
             _LastUpdate?.Invoke();
+        }
+
+        public virtual bool CheckIForceOn(IForce c)
+        {
+            if (c.Gra != Vector2.Zero)
+            {
+                ISpace check = c.ISpace.Copy();
+                if (ISpace.Intersects(check))
+                {
+                    var esc = ISpace.Escape(check);
+                    check.Location += esc;
+                }
+                check.Location += c.Gra;
+                if (this is IForce tf)
+                {
+                    check.Location += tf.Gra;
+                }
+                if (ISpace.Intersects(check))
+                {
+                    var esc = ISpace.Escape(check);
+                    if (esc != Vector2.Zero)
+                        return true;
+                }
+            }
+            return false;
         }
     }
 }

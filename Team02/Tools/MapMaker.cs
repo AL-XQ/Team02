@@ -33,8 +33,12 @@ namespace Tools
         {
             {"Block",typeof(Block) },
             {"KillBlock",typeof(KillBlock) },
+            {"GraBlock",typeof(GraBlock) },
+            {"HiddenBlock",typeof(HiddenBlock) },
+            {"MoveBlock",typeof(MoveBlock) },
             {"Hero",typeof(Hero) },
             {"Enemy",typeof(Enemy) },
+            {"HideEnemy",typeof(HideEnemy) },
         };
 
         public MapMaker()
@@ -222,7 +226,8 @@ namespace Tools
 
         private void type_TextChanged(object sender, EventArgs e)
         {
-            if (type.Text == "Enemy")
+            var tp = Types[type.Text];
+            if (typeof(Enemy).IsAssignableFrom(tp))
             {
                 aicb.Enabled = true;
             }

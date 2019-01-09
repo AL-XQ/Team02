@@ -21,13 +21,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Enemy(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             CharaManager.Add(this);
-            MovePriority = 6;
         }
 
         public Enemy(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
             CharaManager.Add(this);
-            MovePriority = 6;
             if (args.ContainsKey("ai"))
             {
                 behaviourManager = AIPackage.AIs[(string)args["ai"]].Copy();

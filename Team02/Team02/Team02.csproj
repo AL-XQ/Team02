@@ -70,8 +70,7 @@
     <Compile Include="Scene\Stage\GameObjs\HiddenBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
     <Compile Include="Scene\Stage\GameObjs\MoveBlock.cs" />
-    <Compile Include="Scene\Stage\GameObjs\Actor\AI\HideEnemy.cs" />
-    <Compile Include="Scene\Stage\GameObjs\Actor\IForce_Template.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\HideEnemy.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\IGraChange.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\IForce.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\ISpeed.cs" />
@@ -199,19 +198,28 @@
     <Content Include="Texture\AutoLoad\messagebox.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\Player_Test.png">
+    <Content Include="Texture\AutoLoad\player_fall_L.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\Player_Test_Left.png">
+    <Content Include="Texture\AutoLoad\player_fall_R.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\state_test_fall.png">
+    <Content Include="Texture\AutoLoad\player_jump_L.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\state_test_jump.png">
+    <Content Include="Texture\AutoLoad\player_jump_R.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\state_test_walk.png">
+    <Content Include="Texture\AutoLoad\player_normal_L.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\player_normal_R.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\player_walk_L.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\player_walk_R.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\window.png">

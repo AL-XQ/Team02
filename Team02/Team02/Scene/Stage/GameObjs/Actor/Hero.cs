@@ -41,17 +41,17 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Player_Test.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "state_test_fall.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "state_test_jump.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "state_test_walk.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Player_Test.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Player_Test_Left.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "state_test_fall.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "state_test_jump.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "state_test_walk.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Player_Test.png";
-            ImageName = "Player_Test.png";
+            Motion.Images[Direction.Right][MotionState.Normal] = "player_normal_R.png";
+            Motion.Images[Direction.Right][MotionState.Fall] = "player_fall_R.png";
+            Motion.Images[Direction.Right][MotionState.Jump] = "player_jump_R.png";
+            Motion.Images[Direction.Right][MotionState.Walk] = "player_walk_R.png";
+            Motion.Images[Direction.Right][MotionState.Float] = "player_fall_R.png";
+            Motion.Images[Direction.Left][MotionState.Normal] = "player_normal_L.png";
+            Motion.Images[Direction.Left][MotionState.Fall] = "player_fall_L.png";
+            Motion.Images[Direction.Left][MotionState.Jump] = "player_jump_L.png";
+            Motion.Images[Direction.Left][MotionState.Walk] = "player_walk_L.png";
+            Motion.Images[Direction.Left][MotionState.Float] = "player_fall_L.png";
+            ImageName = "player_normal_R.png";
         }
 
         public override void Update(GameTime gameTime)
