@@ -24,15 +24,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            var ve = new Vector2(-speed, 0);
-            ve = User.GetVeOnGra(ve);
-            var check = User.Coordinate + ve;
-            var checkL = (check - Target.Coordinate).LengthSquared() - (User.Coordinate - Target.Coordinate).LengthSquared();
-            if(checkL < 0)
+            if (User.GraChanger == null)
             {
-                ve = -ve;
+                var ve = new Vector2(-speed, 0);
+                ve = User.GetVeOnGra(ve);
+                var check = User.Coordinate + ve;
+                var checkL = (check - Target.Coordinate).LengthSquared() - (User.Coordinate - Target.Coordinate).LengthSquared();
+                if (checkL < 0)
+                {
+                    ve = -ve;
+                }
+                User.Forces["aimove"] = ve;
             }
-            User.Forces["aimove"] = ve;
         }
 
         public override BehaviourBase Copy()

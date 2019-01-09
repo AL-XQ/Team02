@@ -103,7 +103,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
             rotating = true;
             _Update += RotateToGra;
-            //rotationIncrement = FormatRota(targetRotation - Rotation) * 0.1f;ここに書いたら不具合が起こる
         }
 
         public override void Initialize()
@@ -125,7 +124,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             _Update = null;
             _Update += CheckStatus;
             _Update += CalForce;
-            //_Update += RotateToGra;
 
             _LastUpdate = null;
             _LastUpdate += DisStrut;
