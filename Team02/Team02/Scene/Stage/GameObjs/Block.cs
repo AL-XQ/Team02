@@ -45,10 +45,6 @@ namespace Team02.Scene.Stage.GameObjs
         {
             if (obj is Chara c)
             {
-                if (c.Speed.LengthSquared() >= 361 && c is Enemy)
-                {
-                    c.Hp -= 50;
-                }
                 DisCharaSpeed(c);
                 if (!c.IsStrut && CheckCharaOn(c))
                 {
@@ -95,7 +91,7 @@ namespace Team02.Scene.Stage.GameObjs
             return Vector2.Zero;
         }
 
-        public bool CheckCharaOn(Chara c)
+        public virtual bool CheckCharaOn(Chara c)
         {
             if (c.Gra != Vector2.Zero)
             {

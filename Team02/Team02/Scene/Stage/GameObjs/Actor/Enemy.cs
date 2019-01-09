@@ -38,16 +38,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void LoadContent()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Enemy_Test.png";
             base.LoadContent();
         }
 
@@ -59,6 +49,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
+            Motion.Images[Direction.Right][MotionState.Normal] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Fall] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Jump] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Walk] = "Enemy_Test.png";
+            Motion.Images[Direction.Right][MotionState.Float] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Normal] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Fall] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Jump] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Walk] = "Enemy_Test.png";
+            Motion.Images[Direction.Left][MotionState.Float] = "Enemy_Test.png";
             ImageName = "messagebox.png";
         }
 

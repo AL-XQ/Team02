@@ -10,6 +10,7 @@ using InfinityGame.Element;
 using Microsoft.Xna.Framework;
 
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Scene.Stage.GameObjs.API;
 
 namespace Team02.Scene.Stage.GameObjs
 {
@@ -90,11 +91,11 @@ namespace Team02.Scene.Stage.GameObjs
 
                 foreach (var l in list)
                 {
-                    if (l is Chara c)
+                    if (l is IGraChange gc)
                     {
-                        graC.Charas.Add(c);
-                        c.Color = Color.Pink;
-                        c.GraChanger = graC;
+                        graC.Objs.Add(gc);
+                        gc.Color = Color.Pink;
+                        gc.GraChanger = graC;
                     }
                 }
                 Kill();
