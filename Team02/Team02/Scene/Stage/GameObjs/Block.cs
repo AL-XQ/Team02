@@ -9,6 +9,7 @@ using InfinityGame.Stage.StageObject;
 using InfinityGame.Element;
 
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Scene.Stage.GameObjs.API;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +25,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             IsCrimp = true;
             BeMove = false;
-            MovePriority = 10;
+            MovePriority = 4;
             CrimpGroup = "block";
         }
 
@@ -32,7 +33,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             IsCrimp = true;
             BeMove = false;
-            MovePriority = 10;
+            MovePriority = 4;
             CrimpGroup = "block";
         }
 
@@ -43,17 +44,12 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Chara c)
+            if (obj is IForce f)
             {
-                if (c.Speed.LengthSquared() >= 361 && c is Enemy)
+                DisCharaSpeed(f);
+                if (!f.IsStrut && CheckIForceOn(f))
                 {
-                    c.Hp -= 50;
-                }
-                DisCharaSpeed(c);
-                if (!c.IsStrut && CheckCharaOn(c))
-                {
-                    //テスト機能：キャラの重力をブロックにフィットする
-                    if (!c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
+                    if (f is Chara c && !c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
                     {
                         var newGra = GetEscVe(c);
                         var gv = c.Gra;
@@ -65,14 +61,13 @@ namespace Team02.Scene.Stage.GameObjs
                         c.ObjMemory["block"] = this;
                         c.CheckLastIsStrut = false;
                     }
-                    //テスト機能：キャラの重力をブロックにフィットする
-                    c.Strut();
+                    f.Strut();
                 }
             }
             base.CalCollision(obj);
         }
 
-        protected virtual void DisCharaSpeed(Chara c)
+        protected virtual void DisCharaSpeed(IForce c)
         {
             c.DisSpeeds["block"] = coeff;
         }
@@ -95,7 +90,7 @@ namespace Team02.Scene.Stage.GameObjs
             return Vector2.Zero;
         }
 
-        public bool CheckCharaOn(Chara c)
+        public virtual bool CheckIForceOn(IForce c)
         {
             if (c.Gra != Vector2.Zero)
             {

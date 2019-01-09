@@ -8,11 +8,15 @@ using InfinityGame.Stage.StageObject;
 
 using InfinityGame.Device;
 using Microsoft.Xna.Framework;
+using InfinityGame;
 
 namespace Team02.Scene.Stage.GameObjs
 {
     public abstract class GameObj : StageObj
     {
+        protected D_Void _Update;
+        protected D_Void _LastUpdate;
+
         private string imageName = "";
         protected Base_Stage base_Stage;
 
@@ -79,7 +83,9 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void Update(GameTime gameTime)
         {
+            _Update?.Invoke();
             base.Update(gameTime);
+            _LastUpdate?.Invoke();
         }
     }
 }

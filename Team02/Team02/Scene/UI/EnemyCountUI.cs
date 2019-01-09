@@ -20,7 +20,8 @@ namespace Team02.Scene.UI
     public class EnemyCountUI :Panel
     {
         private PlayScene playScene;
-        private Panel pa;
+        private Panel frontPa;
+        private Label numberLa;
         private int enemyCnt;
         private int maxEnemyCnt;
 
@@ -30,35 +31,40 @@ namespace Team02.Scene.UI
         public EnemyCountUI(BaseDisplay parent) : base(parent)
         {
             playScene = (PlayScene)parent;
-            enemyCnt = 0;
-            maxEnemyCnt = 0;
         }
 
         public override void PreLoadContent()
         {
-            pa = new Panel(this);
-            pa.Location = Point.Zero;
             Location = Point.Zero;
+            frontPa = new Panel(this);
+            frontPa.Location = Location;
+            numberLa = new Label(this);
+            numberLa.BDText.ForeColor = System.Drawing.Color.Red;
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             image = ImageManage.GetSImage("EnemyRateFront.png");
-            pa.Image = ImageManage.GetSImage("EnemyRateBack.png");
+            Size = new Size(image.Size.Width, image.Size.Height);
+            frontPa.Image = ImageManage.GetSImage("EnemyRateBack.png");
+            frontPa.Size = new Size(frontPa.Image.Size.Width, frontPa.Image.Size.Height);
+            numberLa.Location = new Point(0, Size.Height);
+            frontPa.Visible = false;
             base.LoadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
             base.Update(gameTime);
         }
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate = 1 - enemyCnt / maxEnemyCnt;
-            spriteBatch.Draw(pa.Image.ImageT[iTIndex], pa.Location.ToVector2(), Color.White);
-            spriteBatch.Draw(image.ImageT[iTIndex], Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
+            float rate = (float)enemyCnt / maxEnemyCnt;
+            spriteBatch.Draw(Image.ImageT[iTIndex], Location.ToVector2(), Color.White);
+            spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
         }
     }
 }

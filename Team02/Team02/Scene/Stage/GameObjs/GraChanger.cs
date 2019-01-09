@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Scene.Stage.GameObjs.API;
 
 using InfinityGame.Device;
 using InfinityGame.Element;
@@ -18,7 +19,7 @@ namespace Team02.Scene.Stage.GameObjs
         private Base_Stage stage;
         private Vector2 center;
         private bool isOver = false;
-        private List<Chara> charas = new List<Chara>();
+        private List<IGraChange> objs = new List<IGraChange>();
         private Vector2 gra;
         private int overTime = -1;
         private int killTime = 180;
@@ -26,7 +27,7 @@ namespace Team02.Scene.Stage.GameObjs
         public static SImage ControlC;
 
         public bool IsOver { get => isOver; }
-        public List<Chara> Charas { get => charas; }
+        public List<IGraChange> Objs { get => objs; }
         public Vector2 Gra { get => gra; set => gra = value; }
         public bool Enable { get => enable; }
         public Vector2 Center { get => center; set => center = value; }
@@ -44,7 +45,7 @@ namespace Team02.Scene.Stage.GameObjs
                 return;
             enable = true;
             overTime = 180;
-            foreach (var l in charas)
+            foreach (var l in objs)
             {
                 l.Gra = gra;
             }
@@ -76,7 +77,7 @@ namespace Team02.Scene.Stage.GameObjs
                 killTime--;
                 return;
             }
-            foreach (var l in charas)
+            foreach (var l in objs)
             {
                 if (l.GraChanger != null && l.GraChanger.killTime == 0)
                 {
@@ -96,7 +97,7 @@ namespace Team02.Scene.Stage.GameObjs
                 overTime--;
                 return;
             }
-            foreach (var l in charas)
+            foreach (var l in objs)
             {
                 if (l.GraChanger != null && l.GraChanger.overTime == 0)
                 {
@@ -106,13 +107,14 @@ namespace Team02.Scene.Stage.GameObjs
                 }
             }
             Kill();
+            
         }
 
         public void Kill()
         {
             isOver = true;
             stage = null;
-            charas.Clear();
+            objs.Clear();
         }
     }
 }
