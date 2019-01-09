@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 
+using InfinityGame.Element;
+
 namespace Team02.Scene.Stage.GameObjs.API
 {
     public interface IForce : ISpeed
@@ -14,6 +16,7 @@ namespace Team02.Scene.Stage.GameObjs.API
         bool IsStrut { get; }
         bool LastIsStrut { get; }
         bool CheckLastIsStrut { get; set; }
+        ISpace ISpace { get; }
         void ResetGra();
         void DisStrut();
         void Strut();

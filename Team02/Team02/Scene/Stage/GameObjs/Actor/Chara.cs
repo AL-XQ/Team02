@@ -18,11 +18,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public abstract class Chara : GameObj, IForce, IGraChange
     {
-        private D_Void _Update;
-        private D_Void _LastUpdate;
-
-        private D_Void _Damage;
-        private D_Void _Healing;
+        public D_Void _Damage;
+        public D_Void _Healing;
+        public D_Void _GraChangerChanged;
 
         private int hp;
         private int mp;
@@ -30,7 +28,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private int maxmp = 100;
         private float targetRotation;
         private float rotationIncrement;
-        private float damageSpeed = 19;
+        private float damageSpeed = 15;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
@@ -68,7 +66,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         /// </summary>
         public bool IsStrut { get => isStrut; }
         public Bullet Bullet { get => bullet; }
-        public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
+        public GraChanger GraChanger { get => graChanger; set => SetGraChanger(value); }
         public bool LastIsStrut { get => lastIsStrut; }
         public bool CanJump { get => canJump; }
         public Dictionary<string, float> DisSpeeds { get => disSpeeds; }
@@ -88,6 +86,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             MovePriority = 5;
             CrimpGroup = "chara";
+        }
+
+        private void SetGraChanger(GraChanger value)
+        {
+            graChanger = value;
+            _GraChangerChanged?.Invoke();
         }
 
         private void SetHp(int value)
@@ -161,9 +165,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            _Update?.Invoke();
             base.Update(gameTime);
-            _LastUpdate?.Invoke();
         }
 
         private void CheckStatus()

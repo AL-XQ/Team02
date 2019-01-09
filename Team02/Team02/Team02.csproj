@@ -76,7 +76,7 @@
     <Compile Include="Scene\Stage\GameObjs\API\IForce.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\ISpeed.cs" />
     <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
-    <Compile Include="Scene\Stage\GameObjs\GrvBlock.cs" />
+    <Compile Include="Scene\Stage\GameObjs\GraBlock.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />

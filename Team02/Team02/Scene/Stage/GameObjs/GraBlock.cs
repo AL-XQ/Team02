@@ -1,32 +1,25 @@
-﻿#if DEBUG
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfinityGame;
+
+using InfinityGame.GameGraphics;
+using InfinityGame.Stage.StageObject;
 using InfinityGame.Element;
-using InfinityGame.Stage;
+
+using Team02.Scene.Stage.GameObjs.Actor;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+
 using Team02.Scene.Stage.GameObjs.API;
+using InfinityGame.Stage;
 
-namespace Team02.Scene.Stage.GameObjs.Actor
+namespace Team02.Scene.Stage.GameObjs
 {
-    public abstract class IForce_Template : IGraChange
+    public class GraBlock : Block, IGraChange
     {
-        #region コピーしない内容
-        private Base_Stage base_Stage;
-        public Color Color { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public abstract void AddVelocity(Vector2 speed, VeloParam vp);
-        private D_Void _Update;
-        private D_Void _LastUpdate;
-        public ISpace ISpace => throw new NotImplementedException();
-        #endregion
-
-        #region コピーする内容
-        #region フィールド
-
-
         private Vector2 gra = Vector2.Zero;
         private Vector2 accel = Vector2.Zero;
         private bool isStrut = false;
@@ -51,9 +44,29 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public Vector2 Speed { get => speed; set => speed = value; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
-        #endregion フィールド
 
-        #region メソッド
+        public GraBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
+        {
+            CrimpGroup = "";
+            BeMove = true;
+        }
+
+        public GraBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+        {
+            CrimpGroup = "";
+            BeMove = true; ;
+        }
+
+        public override void Initialize()
+        {
+            gra = base_Stage.DefGra;
+            forces.Clear();
+            accel = Vector2.Zero;
+            speed = Vector2.Zero;
+            maxSpeed = 20;
+            SetUpdate();
+            base.Initialize();
+        }
 
         private void SetIsStrut(bool value)
         {
@@ -179,22 +192,5 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             _LastUpdate = null;
             _LastUpdate += DisStrut;
         }
-        #endregion メソッド
-        #endregion コぴーする内容
-        #region 追加する内容
-        //Initializeの中追加
-        public void Initialize()
-        {
-            //この以下追加
-            gra = base_Stage.DefGra;
-            forces.Clear();
-            accel = Vector2.Zero;
-            speed = Vector2.Zero;
-            maxSpeed = 20;
-            SetUpdate();
-            //この上追加
-        }
-        #endregion 追加する内容
     }
 }
-#endif
