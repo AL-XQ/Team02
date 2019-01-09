@@ -44,13 +44,13 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage("EnemyRateFront.png");
+            Image = ImageManage.GetSImage("TimerFront.png");
             Size = new Size(image.Size.Width, image.Size.Height);
-            Location = new Point(playScene.Size.Width - Size.Width, 0);
-            frontPa.Image = ImageManage.GetSImage("EnemyRateBack.png");
+            Location = new Point(playScene.Size.Width, 0);
+            frontPa.Image = ImageManage.GetSImage("TimerBack.png");
             frontPa.Size = new Size(frontPa.Image.Size.Width, frontPa.Image.Size.Height);
             frontPa.Location = Location;
-            numberLa.Location = new Point(0, Size.Height);
+            numberLa.Location = new Point(-numberLa.Size.Width, Size.Height);
             frontPa.Visible = false;
             SetTime(60);
             base.LoadContent();
@@ -75,9 +75,9 @@ namespace Team02.Scene.UI
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate = currentTime / limitTime;
-            spriteBatch.Draw(Image.ImageT[iTIndex], Location.ToVector2(), Color.White);
-            spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
+            float rate = (1.0f - currentTime / limitTime) * (float)Math.PI / 2.0f;
+            spriteBatch.Draw(Image.ImageT[iTIndex], Location.ToVector2(), null, Color.White, (float)Math.PI / 2.0f, Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, rate + (float)Math.PI / 2.0f, new Vector2(0, 0), new Vector2(1, 1), SpriteEffects.None, 1.0f);
         }
     }
 }
