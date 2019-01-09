@@ -25,7 +25,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             IsCrimp = true;
             BeMove = false;
-            MovePriority = 4;
+            MovePriority = 5;
             CrimpGroup = "block";
         }
 
@@ -33,7 +33,7 @@ namespace Team02.Scene.Stage.GameObjs
         {
             IsCrimp = true;
             BeMove = false;
-            MovePriority = 4;
+            MovePriority = 5;
             CrimpGroup = "block";
         }
 
@@ -56,22 +56,27 @@ namespace Team02.Scene.Stage.GameObjs
                 DisCharaSpeed(f);
                 if (!f.IsStrut && CheckIForceOn(f))
                 {
-                    if (f is Chara c && !c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
-                    {
-                        var newGra = GetEscVe(c);
-                        var gv = c.Gra;
-                        gv.Normalize();
-                        float dot = Vector2.Dot(c.Speed, gv);
-                        Vector2 dg = gv * dot;//重力方向の速度
-                        c.Speed -= dg;
-                        c.Gra = newGra;
-                        c.ObjMemory["block"] = this;
-                        c.CheckLastIsStrut = false;
-                    }
+                    FitIForce(f);
                     f.Strut();
                 }
             }
             base.CalCollision(obj);
+        }
+
+        protected virtual void FitIForce(IForce f)
+        {
+            if (f is Chara c && !c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
+            {
+                var newGra = GetEscVe(c);
+                var gv = c.Gra;
+                gv.Normalize();
+                float dot = Vector2.Dot(c.Speed, gv);
+                Vector2 dg = gv * dot;//重力方向の速度
+                c.Speed -= dg;
+                c.Gra = newGra;
+                c.ObjMemory["block"] = this;
+                c.CheckLastIsStrut = false;
+            }
         }
 
         protected virtual void DisCharaSpeed(IForce c)
@@ -95,22 +100,6 @@ namespace Team02.Scene.Stage.GameObjs
                 }
             }
             return Vector2.Zero;
-        }
-
-        public virtual bool CheckIForceOn(IForce c)
-        {
-            if (c.Gra != Vector2.Zero)
-            {
-                ISpace check = c.ISpace.Copy();
-                check.Location += c.Gra;
-                if (ISpace.Intersects(check))
-                {
-                    var esc = ISpace.Escape(check);
-                    if (esc != Vector2.Zero)
-                        return true;
-                }
-            }
-            return false;
         }
     }
 }

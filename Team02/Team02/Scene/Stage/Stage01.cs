@@ -21,7 +21,6 @@ namespace Team02.Scene.Stage
         private Enemy testenemy;
         private HiddenBlock testbutton;
         private MoveBlock testmove;
-        private GraBlock testgra;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(2000000, 2000000);
@@ -41,14 +40,8 @@ namespace Team02.Scene.Stage
                 UnitedSize = new Size(2, 3),
                 Coordinate = new Vector2(1500, 500)
             };
-            testgra = new GraBlock(this, "gb")
-            {
-                UnitedSize = new Size(2, 2),
-                Coordinate = new Vector2(200, 400),
-            };
             testbutton.Create();
             testmove.Create();
-            testgra.Create();
         }
 
         public override void PreLoadContent()

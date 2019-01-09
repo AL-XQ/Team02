@@ -11,6 +11,7 @@ using InfinityGame.Device;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Stage;
 using InfinityGame;
+using InfinityGame.Element;
 using Microsoft.Xna.Framework.Graphics;
 using Team02.Scene.Stage.GameObjs.API;
 
@@ -22,6 +23,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public D_Void _Healing;
         public D_Void _GraChangerChanged;
 
+        private float coeff = 0.05f;
         private int hp;
         private int mp;
         private int maxhp = 100;
@@ -29,6 +31,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private float targetRotation;
         private float rotationIncrement;
         private float damageSpeed = 100;
+        private int defaultMovePri = 5;
         private Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
@@ -74,18 +77,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public Dictionary<string, object> ObjMemory { get => objMemory; }
         public bool CheckLastIsStrut { get => checkLastIsStrut; set => checkLastIsStrut = value; }
         public float DamageSpeed { get => damageSpeed; set => damageSpeed = value; }
+        public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             IsCrimp = true;
-            MovePriority = 5;
+            DefaultMovePri = 10;
             CrimpGroup = "chara";
         }
 
         public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
             IsCrimp = true;
-            MovePriority = 5;
+            DefaultMovePri = 10;
             CrimpGroup = "chara";
         }
 
@@ -129,6 +133,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Initialize()
         {
+            MovePriority = DefaultMovePri;
             gra = base_Stage.DefGra;
             forces.Clear();
             accel = Vector2.Zero;
@@ -215,10 +220,80 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 forces["strut"] = Vector2.Zero;
         }
 
+        public virtual void ResetMovePriority()
+        {
+            MovePriority = DefaultMovePri;
+        }
+
+        public override void CalPreCrimp(StageObj obj)
+        {
+            ResetMovePriority();
+            if (obj is IForce f)
+            {
+                if ((f.Gra + gra).LengthSquared() <= 0.01f)
+                {
+                    var dg = GetVectorByDire(speed, gra);
+                    Speed -= dg;
+                    f.ResetMovePriority();
+                    MovePriority = obj.MovePriority - 1;
+                }
+                else if (CheckIForceOn(f))
+                {
+                    f.ResetMovePriority();
+                    MovePriority = obj.MovePriority - 1;
+                    if (this is Hero)
+                        Console.WriteLine(MovePriority + "a" + obj.MovePriority);
+                }
+            }
+            base.CalPreCrimp(obj);
+        }
+
         public override void CalCollision(StageObj obj)
         {
-            
+            if (obj is IForce f && (CrimpGroup == "" || obj.CrimpGroup == "" || obj.CrimpGroup != CrimpGroup))
+            {
+                DisCharaSpeed(f);
+                if (!f.IsStrut && CheckIForceOn(f))
+                {
+                    if (f is Chara c && !c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
+                    {
+                        var newGra = GetEscVe(c);
+                        var gv = c.Gra;
+                        gv.Normalize();
+                        float dot = Vector2.Dot(c.Speed, gv);
+                        Vector2 dg = gv * dot;//重力方向の速度
+                        c.Speed -= dg;
+                        c.Gra = newGra;
+                        c.ObjMemory["block"] = this;
+                        c.CheckLastIsStrut = false;
+                    }
+                    f.Strut();
+                }
+            }
             base.CalCollision(obj);
+        }
+
+        protected virtual void DisCharaSpeed(IForce c)
+        {
+            c.DisSpeeds["block"] = coeff;
+        }
+
+        public Vector2 GetEscVe(Chara c)
+        {
+            ISpace check = c.ISpace.Copy();
+            check.Location += c.Gra;
+            if (ISpace is RectangleF rect)
+            {
+                var index = rect.GetCenterIntersectLine(check);
+                if (index > -1)
+                {
+                    var escVe = rect.GetEscVe_Line(index);
+                    escVe.Normalize();
+                    escVe *= -c.Gra.Length();
+                    return escVe;
+                }
+            }
+            return Vector2.Zero;
         }
 
         /// <summary>
@@ -236,10 +311,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             SetIsStrut(true);
             var gv = gra;
             forces["strut"] = -gv * 0.95f;//衝突させるため、0.95f出ないと、地面接触判定が不安定
-            gv.Normalize();
-            float dot = Vector2.Dot(speed, gv);
-            Vector2 dg = gv * dot;//重力方向の速度
+            Vector2 dg = GetVectorByDire(speed, gv);
             speed -= dg;
+        }
+
+        public Vector2 GetVectorByDire(Vector2 ve, Vector2 dire)
+        {
+            dire.Normalize();
+            float dot = Vector2.Dot(ve, dire);
+            Vector2 ret = dire * dot;//重力方向の速度
+            return ret;
         }
 
         /// <summary>

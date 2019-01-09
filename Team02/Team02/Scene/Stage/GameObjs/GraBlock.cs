@@ -30,6 +30,13 @@ namespace Team02.Scene.Stage.GameObjs
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
         private GraChanger graChanger;
+        private int stabilityTime = 0;
+        private int stabilityTarget = 60;
+        private float stabilitySpeed = 0.2f;
+        private int defaultMovePri = 5;
+
+        public int StabilityTime { get => stabilityTime; set => SetStabilityTime(value); }
+
         public Vector2 Gra { get => gra; set => SetGra(value); }
 
         public bool IsStrut { get => isStrut; }
@@ -44,21 +51,25 @@ namespace Team02.Scene.Stage.GameObjs
 
         public Vector2 Speed { get => speed; set => speed = value; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
+        public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
 
         public GraBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             CrimpGroup = "";
+            defaultMovePri = 5;
             BeMove = true;
         }
 
         public GraBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
             CrimpGroup = "";
+            defaultMovePri = 5;
             BeMove = true; ;
         }
 
         public override void Initialize()
         {
+            MovePriority = defaultMovePri;
             gra = base_Stage.DefGra;
             forces.Clear();
             accel = Vector2.Zero;
@@ -66,6 +77,13 @@ namespace Team02.Scene.Stage.GameObjs
             maxSpeed = 20;
             SetUpdate();
             base.Initialize();
+        }
+
+        private void SetStabilityTime(int value)
+        {
+            stabilityTime = Math.Min(value, stabilityTarget);
+            if (stabilityTime == stabilityTarget - 1)
+                Stability();
         }
 
         private void SetIsStrut(bool value)
@@ -76,6 +94,30 @@ namespace Team02.Scene.Stage.GameObjs
         private void SetGra(Vector2 value)
         {
             gra = value;
+        }
+
+        public virtual void ResetMovePriority()
+        {
+            MovePriority = DefaultMovePri;
+        }
+
+        public override void CalPreCrimp(StageObj obj)
+        {
+            ResetMovePriority();
+            if (obj is IForce f)
+            {
+                if (obj is Chara && (f.Gra + gra).LengthSquared() <= 0.01f)
+                {
+                    var dg = GetVectorByDire(speed, gra);
+                    Speed -= dg;
+                }
+                else if (CheckIForceOn(f))
+                {
+                    f.ResetMovePriority();
+                    MovePriority = obj.MovePriority - 1;
+                }
+            }
+            base.CalPreCrimp(obj);
         }
 
         public void DisStrut()
@@ -104,10 +146,16 @@ namespace Team02.Scene.Stage.GameObjs
             SetIsStrut(true);
             var gv = gra;
             forces["strut"] = -gv * 0.95f;//衝突させるため、0.95f出ないと、地面接触判定が不安定
-            gv.Normalize();
-            float dot = Vector2.Dot(speed, gv);
-            Vector2 dg = gv * dot;//重力方向の速度
+            Vector2 dg = GetVectorByDire(speed, gv);
             speed -= dg;
+        }
+
+        public Vector2 GetVectorByDire(Vector2 ve, Vector2 dire)
+        {
+            dire.Normalize();
+            float dot = Vector2.Dot(ve, dire);
+            Vector2 dg = dire * dot;//重力方向の速度
+            return dg;
         }
 
         /// <summary>
@@ -191,6 +239,22 @@ namespace Team02.Scene.Stage.GameObjs
 
             _LastUpdate = null;
             _LastUpdate += DisStrut;
+        }
+
+        private void Stability()
+        {
+            Speed = Vector2.Zero;
+            Forces.Clear();
+            Forces["strut"] = -Gra * 0.95f;
+        }
+
+        public override void AfterUpdate(GameTime gameTime)
+        {
+            if ((Coordinate - LastCoordinate).LengthSquared() <= stabilitySpeed * stabilitySpeed)
+                StabilityTime++;
+            else
+                StabilityTime = 0;
+            base.AfterUpdate(gameTime);
         }
     }
 }
