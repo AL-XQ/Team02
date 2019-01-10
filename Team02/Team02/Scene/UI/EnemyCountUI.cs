@@ -14,6 +14,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using Team02.Scene.Stage.GameObjs;
+using Team02.Scene.Stage;
 
 namespace Team02.Scene.UI
 {
@@ -34,6 +35,12 @@ namespace Team02.Scene.UI
         {
             playScene = (PlayScene)parent;
             isClear = false;
+        }
+
+        public override void Initialize()
+        {
+            maxEnemyCnt = ((Base_Stage)playScene.ShowStage).CharaManager.Enemys.Count;
+            base.Initialize();
         }
 
         public override void PreLoadContent()
