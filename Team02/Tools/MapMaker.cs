@@ -34,6 +34,7 @@ namespace Tools
             {"Block",typeof(Block) },
             {"KillBlock",typeof(KillBlock) },
             {"GraBlock",typeof(GraBlock) },
+            {"FourGraBlock",typeof(FourGraBlock) },
             {"HiddenBlock",typeof(HiddenBlock) },
             {"MoveBlock",typeof(MoveBlock) },
             {"Hero",typeof(Hero) },

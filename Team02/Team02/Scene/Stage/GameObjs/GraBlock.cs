@@ -20,7 +20,7 @@ namespace Team02.Scene.Stage.GameObjs
 {
     public class GraBlock : Block, IGraChange
     {
-        private Vector2 gra = Vector2.Zero;
+        protected Vector2 gra = Vector2.Zero;
         private Vector2 accel = Vector2.Zero;
         private bool isStrut = false;
         private bool lastIsStrut;
@@ -91,7 +91,7 @@ namespace Team02.Scene.Stage.GameObjs
             isStrut = value;
         }
 
-        private void SetGra(Vector2 value)
+        protected virtual void SetGra(Vector2 value)
         {
             gra = value;
         }
@@ -129,7 +129,7 @@ namespace Team02.Scene.Stage.GameObjs
                 forces["strut"] = Vector2.Zero;
         }
 
-        public void ResetGra()
+        public virtual void ResetGra()
         {
             Gra = base_Stage.DefGra;
         }
@@ -175,12 +175,7 @@ namespace Team02.Scene.Stage.GameObjs
         /// <param name="force">ローカルベクトル</param>
         public Vector2 GetVeOnGra(Vector2 force)
         {
-            if (force == Vector2.Zero)
-                return Vector2.Zero;
-            Vector2 ve = new Vector2(force.X * gra.Y + force.Y * gra.X, force.Y * gra.Y - gra.X * force.X);
-            ve.Normalize();
-            ve *= force.Length();
-            return ve;
+            return ElementTools.GetVeOnGra(gra, force);
         }
 
         /// <summary>
@@ -190,12 +185,7 @@ namespace Team02.Scene.Stage.GameObjs
         /// <returns></returns>
         public Vector2 VeWorldToLocal(Vector2 wve)
         {
-            if (wve == Vector2.Zero)
-                return Vector2.Zero;
-            Vector2 ve = new Vector2(gra.Y * wve.X + gra.X * wve.Y, -(gra.X * wve.X - gra.Y * wve.Y));
-            ve.Normalize();
-            ve *= wve.Length();
-            return ve;
+            return ElementTools.VeWorldToLocal(gra, wve);
         }
 
         private void CalForce()

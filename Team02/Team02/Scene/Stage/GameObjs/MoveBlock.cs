@@ -36,11 +36,11 @@ namespace Team02.Scene.Stage.GameObjs
         }
         public override void CalCollision(StageObj obj)
         {
-            if(obj is Chara)
+            if (obj is Chara)
             {
-              obj.AddVelocity(new Vector2(speed, 0), VeloParam.Run);
+                obj.AddVelocity(new Vector2(speed, 0), VeloParam.Run);
             }
-            if(obj is Block)
+            if (obj is Block b)
             {
                 speed = -speed;
             }

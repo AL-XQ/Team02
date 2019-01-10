@@ -67,6 +67,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Stage\GameObjs\FourGraBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\HiddenBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
     <Compile Include="Scene\Stage\GameObjs\MoveBlock.cs" />

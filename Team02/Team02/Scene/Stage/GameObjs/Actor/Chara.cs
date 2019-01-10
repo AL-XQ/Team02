@@ -46,6 +46,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private bool rotating = false;
         private Motion motion;
         private Bullet bullet;
+        private float maxScissorsLength = 4f;
         private GraChanger graChanger;
 
 
@@ -250,6 +251,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
+            CheckScissors(obj);
             if (obj is IForce f && (CrimpGroup == "" || obj.CrimpGroup == "" || obj.CrimpGroup != CrimpGroup))
             {
                 DisCharaSpeed(f);
@@ -271,6 +273,22 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 }
             }
             base.CalCollision(obj);
+        }
+
+        private void CheckScissors(StageObj obj)
+        {
+            if (obj is MoveBlock)
+            {
+                foreach (var l in CollObjs)
+                {
+                    var esc = l.ISpace.Escape(ISpace);
+                    if (esc.LengthSquared() >= maxScissorsLength * maxScissorsLength)
+                    {
+                        Kill();
+                        return;
+                    }
+                }
+            }
         }
 
         protected virtual void DisCharaSpeed(IForce c)
