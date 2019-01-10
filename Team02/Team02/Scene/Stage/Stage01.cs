@@ -31,7 +31,7 @@ namespace Team02.Scene.Stage
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
             base.Initialize();
-            testbutton = new HiddenBlock(this, "adfa")
+            testbutton = new HiddenBlock(this, "hb")
             {
                 UnitedSize = new Size(5, 5),
                 Coordinate = new Vector2(500, 500),
@@ -44,7 +44,7 @@ namespace Team02.Scene.Stage
             testgra = new GraBlock(this, "gb")
             {
                 UnitedSize = new Size(2, 2),
-                Coordinate = new Vector2(200, 400),
+                Coordinate = new Vector2(400, 400),
             };
             testbutton.Create();
             testmove.Create();
