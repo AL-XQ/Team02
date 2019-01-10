@@ -64,6 +64,7 @@
     <Compile Include="Def\Config.cs" />
     <Compile Include="Device\BinaryReader.cs" />
     <Compile Include="DIYMouse.cs" />
+    <Compile Include="ElementTools.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
