@@ -35,7 +35,11 @@ namespace Team02.Scene.UI
             playScene = (PlayScene)parent;
             isClear = false;
         }
-
+        public override void Initialize()
+        {
+            isClear = false;
+            base.Initialize();
+        }
         public override void PreLoadContent()
         {
             Location = Point.Zero;

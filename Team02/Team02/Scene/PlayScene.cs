@@ -45,8 +45,8 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
-            EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
             base.Initialize();
+            EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
         }
 
         public override void PreLoadContent()
@@ -80,6 +80,22 @@ namespace Team02.Scene
             if (backMenu.Visible)
             {
                 backMenu.Update(gameTime);
+                return;
+            }
+            if(timerUI.IsTime)
+            {
+                var sc = GameRun.Instance.scenes;
+                sc["play"].IsRun = false;
+                sc["title"].IsRun = true;
+                sc["play"].Initialize();
+                return;
+            }
+            if (enemyCntUI.IsClear)
+            {
+                var sc = GameRun.Instance.scenes;
+                sc["play"].IsRun = false;
+                sc["title"].IsRun = true;
+                sc["play"].Initialize();
                 return;
             }
             EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
