@@ -19,30 +19,57 @@ namespace Team02.Scene.Stage.GameObjs
 {
     public class MoveBlock : Block
     {
-        private float speed;
+        private Vector2 speed;
         public MoveBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            speed = 5;
+            speed = new Vector2(5, 0);
         }
 
         public MoveBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
-            speed = 5;
+            speed = new Vector2(5, 0);
         }
         public override void Update(GameTime gameTime)
         {
-            AddVelocity(new Vector2(speed, 0), VeloParam.Run);
+            AddVelocity(speed, VeloParam.Run);
             base.Update(gameTime);
         }
         public override void CalCollision(StageObj obj)
         {
-            if(obj is Chara)
+            if (obj is Chara)
             {
-              obj.AddVelocity(new Vector2(speed, 0), VeloParam.Run);
+                obj.AddVelocity(speed, VeloParam.Run);
             }
-            if(obj is Block)
+            if (obj is Block)
             {
-                speed = -speed;
+                var rect = (RectangleF)obj.ISpace;
+                List<Line> lines = new List<Line>();
+                for (int i = 0; i < 4; i++)
+                {
+                    if (ISpace.Intersects(rect.GetLine(i)))
+                    {
+                        lines.Add(rect.GetLine(i));
+                    }
+                }
+                if (lines.Count > 0)
+                {
+                    Line targetLine = lines[0];
+                    float inslength = 0;
+                    foreach (var l in lines)
+                    {
+                        if (ISpace.Contains(l))
+                        {
+                            targetLine = l;
+                            break;
+                        }
+                    }
+                    var ve = targetLine.Center - rect.Center;
+                    Console.WriteLine(ve);
+                    ve.Normalize();
+                    Vector2 newspeed;
+                    newspeed = speed - 2 * Vector2.Dot(speed, ve) * ve;
+                    speed = newspeed;
+                }
             }
             base.CalCollision(obj);
         }
