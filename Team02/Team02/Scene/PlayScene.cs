@@ -45,7 +45,6 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
-            EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
             base.Initialize();
         }
 
@@ -64,7 +63,7 @@ namespace Team02.Scene
         {
             GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
             //image = ImageManage.GetSImage("background_test.png");
-           // Refract = 0.3f;
+            // Refract = 0.3f;
             base.LoadContent();
         }
 

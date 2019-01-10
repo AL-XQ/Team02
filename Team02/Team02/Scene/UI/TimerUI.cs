@@ -34,6 +34,12 @@ namespace Team02.Scene.UI
             playScene = (PlayScene)parent;
         }
 
+        public override void Initialize()
+        {
+            SetTime(60);
+            base.Initialize();
+        }
+
         public override void PreLoadContent()
         {
             frontPa = new Panel(this);
@@ -52,7 +58,6 @@ namespace Team02.Scene.UI
             frontPa.Location = Location;
             numberLa.Location = new Point(-numberLa.Size.Width, Size.Height);
             frontPa.Visible = false;
-            SetTime(60);
             base.LoadContent();
         }
 
