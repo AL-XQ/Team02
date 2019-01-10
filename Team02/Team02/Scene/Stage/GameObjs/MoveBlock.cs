@@ -40,7 +40,7 @@ namespace Team02.Scene.Stage.GameObjs
             {
                 obj.AddVelocity(speed, VeloParam.Run);
             }
-            if (obj is Block)
+            if (obj is Block b)
             {
                 var rect = (RectangleF)obj.ISpace;
                 List<Line> lines = new List<Line>();
