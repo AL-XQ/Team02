@@ -40,6 +40,7 @@ namespace Team02.Scene.UI
         public override void Initialize()
         {
             maxEnemyCnt = ((Base_Stage)playScene.ShowStage).CharaManager.Enemys.Count;
+            isClear = false;
             base.Initialize();
         }
 
