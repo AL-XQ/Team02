@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Def\Config.cs" />
     <Compile Include="Device\BinaryReader.cs" />
+    <Compile Include="Device\Timer.cs" />
     <Compile Include="DIYMouse.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
@@ -233,6 +234,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\TimerFront.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\trail.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\window.png">
