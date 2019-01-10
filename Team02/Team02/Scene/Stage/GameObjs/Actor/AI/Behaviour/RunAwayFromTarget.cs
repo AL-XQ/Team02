@@ -13,7 +13,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     public class RunAwayFromTarget : BehaviourBase
     {
         private float speed;
-        private D_Void _Action;
 
         public RunAwayFromTarget(float speed) : base()
         {
@@ -25,6 +24,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
             speed = sample.speed;
         }
 
+        protected override void SetUser(Chara value)
+        {
+            base.SetUser(value);
+            if (User != null)
+                _Action = RunAway;
+        }
+
         protected override void CheckGraChanger()
         {
             if (User.GraChanger == null)
@@ -33,6 +39,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
             }
             else
             {
+                User.Speed = Vector2.Zero;
+                User.Forces["aimove"] = Vector2.Zero;
                 _Action = null;
             }
             base.CheckGraChanger();
@@ -53,7 +61,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
 
         public override void Action()
         {
-            _Action?.Invoke();
+            base.Action();
         }
 
         public override BehaviourBase Copy()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InfinityGame;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
     public abstract class BehaviourBase
     {
         private Chara user;
+        protected D_Void _Action;
         public Chara User { get => user; set => SetUser(value); }
 
         private Chara target;
@@ -24,7 +26,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
             Target = sample.Target;
         }
 
-        private void SetUser(Chara value)
+        protected virtual void SetUser(Chara value)
         {
             if (user != null)
                 user._GraChangerChanged -= CheckGraChanger;
@@ -48,7 +50,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour
         /// <summary>
         /// 行動(敵を動かす処理はここに書く)
         /// </summary>
-        public abstract void Action();
+        public virtual void Action()
+        {
+            _Action?.Invoke();
+        }
 
         public abstract BehaviourBase Copy();
 
