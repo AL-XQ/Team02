@@ -8,22 +8,28 @@ namespace Team02.Device
 {
     public class Timer
     {
-        private int limitTime;
-        private int currentTime;
+        private float limitTime;
+        private float currentTime;
 
-        public int LimitTime { get => limitTime / 60; set => limitTime = value * 60; }
-        public int CurrentTime { get => currentTime / 60; }
-        public float Rate { get => (float)currentTime / (float)limitTime; }
-        public bool IsTime { get => currentTime >= LimitTime; }
+        public float LimitTime { get => limitTime / 60; set => limitTime = value * 60; }
+        public float CurrentTime { get => currentTime; }
+        public float Rate { get => 1 - currentTime / limitTime; }
+        public bool IsTime { get => currentTime <= 0; }
+
+        public Timer(float limitTime)
+        {
+            this.limitTime = limitTime * 60;
+            currentTime = this.limitTime;
+        }
 
         public void Start()
         {
-            currentTime = 0;
+            currentTime = limitTime;
         }
 
         public void Update()
         {
-            currentTime += 1;
+            currentTime = Math.Max(currentTime - 1f, 0.0f);
         }
     }
 }
