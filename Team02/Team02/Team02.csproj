@@ -65,6 +65,7 @@
     <Compile Include="Device\BinaryReader.cs" />
     <Compile Include="Device\Timer.cs" />
     <Compile Include="DIYMouse.cs" />
+    <Compile Include="ElementTools.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
