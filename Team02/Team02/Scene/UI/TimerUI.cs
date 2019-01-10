@@ -58,7 +58,6 @@ namespace Team02.Scene.UI
             frontPa.Location = Location;
             numberLa.Location = new Point(-numberLa.Size.Width, Size.Height);
             frontPa.Visible = false;
-            SetTime(60); 
             base.LoadContent();
         }
 
