@@ -21,7 +21,6 @@ namespace Team02.Scene.Stage
         private Enemy testenemy;
         private HiddenBlock testbutton;
         private MoveBlock testmove;
-        private GraBlock testgra;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(2000000, 2000000);
@@ -48,7 +47,6 @@ namespace Team02.Scene.Stage
             };
             testbutton.Create();
             testmove.Create();
-            testgra.Create();
         }
 
         public override void PreLoadContent()

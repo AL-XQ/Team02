@@ -24,13 +24,16 @@ namespace Team02.Scene.UI
         private Label numberLa;
         private int enemyCnt;
         private int maxEnemyCnt;
+        private bool isClear;
 
         public int EnemyCnt { get => enemyCnt; set => enemyCnt = value; }
         public int MaxEnemyCnt { get => maxEnemyCnt; set => maxEnemyCnt = value; }
+        public bool IsClear { get => isClear; set => isClear = value; }
 
         public EnemyCountUI(BaseDisplay parent) : base(parent)
         {
             playScene = (PlayScene)parent;
+            isClear = false;
         }
 
         public override void PreLoadContent()
@@ -45,9 +48,9 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("EnemyRateFront.png");
+            image = ImageManage.GetSImage("EnemyCountFront.png");
             Size = new Size(image.Size.Width, image.Size.Height);
-            frontPa.Image = ImageManage.GetSImage("EnemyRateBack.png");
+            frontPa.Image = ImageManage.GetSImage("EnemyCountBack.png");
             frontPa.Size = new Size(frontPa.Image.Size.Width, frontPa.Image.Size.Height);
             numberLa.Location = new Point(0, Size.Height);
             frontPa.Visible = false;
@@ -57,14 +60,18 @@ namespace Team02.Scene.UI
         public override void Update(GameTime gameTime)
         {
             numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
+            if (enemyCnt == 0)
+            {
+                isClear = true;
+            }
             base.Update(gameTime);
         }
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate = (float)enemyCnt / maxEnemyCnt;
+            float rate =(1.0f - (float)enemyCnt / maxEnemyCnt) * (float)Math.PI / 2.0f;
             spriteBatch.Draw(Image.ImageT[iTIndex], Location.ToVector2(), Color.White);
-            spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, rate), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, -rate, Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, 1.0f);
         }
     }
 }
