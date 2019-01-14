@@ -67,12 +67,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             //残像エフェクト関連
             trailParticles.Add(
-                new TrailParticle()
-                {
-                    position = Coordinate,
-                    timer = new Timer() { LimitTime = 1 }
-                }
-                    );
+            new TrailParticle()
+            {
+                position = ISpace.Center,
+                timer = new Timer(0.2f)
+            });
+
             trailParticles.ForEach(particle => particle.timer.Update());
             trailParticles.RemoveAll(particle => particle.timer.IsTime);
 
@@ -92,16 +92,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Draw2(GameTime gameTime)
         {
-            for (int i = 0; i < trailParticles.Count;)
+            for (int i = 0; i < trailParticles.Count; i++)
             {
                 spriteBatch.Draw(
                     trailImage.ImageT[0],
-                    trailParticles[i].position,
+                    base_Stage.GetDrawLocation(trailParticles[i].position).ToVector2(),
                     null,
-                    Color.Azure * trailParticles[i].timer.Rate,
+                    new Color(57, 141, 253) * MathHelper.Clamp(1 - trailParticles[i].timer.Rate, 0, 0.8f),
                     0,
-                    Vector2.Zero,
-                    new Vector2(2, 2) * trailParticles[i].timer.Rate,
+                    new Vector2(16, 16),
+                    new Vector2(2, 2) * (1 - trailParticles[i].timer.Rate),
                     SpriteEffects.None,
                     0);
             }
