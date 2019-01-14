@@ -34,6 +34,7 @@ namespace Tools
             {"Block",typeof(Block) },
             {"KillBlock",typeof(KillBlock) },
             {"GraBlock",typeof(GraBlock) },
+            {"GraLinkBlock",typeof(GraLinkBlock) },
             {"FourGraBlock",typeof(FourGraBlock) },
             {"HiddenBlock",typeof(HiddenBlock) },
             {"MoveBlock",typeof(MoveBlock) },
@@ -61,7 +62,7 @@ namespace Tools
 
         private void addbt_Click(object sender, EventArgs e)
         {
-            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text, othertb.Text };
             if (masON.Checked)
             {
                 float x = float.Parse(coo_x.Text);
@@ -113,6 +114,11 @@ namespace Tools
                 if (tname != "")
                 {
                     args["name"] = tname;
+                }
+                var other = (string)tempArgs["otherArgs"];
+                if (other != "")
+                {
+                    args["other"] = other;
                 }
                 all_args.Add(args);
             }
@@ -222,6 +228,12 @@ namespace Tools
             }
             else
                 arg_o[10] = "";
+            if (args.ContainsKey("other"))
+            {
+                arg_o[11] = args["other"];
+            }
+            else
+                arg_o[11] = "";
             data.Rows.Add(arg_o);
         }
 
@@ -283,6 +295,7 @@ namespace Tools
             rota.Text = (string)memory[9];
             aicb.Text = (string)memory[10];
             nametb.Text = (string)memory[11];
+            othertb.Text = (string)memory[12];
             memory = null;
             disselect.Enabled = false;
             selectChange.Enabled = false;
@@ -295,7 +308,7 @@ namespace Tools
 
         private void selectChange_Click(object sender, EventArgs e)
         {
-            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
+            var objs = new object[] { type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text, othertb.Text };
             if (masON.Checked)
             {
                 float x = float.Parse(coo_x.Text);
@@ -330,7 +343,7 @@ namespace Tools
         private void data_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (memory == null)
-                memory = new object[] { masON.Checked, type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text };
+                memory = new object[] { masON.Checked, type.Text, coo_x.Text, coo_y.Text, _width.Text, _height.Text, kon.Checked, origin_x.Text, origin_y.Text, rota.Text, aicb.Text, nametb.Text, othertb.Text };
             var tempArgs = new Dictionary<string, object>();
             for (int j = 0; j < data.ColumnCount; j++)
             {
@@ -365,6 +378,7 @@ namespace Tools
             rota.Text = (string)tempArgs["rota"];
             aicb.Text = (string)tempArgs["ai"];
             nametb.Text = (string)tempArgs["name"];
+            othertb.Text = (string)tempArgs["otherArgs"];
             disselect.Enabled = true;
             selectChange.Enabled = true;
         }

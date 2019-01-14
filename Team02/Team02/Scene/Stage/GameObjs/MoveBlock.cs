@@ -11,6 +11,7 @@ using InfinityGame.Element;
 using InfinityGame.Stage;
 
 using Team02.Scene.Stage.GameObjs.Actor;
+using Team02.Device;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -20,14 +21,25 @@ namespace Team02.Scene.Stage.GameObjs
     public class MoveBlock : Block
     {
         private Vector2 speed;
+
+        public Vector2 Speed { get => speed; set => speed = value; }
+
         public MoveBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
-            speed = new Vector2(5, 0);
+            
         }
 
         public MoveBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
         {
-            speed = new Vector2(5, 0);
+            if (args.ContainsKey("other"))
+            {
+                var otherArgs = TextReader.Read((string)args["other"]);
+                if (otherArgs.ContainsKey("speed"))
+                {
+                    var values = otherArgs["speed"].Split(',');
+                    speed = new Vector2(int.Parse(values[0]), int.Parse(values[1]));
+                }
+            }
         }
         public override void Update(GameTime gameTime)
         {
@@ -64,7 +76,6 @@ namespace Team02.Scene.Stage.GameObjs
                         }
                     }
                     var ve = targetLine.Center - rect.Center;
-                    Console.WriteLine(ve);
                     ve.Normalize();
                     Vector2 newspeed;
                     newspeed = speed - 2 * Vector2.Dot(speed, ve) * ve;

@@ -52,17 +52,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.kon = new System.Windows.Forms.CheckBox();
             this.data = new System.Windows.Forms.DataGridView();
-            this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.@__width = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.@__height = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._kon = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this._origin_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.objName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addbt = new System.Windows.Forms.Button();
             this.save = new System.Windows.Forms.Button();
             this.saveF = new System.Windows.Forms.SaveFileDialog();
@@ -76,6 +65,20 @@
             this.selectChange = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.nametb = new System.Windows.Forms.TextBox();
+            this._type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._coo_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._coo_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.@__width = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.@__height = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._kon = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this._origin_x = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._origin_y = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._rota = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.objName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.otherArgs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.othertb = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
@@ -340,7 +343,8 @@
             this._origin_y,
             this._rota,
             this.ai,
-            this.objName});
+            this.objName,
+            this.otherArgs});
             this.data.Location = new System.Drawing.Point(12, 244);
             this.data.Name = "data";
             this.data.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -350,72 +354,6 @@
             this.data.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseClick);
             this.data.RowHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.data_RowHeaderMouseDoubleClick);
             this.data.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.data_RowsRemoved);
-            // 
-            // _type
-            // 
-            this._type.HeaderText = "type";
-            this._type.Name = "_type";
-            this._type.Width = 52;
-            // 
-            // _coo_x
-            // 
-            this._coo_x.HeaderText = "coo_x";
-            this._coo_x.Name = "_coo_x";
-            this._coo_x.Width = 58;
-            // 
-            // _coo_y
-            // 
-            this._coo_y.HeaderText = "coo_y";
-            this._coo_y.Name = "_coo_y";
-            this._coo_y.Width = 58;
-            // 
-            // __width
-            // 
-            this.@__width.HeaderText = "width";
-            this.@__width.Name = "__width";
-            this.@__width.Width = 57;
-            // 
-            // __height
-            // 
-            this.@__height.HeaderText = "height";
-            this.@__height.Name = "__height";
-            this.@__height.Width = 61;
-            // 
-            // _kon
-            // 
-            this._kon.HeaderText = "Expansion";
-            this._kon.Name = "_kon";
-            this._kon.Width = 63;
-            // 
-            // _origin_x
-            // 
-            this._origin_x.HeaderText = "origin_x";
-            this._origin_x.Name = "_origin_x";
-            this._origin_x.Width = 68;
-            // 
-            // _origin_y
-            // 
-            this._origin_y.HeaderText = "origin_y";
-            this._origin_y.Name = "_origin_y";
-            this._origin_y.Width = 68;
-            // 
-            // _rota
-            // 
-            this._rota.HeaderText = "rota";
-            this._rota.Name = "_rota";
-            this._rota.Width = 50;
-            // 
-            // ai
-            // 
-            this.ai.HeaderText = "ai";
-            this.ai.Name = "ai";
-            this.ai.Width = 39;
-            // 
-            // objName
-            // 
-            this.objName.HeaderText = "name";
-            this.objName.Name = "objName";
-            this.objName.Width = 57;
             // 
             // addbt
             // 
@@ -542,12 +480,106 @@
             this.nametb.Size = new System.Drawing.Size(158, 23);
             this.nametb.TabIndex = 36;
             // 
+            // _type
+            // 
+            this._type.HeaderText = "type";
+            this._type.Name = "_type";
+            this._type.Width = 52;
+            // 
+            // _coo_x
+            // 
+            this._coo_x.HeaderText = "coo_x";
+            this._coo_x.Name = "_coo_x";
+            this._coo_x.Width = 58;
+            // 
+            // _coo_y
+            // 
+            this._coo_y.HeaderText = "coo_y";
+            this._coo_y.Name = "_coo_y";
+            this._coo_y.Width = 58;
+            // 
+            // __width
+            // 
+            this.@__width.HeaderText = "width";
+            this.@__width.Name = "__width";
+            this.@__width.Width = 57;
+            // 
+            // __height
+            // 
+            this.@__height.HeaderText = "height";
+            this.@__height.Name = "__height";
+            this.@__height.Width = 61;
+            // 
+            // _kon
+            // 
+            this._kon.HeaderText = "Expansion";
+            this._kon.Name = "_kon";
+            this._kon.Width = 63;
+            // 
+            // _origin_x
+            // 
+            this._origin_x.HeaderText = "origin_x";
+            this._origin_x.Name = "_origin_x";
+            this._origin_x.Width = 68;
+            // 
+            // _origin_y
+            // 
+            this._origin_y.HeaderText = "origin_y";
+            this._origin_y.Name = "_origin_y";
+            this._origin_y.Width = 68;
+            // 
+            // _rota
+            // 
+            this._rota.HeaderText = "rota";
+            this._rota.Name = "_rota";
+            this._rota.Width = 50;
+            // 
+            // ai
+            // 
+            this.ai.HeaderText = "ai";
+            this.ai.Name = "ai";
+            this.ai.Width = 39;
+            // 
+            // objName
+            // 
+            this.objName.HeaderText = "name";
+            this.objName.Name = "objName";
+            this.objName.Width = 57;
+            // 
+            // otherArgs
+            // 
+            this.otherArgs.HeaderText = "otherArgs";
+            this.otherArgs.Name = "otherArgs";
+            this.otherArgs.Width = 80;
+            // 
+            // othertb
+            // 
+            this.othertb.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.othertb.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 12F);
+            this.othertb.Location = new System.Drawing.Point(633, 120);
+            this.othertb.Name = "othertb";
+            this.othertb.Size = new System.Drawing.Size(193, 23);
+            this.othertb.TabIndex = 38;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("HGP創英角ﾎﾟｯﾌﾟ体", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.label14.Location = new System.Drawing.Point(513, 121);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(114, 19);
+            this.label14.TabIndex = 37;
+            this.label14.Text = "OtherArgs：";
+            // 
             // MapMaker
             // 
             this.AcceptButton = this.addbt;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(838, 453);
+            this.Controls.Add(this.othertb);
+            this.Controls.Add(this.label14);
             this.Controls.Add(this.nametb);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.selectChange);
@@ -612,6 +644,8 @@
         private System.Windows.Forms.Button osave;
         private System.Windows.Forms.Button disselect;
         private System.Windows.Forms.Button selectChange;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox nametb;
         private System.Windows.Forms.DataGridViewTextBoxColumn _type;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_x;
         private System.Windows.Forms.DataGridViewTextBoxColumn _coo_y;
@@ -623,8 +657,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn _rota;
         private System.Windows.Forms.DataGridViewTextBoxColumn ai;
         private System.Windows.Forms.DataGridViewTextBoxColumn objName;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox nametb;
+        private System.Windows.Forms.DataGridViewTextBoxColumn otherArgs;
+        private System.Windows.Forms.TextBox othertb;
+        private System.Windows.Forms.Label label14;
     }
 }
 
