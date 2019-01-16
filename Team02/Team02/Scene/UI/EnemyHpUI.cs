@@ -58,13 +58,10 @@ namespace Team02.Scene.UI
             base.Update(gameTime);
         }
 
-        /*public override void Draw2(GameTime gameTime)
+        public override void Draw2(GameTime gameTime)
         {
-            if (target != null)
-            {
-                float rate = target.Hp / target.Maxhp;
-                spriteBatch.Draw(image.ImageT[iTIndex], Coordinate, null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
-            }
-        }*/
+            base.Draw2(gameTime);
+
+        }
     }
 }

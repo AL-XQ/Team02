@@ -47,6 +47,7 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
+            player.Initialize();
             base.Initialize();
             EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
         }

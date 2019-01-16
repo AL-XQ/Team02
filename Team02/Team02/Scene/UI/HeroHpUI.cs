@@ -13,6 +13,7 @@ using InfinityGame.Device.MouseManage;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+using Team02.Scene.Stage.GameObjs.Actor;
 using Team02.Scene.Stage.GameObjs;
 using Team02.Scene.Stage;
 
@@ -24,6 +25,7 @@ namespace Team02.Scene.UI
         private PlayScene playScene;
         private Panel backPa;
         private Vector2 position;
+        private Hero hero;
 
         public HeroHpUI(BaseDisplay parent) : base(parent)
         {
@@ -53,7 +55,7 @@ namespace Team02.Scene.UI
 
         public override void Update(GameTime gameTime)
         {
-            var hero = ((Base_Stage)playScene.ShowStage).CharaManager.Hero;
+            hero = ((Base_Stage)playScene.ShowStage).CharaManager.Hero;
             if (hero != null)
                 position = hero.Coordinate - new Vector2(20, size.Height);
             base.Update(gameTime);
@@ -61,7 +63,9 @@ namespace Team02.Scene.UI
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate = (float)((Base_Stage)playScene.ShowStage).CharaManager.Hero.Hp / ((Base_Stage)playScene.ShowStage).CharaManager.Hero.Maxhp;
+            if (hero == null)
+                return;
+            float rate = hero.Hp / (float)hero.Maxhp;
             spriteBatch.Draw(backPa.Image.ImageT[iTIndex], playScene.GetDrawLocation(position).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, 0.5f), SpriteEffects.None, 1.0f);
             spriteBatch.Draw(image.ImageT[iTIndex], playScene.GetDrawLocation(position).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
         }
