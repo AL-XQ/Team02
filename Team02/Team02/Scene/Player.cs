@@ -22,6 +22,8 @@ namespace Team02.Scene
 {
     public class Player
     {
+        private D_Void _RunZoom;
+        private float zoom = 1f;
         private float kickForce = 50f;
         private int kickTime = 180;
         private Chara chara;
@@ -121,6 +123,7 @@ namespace Team02.Scene
             edit = value;
             playScene.LineUI.Visible = !edit;
         }
+
         private void EditModeUpdate()
         {
             Vector2 ve = GameKeyboard.GetVelocity(IGConfig.PlayerKeys) * 10f / Stage.CameraScale;
@@ -246,6 +249,34 @@ namespace Team02.Scene
         {
             Stage.CameraLocation = Vector2.Zero;
             CameraCenter = Stage.CameraCenter;
+        }
+
+        public void ZoomTo(float zoom)
+        {
+            this.zoom = zoom;
+            _RunZoom = OnZoom;
+        }
+
+        private void OnZoom()
+        {
+            var change = (Stage.CameraScale - zoom) * 0.05f;
+            if (Math.Abs(change) > 0.0001f)
+                Stage.CameraScale -= change;
+            else
+            {
+                Stage.CameraScale = zoom;
+                _RunZoom = null;
+            }
+        }
+
+        public void Update()
+        {
+            ZoomTo(1f);
+        }
+
+        public void AfterUpdate()
+        {
+            _RunZoom?.Invoke();
         }
     }
 }
