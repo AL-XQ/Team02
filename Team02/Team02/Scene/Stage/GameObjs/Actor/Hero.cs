@@ -82,14 +82,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
-            base_Stage.ResetStage();
+            base_Stage.MapCreator.ReSpawn();
             base.UKill();
         }
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Enemy e && (e.Speed - Speed).LengthSquared() >= DamageSpeed * DamageSpeed)
-                e.Hp -= attack;
+            if (obj is Enemy e)
+            {
+                var ve = Speed - e.Speed;
+                if (Speed.LengthSquared() >= e.DamageSpeed * e.DamageSpeed)//ここはveじゃない理由は敵のスピードにわざと影響されないように
+                {
+                    e.Hp -= attack;
+                    Speed -= ve * 0.8f;
+                }
+            }
             base.CalCollision(obj);
         }
 

@@ -22,19 +22,22 @@ namespace Team02.Scene
 {
     public class Player
     {
+        private float kickForce = 50f;
+        private int kickTime = 180;
         private Chara chara;
         private PlayScene playScene;
         private Vector2 cameraCenter;
         private float jumpForce = 15;
         private GameMouse gameMouse;
         private D_Void _Click;
+        private D_Void _RightClick;
         private bool start = false;
 #if DEBUG
         private bool edit = false;
         public bool Edit { get => edit; set => SetEdit(value); }
 #endif
 
-        public Chara Chara { get => chara; set => chara = value; }
+        public Chara Chara { get => chara; set => SetChara(value); }
         public Base_Stage Stage { get => (Base_Stage)playScene.ShowStage; }
         public Vector2 CameraCenter { get => cameraCenter; set => cameraCenter = value; }
         public float JumpForce { get => jumpForce; set => jumpForce = value; }
@@ -45,9 +48,15 @@ namespace Team02.Scene
             this.playScene = playScene;
             gameMouse = GameRun.Instance.GameMouse;
             gameMouse._Click += Player_Click;
-            //Test
+            gameMouse._RightClick += Player_RightClick;
             _Click = Shut_Click;
-            //Test
+            _RightClick = Kick;
+        }
+
+        private void SetChara(Chara value)
+        {
+            chara = value;
+            chara.Times["kick"] = 0;
         }
 
         public void Update(GameTime gameTime)
@@ -94,6 +103,11 @@ namespace Team02.Scene
             }
 #endif
             _Click?.Invoke();
+        }
+
+        private void Player_RightClick(object sender, EventArgs e)
+        {
+            _RightClick?.Invoke();
         }
 #if DEBUG
 
@@ -153,6 +167,17 @@ namespace Team02.Scene
             }
         }
 
+        private void Kick()
+        {
+            if (chara.Times["kick"] > 0)
+                return;
+            Vector2 point = gameMouse.MouseState.Position.ToVector2();
+            var ve = playScene.GetStageCoo(point) - chara.ISpace.Center;
+            ve.Normalize();
+            chara.Speed += ve * kickForce;
+            chara.Times["kick"] = kickTime;
+        }
+
         private void ContorlChara()
         {
             if (chara != null)
@@ -167,7 +192,7 @@ namespace Team02.Scene
                 {
                     force.X *= 0.2f;
                     force.Y *= 0.8f;
-                }  
+                }
                 chara.RunOnGra("run", force);
                 Jump();
                 if (GameKeyboard.GetKeyState(Keys.Right))
@@ -210,6 +235,12 @@ namespace Team02.Scene
                 }
                 Stage.CameraCenter = cameraCenter;
             }
+        }
+
+        public void ResetCamera()
+        {
+            Stage.CameraLocation = Vector2.Zero;
+            CameraCenter = Stage.CameraCenter;
         }
     }
 }
