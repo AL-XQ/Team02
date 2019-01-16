@@ -49,9 +49,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private float maxScissorsLength = 4f;
         private bool enableChange = true;
         private GraChanger graChanger;
+        private Dictionary<string, int> times = new Dictionary<string, int>();
 
 
-        public int Hp { get => hp; set => hp = value; }
+        public int Hp { get => hp; set => SetHp(value); }
         public int Mp { get => mp; set => mp = value; }
         public int Maxhp { get => maxhp; set => maxhp = value; }
         public int Maxmp { get => maxmp; set => maxmp = value; }
@@ -81,12 +82,14 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public float DamageSpeed { get => damageSpeed; set => damageSpeed = value; }
         public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
         public bool EnableChange { get => enableChange; set => enableChange = value; }
+        public Dictionary<string, int> Times { get => times; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             IsCrimp = true;
             DefaultMovePri = 10;
             CrimpGroup = "chara";
+            RegistEvent();
         }
 
         public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
@@ -94,6 +97,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             IsCrimp = true;
             DefaultMovePri = 10;
             CrimpGroup = "chara";
+            RegistEvent();
+        }
+
+        private void RegistEvent()
+        {
+            _Damage += DamageColorChange;
         }
 
         private void SetGraChanger(GraChanger value)
@@ -112,6 +121,24 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 _Healing?.Invoke();
             else
                 _Damage?.Invoke();
+        }
+
+        private void DamageColorChange()
+        {
+            times["damageColor"] = 20;
+            _Update += RunDamageColor;
+        }
+
+        private void RunDamageColor()
+        {
+            if (times["damageColor"] > 0)
+            {
+                Color = Color.Green;
+                times["damageColor"]--;
+                return;
+            }
+            Color = Color.White;
+            _Update -= RunDamageColor;
         }
 
         private void SetIsStrut(bool value)
@@ -182,10 +209,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             {
                 Kill();
             }
-            if (speed.LengthSquared() >= damageSpeed * damageSpeed)
-                Color = Color.Green;
-            else
-                Color = Color.White;
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     {
         //残像エフェクト関連
         private SImage trailImage;
+        private int attack = 50;
         private struct TrailParticle { public Vector2 position; public Timer timer; }
         private List<TrailParticle> trailParticles = new List<TrailParticle>();
 
@@ -87,6 +88,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
+            if (obj is Enemy e && (e.Speed - Speed).LengthSquared() >= DamageSpeed * DamageSpeed)
+                e.Hp -= attack;
             base.CalCollision(obj);
         }
 
