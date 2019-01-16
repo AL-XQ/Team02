@@ -18,6 +18,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         //残像エフェクト関連
         private SImage trailImage;
         private int attack = 50;
+        private Vector2 lastspeed=Vector2.Zero;
         private struct TrailParticle { public Vector2 position; public Timer timer; }
         private List<TrailParticle> trailParticles = new List<TrailParticle>();
 
@@ -66,6 +67,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+            lastspeed = Speed;
             //残像エフェクト関連
             trailParticles.Add(
                 new TrailParticle()
@@ -90,8 +92,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if (obj is Enemy e)
             {
-                var ve = Speed - e.Speed;
-                if (Speed.LengthSquared() >= e.DamageSpeed * e.DamageSpeed)//ここはveじゃない理由は敵のスピードにわざと影響されないように
+                var ve = lastspeed - e.Speed;
+                if (lastspeed.LengthSquared() >= (e.DamageSpeed * e.DamageSpeed) * 0.8f)//ここはveじゃない理由は敵のスピードにわざと影響されないように
                 {
                     e.Hp -= attack;
                     Speed -= ve * 0.8f;
