@@ -23,6 +23,7 @@ namespace Team02.Scene.UI
     public class EnemyHpUI : ObjUI
     {
         private Chara target;
+        private Panel frontUI;
 
         public Chara Target { get => target; set => target = value; }
 
@@ -38,13 +39,16 @@ namespace Team02.Scene.UI
 
         public override void PreLoadContent()
         {
+            frontUI = new Panel(this);
             base.PreLoadContent();
         }
 
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("EnemyHp.png");
-            Size = new Size(image.Size.Width, image.Size.Height);
+            Size = new Size(image.Size.Width, image.Size.Height / 2);
+            frontUI.Image = ImageManage.GetSImage("HeroHp.png");
+            frontUI.Size = new Size(frontUI.Image.Size.Width, frontUI.Image.Size.Height);
             base.LoadContent();
         }
 
@@ -53,15 +57,16 @@ namespace Team02.Scene.UI
             if (target != null)
             {
                 Coordinate = target.ISpace.Center - new Vector2(image.Size.Width / 2, target.Size.Height + 5);
-                Size = new Size(target.Hp / (float)target.Maxhp * image.Size.Width, image.Size.Height / 2);
+                frontUI.Size = new Size(target.Hp / (float)target.Maxhp * image.Size.Width, image.Size.Height / 2);
             }
             base.Update(gameTime);
         }
 
+        
+
         public override void Draw2(GameTime gameTime)
         {
             base.Draw2(gameTime);
-
         }
     }
 }
