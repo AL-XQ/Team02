@@ -4,22 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using InfinityGame.Element;
+
 using Team02.Scene.UI;
+
+using Microsoft.Xna.Framework;
+using Team02.Scene.Stage.GameObjs.Actor.AI;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public class CharaManager
     {
         private Hero hero;
+        private Base_Stage stage;
         private List<Enemy> enemys = new List<Enemy>();
         private Dictionary<Enemy, EnemyHpUI> hpUIs = new Dictionary<Enemy, EnemyHpUI>();
 
         public Hero Hero { get => hero; set => hero = value; }
         public List<Enemy> Enemys { get => enemys; }
 
-        public CharaManager()
+        public CharaManager(Base_Stage base_Stage)
         {
-
+            stage = base_Stage;
         }
 
         public void Initialize()
@@ -39,6 +45,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             ui.Target = enemy;
             ui.Create();
             hpUIs.Add(enemy, ui);
+        }
+
+        public Enemy CreateEnemy(Vector2 coo, Size size, BehaviourManager ai, string name = "Null")
+        {
+            var enemy = new Enemy(stage, name);
+            enemy.Coordinate = coo;
+            enemy.Size = size;
+            enemy.BehaviourManager = ai;
+            enemy.Create();
+            return enemy;
         }
 
         public void Remove(Chara chara)

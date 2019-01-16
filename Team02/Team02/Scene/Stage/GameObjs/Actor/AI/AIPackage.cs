@@ -9,7 +9,7 @@ using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
 
 namespace Team02.Scene.Stage.GameObjs.Actor.AI
 {
-    public class AIPackage
+    public static class AIPackage
     {
         public static Dictionary<string, BehaviourManager> AIs = new Dictionary<string, BehaviourManager>();
 
@@ -69,6 +69,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.AddBehaviour("stop", new BehaviourBase[] { new StopMoving(), new Jump(10) });
             behaviourManager.AddCondition("stop", new DistanceOverN(600));
             AIs["IdleJumpEnemy"] = behaviourManager;
+        }
+
+        public static BehaviourManager GetAIByIndex(int index)
+        {
+            int i = 0;
+            foreach (var l in AIs)
+            {
+                if (i == index)
+                    return new BehaviourManager(l.Value);
+                i++;
+            }
+            return null;
         }
     }
 }

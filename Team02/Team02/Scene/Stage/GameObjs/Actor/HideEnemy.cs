@@ -47,10 +47,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Initialize()
         {
+            Gra = Vector2.Zero;
             _Damage = null;
             _Damage += ShowFace;
             base.Initialize();
             EnableChange = false;//CharaクラスでこれをTrueに設定しているため、base.Initialize()の後にもう一度設定する
+        }
+
+        public override void ResetGra()
+        {
+            Gra = Vector2.Zero;
         }
 
         protected override void SetImage()
@@ -66,7 +72,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Motion.Images[Direction.Left][MotionState.Walk] = "Block_Test_192.png";
             Motion.Images[Direction.Left][MotionState.Float] = "Block_Test_192.png";
             ImageName = "Block_Test_192.png";
-            //face = ImageManage.GetSImage("");
         }
 
         private void ShowFace()

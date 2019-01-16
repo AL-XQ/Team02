@@ -63,7 +63,8 @@ namespace Team02.Scene
         private void SetChara(Chara value)
         {
             chara = value;
-            chara.Times["kick"] = 0;
+            if (chara != null)
+                chara.Times["kick"] = 0;
         }
 
         public void Update(GameTime gameTime)
@@ -72,7 +73,7 @@ namespace Team02.Scene
             if (GameKeyboard.GetKeyTrigger(Keys.F12))
                 Edit = !Edit;
             if (GameKeyboard.GetKeyTrigger(Keys.F11))
-                Stage.Initialize();
+                playScene.Initialize();
 
 
             if (GameKeyboard.GetKeyTrigger(Keys.D1))
