@@ -36,6 +36,8 @@ namespace Team02.Scene.UI
 
         public override void PreLoadContent()
         {
+            backPa = new Panel(this);
+            backPa.Visible = false;
             base.PreLoadContent();
         }
 
@@ -57,7 +59,7 @@ namespace Team02.Scene.UI
         public override void Draw1(GameTime gameTime)
         {
             float rate = (float)((Base_Stage)playScene.ShowStage).CharaManager.Hero.Hp / ((Base_Stage)playScene.ShowStage).CharaManager.Hero.Maxhp;
-            spriteBatch.Draw(backPa.Image.ImageT[iTIndex], playScene.GetDrawLocation(location.ToVector2()).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(backPa.Image.ImageT[iTIndex], playScene.GetDrawLocation(location.ToVector2()).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, 0.5f), SpriteEffects.None, 1.0f);
             spriteBatch.Draw(image.ImageT[iTIndex], playScene.GetDrawLocation(location.ToVector2()).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
         }
     }

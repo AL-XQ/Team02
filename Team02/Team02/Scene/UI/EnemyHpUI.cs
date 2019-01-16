@@ -22,14 +22,13 @@ namespace Team02.Scene.UI
 {
     public class EnemyHpUI : ObjUI
     {
-        private PlayScene playScene;
         private Chara target;
 
         public Chara Target { get => target; set => target = value; }
 
         public EnemyHpUI(BaseDisplay parent) : base(parent)
         {
-            playScene = (PlayScene)parent;
+            
         }
 
         public override void Initialize()
@@ -60,7 +59,7 @@ namespace Team02.Scene.UI
 
         public override void Draw1(GameTime gameTime)
         {
-            foreach (var enemy in ((Base_Stage)playScene.ShowStage).CharaManager.Enemys)
+            foreach (var enemy in (base_Stage).CharaManager.Enemys)
             {
                 float rate = (float)enemy.Hp / enemy.Maxhp;
                 spriteBatch.Draw(image.ImageT[iTIndex], Coordinate, null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
