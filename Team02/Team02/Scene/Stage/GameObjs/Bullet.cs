@@ -89,14 +89,23 @@ namespace Team02.Scene.Stage.GameObjs
                 graC.Center = ISpace.Center;
                 ExplosionArea.Create(base_Stage, ISpace.Center, rad);
 
+                List<IGraChange> gcl = new List<IGraChange>();
                 foreach (var l in list)
                 {
-                    if (l is IGraChange gc)
+                    if (l is IGraChange gc && gc.EnableChange)
                     {
-                        graC.Objs.Add(gc);
-                        gc.Color = Color.Pink;
-                        gc.GraChanger = graC;
+                        if (!gcl.Contains(gc))
+                            gcl.Add(gc);
                     }
+                    else if (l is IGraLink gl)
+                    {
+                        if (gl.GraObj != null && !gcl.Contains(gl.GraObj))
+                            gcl.Add(gl.GraObj);
+                    }
+                }
+                foreach (var l in gcl)
+                {
+                    l.ImpleGraChanger(graC, gcl);
                 }
                 Kill();
             }

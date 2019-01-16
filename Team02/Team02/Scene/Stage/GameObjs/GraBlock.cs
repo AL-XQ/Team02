@@ -29,6 +29,7 @@ namespace Team02.Scene.Stage.GameObjs
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
         private Vector2 speed = Vector2.Zero;
         private float maxSpeed;
+        private bool enableChange = true;
         private GraChanger graChanger;
         private int stabilityTime = 0;
         private int stabilityTarget = 60;
@@ -52,6 +53,7 @@ namespace Team02.Scene.Stage.GameObjs
         public Vector2 Speed { get => speed; set => speed = value; }
         public GraChanger GraChanger { get => graChanger; set => graChanger = value; }
         public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
+        public bool EnableChange { get => enableChange; set => enableChange = value; }
 
         public GraBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -70,7 +72,7 @@ namespace Team02.Scene.Stage.GameObjs
         public override void Initialize()
         {
             MovePriority = defaultMovePri;
-            gra = base_Stage.DefGra;
+            ResetGra();
             forces.Clear();
             accel = Vector2.Zero;
             speed = Vector2.Zero;
@@ -245,6 +247,27 @@ namespace Team02.Scene.Stage.GameObjs
             else
                 StabilityTime = 0;
             base.AfterUpdate(gameTime);
+        }
+
+        public virtual void ImpleGraChanger(GraChanger graC, List<IGraChange> gcl)
+        {
+            bool imple = true;
+
+            foreach(var l in gcl)
+            {
+                if (l is Chara)
+                {
+                    imple = false;
+                    break;
+                }
+            }
+
+            if (imple)
+            {
+                graC.Objs.Add(this);
+                Color = Color.Pink;
+                GraChanger = graC;
+            }
         }
     }
 }

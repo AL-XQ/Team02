@@ -21,6 +21,8 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected override void SetGra(Vector2 value)
         {
+            Forces.Clear();
+            Speed = Vector2.Zero;
             gra = ElementTools.FormatFourGra(value);
         }
 

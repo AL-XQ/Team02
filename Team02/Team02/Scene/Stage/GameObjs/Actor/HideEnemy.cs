@@ -50,6 +50,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             _Damage = null;
             _Damage += ShowFace;
             base.Initialize();
+            EnableChange = false;//CharaクラスでこれをTrueに設定しているため、base.Initialize()の後にもう一度設定する
         }
 
         protected override void SetImage()

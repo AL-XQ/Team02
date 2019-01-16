@@ -47,6 +47,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Motion motion;
         private Bullet bullet;
         private float maxScissorsLength = 4f;
+        private bool enableChange = true;
         private GraChanger graChanger;
 
 
@@ -79,6 +80,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public bool CheckLastIsStrut { get => checkLastIsStrut; set => checkLastIsStrut = value; }
         public float DamageSpeed { get => damageSpeed; set => damageSpeed = value; }
         public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
+        public bool EnableChange { get => enableChange; set => enableChange = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -144,6 +146,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             mp = maxhp;
             Origin = ISpace.LCenter;
             SetUpdate();
+            enableChange = true;
             base.Initialize();
         }
 
@@ -229,7 +232,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void CalPreCrimp(StageObj obj)
         {
             ResetMovePriority();
-            if (obj is IForce f)
+            if (obj is IForce f && (CrimpGroup == "" || obj.CrimpGroup == "" || CrimpGroup != obj.CrimpGroup))
             {
                 if ((f.Gra + gra).LengthSquared() <= 0.01f)
                 {
@@ -242,8 +245,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 {
                     f.ResetMovePriority();
                     MovePriority = obj.MovePriority - 1;
-                    if (this is Hero)
-                        Console.WriteLine(MovePriority + "a" + obj.MovePriority);
                 }
             }
             base.CalPreCrimp(obj);
@@ -490,6 +491,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 spriteBatch.Draw(GraChanger.ControlC.ImageT[0], new Rectangle(DrawLocation + (loc * Stage.CameraScale).ToPoint(), ((Size.ToVector2() + siz) * Stage.CameraScale).ToPoint()), new Rectangle(Point.Zero, GraChanger.ControlC.Size.ToPoint()), Color * refract, Rotation, ((Origin - loc) / (Size.ToVector2() + siz)) * GraChanger.ControlC.Size.ToVector2(), SpriteEffects.None, 1f);
             }
             base.Draw2(gameTime);
+        }
+
+        public virtual void ImpleGraChanger(GraChanger graC, List<IGraChange> gcl)
+        {
+            graC.Objs.Add(this);
+            Color = Color.Pink;
+            GraChanger = graC;
         }
     }
 }

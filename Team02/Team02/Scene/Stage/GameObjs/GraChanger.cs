@@ -47,7 +47,8 @@ namespace Team02.Scene.Stage.GameObjs
             overTime = 180;
             foreach (var l in objs)
             {
-                l.Gra = gra;
+                if (l.EnableChange)
+                    l.Gra = gra;
             }
             stage.NowChanger = null;
             stage.GraChangers.Add(this);
@@ -79,7 +80,7 @@ namespace Team02.Scene.Stage.GameObjs
             }
             foreach (var l in objs)
             {
-                if (l.GraChanger != null && l.GraChanger.killTime == 0)
+                if (l.GraChanger != null && l.GraChanger.killTime == 0 && l.EnableChange)
                 {
                     l.ResetGra();
                     l.Color = Color.White;
@@ -99,7 +100,7 @@ namespace Team02.Scene.Stage.GameObjs
             }
             foreach (var l in objs)
             {
-                if (l.GraChanger != null && l.GraChanger.overTime == 0)
+                if (l.GraChanger != null && l.GraChanger.overTime == 0 && l.EnableChange)
                 {
                     l.ResetGra();
                     l.Color = Color.White;
@@ -107,7 +108,7 @@ namespace Team02.Scene.Stage.GameObjs
                 }
             }
             Kill();
-            
+
         }
 
         public void Kill()

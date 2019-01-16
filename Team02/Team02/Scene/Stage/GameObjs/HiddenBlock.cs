@@ -28,7 +28,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Hero)
+            if (obj is GraBlock)
             {
                 isPush = true;
             }

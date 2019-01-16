@@ -63,12 +63,15 @@
   <ItemGroup>
     <Compile Include="Def\Config.cs" />
     <Compile Include="Device\BinaryReader.cs" />
+    <Compile Include="Device\TextReader.cs" />
     <Compile Include="Device\Timer.cs" />
     <Compile Include="DIYMouse.cs" />
     <Compile Include="ElementTools.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Stage\GameObjs\GraLinkBlock.cs" />
+    <Compile Include="Scene\Stage\GameObjs\API\IGraLink.cs" />
     <Compile Include="Scene\Stage\GameObjs\FourGraBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\HiddenBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\ExplosionArea.cs" />
