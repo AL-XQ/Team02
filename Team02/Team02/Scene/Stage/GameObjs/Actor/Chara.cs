@@ -147,6 +147,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Origin = ISpace.LCenter;
             SetUpdate();
             enableChange = true;
+
+            _Damage += PlayDamageSE;
+            _GraChangerChanged += PlayGraChangerSE;
+
             base.Initialize();
         }
 
@@ -168,6 +172,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void LoadContent()
         {
+            sounds["damage"] = SoundManage.GetSound("Chara_Damage.wav");
+            sounds["shoot"] = SoundManage.GetSound("Player_Shoot.wav");
+            sounds["graChanged"] = SoundManage.GetSound("Enemy_Controlled.wav");
+            sounds["jump"] = SoundManage.GetSound("Player_Jump.wav");
             base.LoadContent();
         }
 
@@ -417,6 +425,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             fg.Normalize();
             fg *= force;
             forces["jump"] = fg;
+
+            if (this is Hero)
+            {
+                sounds["jump"].PlayE();
+            }
         }
 
         private void DisJump()
@@ -439,6 +452,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet.Speed = ve;
             bullet.TimeDown = time;
             bullet.Create();
+
+            sounds["shoot"].PlayE();
         }
 
         public override void UKill()
@@ -498,6 +513,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             graC.Objs.Add(this);
             Color = Color.Pink;
             GraChanger = graC;
+        }
+
+        private void PlayDamageSE()
+        {
+            sounds["damage"].PlayE();
+        }
+
+        private void PlayGraChangerSE()
+        {
+            if (GraChanger != null)
+            {
+                sounds["graChanged"].PlayE();
+            }
         }
     }
 }

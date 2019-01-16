@@ -45,6 +45,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void LoadContent()
         {
             trailImage = ImageManage.GetSImage("trail.png");
+            sounds["death"] = SoundManage.GetSound("Player_Death.wav");
             base.LoadContent();
         }
 
@@ -81,6 +82,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
+            sounds["death"].PlayE();
             base_Stage.ResetStage();
             base.UKill();
         }

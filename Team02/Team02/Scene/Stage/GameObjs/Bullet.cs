@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
+using InfinityGame.Device;
 using InfinityGame.Element;
 using Microsoft.Xna.Framework;
 
@@ -46,6 +47,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void LoadContent()
         {
+            sounds["impact"] = SoundManage.GetSound("Bullet_Impact.wav");
             base.LoadContent();
         }
 
@@ -114,6 +116,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         public override void UKill()
         {
+            sounds["impact"].PlayE();
             host.ClearBullet();
             base.UKill();
         }

@@ -42,6 +42,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void LoadContent()
         {
+            sounds["death"] = SoundManage.GetSound("Enemy_Death.wav");
             base.LoadContent();
         }
 
@@ -89,6 +90,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 Speed -= a;
             }
             base.CalCollision(obj);
+        }
+
+        public override void UKill()
+        {
+            sounds["death"].PlayE();
+            base.UKill();
         }
     }
 }
