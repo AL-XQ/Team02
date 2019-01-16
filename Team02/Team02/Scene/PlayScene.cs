@@ -31,7 +31,6 @@ namespace Team02.Scene
         private LineUI lineUI;
         private EnemyCountUI enemyCntUI;
         private TimerUI timerUI;
-        private EnemyHpUI enemyHpUI;
         private HeroHpUI heroHpUI;
 
         public Player Player { get => player; }
@@ -39,7 +38,6 @@ namespace Team02.Scene
 
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
         public TimerUI TimerUI { get => timerUI; }
-        public EnemyHpUI EnemyHpUI { get => EnemyHpUI; }
         public HeroHpUI HeroHpUI { get => heroHpUI; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
@@ -59,7 +57,6 @@ namespace Team02.Scene
             lineUI = new LineUI(this);
             enemyCntUI = new EnemyCountUI(this);
             timerUI = new TimerUI(this);
-            enemyHpUI = new EnemyHpUI(this);
             heroHpUI = new HeroHpUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
