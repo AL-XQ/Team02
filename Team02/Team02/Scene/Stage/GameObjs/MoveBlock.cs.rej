@@ -1,0 +1,39 @@
+diff a/Team02/Team02/Scene/Stage/GameObjs/MoveBlock.cs b/Team02/Team02/Scene/Stage/GameObjs/MoveBlock.cs	(rejected hunks)
+@@ -26,11 +26,37 @@
+  
+          public MoveBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
+          {
+++<<<<<<< HEAD
+ +            
+++=======
++             Speed = new Vector2(5, 0);
++ =======
++ 
++         public Vector2 Speed { get => speed; set => speed = value; }
++ 
++         public MoveBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
++         {
++             
++ >>>>>>> master
+++>>>>>>> parent of b3a8bf5... 一部未修正
+          }
+  
+          public MoveBlock(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
+          {
+++<<<<<<< HEAD
+++=======
++             Speed = new Vector2(5, 0);
++         }
++         private void SetSpeed(Vector2 value)
++         {
++             if(speedChanged)
++             {
++                 return;
++             }
++             speed = ElementTools.FormatFourGra(value);
++             speedChanged = true;
++ =======
+++>>>>>>> parent of b3a8bf5... 一部未修正
+              if (args.ContainsKey("other"))
+              {
+                  var otherArgs = TextReader.Read((string)args["other"]);
