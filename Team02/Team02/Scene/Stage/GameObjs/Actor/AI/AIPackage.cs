@@ -48,7 +48,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             behaviourManager.AddBehaviour("flyChase", new BehaviourBase[] { new Fly(), new MoveTowardsTarget(0.2f) });
             behaviourManager.AddCondition("flyChase", new DistanceBelowN(800));
             behaviourManager.CreateBehaviour("stop", 1);
-            behaviourManager.AddBehaviour("stop", new StopMoving());
+            behaviourManager.AddBehaviour("stop", new StopMoving(flying:true));
             behaviourManager.AddCondition("stop", new DistanceOverN(1200));
             AIs["FlyEnemy"] = behaviourManager;
 
