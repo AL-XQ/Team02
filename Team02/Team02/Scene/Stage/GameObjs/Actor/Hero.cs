@@ -98,6 +98,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 {
                     e.Hp -= attack;
                     Speed -= ve * 0.8f;
+                    sounds["death"].PlayE(); //ドロップキック用サウンド再生
                 }
             }
             base.CalCollision(obj);
