@@ -37,8 +37,8 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
 
         public override void AfterUpdate(GameTime gameTime)
         {
-            var change = (Stage.CameraScale - zoom) * 0.3f;
-            if (Math.Abs(change) > 0.01f)
+            var change = (Stage.CameraScale - zoom) * 0.05f;
+            if (Math.Abs(change) > 0.0001f)
                 Stage.CameraScale -= change;
             else
                 Stage.CameraScale = zoom;

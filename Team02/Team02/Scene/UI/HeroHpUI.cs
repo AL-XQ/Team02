@@ -23,6 +23,7 @@ namespace Team02.Scene.UI
     {
         private PlayScene playScene;
         private Panel backPa;
+        private Vector2 position;
 
         public HeroHpUI(BaseDisplay parent) : base(parent)
         {
@@ -52,15 +53,17 @@ namespace Team02.Scene.UI
 
         public override void Update(GameTime gameTime)
         {
-            location = ((Base_Stage)playScene.ShowStage).CharaManager.Hero.Location - new Point(20, size.Height);
+            var hero = ((Base_Stage)playScene.ShowStage).CharaManager.Hero;
+            if (hero != null)
+                position = hero.Coordinate - new Vector2(20, size.Height);
             base.Update(gameTime);
         }
 
         public override void Draw1(GameTime gameTime)
         {
             float rate = (float)((Base_Stage)playScene.ShowStage).CharaManager.Hero.Hp / ((Base_Stage)playScene.ShowStage).CharaManager.Hero.Maxhp;
-            spriteBatch.Draw(backPa.Image.ImageT[iTIndex], playScene.GetDrawLocation(location.ToVector2()).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, 0.5f), SpriteEffects.None, 1.0f);
-            spriteBatch.Draw(image.ImageT[iTIndex], playScene.GetDrawLocation(location.ToVector2()).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(backPa.Image.ImageT[iTIndex], playScene.GetDrawLocation(position).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(1, 0.5f), SpriteEffects.None, 1.0f);
+            spriteBatch.Draw(image.ImageT[iTIndex], playScene.GetDrawLocation(position).ToVector2(), null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
         }
     }
 }
