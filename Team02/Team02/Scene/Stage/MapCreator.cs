@@ -8,6 +8,7 @@ using Team02.Scene.Stage.GameObjs.Actor;
 using Team02;
 
 using InfinityGame.Element;
+using InfinityGame;
 
 using Microsoft.Xna.Framework;
 
@@ -16,8 +17,13 @@ namespace Team02.Scene.Stage
     public class MapCreator
     {
         private Base_Stage stage;
+        private string heroName;
+        private Dictionary<string, object> spawnArgs = new Dictionary<string, object>();
+        private D_Void _Update;
 
         public Base_Stage Stage { get => stage; }
+        public Dictionary<string, object> SpawnArgs { get => spawnArgs; }
+
         public MapCreator(Base_Stage stage)
         {
             this.stage = stage;
@@ -40,9 +46,30 @@ namespace Team02.Scene.Stage
             }
             if (obj is Hero he)
             {
+                spawnArgs = args;
+                heroName = obj.Name;
                 stage.Player.Chara = he;
             }
             obj.Create();
+        }
+
+        public void ReSpawn()
+        {
+            _Update += OnReSpawn;
+        }
+
+        private void OnReSpawn()
+        {
+            if (stage.stageObjs.ContainsKey(heroName))
+                return;
+            CreateObj(spawnArgs);
+            stage.Player.ResetCamera();
+            _Update -= OnReSpawn;
+        }
+
+        public void Update()
+        {
+            _Update?.Invoke();
         }
 
         public void MapRead(object arg)
@@ -50,7 +77,7 @@ namespace Team02.Scene.Stage
             if (arg == null)
                 return;
             var args = (List<Dictionary<string, object>>)arg;
-            foreach(var l in args)
+            foreach (var l in args)
             {
                 CreateObj(l);
             }

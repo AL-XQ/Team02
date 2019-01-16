@@ -74,6 +74,7 @@ namespace Team02.Scene.Stage
         public override void Update(GameTime gameTime)
         {
             GraChangerUpdate(gameTime);
+            MapCreator.Update();
             base.Update(gameTime);
             AfterUpdate();
         }

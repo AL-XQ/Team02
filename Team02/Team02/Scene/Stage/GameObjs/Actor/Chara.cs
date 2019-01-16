@@ -134,7 +134,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             if (times["damageColor"] > 0)
             {
                 Color = Color.Green;
-                times["damageColor"]--;
                 return;
             }
             Color = Color.White;
@@ -200,6 +199,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+            var keys = times.Keys.ToArray();
+            foreach (var l in keys)
+            {
+                if (times[l] > 0)
+                    times[l]--;
+            }
             base.Update(gameTime);
         }
 
@@ -296,6 +301,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     f.Strut();
                 }
             }
+            //if (obj is Enemy enemy && !(obj is HideEnemy))
+            //{
+            //    Vector2 a = Speed * 0.02f;
+            //    enemy.Speed += a;
+            //    Speed -= a * 0.5f;
+            //}
             base.CalCollision(obj);
         }
 
