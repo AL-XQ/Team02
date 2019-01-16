@@ -67,11 +67,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             //残像エフェクト関連
             trailParticles.Add(
-            new TrailParticle()
-            {
-                position = ISpace.Center,
-                timer = new Timer(0.2f)
-            });
+                new TrailParticle()
+                {
+                    position = ISpace.Center,
+                    timer = new Timer(0.2f)
+                });
 
             trailParticles.ForEach(particle => particle.timer.Update());
             trailParticles.RemoveAll(particle => particle.timer.IsTime);
