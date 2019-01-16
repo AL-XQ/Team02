@@ -90,7 +90,7 @@
     <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
-    <Compile Include="Scene\UI\EnemyHpUI.cs" />
+    <Compile Include="Scene\UI\CharaHpUI.cs" />
     <Compile Include="Scene\UI\HeroHpUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />

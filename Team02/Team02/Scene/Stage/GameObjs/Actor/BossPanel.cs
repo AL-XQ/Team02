@@ -40,7 +40,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if (isover)
                 return;
-            Kill();//仮
+            Visible = false;//仮
             isover = true;
         }
 

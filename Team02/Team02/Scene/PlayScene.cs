@@ -31,7 +31,6 @@ namespace Team02.Scene
         private LineUI lineUI;
         private EnemyCountUI enemyCntUI;
         private TimerUI timerUI;
-        private HeroHpUI heroHpUI;
         private int nowStage = 0;
         private List<string> stageOrder = new List<string>();
         private List<BossStage> bossStages = new List<BossStage>();
@@ -41,7 +40,6 @@ namespace Team02.Scene
 
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
         public TimerUI TimerUI { get => timerUI; }
-        public HeroHpUI HeroHpUI { get => heroHpUI; }
         public int NowStage { get => nowStage; set => SetNowStage(value); }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
@@ -69,12 +67,11 @@ namespace Team02.Scene
             lineUI = new LineUI(this);
             enemyCntUI = new EnemyCountUI(this);
             timerUI = new TimerUI(this);
-            heroHpUI = new HeroHpUI(this);
             var m1 = new Base_Stage(this, "stage01");
             m1.Map = "map01";
             bossStages.Add(new BossStage1(this, "bossstage1"));
             bossStages[0].Map = "map04";
-            stageOrder.AddRange(new string[] { "stage01", "stage01", "bossstage1", "bossstage1" });
+            stageOrder.AddRange(new string[] { "bossstage1", "stage01", "bossstage1", "bossstage1" });
             nowStage = 0;
             base.PreLoadContent();
         }

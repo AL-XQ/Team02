@@ -70,7 +70,12 @@ namespace Team02.Scene.UI
             maxEnemyCnt = ss.CharaManager.Enemys.Count;
             enemyCnt = ss.CharaManager.Enemys.Count;
             numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
-            if ((ss is BossStage bs && (bs.Boss == null || bs.Boss.Dealing)) || enemyCnt == 0)
+            if (ss is BossStage bs)
+            {
+                if (bs.Boss != null && bs.Boss.Isover)
+                    isClear = true;
+            }
+            else if (enemyCnt == 0)
             {
                 isClear = true;
             }

@@ -22,7 +22,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
-            if (boss == null || boss.Isover)
+            if (boss != null && boss.Isover)
                 Kill();
             base.Update(gameTime);
         }

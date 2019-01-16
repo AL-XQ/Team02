@@ -20,14 +20,15 @@ using Team02.Scene.Stage.GameObjs.Actor;
 
 namespace Team02.Scene.UI
 {
-    public class EnemyHpUI : ObjUI
+    public class CharaHpUI : ObjUI
     {
         private Chara target;
-        private Panel frontUI;
+        private SImage frontUI;
+        private Size frontSize;
 
         public Chara Target { get => target; set => target = value; }
 
-        public EnemyHpUI(BaseDisplay parent) : base(parent)
+        public CharaHpUI(BaseDisplay parent) : base(parent)
         {
 
         }
@@ -39,7 +40,6 @@ namespace Team02.Scene.UI
 
         public override void PreLoadContent()
         {
-            frontUI = new Panel(this);
             base.PreLoadContent();
         }
 
@@ -47,8 +47,7 @@ namespace Team02.Scene.UI
         {
             Image = ImageManage.GetSImage("EnemyHp.png");
             Size = new Size(image.Size.Width, image.Size.Height / 2);
-            frontUI.Image = ImageManage.GetSImage("HeroHp.png");
-            frontUI.Size = new Size(frontUI.Image.Size.Width, frontUI.Image.Size.Height);
+            frontUI = ImageManage.GetSImage("HeroHp.png");
             base.LoadContent();
         }
 
@@ -57,7 +56,7 @@ namespace Team02.Scene.UI
             if (target != null)
             {
                 Coordinate = target.ISpace.Center - new Vector2(image.Size.Width / 2, target.Size.Height + 5);
-                frontUI.Size = new Size(target.Hp / (float)target.Maxhp * image.Size.Width, image.Size.Height / 2);
+                frontSize = new Size(target.Hp / (float)target.Maxhp * image.Size.Width, image.Size.Height / 2);
             }
             base.Update(gameTime);
         }
@@ -67,6 +66,18 @@ namespace Team02.Scene.UI
         public override void Draw2(GameTime gameTime)
         {
             base.Draw2(gameTime);
+            Vector2 checkLocation = DrawLocation.ToVector2() + 2 * (RenderCoo_Offset * Stage.CameraScale);
+            Vector2 checkSize = size.ToVector2() + RenderSize_Offset;
+            if (checkLocation.X <= Stage.StageScene.Size.Width && checkLocation.Y <= Stage.StageScene.Size.Height)
+            {
+                if (checkLocation.X >= -checkSize.X * Stage.CameraScale && checkLocation.Y >= -checkSize.Y * Stage.CameraScale)
+                {
+                    Rectangle renderR = RenderRect;
+                    if (renderR == default(Rectangle))
+                        renderR = new Rectangle(Point.Zero, image.Size.ToPoint());
+                    spriteBatch.Draw(frontUI.ImageT[iTIndex], new Rectangle(DrawLocation/* + (renderCoo_Offset * stage.CameraScale).ToPoint()*/, ((frontSize.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * image.Size.ToVector2(), SpriteEffects.None, 1f);
+                }
+            }
         }
     }
 }

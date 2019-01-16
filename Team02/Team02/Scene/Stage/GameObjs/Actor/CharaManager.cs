@@ -18,9 +18,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Hero hero;
         private Base_Stage stage;
         private List<Enemy> enemys = new List<Enemy>();
-        private Dictionary<Enemy, EnemyHpUI> hpUIs = new Dictionary<Enemy, EnemyHpUI>();
+        private Dictionary<Chara, CharaHpUI> hpUIs = new Dictionary<Chara, CharaHpUI>();
 
-        public Hero Hero { get => hero; set => hero = value; }
+        public Hero Hero { get => hero; set => SetHero(value); }
         public List<Enemy> Enemys { get => enemys; }
 
         public CharaManager(Base_Stage base_Stage)
@@ -34,6 +34,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             enemys.Clear();
         }
 
+        private void SetHero(Hero value)
+        {
+            hero = value;
+            if (hero != null)
+            {
+                var ui = new CharaHpUI(hero.Stage);
+                ui.Target = hero;
+                ui.Create();
+                hpUIs.Add(hero, ui);
+            }
+        }
+
         public Enemy GetEnemy(int id)
         {
             return enemys[id];
@@ -41,7 +53,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public void Add(Enemy enemy)
         {
             enemys.Add(enemy);
-            var ui = new EnemyHpUI(enemy.Stage);
+            var ui = new CharaHpUI(enemy.Stage);
             ui.Target = enemy;
             ui.Create();
             hpUIs.Add(enemy, ui);
@@ -68,7 +80,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 return;
             }
             if (chara == hero)
+            {
                 Hero = null;
+                var ui = hpUIs[chara];
+                hpUIs.Remove(chara);
+                ui.Kill();
+            }
         }
     }
 }
