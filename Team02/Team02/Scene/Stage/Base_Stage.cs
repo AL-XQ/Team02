@@ -49,6 +49,7 @@ namespace Team02.Scene.Stage
         public void ResetStage()
         {
             reset = true;
+            CameraScale = 1;
         }
 
         public override void Initialize()

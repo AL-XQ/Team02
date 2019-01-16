@@ -9,12 +9,15 @@ using Microsoft.Xna.Framework;
 using Team02.Device;
 using Team02.Scene.Stage.GameObjs.Actor;
 
+using InfinityGame;
+
 namespace Team02.Scene.Stage.GameObjs.Trigger
 {
     public class CameraZoom : TriggerObj
     {
         private float zoom = 1f;
         private float targetZoom = 0.5f;
+        private D_Void _RunZoom;
         public CameraZoom(BaseDisplay aParent) : base(aParent)
         {
         }
@@ -31,18 +34,30 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
 
         public override void Update(GameTime gameTime)
         {
-            zoom = 1f;
+            if (zoom != 1)
+            {
+                zoom = 1f;
+                _RunZoom = ZoomTo;
+            }
             base.Update(gameTime);
         }
 
         public override void AfterUpdate(GameTime gameTime)
         {
+            _RunZoom?.Invoke();
+            base.AfterUpdate(gameTime);
+        }
+
+        private void ZoomTo()
+        {
             var change = (Stage.CameraScale - zoom) * 0.05f;
             if (Math.Abs(change) > 0.0001f)
                 Stage.CameraScale -= change;
             else
+            {
                 Stage.CameraScale = zoom;
-            base.AfterUpdate(gameTime);
+                _RunZoom = null;
+            }
         }
 
         public override void CalCollision(StageObj obj)
@@ -50,6 +65,7 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
             if (obj is Hero)
             {
                 zoom = targetZoom;
+                _RunZoom = ZoomTo;
             }
             base.CalCollision(obj);
         }
