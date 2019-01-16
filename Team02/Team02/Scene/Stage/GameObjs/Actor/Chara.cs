@@ -88,6 +88,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             IsCrimp = true;
             DefaultMovePri = 10;
+            DrawOrder = 2;
             CrimpGroup = "chara";
             RegistEvent();
         }
@@ -96,6 +97,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             IsCrimp = true;
             DefaultMovePri = 10;
+            DrawOrder = 2;
             CrimpGroup = "chara";
             RegistEvent();
         }
@@ -446,7 +448,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DisSpeed();
         }
 
-        public void ResetGra()
+        public virtual void ResetGra()
         {
             Gra = base_Stage.DefGra;
         }

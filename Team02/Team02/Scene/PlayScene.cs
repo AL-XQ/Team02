@@ -32,6 +32,9 @@ namespace Team02.Scene
         private EnemyCountUI enemyCntUI;
         private TimerUI timerUI;
         private HeroHpUI heroHpUI;
+        private int nowStage = 0;
+        private List<string> stageOrder = new List<string>();
+        private List<BossStage> bossStages = new List<BossStage>();
 
         public Player Player { get => player; }
         public LineUI LineUI { get => lineUI; }
@@ -39,17 +42,24 @@ namespace Team02.Scene
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
         public TimerUI TimerUI { get => timerUI; }
         public HeroHpUI HeroHpUI { get => heroHpUI; }
+        public int NowStage { get => nowStage; set => SetNowStage(value); }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
-            
+
+        }
+
+        private void SetNowStage(int value)
+        {
+            nowStage = value;
+            SetShowStage(stageOrder[nowStage]);
         }
 
         public override void Initialize()
         {
             player.Initialize();
             base.Initialize();
-            EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
+            SetShowStage(stageOrder[nowStage]);
         }
 
         public override void PreLoadContent()
@@ -60,9 +70,20 @@ namespace Team02.Scene
             enemyCntUI = new EnemyCountUI(this);
             timerUI = new TimerUI(this);
             heroHpUI = new HeroHpUI(this);
-            new Stage01(this, "stage01");
-            ShowStage = stages["stage01"];
+            var m1 = new Base_Stage(this, "stage01");
+            m1.Map = "map01";
+            bossStages.Add(new BossStage1(this, "bossstage1"));
+            bossStages[0].Map = "map04";
+            stageOrder.AddRange(new string[] { "stage01", "stage01", "bossstage1", "bossstage1" });
+            nowStage = 0;
             base.PreLoadContent();
+        }
+
+        public void SetShowStage(string stageName)
+        {
+            var bs = (Base_Stage)stages[stageName];
+            ShowStage = bs;
+            player.Chara = bs.CharaManager.Hero;
         }
         public override void LoadContent()
         {
@@ -84,7 +105,7 @@ namespace Team02.Scene
                 backMenu.Update(gameTime);
                 return;
             }
-            if(timerUI.IsTime)
+            if (timerUI.IsTime)
             {
                 var sc = GameRun.Instance.scenes;
                 sc["play"].IsRun = false;
@@ -94,17 +115,25 @@ namespace Team02.Scene
             }
             if (enemyCntUI.IsClear)
             {
-                var sc = GameRun.Instance.scenes;
-                sc["play"].IsRun = false;
-                sc["title"].IsRun = true;
-                sc["play"].Initialize();
+                if (nowStage < stageOrder.Count - 1)
+                {
+                    nowStage++;
+                    Initialize();
+                }
+                else
+                {
+                    //クリア
+                    var sc = GameRun.Instance.scenes;
+                    sc["play"].IsRun = false;
+                    sc["title"].IsRun = true;
+                    sc["play"].Initialize();
+                }
                 return;
             }
-            EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
 
             player.Update();
             base.Update(gameTime);
-            player.AfterUpdate();   
+            player.AfterUpdate();
         }
 
         /// <summary>
