@@ -28,8 +28,6 @@ namespace Team02.Scene.Stage
         {
             Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
             base.Initialize();
-
-
         }
 
         public override void PreLoadContent()

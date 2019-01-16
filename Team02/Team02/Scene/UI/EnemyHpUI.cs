@@ -28,7 +28,7 @@ namespace Team02.Scene.UI
 
         public EnemyHpUI(BaseDisplay parent) : base(parent)
         {
-            
+
         }
 
         public override void Initialize()
@@ -43,8 +43,8 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
-            image = ImageManage.GetSImage("EnemyHp.png");
-            size = new Size(image.Size.Width, image.Size.Height);
+            Image = ImageManage.GetSImage("EnemyHp.png");
+            Size = new Size(image.Size.Width, image.Size.Height);
             base.LoadContent();
         }
 
@@ -52,18 +52,16 @@ namespace Team02.Scene.UI
         {
             if (target != null)
             {
-                Coordinate = target.ISpace.Center - new Vector2(size.Width / 2, 20);
+                Coordinate = target.ISpace.Center - new Vector2(image.Size.Width / 2, target.Size.Height + 5);
+                Size = new Size(target.Hp / (float)target.Maxhp * image.Size.Width, image.Size.Height / 2);
             }
             base.Update(gameTime);
         }
 
-        public override void Draw1(GameTime gameTime)
+        public override void Draw2(GameTime gameTime)
         {
-            foreach (var enemy in (base_Stage).CharaManager.Enemys)
-            {
-                float rate = (float)enemy.Hp / enemy.Maxhp;
-                spriteBatch.Draw(image.ImageT[iTIndex], Coordinate, null, Color.White, 0.0f, Vector2.Zero, new Vector2(rate, 0.5f), SpriteEffects.None, 1.0f);
-            }
+            base.Draw2(gameTime);
+
         }
     }
 }

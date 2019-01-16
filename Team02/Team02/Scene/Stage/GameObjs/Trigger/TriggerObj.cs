@@ -18,6 +18,9 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
 
         }
 
-
+        protected override void SetImage()
+        {
+            ImageName = "0_0.png";
+        }
     }
 }

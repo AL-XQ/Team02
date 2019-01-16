@@ -53,6 +53,11 @@ namespace Team02.Scene
             _RightClick = Kick;
         }
 
+        public void Initialize()
+        {
+            start = false;
+        }
+
         private void SetChara(Chara value)
         {
             chara = value;
