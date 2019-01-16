@@ -96,7 +96,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void CalCollision(StageObj obj)
         {
             {
-                if (obj is IForce f && (f.Speed - Speed).LengthSquared() >= DamageSpeed * DamageSpeed)
+                if (!(obj is Hero) && obj is IForce f && (f.Speed - Speed).LengthSquared() >= DamageSpeed * DamageSpeed)
                     Hp -= 50;
             }
             if (obj is Hero h && CheckIForceOn(h))
