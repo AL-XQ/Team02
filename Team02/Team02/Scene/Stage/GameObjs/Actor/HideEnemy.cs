@@ -99,7 +99,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 if (!(obj is Hero) && obj is IForce f && (f.Speed - Speed).LengthSquared() >= DamageSpeed * DamageSpeed)
                     Hp -= 50;
             }
-            if (obj is Hero h && CheckIForceOn(h))
+            if (obj is Hero /*h && CheckIForceOn(h)*/)
             {
                 changeColor = true;
                 Color = Color.Red;
