@@ -83,6 +83,8 @@
     <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraBlock.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
+    <Compile Include="Scene\UI\EnemyHpUI.cs" />
+    <Compile Include="Scene\UI\HeroHpUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
@@ -195,6 +197,9 @@
     <Content Include="Texture\AutoLoad\EnemyCountFront.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\EnemyHp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\EnemyRateBack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -202,6 +207,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\Enemy_Test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\HeroHp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\lazer_test.png">
