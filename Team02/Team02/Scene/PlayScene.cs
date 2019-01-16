@@ -102,7 +102,9 @@ namespace Team02.Scene
             }
             EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
 
+            player.Update();
             base.Update(gameTime);
+            player.AfterUpdate();   
         }
 
         /// <summary>
