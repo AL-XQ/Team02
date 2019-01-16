@@ -31,12 +31,14 @@ namespace Team02.Scene
         private LineUI lineUI;
         private EnemyCountUI enemyCntUI;
         private TimerUI timerUI;
-        
+        private HeroHpUI heroHpUI;
+
         public Player Player { get => player; }
         public LineUI LineUI { get => lineUI; }
 
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
         public TimerUI TimerUI { get => timerUI; }
+        public HeroHpUI HeroHpUI { get => heroHpUI; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -45,6 +47,7 @@ namespace Team02.Scene
 
         public override void Initialize()
         {
+            player.Initialize();
             base.Initialize();
             EnemyCountUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
         }
@@ -56,6 +59,7 @@ namespace Team02.Scene
             lineUI = new LineUI(this);
             enemyCntUI = new EnemyCountUI(this);
             timerUI = new TimerUI(this);
+            heroHpUI = new HeroHpUI(this);
             new Stage01(this, "stage01");
             ShowStage = stages["stage01"];
             base.PreLoadContent();
@@ -63,8 +67,6 @@ namespace Team02.Scene
         public override void LoadContent()
         {
             GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
-            //image = ImageManage.GetSImage("background_test.png");
-            // Refract = 0.3f;
             base.LoadContent();
         }
 
@@ -100,7 +102,9 @@ namespace Team02.Scene
             }
             EnemyCountUI.EnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
 
+            player.Update();
             base.Update(gameTime);
+            player.AfterUpdate();   
         }
 
         /// <summary>

@@ -21,8 +21,9 @@ namespace Team02.Scene.Stage.GameObjs
     public class MoveBlock : Block
     {
         private Vector2 speed;
+        private bool speedChanged = false;
 
-        public Vector2 Speed { get => speed; set => speed = value; }
+        public Vector2 Speed { get => speed; set => SetSpeed(value); }
 
         public MoveBlock(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -41,8 +42,20 @@ namespace Team02.Scene.Stage.GameObjs
                 }
             }
         }
+
+        private void SetSpeed(Vector2 value)
+        {
+            if(speedChanged)
+            {
+                return;
+            }
+            speed = ElementTools.FormatFourGra(value);
+            speedChanged = true;
+        }
+
         public override void Update(GameTime gameTime)
         {
+            speedChanged = false;
             AddVelocity(speed, VeloParam.Run);
             base.Update(gameTime);
         }
@@ -79,7 +92,7 @@ namespace Team02.Scene.Stage.GameObjs
                     ve.Normalize();
                     Vector2 newspeed;
                     newspeed = speed - 2 * Vector2.Dot(speed, ve) * ve;
-                    speed = newspeed;
+                    Speed = newspeed;
                 }
             }
             base.CalCollision(obj);

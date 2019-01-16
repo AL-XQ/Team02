@@ -49,6 +49,7 @@ namespace Team02.Scene.Stage
         public void ResetStage()
         {
             reset = true;
+            CameraScale = 1;
         }
 
         public override void Initialize()
@@ -74,6 +75,7 @@ namespace Team02.Scene.Stage
         public override void Update(GameTime gameTime)
         {
             GraChangerUpdate(gameTime);
+            MapCreator.Update();
             base.Update(gameTime);
             AfterUpdate();
         }

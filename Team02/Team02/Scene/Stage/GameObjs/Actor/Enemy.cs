@@ -83,12 +83,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Enemy enemy && !(obj is HideEnemy))
-            {
-                Vector2 a = Speed * 0.5f;
-                enemy.Speed += a;
-                Speed -= a;
-            }
             base.CalCollision(obj);
         }
 

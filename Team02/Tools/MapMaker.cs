@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Team02.Scene.Stage.GameObjs;
+using Team02.Scene.Stage.GameObjs.Trigger;
 using Team02.Scene.Stage.GameObjs.Actor;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02;
@@ -41,6 +42,7 @@ namespace Tools
             {"Hero",typeof(Hero) },
             {"Enemy",typeof(Enemy) },
             {"HideEnemy",typeof(HideEnemy) },
+            {"CameraZoom",typeof(CameraZoom) },
         };
 
         public MapMaker()

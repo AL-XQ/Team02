@@ -70,6 +70,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene\Stage\BossStage.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraLinkBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\IGraLink.cs" />
     <Compile Include="Scene\Stage\GameObjs\FourGraBlock.cs" />
@@ -82,7 +83,11 @@
     <Compile Include="Scene\Stage\GameObjs\API\ISpeed.cs" />
     <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraBlock.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
+    <Compile Include="Scene\UI\EnemyHpUI.cs" />
+    <Compile Include="Scene\UI\HeroHpUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
     <Compile Include="Scene\PlayScene.cs" />
@@ -216,6 +221,9 @@
     <Content Include="Texture\AutoLoad\EnemyCountFront.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\EnemyHp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\EnemyRateBack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -223,6 +231,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\Enemy_Test.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\HeroHp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\lazer_test.png">
