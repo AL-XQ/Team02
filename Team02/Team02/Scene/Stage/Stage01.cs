@@ -18,7 +18,6 @@ namespace Team02.Scene.Stage
 {
     public class Stage01 : Base_Stage
     {
-        private Enemy testenemy;
         public Stage01(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             EndOfRightDown = new Vector2(2000000, 2000000);
@@ -34,33 +33,7 @@ namespace Team02.Scene.Stage
         {
             Map = "map01";
 
-
-            //Test
-            testenemy = new Enemy(this, "enemy");
-            testenemy.Coordinate = new Vector2(800, 400);
-            testenemy.Size = new Size(64, 64);
-
-            //Test
-
-
             base.PreLoadContent();
-
-
-            //Test
-            var behaviourManager = new BehaviourManager();
-
-            behaviourManager.CreateBehaviour("runaway", 0);
-            behaviourManager.AddBehaviour("runaway", new RunAwayFromTarget(0.2f));
-            behaviourManager.AddBehaviour("runaway", new Fly());
-            behaviourManager.AddCondition("runaway", new DistanceBelowN(500));
-
-            behaviourManager.CreateBehaviour("stopmoving", 1);
-            behaviourManager.AddBehaviour("stopmoving", new StopMoving());
-            behaviourManager.AddCondition("stopmoving", new DistanceOverN(1200));
-            behaviourManager.User = testenemy;
-            behaviourManager.Target = CharaManager.Hero;
-            testenemy.BehaviourManager = behaviourManager;
-            //Test
         }
 
         public override void LoadContent()
