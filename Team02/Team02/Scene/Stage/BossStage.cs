@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.GameGraphics;
 using InfinityGame;
+using InfinityGame.Device;
 using InfinityGame.Element;
 
 using Team02.Scene.Stage.GameObjs.Actor.AI;
@@ -27,6 +28,17 @@ namespace Team02.Scene.Stage
         public BossStage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
 
+        }
+
+        public override void LoadContent()
+        {
+            SetBGM();
+            base.LoadContent();
+        }
+
+        protected override void SetBGM()
+        {
+            sounds["bgm"] = SoundManage.GetSound("Boss.wav");
         }
 
         public void SpawnEnemy()
