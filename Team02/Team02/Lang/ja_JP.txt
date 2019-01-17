@@ -6,3 +6,8 @@
 <Reset:リセット>
 <StartUpText:ロード中>
 <ok:確認>
+<GravityDefender:GravityDefender>
+<Start:スタート>
+<Credit:クレジット>
+<Exit:終了>
+<Back:戻る>

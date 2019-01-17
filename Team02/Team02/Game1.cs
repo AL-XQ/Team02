@@ -15,6 +15,7 @@ using InfinityGame.Device.KeyboardManage;
 using Team02.Scene;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using InfinityGame.Stage.StageObject;
+using InfinityGame.Lang;
 
 /// <summary>
 /// プロジェクト名がnamespaceとなります
@@ -30,7 +31,7 @@ namespace Team02
         // フィールド（このクラスの情報を記述）
         private GraphicsDeviceManager graphicsDeviceManager;//グラフィックスデバイスを管理するオブジェクト
         //private SpriteBatch spriteBatch;//画像をスクリーン上に描画するためのオブジェクト  //このクラスで描画しない
-        private string title = "Team02";
+        private string title = GameTexts.GetText("GravityDefender");
         private GameRun gameRun;
         private InfinityGame.Element.Size tempScreen;
         private Load_Scene Load_Scene;

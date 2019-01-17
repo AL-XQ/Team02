@@ -44,6 +44,7 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
+            Image = ImageManage.GetSImage("CLEAR.png");
             ok.Image = ImageManage.GetSImage("button02");
             ok.Click += OK_Click;
             base.LoadContent();

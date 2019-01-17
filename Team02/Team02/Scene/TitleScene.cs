@@ -39,6 +39,7 @@ namespace Team02.Scene
 
         public override void LoadContent()
         {
+            Image = ImageManage.GetSImage("title.png");
             sounds["bgm"] = SoundManage.GetSound("Title.wav");
             sounds["bgm"].SetSELoopPlay(true);
             sounds["bgm"].Play();
