@@ -47,6 +47,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void LoadContent()
         {
             trailImage = ImageManage.GetSImage("trail.png");
+            sounds["death"] = SoundManage.GetSound("Player_Death.wav");
             base.LoadContent();
         }
 
@@ -84,6 +85,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
+            sounds["death"].PlayE();
             base_Stage.MapCreator.ReSpawn();
             base.UKill();
         }
@@ -97,6 +99,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 {
                     e.Hp -= attack;
                     Speed -= ve * 0.8f;
+                    sounds["death"].PlayE(); //ドロップキック用サウンド再生
                 }
             }
             base.CalCollision(obj);
@@ -113,7 +116,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     new Color(57, 141, 253) * MathHelper.Clamp(1 - trailParticles[i].timer.Rate, 0, 0.8f),
                     0,
                     new Vector2(16, 16),
-                    new Vector2(2, 2) * (1 - trailParticles[i].timer.Rate),
+                    new Vector2(2, 2) * (1 - trailParticles[i].timer.Rate) * Stage.CameraScale,
                     SpriteEffects.None,
                     0);
             }

@@ -18,7 +18,7 @@ using Team02.Scene.Stage;
 
 namespace Team02.Scene.UI
 {
-    public class EnemyCountUI :Panel
+    public class EnemyCountUI : Panel
     {
         private PlayScene playScene;
         private Panel frontPa;
@@ -39,7 +39,6 @@ namespace Team02.Scene.UI
 
         public override void Initialize()
         {
-            maxEnemyCnt = ((Base_Stage)playScene.ShowStage).CharaManager.Enemys.Count;
             isClear = false;
             base.Initialize();
         }
@@ -67,8 +66,16 @@ namespace Team02.Scene.UI
 
         public override void Update(GameTime gameTime)
         {
+            var ss = (Base_Stage)playScene.ShowStage;
+            maxEnemyCnt = ss.CharaManager.Enemys.Count;
+            enemyCnt = ss.CharaManager.Enemys.Count;
             numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
-            if (enemyCnt == 0)
+            if (ss is BossStage bs)
+            {
+                if (bs.Boss != null && bs.Boss.Isover)
+                    isClear = true;
+            }
+            else if (enemyCnt == 0)
             {
                 isClear = true;
             }
@@ -77,7 +84,7 @@ namespace Team02.Scene.UI
 
         public override void Draw1(GameTime gameTime)
         {
-            float rate =(1.0f - (float)enemyCnt / maxEnemyCnt) * (float)Math.PI / 2.0f;
+            float rate = (1.0f - (float)enemyCnt / maxEnemyCnt) * (float)Math.PI / 2.0f;
             spriteBatch.Draw(Image.ImageT[iTIndex], Location.ToVector2(), Color.White);
             spriteBatch.Draw(frontPa.Image.ImageT[iTIndex], frontPa.Location.ToVector2(), null, Color.White, -rate, Vector2.Zero, new Vector2(1, 1), SpriteEffects.None, 1.0f);
         }

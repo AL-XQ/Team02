@@ -70,6 +70,10 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomF.cs" />
+    <Compile Include="Scene\Stage\BossStage1.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\BossHit.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Actor\BossPanel.cs" />
     <Compile Include="Scene\Stage\BossStage.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraLinkBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\IGraLink.cs" />
@@ -86,7 +90,7 @@
     <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
-    <Compile Include="Scene\UI\EnemyHpUI.cs" />
+    <Compile Include="Scene\UI\CharaHpUI.cs" />
     <Compile Include="Scene\UI\HeroHpUI.cs" />
     <Compile Include="Scene\UI\LineUI.cs" />
     <Compile Include="Scene\Load_Scene.cs" />
@@ -118,7 +122,6 @@
     <Compile Include="Scene\Player.cs" />
     <Compile Include="Scene\Stage\GameObjs\LoopedBlock.cs" />
     <Compile Include="Scene\Stage\MapCreator.cs" />
-    <Compile Include="Scene\Stage\Stage01.cs" />
     <Compile Include="Scene\UI\TestUI.cs" />
     <Compile Include="Scene\TitleScene.cs" />
     <Compile Include="Scene\UI\BackMenu.cs" />
@@ -149,10 +152,34 @@
     <Content Include="Lang\ja_JP.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sound\AutoLoad\Bullet_Impact.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\AutoLoad\Chara_Damage.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\0_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sound\AutoLoad\click.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sound\AutoLoad\Enemy_Controlled.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\AutoLoad\Enemy_Death.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sound\AutoLoad\enter.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\AutoLoad\Player_Death.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\AutoLoad\Player_Jump.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\AutoLoad\Player_Shoot.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sound\Sounds.txt">

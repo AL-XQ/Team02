@@ -16,11 +16,11 @@ using Team02.Device;
 
 namespace Team02.Scene.Stage
 {
-    public abstract class Base_Stage : BaseStage
+    public class Base_Stage : BaseStage
     {
         private PlayScene playScene;
         private MapCreator mapCreator;
-        private CharaManager charaManager = new CharaManager();
+        private CharaManager charaManager;
         private Vector2 defGra;
         private string map;
         private List<GraChanger> graChangers = new List<GraChanger>();
@@ -38,6 +38,8 @@ namespace Team02.Scene.Stage
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
             playScene = (PlayScene)parent;
+            charaManager = new CharaManager(this);
+            EndOfRightDown = new Vector2(2000000, 2000000);
         }
 
         private void SetNowChanger(GraChanger value)
@@ -49,13 +51,14 @@ namespace Team02.Scene.Stage
         public void ResetStage()
         {
             reset = true;
-            CameraScale = 1;
         }
 
         public override void Initialize()
         {
+            Player.CameraCenter = IGConfig.screen.ToVector2() / 2;
             defGra = new Vector2(0, 0.5f);
             ClearStage();
+            CameraScale = 1;
             charaManager.Initialize();
             mapCreator.MapRead(BinaryReader.ReadMap(map));
             base.Initialize();
@@ -74,6 +77,8 @@ namespace Team02.Scene.Stage
 
         public override void Update(GameTime gameTime)
         {
+            if (playScene.ShowStage.Name != Name)
+                return;
             GraChangerUpdate(gameTime);
             MapCreator.Update();
             base.Update(gameTime);
