@@ -88,6 +88,7 @@
     <Compile Include="Scene\Stage\GameObjs\ObjUI.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Trigger\SavePoint.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\CharaHpUI.cs" />
