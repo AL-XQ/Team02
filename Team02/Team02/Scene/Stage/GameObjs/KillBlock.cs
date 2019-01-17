@@ -21,7 +21,7 @@ namespace Team02.Scene.Stage.GameObjs
         }
         protected override void SetImage()
         {
-            ImageName = "0_0.png";   
+            ImageName = "DeathBlock.png";   
           //  base.SetImage();
         }
         public override void CalCollision(StageObj obj)
