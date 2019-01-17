@@ -38,6 +38,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DefaultMovePri = 9;
         }
 
+        protected override void SetGra(Vector2 value)
+        {
+            gra = Vector2.Zero;
+        }
+
         private void SetStabilityTime(int value)
         {
             stabilityTime = Math.Min(value, stabilityTarget);
@@ -50,6 +55,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Gra = Vector2.Zero;
             _Damage = null;
             _Damage += ShowFace;
+            _Damage += ShowDamageBar;
             base.Initialize();
             EnableChange = false;//CharaクラスでこれをTrueに設定しているため、base.Initialize()の後にもう一度設定する
         }
@@ -79,6 +85,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             showFace = true;
             defaultColor = Color.Red;
             Color = Color.Red;
+        }
+
+        private void ShowDamageBar()
+        {
+
         }
 
         public override void Update(GameTime gameTime)

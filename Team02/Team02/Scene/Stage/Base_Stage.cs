@@ -8,6 +8,7 @@ using InfinityGame.Stage;
 using InfinityGame.Stage.StageObject;
 using InfinityGame.Element;
 using InfinityGame.Def;
+using InfinityGame.Device;
 using Microsoft.Xna.Framework;
 
 using Team02.Scene.Stage.GameObjs;
@@ -48,6 +49,11 @@ namespace Team02.Scene.Stage
             playScene.LineUI.IsShoot = (nowChanger == null);
         }
 
+        protected virtual void SetBGM()
+        {
+            sounds["bgm"] = SoundManage.GetSound("GamePlay.wav");
+        }
+
         public void ResetStage()
         {
             reset = true;
@@ -72,6 +78,7 @@ namespace Team02.Scene.Stage
 
         public override void LoadContent()
         {
+            SetBGM();
             base.LoadContent();
         }
 
