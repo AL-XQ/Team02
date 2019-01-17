@@ -43,6 +43,7 @@ namespace Tools
             {"Enemy",typeof(Enemy) },
             {"HideEnemy",typeof(HideEnemy) },
             {"CameraZoom",typeof(CameraZoom) },
+            {"SavePoint",typeof(SavePoint) },
         };
 
         public MapMaker()
