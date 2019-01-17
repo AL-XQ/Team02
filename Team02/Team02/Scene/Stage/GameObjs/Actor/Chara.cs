@@ -28,10 +28,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         private CharaHpUI hpUI;
         private float coeff = 0.05f;
-        private int hp;
-        private int mp;
-        private int maxhp = 100;
-        private int maxmp = 100;
+        private float hp;
+        private float mp;
+        private float maxhp = 100;
+        private float maxmp = 100;
         private float targetRotation;
         private float rotationIncrement;
         private float damageSpeed = 100;
@@ -56,10 +56,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private Dictionary<string, int> times = new Dictionary<string, int>();
 
 
-        public int Hp { get => hp; set => SetHp(value); }
-        public int Mp { get => mp; set => mp = value; }
-        public int Maxhp { get => maxhp; set => maxhp = value; }
-        public int Maxmp { get => maxmp; set => maxmp = value; }
+        public float Hp { get => hp; set => SetHp(value); }
+        public float Mp { get => mp; set => mp = value; }
+        public float Maxhp { get => maxhp; set => maxhp = value; }
+        public float Maxmp { get => maxmp; set => maxmp = value; }
         public Vector2 Speed { get => speed; set => speed = value; }
         public CharaManager CharaManager { get => base_Stage.CharaManager; }
         public Motion Motion { get => motion; }
@@ -111,7 +111,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             _GraChangerChanged?.Invoke();
         }
 
-        private void SetHp(int value)
+        private void SetHp(float value)
         {
             if (value == hp)
                 return;
@@ -327,7 +327,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     var esc = l.ISpace.Escape(ISpace);
                     if (esc.LengthSquared() >= maxScissorsLength * maxScissorsLength)
                     {
-                        Kill();
+                        CharaKill();
                         return;
                     }
                 }
@@ -489,7 +489,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
             sounds["shoot"].PlayE();
         }
-
+        
         public override void UKill()
         {
             CharaManager.Remove(this);
@@ -551,6 +551,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         private void PlayDamageSE()
         {
+            if (Hp <= 0)
+            {
+                sounds["death"].PlayE();
+                return;
+            }
+            if (this is Hero)
+            {
+                sounds["damage"].Play();
+                return;
+            }
             sounds["damage"].PlayE();
         }
 
@@ -560,6 +570,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             {
                 sounds["graChanged"].PlayE();
             }
+        }
+
+        public void CharaKill()
+        {
+            Hp = -1;
         }
     }
 }

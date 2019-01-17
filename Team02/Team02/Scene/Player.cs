@@ -103,6 +103,8 @@ namespace Team02.Scene
 
         private void Player_Click(object sender, EventArgs e)
         {
+            if (!playScene.Running)
+                return;
 #if DEBUG
             if (edit)
             {

@@ -17,6 +17,7 @@ namespace Team02.Scene.Stage
     {
         public BossStage1(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
+            StageTime = 30;
         }
 
         public override void Initialize()
@@ -24,18 +25,9 @@ namespace Team02.Scene.Stage
             base.Initialize();
             Boss = new BossPanel(this);
             Boss.Coordinate = new Vector2(12 * 64, 3 * 64);
-            Boss.Hp = 2;
             Boss.Size = new Size(10 * 64, 11 * 64);
-            Boss.Image = ImageManage.GetSImage("0_1.png");
-            for (int i = 0; i < 2; i++)
-            {
-                Boss.Hits.Add(new BossHit(this, Boss));
-                Boss.Hits[i].Size = new Size(64, 64);
-            }
-            Boss.Hits[0].Coordinate = new Vector2(17 * 64, 5 * 64);
-            Boss.Hits[1].Coordinate = new Vector2(15 * 64, 8 * 64);
-            Boss.Hits[0].Create();
-            Boss.Hits[1].Create();
+            Boss.Image = ImageManage.GetSImage("boss1.png");
+            Boss.CreateHitSpace(3);
         }
 
         public override void PreLoadContent()

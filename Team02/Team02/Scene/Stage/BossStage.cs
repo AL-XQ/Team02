@@ -18,12 +18,13 @@ namespace Team02.Scene.Stage
     public class BossStage : Base_Stage
     {
         private BossPanel boss;
-        private int maxEnemy = 10;
+        private int maxEnemy = 2;
         private RandomF rnd = new RandomF();
         private Vector2[] spawnPoint = new Vector2[2];
 
         public BossPanel Boss { get => boss; set => boss = value; }
         public Vector2[] SpawnPoint { get => spawnPoint; }
+        public int MaxEnemy { get => maxEnemy; set => maxEnemy = value; }
 
         public BossStage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -39,6 +40,7 @@ namespace Team02.Scene.Stage
         protected override void SetBGM()
         {
             sounds["bgm"] = SoundManage.GetSound("Boss.wav");
+            sounds["bgm"].SetSELoopPlay(true);
         }
 
         public void SpawnEnemy()

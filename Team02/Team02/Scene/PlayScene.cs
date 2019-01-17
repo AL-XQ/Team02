@@ -31,9 +31,12 @@ namespace Team02.Scene
         private LineUI lineUI;
         private EnemyCountUI enemyCntUI;
         private TimerUI timerUI;
+        private GameOver gameOver;
+        private GameClear gameClear;
         private int nowStage = 0;
         private List<string> stageOrder = new List<string>();
         private List<BossStage> bossStages = new List<BossStage>();
+        private bool running = false;
 
         public Player Player { get => player; }
         public LineUI LineUI { get => lineUI; }
@@ -41,6 +44,8 @@ namespace Team02.Scene
         public EnemyCountUI EnemyCountUI { get => enemyCntUI; }
         public TimerUI TimerUI { get => timerUI; }
         public int NowStage { get => nowStage; set => SetNowStage(value); }
+        public BackMenu BackMenu { get => backMenu; }
+        public bool Running { get => running; }
 
         public PlayScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -49,7 +54,10 @@ namespace Team02.Scene
 
         private void SetNowStage(int value)
         {
-            nowStage = value;
+            if (value >= stageOrder.Count)
+                nowStage = 0;
+            else
+                nowStage = value;
             SetShowStage(stageOrder[nowStage]);
         }
 
@@ -58,6 +66,7 @@ namespace Team02.Scene
             player.Initialize();
             base.Initialize();
             SetShowStage(stageOrder[nowStage]);
+            enemyCntUI.MaxEnemyCnt = ((Base_Stage)ShowStage).CharaManager.Enemys.Count;
         }
 
         public override void PreLoadContent()
@@ -67,8 +76,11 @@ namespace Team02.Scene
             lineUI = new LineUI(this);
             enemyCntUI = new EnemyCountUI(this);
             timerUI = new TimerUI(this);
+            gameOver = new GameOver(this);
+            gameClear = new GameClear(this);
             var m1 = new Base_Stage(this, "stage01");
             m1.Map = "map01";
+            m1.StageTime = 6000;
             bossStages.Add(new BossStage1(this, "bossstage1"));
             bossStages[0].Map = "map04";
             stageOrder.AddRange(new string[] { "bossstage1", "stage01", "bossstage1", "bossstage1" });
@@ -80,10 +92,15 @@ namespace Team02.Scene
         {
             var bs = (Base_Stage)stages[stageName];
             ShowStage = bs;
-            if (sounds["bgm"] != null)
+            if (sounds["bgm"] != null && sounds["bgm"] != bs.sounds["bgm"])
                 sounds["bgm"].Stop();
-            sounds["bgm"] = bs.sounds["bgm"];
-            sounds["bgm"].Play();
+            if (sounds["bgm"] != null || sounds["bgm"] != bs.sounds["bgm"])
+            {
+                sounds["bgm"] = bs.sounds["bgm"];
+                if (IsRun)
+                    sounds["bgm"].Play();
+            }
+            timerUI.SetTime(bs.StageTime);
             player.Chara = bs.CharaManager.Hero;
         }
         public override void LoadContent()
@@ -95,6 +112,7 @@ namespace Team02.Scene
 
         public override void Update(GameTime gameTime)
         {
+            running = true;
             player.Update(gameTime);
             if ((GameKeyboard.GetKeyTrigger(Keys.Escape) || IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Back)))
             {
@@ -102,17 +120,18 @@ namespace Team02.Scene
                 backMenu.SetFocus();
             }
 
-            if (backMenu.Visible)
+            if (backMenu.Visible || gameOver.Visible || gameClear.Visible)
             {
+                running = false;
                 backMenu.Update(gameTime);
+                gameOver.Update(gameTime);
+                gameClear.Update(gameTime);
                 return;
             }
             if (timerUI.IsTime)
             {
-                var sc = GameRun.Instance.scenes;
-                sc["play"].IsRun = false;
-                sc["title"].IsRun = true;
-                sc["play"].Initialize();
+                gameOver.Visible = true;
+                running = false;
                 return;
             }
             if (enemyCntUI.IsClear)
@@ -124,12 +143,9 @@ namespace Team02.Scene
                 }
                 else
                 {
-                    //クリア
-                    var sc = GameRun.Instance.scenes;
-                    sc["play"].IsRun = false;
-                    sc["title"].IsRun = true;
-                    sc["play"].Initialize();
+                    gameClear.Visible = true;
                 }
+                running = false;
                 return;
             }
 

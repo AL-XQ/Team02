@@ -85,7 +85,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void UKill()
         {
-            sounds["death"].PlayE();
             base_Stage.MapCreator.ReSpawn();
             base.UKill();
         }

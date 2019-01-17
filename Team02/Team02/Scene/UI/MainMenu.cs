@@ -120,7 +120,9 @@ namespace Team02.Scene.UI
                     else if (sc["title"].Refract <= 0)
                     {
                         sc["title"].IsRun = false;
+                        sc["title"].sounds["bgm"].Stop();
                         sc["play"].IsRun = true;
+                        sc["play"].sounds["bgm"].Play();
                         parent.Initialize();
                     }
                 }

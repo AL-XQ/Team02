@@ -3,6 +3,6 @@
 <Font:ラノベPOP.otf>
 <Loading:読み込み中>
 <Title:タイトル>
-<Reset:重置>
+<Reset:リセット>
 <StartUpText:ロード中>
-<aaa:あああ>
+<ok:確認>

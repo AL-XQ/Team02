@@ -7,6 +7,8 @@ using InfinityGame.GameGraphics;
 using InfinityGame.Stage.StageObject;
 using Team02.Scene.Stage.GameObjs;
 
+using Microsoft.Xna.Framework;
+
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public class BossPanel : ObjUI
@@ -14,6 +16,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private int hp;
         private bool isover = false;
         private List<BossHit> hits = new List<BossHit>();
+        private RandomF rnd = new RandomF();
 
         public int Hp { get => hp; set => SetHp(value); }
         public List<BossHit> Hits { get => hits; }
@@ -44,10 +47,22 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             isover = true;
         }
 
+        public void CreateHitSpace(int num)
+        {
+            Hp = num;
+            for (int i = 0; i < num; i++)
+            {
+                var hit = new BossHit(Stage, this);
+                hit.Coordinate = new Vector2(rnd.NextFloat(Coordinate.X, Coordinate.X + size.Width - 64), rnd.NextFloat(Coordinate.Y, Coordinate.Y + size.Height - 64));
+                hits.Add(hit);
+                hit.Create();
+            }
+        }
+
         public override void CalCollision(StageObj obj)
         {
-            if (obj is Hero)
-                obj.Kill();
+            if (obj is Hero h)
+                h.CharaKill();
             base.CalCollision(obj);
         }
     }

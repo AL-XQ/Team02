@@ -19,6 +19,7 @@ namespace Team02.Scene.Stage
 {
     public class Base_Stage : BaseStage
     {
+        private int stageTime = 0;
         private PlayScene playScene;
         private MapCreator mapCreator;
         private CharaManager charaManager;
@@ -35,6 +36,7 @@ namespace Team02.Scene.Stage
         public string Map { get => map; set => map = value; }
         public List<GraChanger> GraChangers { get => graChangers; }
         public GraChanger NowChanger { get => nowChanger; set => SetNowChanger(value); }
+        public int StageTime { get => stageTime; set => stageTime = value; }
 
         public Base_Stage(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -52,6 +54,7 @@ namespace Team02.Scene.Stage
         protected virtual void SetBGM()
         {
             sounds["bgm"] = SoundManage.GetSound("GamePlay.wav");
+            sounds["bgm"].SetSELoopPlay(true);
         }
 
         public void ResetStage()
