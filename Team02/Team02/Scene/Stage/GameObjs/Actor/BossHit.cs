@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfinityGame.GameGraphics;
 using InfinityGame.Stage.StageObject;
+using InfinityGame.Element;
 using Microsoft.Xna.Framework;
 using Team02.Scene.Stage.GameObjs.Trigger;
 
@@ -20,6 +21,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DrawOrder = 0;
         }
 
+        public override void PreLoadContent()
+        {
+            Refract = 0.9f;
+            Size = new Size(64, 64);
+            base.PreLoadContent();
+        }
+
+        protected override void OffSet()
+        {
+            RenderCoo_Offset = -size.ToVector2() * new Vector2(2f, 2f);
+            RenderSize_Offset = size.ToVector2() * new Vector2(4f, 4f);
+        }
+
         public override void Update(GameTime gameTime)
         {
             if (boss != null && boss.Isover)
@@ -29,14 +43,14 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
-            ImageName = "EnemyRateFront.png";
+            ImageName = "aim.png";
         }
 
         public override void CalCollision(StageObj obj)
         {
-            if (!Dealing && obj is Enemy && !obj.Dealing)
+            if (!Dealing && obj is Enemy e && !obj.Dealing)
             {
-                obj.Kill();
+                e.CharaKill();
                 Kill();
                 boss.Hp--;
             }

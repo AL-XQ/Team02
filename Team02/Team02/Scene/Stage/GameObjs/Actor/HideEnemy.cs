@@ -89,7 +89,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         private void ShowDamageBar()
         {
-
+            HpUI.Visible = true;
+            _Damage -= ShowDamageBar;
         }
 
         public override void Update(GameTime gameTime)

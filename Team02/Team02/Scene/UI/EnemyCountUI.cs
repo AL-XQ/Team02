@@ -67,7 +67,8 @@ namespace Team02.Scene.UI
         public override void Update(GameTime gameTime)
         {
             var ss = (Base_Stage)playScene.ShowStage;
-            maxEnemyCnt = ss.CharaManager.Enemys.Count;
+            if (ss is BossStage)
+                maxEnemyCnt = ss.CharaManager.Enemys.Count;
             enemyCnt = ss.CharaManager.Enemys.Count;
             numberLa.Text = enemyCnt + "/" + maxEnemyCnt;
             if (ss is BossStage bs)

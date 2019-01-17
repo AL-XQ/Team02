@@ -135,7 +135,9 @@ namespace Team02.Scene.UI
         {
             var sc = GameRun.Instance.scenes;
             sc["play"].IsRun = false;
+            sc["play"].sounds["bgm"].Stop();
             sc["title"].IsRun = true;
+            sc["title"].sounds["bgm"].Play();
             sc["play"].Initialize();
         }
 

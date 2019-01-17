@@ -83,12 +83,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void CalCollision(StageObj obj)
         {
+            if (!(this is HideEnemy) && obj is Hero h)
+            {
+                h.Hp -= 0.1f;
+            }
             base.CalCollision(obj);
         }
 
         public override void UKill()
         {
-            sounds["death"].PlayE();
             base.UKill();
         }
     }

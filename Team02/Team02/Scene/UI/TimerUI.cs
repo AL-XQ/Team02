@@ -36,7 +36,6 @@ namespace Team02.Scene.UI
 
         public override void Initialize()
         {
-            SetTime(6000);
             IsTime = false;
             base.Initialize();
         }

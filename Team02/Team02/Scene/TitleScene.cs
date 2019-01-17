@@ -40,6 +40,8 @@ namespace Team02.Scene
         public override void LoadContent()
         {
             sounds["bgm"] = SoundManage.GetSound("Title.wav");
+            sounds["bgm"].SetSELoopPlay(true);
+            sounds["bgm"].Play();
             base.LoadContent();
         }
 
