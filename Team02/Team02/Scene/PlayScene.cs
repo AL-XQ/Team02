@@ -80,10 +80,15 @@ namespace Team02.Scene
         {
             var bs = (Base_Stage)stages[stageName];
             ShowStage = bs;
+            if (sounds["bgm"] != null)
+                sounds["bgm"].Stop();
+            sounds["bgm"] = bs.sounds["bgm"];
+            sounds["bgm"].Play();
             player.Chara = bs.CharaManager.Hero;
         }
         public override void LoadContent()
         {
+            sounds["bgm"] = null;
             GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
             base.LoadContent();
         }

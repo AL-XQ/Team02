@@ -15,6 +15,8 @@ using InfinityGame.Element;
 using Microsoft.Xna.Framework.Graphics;
 using Team02.Scene.Stage.GameObjs.API;
 
+using Team02.Scene.UI;
+
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
     public abstract class Chara : GameObj, IForce, IGraChange
@@ -23,6 +25,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public D_Void _Healing;
         public D_Void _GraChangerChanged;
 
+
+        private CharaHpUI hpUI;
         private float coeff = 0.05f;
         private int hp;
         private int mp;
@@ -32,7 +36,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private float rotationIncrement;
         private float damageSpeed = 100;
         private int defaultMovePri = 5;
-        private Vector2 gra = Vector2.Zero;
+        protected Vector2 gra = Vector2.Zero;
         private Dictionary<string, Vector2> forces = new Dictionary<string, Vector2>();
         private Dictionary<string, float> disSpeeds = new Dictionary<string, float>();
         private Dictionary<string, object> objMemory = new Dictionary<string, object>();
@@ -83,6 +87,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public int DefaultMovePri { get => defaultMovePri; set => defaultMovePri = value; }
         public bool EnableChange { get => enableChange; set => enableChange = value; }
         public Dictionary<string, int> Times { get => times; }
+        public CharaHpUI HpUI { get => hpUI; set => hpUI = value; }
 
         public Chara(BaseDisplay aParent, string aName) : base(aParent, aName)
         {
@@ -90,7 +95,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DefaultMovePri = 10;
             DrawOrder = 2;
             CrimpGroup = "chara";
-            RegistEvent();
         }
 
         public Chara(MapCreator mapCreator, Dictionary<string, object> args) : base(mapCreator, args)
@@ -99,12 +103,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DefaultMovePri = 10;
             DrawOrder = 2;
             CrimpGroup = "chara";
-            RegistEvent();
-        }
-
-        private void RegistEvent()
-        {
-            _Damage += DamageColorChange;
         }
 
         private void SetGraChanger(GraChanger value)
@@ -154,7 +152,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             DisJump();
         }
 
-        private void SetGra(Vector2 value)
+        protected virtual void SetGra(Vector2 value)
         {
             gra = value;
             targetRotation = (float)(Math.Atan2(value.Y, value.X) - Math.PI / 2);
@@ -175,7 +173,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Origin = ISpace.LCenter;
             SetUpdate();
             enableChange = true;
-
+            _Damage += DamageColorChange;
             _Damage += PlayDamageSE;
             _GraChangerChanged += PlayGraChangerSE;
 

@@ -43,6 +43,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 ui.Target = hero;
                 ui.Create();
                 hpUIs.Add(hero, ui);
+                hero.HpUI = ui;
             }
         }
 
@@ -56,6 +57,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             var ui = new CharaHpUI(enemy.Stage);
             ui.Target = enemy;
             ui.Create();
+            if (enemy is HideEnemy)
+                ui.Visible = false;
+            enemy.HpUI = ui;
             hpUIs.Add(enemy, ui);
         }
 
