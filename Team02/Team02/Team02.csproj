@@ -273,6 +273,9 @@
     <Content Include="Texture\AutoLoad\player_walk_R.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\savepoint.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\TimerBack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -431,6 +434,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Map\map02.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Map\map03.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Map\map04.map">

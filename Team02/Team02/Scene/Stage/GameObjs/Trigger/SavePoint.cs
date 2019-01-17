@@ -28,5 +28,9 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
             }
             base.CalCollision(obj);
         }
+        protected override void SetImage()
+        {
+            ImageName = "savepoint.png";
+        }
     }
 }

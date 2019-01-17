@@ -69,9 +69,11 @@ namespace Team02.Scene
             timerUI = new TimerUI(this);
             var m1 = new Base_Stage(this, "stage01");
             m1.Map = "map01";
+            var m2 = new Base_Stage(this, "stage02");
+            m2.Map = "map02";
             bossStages.Add(new BossStage1(this, "bossstage1"));
             bossStages[0].Map = "map04";
-            stageOrder.AddRange(new string[] { "bossstage1", "stage01", "bossstage1", "bossstage1" });
+            stageOrder.AddRange(new string[] { "stage01", "stage02", "bossstage1", "bossstage1" });
             nowStage = 0;
             base.PreLoadContent();
         }
