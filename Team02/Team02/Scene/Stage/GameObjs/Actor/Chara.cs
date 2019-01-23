@@ -54,6 +54,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private bool enableChange = true;
         private GraChanger graChanger;
         private Dictionary<string, int> times = new Dictionary<string, int>();
+        private Vector2 c_origin;
+        private Vector2 c_size;
 
 
         public float Hp { get => hp; set => SetHp(value); }
@@ -162,8 +164,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Initialize()
         {
+            ObjMemory["block"] = null;
             MovePriority = DefaultMovePri;
-            gra = base_Stage.DefGra;
+            ResetGra();
             forces.Clear();
             accel = Vector2.Zero;
             speed = Vector2.Zero;
@@ -171,6 +174,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             hp = maxhp;
             mp = maxhp;
             Origin = ISpace.LCenter;
+            var i_size = Size.ToVector2() + RenderSize_Offset;
+            c_size = 2 * i_size;
+            c_origin = c_size / 2;
             SetUpdate();
             enableChange = true;
             _Damage += DamageColorChange;
@@ -489,7 +495,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
             sounds["shoot"].PlayE();
         }
-        
+
         public override void UKill()
         {
             CharaManager.Remove(this);
@@ -535,9 +541,10 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if (graChanger != null && graChanger.OverTime == -1)
             {
-                Vector2 loc = -Size.ToVector2() * new Vector2(0.5f, 0.5f);
-                Vector2 siz = Size.ToVector2() * new Vector2(1f, 1f);
-                spriteBatch.Draw(GraChanger.ControlC.ImageT[0], new Rectangle(DrawLocation + (loc * Stage.CameraScale).ToPoint(), ((Size.ToVector2() + siz) * Stage.CameraScale).ToPoint()), new Rectangle(Point.Zero, GraChanger.ControlC.Size.ToPoint()), Color * refract, Rotation, ((Origin - loc) / (Size.ToVector2() + siz)) * GraChanger.ControlC.Size.ToVector2(), SpriteEffects.None, 1f);
+                var c_coo = ((RectangleF)ISpace).GetNoRotaCenter();
+                var c_dl = base_Stage.GetDrawLocation(c_coo);
+                var renderR = new Rectangle(Point.Zero, GraChanger.ControlC.Size.ToPoint());
+                spriteBatch.Draw(GraChanger.ControlC.ImageT[0], new Rectangle(c_dl, (c_size * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, c_origin / c_size * GraChanger.ControlC.Size.ToVector2(), SpriteEffects.None, 1f);
             }
             base.Draw2(gameTime);
         }

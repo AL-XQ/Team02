@@ -33,7 +33,8 @@ namespace Team02.Scene
         private TimerUI timerUI;
         private GameOver gameOver;
         private GameClear gameClear;
-        private int nowStage = 0;
+        private StageFade stageFade;
+        public int nowStage = 0;
         private List<string> stageOrder = new List<string>();
         private List<BossStage> bossStages = new List<BossStage>();
         private bool running = false;
@@ -78,15 +79,19 @@ namespace Team02.Scene
             timerUI = new TimerUI(this);
             gameOver = new GameOver(this);
             gameClear = new GameClear(this);
+            stageFade = new StageFade(this);
             var m1 = new Base_Stage(this, "stage01");
             m1.Map = "map01";
             m1.StageTime = 6000;
             var m2 = new Base_Stage(this, "stage02");
             m2.Map = "map02";
             m2.StageTime = 240;
+            var m3 = new Base_Stage(this, "stage03");
+            m3.Map = "map03";
+            m3.StageTime = 30;
             bossStages.Add(new BossStage1(this, "bossstage1"));
             bossStages[0].Map = "map04";
-            stageOrder.AddRange(new string[] { "stage01", "stage02", "bossstage1", "bossstage1" });
+            stageOrder.AddRange(new string[] { "stage01", "stage02", "stage03", "bossstage1" });
             nowStage = 0;
             base.PreLoadContent();
         }
@@ -94,7 +99,10 @@ namespace Team02.Scene
         public void SetShowStage(string stageName)
         {
             var bs = (Base_Stage)stages[stageName];
+            if (ShowStage != null)
+                ShowStage.ClearStage();
             ShowStage = bs;
+            ShowStage.Initialize();
             if (sounds["bgm"] != null && sounds["bgm"] != bs.sounds["bgm"])
                 sounds["bgm"].Stop();
             if (sounds["bgm"] != null || sounds["bgm"] != bs.sounds["bgm"])
@@ -103,13 +111,20 @@ namespace Team02.Scene
                 if (IsRun)
                     sounds["bgm"].Play();
             }
-            timerUI.SetTime(bs.StageTime);
+            ReadStageTime();
             player.Chara = bs.CharaManager.Hero;
         }
+
+        public void ReadStageTime()
+        {
+            var bs = (Base_Stage)ShowStage;
+            timerUI.SetTime(bs.StageTime);
+        }
+
         public override void LoadContent()
         {
             sounds["bgm"] = null;
-            GraChanger.ControlC = ImageManage.GetSImage("control_test.png");
+            GraChanger.ControlC = ImageManage.GetSImage("control_main.png");
             base.LoadContent();
         }
 
@@ -123,12 +138,13 @@ namespace Team02.Scene
                 backMenu.SetFocus();
             }
 
-            if (backMenu.Visible || gameOver.Visible || gameClear.Visible)
+            if (backMenu.Visible || gameOver.Visible || gameClear.Visible || stageFade.Visible)
             {
                 running = false;
                 backMenu.Update(gameTime);
                 gameOver.Update(gameTime);
                 gameClear.Update(gameTime);
+                stageFade.Update(gameTime);
                 return;
             }
             if (timerUI.IsTime)
@@ -141,8 +157,9 @@ namespace Team02.Scene
             {
                 if (nowStage < stageOrder.Count - 1)
                 {
-                    nowStage++;
-                    Initialize();
+                    var st = nowStage + 1;
+                    stageFade.D_Text = "Stage" + st.ToString();
+                    stageFade.ChangeTo(st);
                 }
                 else
                 {

@@ -74,7 +74,7 @@ namespace Team02
             //コンテンツデータ（リソースデータ）のルートフォルダは"Contentに設定
             Content.RootDirectory = "Content";
             IGConfig.MNCT = Content;
-            IsMouseVisible = true;
+            //IsMouseVisible = true;
 
             if (IGConfig.isFullScreen)
             {
@@ -187,7 +187,7 @@ namespace Team02
 
             // この下に描画ロジックを記述
             gameRun.Draw(gameTime);
-            //DIYMouse.Draw(GameRun.SpriteBatch);
+            DIYMouse.Draw(GameRun.SpriteBatch);
             //この上にロジックを記述
             base.Draw(gameTime); // 親クラスの更新処理呼び出し。絶対に消すな！！
         }

@@ -21,7 +21,7 @@ namespace Team02.Scene.Stage.GameObjs.Trigger
         protected override void SetImage()
         {
 #if DEBUG
-            ImageName = "0_0.png";
+            //ImageName = "0_0.png";
 #endif
         }
     }

@@ -75,6 +75,7 @@
     <Compile Include="Scene\Stage\GameObjs\Actor\BossHit.cs" />
     <Compile Include="Scene\Stage\GameObjs\Actor\BossPanel.cs" />
     <Compile Include="Scene\Stage\BossStage.cs" />
+    <Compile Include="Scene\Stage\GameObjs\Effect.cs" />
     <Compile Include="Scene\Stage\GameObjs\GraLinkBlock.cs" />
     <Compile Include="Scene\Stage\GameObjs\API\IGraLink.cs" />
     <Compile Include="Scene\Stage\GameObjs\FourGraBlock.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\CharaHpUI.cs" />
+    <Compile Include="Scene\UI\StageFade.cs" />
     <Compile Include="Scene\UI\GameClear.cs" />
     <Compile Include="Scene\UI\GameOver.cs" />
     <Compile Include="Scene\UI\HeroHpUI.cs" />
@@ -236,7 +238,7 @@
     <Content Include="Texture\AutoLoad\close_t.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\control_test.png">
+    <Content Include="Texture\AutoLoad\control_main.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\cursor_normal.png">
