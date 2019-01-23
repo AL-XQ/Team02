@@ -39,6 +39,7 @@ namespace Team02.Scene.UI
             ok.Size = new Size(360, 60);
             ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
             ok.Text = GetText("ok");
+            refract = 0.6f;
             base.PreLoadContent();
         }
 

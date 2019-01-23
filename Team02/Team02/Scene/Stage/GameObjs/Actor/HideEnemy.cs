@@ -128,7 +128,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             Speed = Vector2.Zero;
             Forces.Clear();
-            Forces["strut"] = -Gra * 0.95f;
+            //Forces["strut"] = -Gra * 0.95f;
         }
 
         public override void Draw2(GameTime gameTime)

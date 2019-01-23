@@ -138,6 +138,7 @@ namespace Team02.Scene.UI
             sc["play"].sounds["bgm"].Stop();
             sc["title"].IsRun = true;
             sc["title"].sounds["bgm"].Play();
+            ((PlayScene)sc["play"]).NowStage = 0;
             sc["play"].Initialize();
         }
 
