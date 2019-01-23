@@ -91,6 +91,7 @@
     <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\SavePoint.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
+    <Compile Include="Scene\UI\Credit.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\CharaHpUI.cs" />
     <Compile Include="Scene\UI\StageFade.cs" />
@@ -1064,7 +1065,7 @@
     <None Include="IGConfig.ini">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lang\ラノベPOP.otf">
+    <None Include="Lang\SourceHanSerif-Bold.ttc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="Map\map01.map">

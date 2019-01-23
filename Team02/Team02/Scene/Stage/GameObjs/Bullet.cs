@@ -96,6 +96,7 @@ namespace Team02.Scene.Stage.GameObjs
                 if (list.Count==0)
                 {
                     Kill();
+                    ExplosionArea.Create(base_Stage, ISpace.Center, rad);
                     base.CalCollision(obj);
                     return;
                 }
