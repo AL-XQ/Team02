@@ -17,7 +17,6 @@ namespace Team02.Scene.UI
     {
         private AnimeButton ok;
         private PlayScene playScene;
-        private int imNum = 1;
         private int fl = 0;
 
         public AnimeButton Ok { get => ok; }
@@ -31,7 +30,7 @@ namespace Team02.Scene.UI
         public override void Initialize()
         {
             fl = 0;
-            imNum = 1;
+            refract = 0;
             visible = false;
             base.Initialize();
         }
@@ -43,7 +42,7 @@ namespace Team02.Scene.UI
             ok.Size = new Size(360, 60);
             ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
             ok.Text = GetText("ok");
-            ok.ImageEntity.Enable = false;
+            ok.BDText.ForeColor = System.Drawing.Color.White;
             refract = 0.6f;
             base.PreLoadContent();
         }
@@ -52,6 +51,7 @@ namespace Team02.Scene.UI
         {
             Image = ImageManage.GetSImage("CLEAR.png");
             ok.Image = ImageManage.GetSImage("button");
+            ok.ImageEntity.Enable = false;
             ok.Click += OK_Click;
             base.LoadContent();
         }
@@ -66,15 +66,9 @@ namespace Team02.Scene.UI
             if (visible && fl <= 60)
             {
                 fl++;
-                imNum = fl / 10 + 1;
+                Refract = (fl / 2f + 1) / 31f;
             }
             base.Update(gameTime);
-        }
-
-        public override void Draw1(GameTime gameTime)
-        {
-            for (int i = 0; i < imNum; i++)
-                base.Draw1(gameTime);
         }
     }
 }

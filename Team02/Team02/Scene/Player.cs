@@ -166,11 +166,6 @@ namespace Team02.Scene
                 ve.Normalize();
                 ve *= 20f;
                 ((Hero)chara).Shut(ve, 60);
-                var ef = Effect.CreateEffect(chara, "bullet_shoot");
-                ef.Time = 61;
-                ef.Size = new Size(200, 200);
-                ef.Offset = -(ef.Size / 3).ToVector2() + 3 * ve;
-                ef.Origin = (ef.Size / 2).ToVector2();
                 return;
             }
             {

@@ -54,11 +54,11 @@ namespace Team02.Scene.UI
             isShoot = value;
             if (isShoot)
             {
-                ImageName = "lazer_test.png";
+                ImageName = "lazer.png";
                 Size = new Size(400, image.Size.Height);
                 return;
             }
-            ImageName = "arrow_test.png";
+            ImageName = "arrow.png";
             Size = new Size(image.Size.Width * 3 / 4, image.Size.Height);
         }
 

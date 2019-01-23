@@ -14,6 +14,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
     public class BossHit : TriggerObj
     {
         private BossPanel boss;
+        private int imNum = 1;
+        private int fl = 0;
+        private bool plus = true;
         public BossPanel Boss { get => boss; set => boss = value; }
         public BossHit(BaseDisplay aParent, BossPanel boss) : base(aParent)
         {
@@ -38,6 +41,13 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if (boss != null && boss.Isover)
                 Kill();
+            if (plus)
+                fl++;
+            else
+                fl--;
+            if (fl >= 60 || fl <= 0)
+                plus = !plus;
+            imNum = fl / 5 + 1;
             base.Update(gameTime);
         }
 
@@ -55,6 +65,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 boss.Hp--;
             }
             base.CalCollision(obj);
+        }
+
+        public override void Draw2(GameTime gameTime)
+        {
+            for (int i = 0; i < imNum; i++)
+                base.Draw2(gameTime);
         }
     }
 }

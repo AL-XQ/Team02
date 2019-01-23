@@ -26,7 +26,7 @@ namespace Team02.Scene.Stage
             Boss = new BossPanel(this);
             Boss.Coordinate = new Vector2(12 * 64, 3 * 64);
             Boss.Size = new Size(10 * 64, 11 * 64);
-            Boss.Image = ImageManage.GetSImage("boss1.png");
+            Boss.Image = ImageManage.GetSImage("boss");
             Boss.CreateHitSpace(3);
         }
 

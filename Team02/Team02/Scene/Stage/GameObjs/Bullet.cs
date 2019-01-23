@@ -53,7 +53,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected override void SetImage()
         {
-            ImageName = "bullet_test.png";
+            ImageName = "bullet.png";
         }
 
         protected override void OffSet()
