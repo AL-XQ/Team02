@@ -1068,9 +1068,6 @@
     <None Include="Lang\SourceHanSerif-Bold.ttc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Lang\ラノベPOP.otf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Map\map01.map">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
