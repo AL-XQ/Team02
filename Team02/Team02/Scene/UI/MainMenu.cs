@@ -87,13 +87,19 @@ namespace Team02.Scene.UI
             start.Text = GetText("Start");
             credit.Text = GetText("Credit");
             exit.Text = GetText("Exit");
+            start.BDText.ForeColor = System.Drawing.Color.White;
+            credit.BDText.ForeColor = System.Drawing.Color.White;
+            exit.BDText.ForeColor = System.Drawing.Color.White;
             start.TextAlign = ContentAlignment.MiddleCenter;
             credit.TextAlign = ContentAlignment.MiddleCenter;
             exit.TextAlign = ContentAlignment.MiddleCenter;
-            var im = ImageManage.GetSImage("button02");
+            var im = ImageManage.GetSImage("button");
             start.Image = im;
             credit.Image = im;
             exit.Image = im;
+            start.ImageEntity.Enable = false;
+            credit.ImageEntity.Enable = false;
+            exit.ImageEntity.Enable = false;
             base.LoadContent();
         }
 
