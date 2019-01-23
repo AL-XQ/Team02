@@ -35,7 +35,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
             Target = sample.target;
             priorityList = sample.priorityList.ToList();
             currentBehaviour = sample.currentBehaviour;
-            foreach(var l in sample.bcPairs)
+            foreach (var l in sample.bcPairs)
             {
                 bcPairs[l.Key] = l.Value.Copy();
             }
@@ -134,6 +134,12 @@ namespace Team02.Scene.Stage.GameObjs.Actor.AI
 
         private void BehaUpdate()
         {
+            if (target.Dealing)
+            {
+                Target = null;
+                return;
+            }
+
             if (currentBehaviour == null)
             {
                 return;
