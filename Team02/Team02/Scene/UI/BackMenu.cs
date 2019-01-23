@@ -90,14 +90,22 @@ namespace Team02.Scene.UI
             reset.Text = GetText("Reset");
             title.Text = GetText("Title");
             exit.Text = GetText("Exit");
+            back.BDText.ForeColor = System.Drawing.Color.White;
+            reset.BDText.ForeColor = System.Drawing.Color.White;
+            title.BDText.ForeColor = System.Drawing.Color.White;
+            exit.BDText.ForeColor = System.Drawing.Color.White;
             back.TextAlign = ContentAlignment.MiddleCenter;
             reset.TextAlign = ContentAlignment.MiddleCenter;
             title.TextAlign = ContentAlignment.MiddleCenter;
             exit.TextAlign = ContentAlignment.MiddleCenter;
-            back.Image = ImageManage.GetSImage("button02");
+            back.Image = ImageManage.GetSImage("button");
             reset.Image = back.Image;
             title.Image = back.Image;
             exit.Image = back.Image;
+            back.ImageEntity.Enable = false;
+            reset.ImageEntity.Enable = false;
+            title.ImageEntity.Enable = false;
+            exit.ImageEntity.Enable = false;
             Image = ImageManage.GetSImage("window.png");
             base.LoadContent();
         }
