@@ -43,6 +43,7 @@ namespace Team02.Scene.UI
             ok.Size = new Size(360, 60);
             ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
             ok.Text = GetText("ok");
+            ok.ImageEntity.Enable = false;
             refract = 0.6f;
             base.PreLoadContent();
         }
@@ -50,7 +51,7 @@ namespace Team02.Scene.UI
         public override void LoadContent()
         {
             Image = ImageManage.GetSImage("CLEAR.png");
-            ok.Image = ImageManage.GetSImage("button02");
+            ok.Image = ImageManage.GetSImage("button");
             ok.Click += OK_Click;
             base.LoadContent();
         }

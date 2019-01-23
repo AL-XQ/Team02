@@ -18,7 +18,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         //残像エフェクト関連
         private SImage trailImage;
         private int attack = 50;
-        private Vector2 lastspeed=Vector2.Zero;
+        private Vector2 lastspeed = Vector2.Zero;
         private struct TrailParticle { public Vector2 position; public Timer timer; }
         private List<TrailParticle> trailParticles = new List<TrailParticle>();
 
@@ -36,6 +36,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             DamageSpeed = 40f;
             base.Initialize();
+            _Update += SpawnEffect;
         }
 
         protected override void OffSet()
@@ -81,6 +82,16 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             trailParticles.RemoveAll(particle => particle.timer.IsTime);
 
             base.Update(gameTime);
+        }
+
+        private void SpawnEffect()
+        {
+            var ef = Effect.CreateEffect(this, "player_restart");
+            ef.Time = 40;
+            ef.Size = (size + Size.Parse(RenderSize_Offset.ToPoint())) * 2;
+            ef.Offset = -(ef.Size / 3).ToVector2();
+            ef.Origin = ef.Size.ToVector2() / 2;
+            _Update -= SpawnEffect;
         }
 
         public override void UKill()

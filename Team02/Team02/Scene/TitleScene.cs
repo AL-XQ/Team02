@@ -19,6 +19,9 @@ namespace Team02.Scene
     public class TitleScene : BaseScene
     {
         private MainMenu mainMenu;
+        private Credit credit;
+
+        public Credit Credit { get => credit; }
 
         public TitleScene(string aName, GraphicsDevice aGraphicsDevice, BaseDisplay aParent, GameRun aGameRun) : base(aName, aGraphicsDevice, aParent, aGameRun)
         {
@@ -34,6 +37,7 @@ namespace Team02.Scene
         {
             DIYMouse.SetCursor(Cursors.normal);
             mainMenu = new MainMenu(this);
+            credit = new Credit(this);
             base.PreLoadContent();
         }
 

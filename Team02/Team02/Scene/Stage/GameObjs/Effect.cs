@@ -12,9 +12,11 @@ namespace Team02.Scene.Stage.GameObjs
     {
         private GameObj target;
         private int time = -1;
+        private Vector2 offset = Vector2.Zero;
 
         public GameObj Target { get => target; set => SetTarget(value); }
         public int Time { get => time; set => time = value; }
+        public Vector2 Offset { get => offset; set => offset = value; }
 
         public Effect(BaseDisplay aParent) : base(aParent)
         {
@@ -56,6 +58,8 @@ namespace Team02.Scene.Stage.GameObjs
                 time--;
             else if (time == 0)
                 Kill();
+            if (target != null)
+                Coordinate = target.Coordinate + offset;
             base.Update(gameTime);
         }
     }

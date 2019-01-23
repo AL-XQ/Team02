@@ -150,7 +150,7 @@ namespace Team02.Scene.UI
 
         private void Cdt(object sender, EventArgs e)
         {
-            //((TitleScene)parent).Cridit.Visible = !((TitleScene)parent).Cridit.Visible;
+            ((TitleScene)parent).Credit.Visible = !((TitleScene)parent).Credit.Visible;
         }
 
         private void Exit(object sender, EventArgs e)
