@@ -104,8 +104,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 Console.WriteLine(true);
                 var ef = Effect.CreateEffect(this, "enemy_died");
                 ef.Time = 32;
-                ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 4;
-                ef.Offset = -(ef.Size / 3).ToVector2();
+                ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 5;
+                ef.Offset = -(ef.Size / 2.75f).ToVector2();
                 ef.Origin = ef.Size.ToVector2() / 2;
             }
         }
