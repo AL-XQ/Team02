@@ -241,9 +241,6 @@
     <Content Include="Texture\AutoLoad\control_main.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Texture\AutoLoad\cursor_normal.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Texture\AutoLoad\DeathBlock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -275,6 +272,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\messagebox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\cursor_normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\player_fall_L.png">
