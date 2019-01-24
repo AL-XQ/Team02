@@ -209,6 +209,9 @@
     <Content Include="Texture\AutoLoad\Block.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\bossclear_window.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\bullet.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
