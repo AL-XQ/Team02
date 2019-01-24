@@ -9,3 +9,4 @@
 <enemy_died:1>
 <bullet_shoot:1>
 <boss:1>
+<enemy_damage:1>

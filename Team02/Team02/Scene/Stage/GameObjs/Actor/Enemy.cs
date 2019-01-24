@@ -38,6 +38,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Initialize()
         {
             DamageSpeed = 19f;
+            _Damage +=Damageeffect;
             _Damage += Deatheffect;
             base.Initialize();
         }
@@ -108,6 +109,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                 ef.Offset = -(ef.Size / 2.75f).ToVector2();
                 ef.Origin = ef.Size.ToVector2() / 2;
             }
+        }
+        private void Damageeffect()
+        {
+            var def = Effect.CreateEffect(this, "enemy_damage");
+            def.Time = 30;
+            def.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 7/2;
+            def.Offset = -(def.Size / 3).ToVector2();
+            def.Origin = def.Size.ToVector2() / 2;
+            _Update -= Damageeffect;
         }
     }
 }
