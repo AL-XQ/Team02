@@ -27,6 +27,7 @@ namespace Team02.Scene.Stage
 
             SImage arrow = ImageManage.GetSImage("arrow_test.png");
 
+            //重力操作の説明
             new ObjUI(this)
             {
                 Coordinate = new Vector2(3350, 1300),
@@ -34,6 +35,8 @@ namespace Team02.Scene.Stage
                 Rotation = (float)(-10 * Math.PI / 180),
                 Image = arrow,
             };
+
+            //壁のぼりの説明
 
             new ObjUI(this)
             {
@@ -57,6 +60,8 @@ namespace Team02.Scene.Stage
                 Image = ImageManage.GetSImage("DKey.png"),
             };
 
+            //天井歩行の説明
+
             new ObjUI(this)
             {
                 Coordinate = new Vector2(5734, 250),
@@ -79,11 +84,22 @@ namespace Team02.Scene.Stage
                 Image = ImageManage.GetSImage("AKey.png"),
             };
 
+            //戦闘の説明
+
             new ObjUI(this)
             {
-                Coordinate = new Vector2(8400, 400),
-                Size = new Size(64, 64) * 3,
-                Image = ImageManage.GetSImage("MouseLeftClick.png"),
+                Coordinate = new Vector2(8000, 600),
+                Size = new Size(256, 64),
+                Rotation = (float)(-90 * Math.PI / 180),
+                Image = arrow,
+            };
+
+            new ObjUI(this)
+            {
+                Coordinate = new Vector2(8000, 400),
+                Size = new Size(96, 96),
+                Rotation = (float)(180 * Math.PI / 180),
+                Image = ImageManage.GetSImage("Enemy_Test.png"),
             };
         }
     }
