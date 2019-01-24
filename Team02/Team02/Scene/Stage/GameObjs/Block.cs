@@ -65,6 +65,8 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected virtual void FitIForce(IForce f)
         {
+            if (f is HideEnemy)
+                return;
             if (f is Chara c && !c.Rotating && (!c.LastIsStrut || c.ObjMemory["block"] != this))
             {
                 var newGra = GetEscVe(c);

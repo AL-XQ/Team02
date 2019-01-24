@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework;
 using Team02.Scene.Stage.GameObjs.Actor.AI;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Behaviour;
 using Team02.Scene.Stage.GameObjs.Actor.AI.Condition;
+using InfinityGame.Element;
 
 namespace Team02.Scene.Stage.GameObjs.Actor
 {
@@ -37,6 +38,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Initialize()
         {
             DamageSpeed = 19f;
+            _Damage += Deatheffect;
             base.Initialize();
         }
 
@@ -93,6 +95,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void UKill()
         {
             base.UKill();
+        }
+
+        private void Deatheffect()
+        {
+            if(Hp<=0)
+            {
+                Console.WriteLine(true);
+                var ef = Effect.CreateEffect(this, "enemy_died");
+                ef.Time = 33;
+                ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 20;
+                ef.Origin = ef.Size.ToVector2() / 2;
+            }
         }
     }
 }

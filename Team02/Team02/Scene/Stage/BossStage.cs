@@ -53,6 +53,8 @@ namespace Team02.Scene.Stage
 
         public override void Update(GameTime gameTime)
         {
+            if (PlayScene.ShowStage.Name != Name)
+                return;
             if (boss != null && !boss.Isover && rnd.Next(100) == 0 && CharaManager.Enemys.Count < maxEnemy)
             {
                 SpawnEnemy();

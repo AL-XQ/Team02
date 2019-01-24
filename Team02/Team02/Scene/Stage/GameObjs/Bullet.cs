@@ -86,7 +86,20 @@ namespace Team02.Scene.Stage.GameObjs
                 float rad = 64f;
                 Vector2 lo = ISpace.Center - new Vector2(rad, rad);
                 var cir = new Circle(lo, rad);
-                var list = Stage.DetectorObj(cir);
+                var nlist = Stage.DetectorObj(cir);
+                var list = new List<StageObj>();
+                foreach(var l in nlist)
+                {
+                    if ((l is IGraChange gc && gc.EnableChange) || l is IGraLink)
+                        list.Add(l);
+                }
+                if (list.Count==0)
+                {
+                    Kill();
+                    ExplosionArea.Create(base_Stage, ISpace.Center, rad);
+                    base.CalCollision(obj);
+                    return;
+                }
                 var graC = new GraChanger(base_Stage);
                 graC.Center = ISpace.Center;
                 ExplosionArea.Create(base_Stage, ISpace.Center, rad);

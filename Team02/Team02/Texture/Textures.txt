@@ -1,5 +1,10 @@
 ﻿<IG:1>
 <closebutton:1>
+<button:1>
 <button03:1>
 <button02:1>
 <button01:1>
+<bullet_burst:1>
+<player_restart:1>
+<enemy_died:1>
+<bullet_shoot:1>

@@ -87,13 +87,19 @@ namespace Team02.Scene.UI
             start.Text = GetText("Start");
             credit.Text = GetText("Credit");
             exit.Text = GetText("Exit");
+            start.BDText.ForeColor = System.Drawing.Color.White;
+            credit.BDText.ForeColor = System.Drawing.Color.White;
+            exit.BDText.ForeColor = System.Drawing.Color.White;
             start.TextAlign = ContentAlignment.MiddleCenter;
             credit.TextAlign = ContentAlignment.MiddleCenter;
             exit.TextAlign = ContentAlignment.MiddleCenter;
-            var im = ImageManage.GetSImage("button02");
+            var im = ImageManage.GetSImage("button");
             start.Image = im;
             credit.Image = im;
             exit.Image = im;
+            start.ImageEntity.Enable = false;
+            credit.ImageEntity.Enable = false;
+            exit.ImageEntity.Enable = false;
             base.LoadContent();
         }
 
@@ -144,7 +150,7 @@ namespace Team02.Scene.UI
 
         private void Cdt(object sender, EventArgs e)
         {
-            //((TitleScene)parent).Cridit.Visible = !((TitleScene)parent).Cridit.Visible;
+            ((TitleScene)parent).Credit.Visible = !((TitleScene)parent).Credit.Visible;
         }
 
         private void Exit(object sender, EventArgs e)

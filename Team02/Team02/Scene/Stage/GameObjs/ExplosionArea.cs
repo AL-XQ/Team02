@@ -20,13 +20,13 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected override void SetImage()
         {
-            ImageName = "BurstSize.png";
+            ImageName = "bullet_burst";
         }
 
         public static ExplosionArea Create(Base_Stage stage, Vector2 center, float radius)
         {
             var ea = new ExplosionArea(stage);
-            Size sz = new Size(radius, radius);
+            Size sz = new Size(radius, radius) * 2;
             ea.Coordinate = center - sz.ToVector2();
             ea.Size = sz * 2;
             ea.Radius = radius;
