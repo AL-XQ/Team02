@@ -283,6 +283,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\MouseLeftClick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\cursor_normal.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
