@@ -67,17 +67,19 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Block_Test_192.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "Block_Test_192.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "Block_Test_192.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "Block_Test_192.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Block_Test_192.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Block_Test_192.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "Block_Test_192.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "Block_Test_192.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "Block_Test_192.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Block_Test_192.png";
-            ImageName = "Block_Test_192.png";
+            ImageName = "Block.png";
+            Motion.Images[Direction.Right][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Float] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Float] = ImageName;
+            face = ImageManage.GetSImage("hiddenEnemy_face.png");
+
         }
 
         private void ShowFace()
@@ -90,6 +92,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private void ShowDamageBar()
         {
             HpUI.Visible = true;
+            showFace = true;
             _Damage -= ShowDamageBar;
         }
 
@@ -144,8 +147,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     {
                         Rectangle renderR = RenderRect;
                         if (renderR == default(Rectangle))
-                            renderR = new Rectangle(Point.Zero, image.Size.ToPoint());
-                        spriteBatch.Draw(face.ImageT[iTIndex], new Rectangle(DrawLocation/* + (renderCoo_Offset * stage.CameraScale).ToPoint()*/, ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * image.Size.ToVector2(), SpriteEffects.None, 1f);
+                            renderR = new Rectangle(Point.Zero, face.Size.ToPoint());
+                        spriteBatch.Draw(face.ImageT[iTIndex], new Rectangle(DrawLocation/* + (renderCoo_Offset * stage.CameraScale).ToPoint()*/, ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color.White * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * face.Size.ToVector2(), SpriteEffects.None, 1f);
                     }
                 }
             }

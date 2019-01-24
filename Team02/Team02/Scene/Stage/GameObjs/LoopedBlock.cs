@@ -75,7 +75,7 @@ namespace Team02.Scene.Stage.GameObjs
 
         protected override void SetImage()
         {
-            ImageName = "Block_Test_192.png";
+            ImageName = "Block.png";
             //ImageName = "0_0.png";
         }
 

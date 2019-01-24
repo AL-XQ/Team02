@@ -56,17 +56,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Enemy_Test.png";
-            ImageName = "messagebox.png";
+            ImageName = "Enemy.png";
+            Motion.Images[Direction.Right][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Float] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Float] = ImageName;
+            
         }
 
         public override void PreLoadContent()
@@ -101,7 +102,6 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if(Hp<=0)
             {
-                Console.WriteLine(true);
                 var ef = Effect.CreateEffect(this, "enemy_died");
                 ef.Time = 32;
                 ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 5;
