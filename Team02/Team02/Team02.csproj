@@ -90,6 +90,7 @@
     <Compile Include="Scene\Stage\GameObjs\Trigger\CameraZoom.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\SavePoint.cs" />
     <Compile Include="Scene\Stage\GameObjs\Trigger\TriggerObj.cs" />
+    <Compile Include="Scene\Stage\TutorialStage.cs" />
     <Compile Include="Scene\UI\EnemyCountUI.cs" />
     <Compile Include="Scene\UI\CharaHpUI.cs" />
     <Compile Include="Scene\UI\GameClear.cs" />
@@ -203,6 +204,9 @@
     <Content Include="Texture\AutoLoad\aim.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\AKey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\arrow_test.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -245,6 +249,9 @@
     <Content Include="Texture\AutoLoad\DeathBlock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\DKey.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\EnemyCountBack.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -273,6 +280,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\messagebox.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Texture\AutoLoad\MouseLeftClick.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\player_fall_L.png">
