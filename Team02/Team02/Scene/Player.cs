@@ -166,11 +166,6 @@ namespace Team02.Scene
                 ve.Normalize();
                 ve *= 20f;
                 ((Hero)chara).Shut(ve, 60);
-                var ef = Effect.CreateEffect(chara, "bullet_shoot");
-                ef.Time = 61;
-                ef.Size = new Size(200, 200);
-                ef.Offset = -(ef.Size / 3).ToVector2() + 3 * ve;
-                ef.Origin = (ef.Size / 2).ToVector2();
                 return;
             }
             {
@@ -267,6 +262,10 @@ namespace Team02.Scene
 
         private void OnZoom()
         {
+#if DEBUG
+            if (Edit)
+                return;
+#endif
             var change = (Stage.CameraScale - zoom) * 0.05f;
             if (Math.Abs(change) > 0.0001f)
                 Stage.CameraScale -= change;

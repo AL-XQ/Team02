@@ -38,6 +38,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Initialize()
         {
             DamageSpeed = 19f;
+            _Damage +=Damageeffect;
             _Damage += Deatheffect;
             base.Initialize();
         }
@@ -56,17 +57,18 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         protected override void SetImage()
         {
-            Motion.Images[Direction.Right][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Right][MotionState.Float] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Normal] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Fall] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Jump] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Walk] = "Enemy_Test.png";
-            Motion.Images[Direction.Left][MotionState.Float] = "Enemy_Test.png";
-            ImageName = "messagebox.png";
+            ImageName = "Enemy.png";
+            Motion.Images[Direction.Right][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Right][MotionState.Float] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Normal] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Fall] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Jump] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Walk] = ImageName;
+            Motion.Images[Direction.Left][MotionState.Float] = ImageName;
+            
         }
 
         public override void PreLoadContent()
@@ -101,12 +103,21 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             if(Hp<=0)
             {
-                Console.WriteLine(true);
                 var ef = Effect.CreateEffect(this, "enemy_died");
-                ef.Time = 33;
-                ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 20;
+                ef.Time = 32;
+                ef.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 5;
+                ef.Offset = -(ef.Size / 2.75f).ToVector2();
                 ef.Origin = ef.Size.ToVector2() / 2;
             }
+        }
+        private void Damageeffect()
+        {
+            var def = Effect.CreateEffect(this, "enemy_damage");
+            def.Time = 30;
+            def.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 7/2;
+            def.Offset = -(def.Size / 3).ToVector2();
+            def.Origin = def.Size.ToVector2() / 2;
+            _Update -= Damageeffect;
         }
     }
 }

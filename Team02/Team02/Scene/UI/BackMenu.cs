@@ -106,7 +106,7 @@ namespace Team02.Scene.UI
             reset.ImageEntity.Enable = false;
             title.ImageEntity.Enable = false;
             exit.ImageEntity.Enable = false;
-            Image = ImageManage.GetSImage("window.png");
+            Image = ImageManage.GetSImage("window_ui.png");
             base.LoadContent();
         }
 

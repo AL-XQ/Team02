@@ -25,7 +25,7 @@ namespace Team02.Scene.Stage
         {
             base.Initialize();
 
-            SImage arrow = ImageManage.GetSImage("arrow_test.png");
+            SImage arrow = ImageManage.GetSImage("arrow.png");
 
             //重力操作の説明
             new ObjUI(this)

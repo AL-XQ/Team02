@@ -88,9 +88,9 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         {
             var ef = Effect.CreateEffect(this, "player_restart");
             ef.Time = 40;
-            ef.Size = (size + Size.Parse(RenderSize_Offset.ToPoint())) * 2;
-            ef.Offset = -(ef.Size / 3).ToVector2();
-            ef.Origin = ef.Size.ToVector2() / 2;
+            ef.Size = (size + Size.Parse(RenderSize_Offset.ToPoint())) * 4;
+            ef.Offset = -(ef.Size / 2.5f).ToVector2();
+            ef.Origin = ef.Size.ToVector2()/2;
             _Update -= SpawnEffect;
         }
 

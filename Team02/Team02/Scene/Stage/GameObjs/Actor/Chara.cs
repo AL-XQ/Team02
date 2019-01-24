@@ -492,7 +492,11 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             bullet.Speed = ve;
             bullet.TimeDown = time;
             bullet.Create();
-
+            var ef = Effect.CreateEffect(this, "bullet_shoot");
+            ef.Time = 61;
+            ef.Size = new Size(200, 200);
+            ef.Offset = -(ef.Size / 3).ToVector2() + 3 * ve;
+            ef.Origin = (ef.Size / 2).ToVector2();
             sounds["shoot"].PlayE();
         }
 

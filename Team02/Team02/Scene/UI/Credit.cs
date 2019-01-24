@@ -35,7 +35,6 @@ namespace Team02.Scene.UI
             ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
             ok.Text = GetText("ok");
             ok.BDText.ForeColor = System.Drawing.Color.White;
-            ok.ImageEntity.Enable = false;
             lable = new Label(this);
             lable.BDText.ForeColor = System.Drawing.Color.White;
             lable.Text = "　　　　　　　クレジット\r\n" +
@@ -57,7 +56,8 @@ namespace Team02.Scene.UI
         {
             ok.Image = ImageManage.GetSImage("button");
             ok.Click += OK_Click;
-            image = ImageManage.GetSImage("window.png");
+            ok.ImageEntity.Enable = false;
+            image = ImageManage.GetSImage("window_ui.png");
             base.LoadContent();
         }
 
