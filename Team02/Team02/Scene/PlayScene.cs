@@ -81,7 +81,6 @@ namespace Team02.Scene
             gameClear = new GameClear(this);
             var m1 = new TutorialStage(this, "stage01");
             stageFade = new StageFade(this);
-            var m1 = new Base_Stage(this, "stage01");
             m1.Map = "map01";
             m1.StageTime = 6000;
             var m2 = new Base_Stage(this, "stage02");
