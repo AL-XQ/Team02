@@ -262,6 +262,10 @@ namespace Team02.Scene
 
         private void OnZoom()
         {
+#if DEBUG
+            if (Edit)
+                return;
+#endif
             var change = (Stage.CameraScale - zoom) * 0.05f;
             if (Math.Abs(change) > 0.0001f)
                 Stage.CameraScale -= change;

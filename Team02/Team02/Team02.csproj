@@ -1573,6 +1573,9 @@
     <Content Include="Texture\enemy_died\enemy_died_0032.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\hiddenEnemy_face.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\IG\IG.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

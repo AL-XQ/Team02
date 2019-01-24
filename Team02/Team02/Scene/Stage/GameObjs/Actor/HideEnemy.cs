@@ -78,7 +78,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Motion.Images[Direction.Left][MotionState.Jump] = ImageName;
             Motion.Images[Direction.Left][MotionState.Walk] = ImageName;
             Motion.Images[Direction.Left][MotionState.Float] = ImageName;
-            
+            face = ImageManage.GetSImage("hiddenEnemy_face.png");
+
         }
 
         private void ShowFace()
@@ -91,6 +92,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         private void ShowDamageBar()
         {
             HpUI.Visible = true;
+            showFace = true;
             _Damage -= ShowDamageBar;
         }
 
@@ -145,8 +147,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
                     {
                         Rectangle renderR = RenderRect;
                         if (renderR == default(Rectangle))
-                            renderR = new Rectangle(Point.Zero, image.Size.ToPoint());
-                        spriteBatch.Draw(face.ImageT[iTIndex], new Rectangle(DrawLocation/* + (renderCoo_Offset * stage.CameraScale).ToPoint()*/, ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * image.Size.ToVector2(), SpriteEffects.None, 1f);
+                            renderR = new Rectangle(Point.Zero, face.Size.ToPoint());
+                        spriteBatch.Draw(face.ImageT[iTIndex], new Rectangle(DrawLocation/* + (renderCoo_Offset * stage.CameraScale).ToPoint()*/, ((Size.ToVector2() + RenderSize_Offset) * Stage.CameraScale).ToPoint()), renderR, Color.White * refract, Rotation, ((Origin - RenderCoo_Offset) / (Size.ToVector2() + RenderSize_Offset)) * face.Size.ToVector2(), SpriteEffects.None, 1f);
                     }
                 }
             }

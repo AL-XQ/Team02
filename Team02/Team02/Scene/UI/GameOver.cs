@@ -65,7 +65,7 @@ namespace Team02.Scene.UI
             if (visible && fl <= 60)
             {
                 fl++;
-                Refract = (fl / 2f + 1) / 31f;
+                Refract = (fl / 1f + 1) / 61f;
             }
             base.Update(gameTime);
         }

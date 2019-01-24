@@ -49,7 +49,7 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
-            Image = ImageManage.GetSImage("CLEAR.png");
+            //Image = ImageManage.GetSImage("CLEAR.png");
             ok.Image = ImageManage.GetSImage("button");
             ok.ImageEntity.Enable = false;
             ok.Click += OK_Click;
@@ -66,7 +66,7 @@ namespace Team02.Scene.UI
             if (visible && fl <= 60)
             {
                 fl++;
-                Refract = (fl / 2f + 1) / 31f;
+                Refract = (fl / 1f + 1) / 61f;
             }
             base.Update(gameTime);
         }
