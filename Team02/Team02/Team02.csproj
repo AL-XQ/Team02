@@ -215,6 +215,9 @@
     <Content Include="Texture\AutoLoad\CLEAR.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\CombatTutorial.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\AutoLoad\control_main.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -840,9 +843,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\boss\boss_0177.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Texture\AutoLoad\MouseLeftClick.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Texture\AutoLoad\cursor_normal.png">

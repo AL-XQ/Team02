@@ -83,24 +83,6 @@ namespace Team02.Scene.Stage
                 Size = new Size(192, 128),
                 Image = ImageManage.GetSImage("AKey.png"),
             };
-
-            //戦闘の説明
-
-            new ObjUI(this)
-            {
-                Coordinate = new Vector2(8000, 600),
-                Size = new Size(256, 64),
-                Rotation = (float)(-90 * Math.PI / 180),
-                Image = arrow,
-            };
-
-            new ObjUI(this)
-            {
-                Coordinate = new Vector2(8000, 400),
-                Size = new Size(96, 96),
-                Rotation = (float)(180 * Math.PI / 180),
-                Image = ImageManage.GetSImage("Enemy_Test.png"),
-            };
         }
     }
 }
