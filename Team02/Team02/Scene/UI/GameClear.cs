@@ -37,7 +37,8 @@ namespace Team02.Scene.UI
 
         public override void PreLoadContent()
         {
-            Size = parent.Size;
+            Size = parent.Size/2;
+            Location = new Point((parent.Size.Width-Size.Width)/2, (parent.Size.Height - Size.Height) / 2);
             ok = new AnimeButton(this);
             ok.Size = new Size(360, 60);
             ok.Location = new Point((size.Width - ok.Size.Width) / 2, size.Height - ok.Size.Height - 20);
@@ -49,7 +50,8 @@ namespace Team02.Scene.UI
 
         public override void LoadContent()
         {
-            //Image = ImageManage.GetSImage("CLEAR.png");
+            Image = ImageManage.GetSImage("bossclear_window.png");
+            
             ok.Image = ImageManage.GetSImage("button");
             ok.ImageEntity.Enable = false;
             ok.Click += OK_Click;

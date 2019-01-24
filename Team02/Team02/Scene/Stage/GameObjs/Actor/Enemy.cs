@@ -112,12 +112,15 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         }
         private void Damageeffect()
         {
-            var def = Effect.CreateEffect(this, "enemy_damage");
-            def.Time = 30;
-            def.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 7/2;
-            def.Offset = -(def.Size / 3).ToVector2();
-            def.Origin = def.Size.ToVector2() / 2;
-            _Update -= Damageeffect;
+            if(Hp>0)
+            {
+                var def = Effect.CreateEffect(this, "enemy_damage");
+                def.Time = 30;
+                def.Size = (size + Size.Parse(RenderCoo_Offset.ToPoint())) * 7 / 2;
+                def.Offset = -(def.Size / 3).ToVector2();
+                def.Origin = def.Size.ToVector2() / 2;
+                _Update -= Damageeffect;
+            }
         }
     }
 }
