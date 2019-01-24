@@ -8,3 +8,4 @@
 <player_restart:1>
 <enemy_died:1>
 <bullet_shoot:1>
+<enemy_damage:1>
