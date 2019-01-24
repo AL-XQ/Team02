@@ -38,7 +38,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         public override void Initialize()
         {
             DamageSpeed = 19f;
-            _Damage +=Damageeffect;
+            _Damage += Damageeffect;
             _Damage += Deatheffect;
             base.Initialize();
         }
@@ -68,7 +68,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
             Motion.Images[Direction.Left][MotionState.Jump] = ImageName;
             Motion.Images[Direction.Left][MotionState.Walk] = ImageName;
             Motion.Images[Direction.Left][MotionState.Float] = ImageName;
-            
+
         }
 
         public override void PreLoadContent()
@@ -101,7 +101,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         private void Deatheffect()
         {
-            if(Hp<=0)
+            if (Hp <= 0)
             {
                 var ef = Effect.CreateEffect(this, "enemy_died");
                 ef.Time = 32;

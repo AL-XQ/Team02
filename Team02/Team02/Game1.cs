@@ -49,6 +49,10 @@ namespace Team02
         public Game1()
         {
             IGConfig.IGConfigLoad();
+            using (System.Drawing.Graphics gra = System.Drawing.Graphics.FromHwnd(IntPtr.Zero))
+            {
+                IGConfig.dpi = gra.DpiX; 
+            }
             //グラフィックスデバイス管理者の実体生成
             graphicsDeviceManager = new GraphicsDeviceManager(this);
             if (IGConfig.isFullScreen)
