@@ -2063,6 +2063,9 @@
     <Content Include="Texture\bullet_shoot\bullet_shoot_0060.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Texture\AutoLoad\stage_bg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Texture\Textures.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

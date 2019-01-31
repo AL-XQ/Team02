@@ -124,6 +124,7 @@ namespace Team02.Scene
         public override void LoadContent()
         {
             sounds["bgm"] = null;
+            image = ImageManage.GetSImage("stage_bg.png");
             GraChanger.ControlC = ImageManage.GetSImage("control_main.png");
             base.LoadContent();
         }
