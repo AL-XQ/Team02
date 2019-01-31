@@ -206,6 +206,7 @@ namespace Team02.Scene
                 }
                 chara.RunOnGra("run", force);
                 Jump();
+#if DEBUG
                 if (GameKeyboard.GetKeyState(Keys.Right))
                 {
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, 0.05f);
@@ -214,6 +215,7 @@ namespace Team02.Scene
                 {
                     chara.Gra = VectorTools.Rotate(Vector2.Zero, chara.Gra, -0.05f);
                 }
+#endif
                 if (GameKeyboard.GetKeyTrigger(Keys.Q))
                 {
                     chara.ResetGra();
