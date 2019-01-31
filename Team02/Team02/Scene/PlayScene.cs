@@ -80,18 +80,18 @@ namespace Team02.Scene
             gameOver = new GameOver(this);
             gameClear = new GameClear(this);
             stageFade = new StageFade(this);
-            var m1 = new TutorialStage(this, "Stage1");
+            var m1 = new TutorialStage(this, "Tutor");
             m1.Map = "map01";
             m1.StageTime = 6000;
-            var m2 = new Base_Stage(this, "Stage2");
+            var m2 = new Base_Stage(this, "Stage1");
             m2.Map = "map02";
             m2.StageTime = 240;
-            var m3 = new Base_Stage(this, "Stage3");
+            var m3 = new Base_Stage(this, "Stage2");
             m3.Map = "map03";
             m3.StageTime = 30;
-            bossStages.Add(new BossStage1(this, "BossStage1"));
+            bossStages.Add(new BossStage1(this, "BossStage"));
             bossStages[0].Map = "map04";
-            stageOrder.AddRange(new string[] { "Stage1", "Stage2", "Stage3", "BossStage1" });
+            stageOrder.AddRange(new string[] { "Tutor", "Stage1", "Stage2", "BossStage" });
             nowStage = 0;
             base.PreLoadContent();
         }

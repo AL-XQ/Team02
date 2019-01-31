@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 namespace Team02
@@ -53,7 +54,7 @@ namespace Team02
 #if DEBUG
             if (!MapEdit)
 #endif
-            game.Exit();
+                game.Exit();
         }
 
         public static void FullScreen()
@@ -62,4 +63,4 @@ namespace Team02
         }
     }
 #endif
-        }
+}

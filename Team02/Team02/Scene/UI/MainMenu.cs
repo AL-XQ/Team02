@@ -20,12 +20,12 @@ namespace Team02.Scene.UI
         private AnimeButton start;
         private AnimeButton credit;
         private AnimeButton exit;
-        private List<AnimeButton> buts = new List<AnimeButton>();
-        private int index = 0;
+        //private List<AnimeButton> buts = new List<AnimeButton>();
+        //private int index = 0;
 
         private bool bstart = false;
 
-        private int Index { get => index; set => SetIndex(value); }
+        //private int Index { get => index; set => SetIndex(value); }
         public MainMenu(BaseDisplay parent) : base(parent)
         {
             canMove = false;
@@ -34,7 +34,7 @@ namespace Team02.Scene.UI
             backColor = Color.Transparent;
         }
 
-        private void SetIndex(int value)
+        /*private void SetIndex(int value)
         {
             int t = value;
             if (t == -1)
@@ -44,12 +44,12 @@ namespace Team02.Scene.UI
             buts[index].OnLeave(null, null);
             index = t;
             buts[index].OnEnter(null, null);
-        }
+        }*/
 
         public override void Initialize()
         {
             bstart = false;
-            Index = 0;
+           // Index = 0;
             base.Initialize();
         }
 
@@ -65,11 +65,11 @@ namespace Team02.Scene.UI
             Size = new Size(parent.Size.Width * 2 / 7, parent.Size.Height / 3);
             Location = new Point(0, parent.Size.Height - Size.Height);
             start = new AnimeButton(graphicsDevice, this);
-            buts.Add(start);
+            //buts.Add(start);
             credit = new AnimeButton(graphicsDevice, this);
-            buts.Add(credit);
+            //buts.Add(credit);
             exit = new AnimeButton(graphicsDevice, this);
-            buts.Add(exit);
+            //buts.Add(exit);
 
             start.Size = new Size(size.Width * 4 / 5, size.Height * 1 / 6);
             credit.Size = start.Size;
@@ -107,12 +107,12 @@ namespace Team02.Scene.UI
         {
             if (visible)
             {
-                if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.DPadUp))
+                /*if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.DPadUp))
                     Index--;
                 if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.DPadDown))
                     Index++;
                 if (IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.Start) || IGGamePad.GetKeyTrigger(PlayerIndex.One, Buttons.A))
-                    ToEnter();
+                    ToEnter();*/
                 if (bstart)
                 {
                     var sc = GameRun.Instance.scenes;
@@ -136,10 +136,10 @@ namespace Team02.Scene.UI
             base.Update(gameTime);
         }
 
-        private void ToEnter()
+        /*private void ToEnter()
         {
             buts[index].OnClick(null, null);
-        }
+        }*/
 
         private void Start(object sender, EventArgs e)
         {

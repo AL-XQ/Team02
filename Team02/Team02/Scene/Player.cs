@@ -25,7 +25,7 @@ namespace Team02.Scene
         private D_Void _RunZoom;
         private float zoom = 1f;
         private float kickForce = 50f;
-        private int kickTime = 180;
+        private int kickTime = 120;
         private Chara chara;
         private PlayScene playScene;
         private Vector2 cameraCenter;

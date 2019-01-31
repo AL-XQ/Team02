@@ -78,6 +78,8 @@ namespace Team02.Scene.Stage.GameObjs.Actor
 
         public override void Update(GameTime gameTime)
         {
+            //if (Vector2.Distance(Coordinate, Stage.CameraCenter) > 2000)
+            //    return;
             if (behaviourManager != null)
             {
                 behaviourManager.Update();
@@ -112,7 +114,7 @@ namespace Team02.Scene.Stage.GameObjs.Actor
         }
         private void Damageeffect()
         {
-            if(Hp>0)
+            if (Hp > 0)
             {
                 var def = Effect.CreateEffect(this, "enemy_damage");
                 def.Time = 30;
