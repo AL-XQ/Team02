@@ -64,6 +64,13 @@ namespace Team02.Scene.Stage
 
             new ObjUI(this)
             {
+                Coordinate = new Vector2(5200, 80),
+                Size = new Size(64, 64),
+                Image = ImageManage.GetSImage("QKey.png"),
+            };
+
+            new ObjUI(this)
+            {
                 Coordinate = new Vector2(5734, 250),
                 Size = new Size(256, 64),
                 Rotation = (float)(-90 * Math.PI / 180),
@@ -82,6 +89,22 @@ namespace Team02.Scene.Stage
                 Coordinate = new Vector2(5900, 60),
                 Size = new Size(192, 128),
                 Image = ImageManage.GetSImage("AKey.png"),
+            };
+
+            //戦闘のチュートリアル
+
+            new ObjUI(this)
+            {
+                Coordinate = new Vector2(126, 9) * 64,
+                Size = new Size(128, 128),
+                Image = ImageManage.GetSImage("CombatTutorial.png"),
+            };
+
+            new ObjUI(this)
+            {
+                Coordinate = new Vector2(149, 7) * 64,
+                Size = new Size(128, 128),
+                Image = ImageManage.GetSImage("DeathBlockTutorial.png"),
             };
         }
     }
